@@ -1,13 +1,9 @@
-﻿<UserControl x:Name="MyCompositeElement" x:Class="DantistApp.CompositeElement"
+﻿<UserControl x:Name="MyCompositeElement" x:Class="DantistApp.Elements.CompositeElement"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:tools="clr-namespace:DantistApp.Tools"
              mc:Ignorable="d" Width="{Binding Path=ElementWidth, ElementName=MyCompositeElement}" MouseLeftButtonDown="MyCompositeElement_MouseLeftButtonDown" Initialized="MyCompositeElement_Initialized">
-    <UserControl.Resources>
-        <tools:CompositeElementHeightConverter x:Key="hightConverter"/>
-    </UserControl.Resources>
     <Grid>
         <Border BorderBrush="Black" BorderThickness="2">
             <Canvas x:Name="controlCanvas" MouseLeftButtonDown="CanvasMouseLeftButtonDown" MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove">

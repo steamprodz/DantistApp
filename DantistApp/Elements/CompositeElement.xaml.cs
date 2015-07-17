@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DantistApp
+namespace DantistApp.Elements
 {
     /// <summary>
     /// Interaction logic for GroupedImage.xaml
