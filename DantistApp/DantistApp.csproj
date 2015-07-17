@@ -68,7 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CompositeElement.xaml">
+    <Page Include="Elements\CompositeElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -80,11 +80,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CompositeElement.xaml.cs">
+    <Compile Include="ElementsAdding.cs" />
+    <Compile Include="ElementsMoving.cs" />
+    <Compile Include="Elements\CompositeElement.xaml.cs">
       <DependentUpon>CompositeElement.xaml</DependentUpon>
     </Compile>
     <Compile Include="Elements\GroupElement.cs" />
-    <Compile Include="Elements\ReplacingElement.cs" />
+    <Compile Include="Elements\SingleElement.cs" />
     <Compile Include="Elements\UnlimitedElement.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

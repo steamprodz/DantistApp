@@ -22,19 +22,10 @@ namespace DantistApp.Elements
         {
             DataContext = this;
 
-            MouseLeftButtonDown += UnlimitedElement_MouseLeftButtonDown;
         }
 
 
-        private void UnlimitedElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                //...
-                //add element
-                //...
-            }
-        }
+        
 
 
     }
