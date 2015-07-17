@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DantistApp
+namespace DantistApp.Elements
 {
     public class UnlimitedElement : Image
     {
@@ -22,19 +22,10 @@ namespace DantistApp
         {
             DataContext = this;
 
-            MouseLeftButtonDown += UnlimitedElement_MouseLeftButtonDown;
         }
 
 
-        private void UnlimitedElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                //...
-                //add element
-                //...
-            }
-        }
+        
 
 
     }

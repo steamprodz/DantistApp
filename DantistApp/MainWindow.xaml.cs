@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DantistApp.Elements;
 
 namespace DantistApp
 {
@@ -20,9 +21,31 @@ namespace DantistApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        Image _activeElement;
+        Point _mousePosition;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            foreach (var item in grid_nij_chel.Children)
+            {
+                if (item is UnlimitedElement)
+                {
+                    UnlimitedElement element = item as UnlimitedElement;
+                    element.MouseLeftButtonDown += UnlimitedElement_Adding;
+                }
+            }
+            foreach (var item in grid_ver_chel.Children)
+            {
+                if (item is GroupElement)
+                {
+                    GroupElement element = item as GroupElement;
+                    element.MouseLeftButtonDown += GroupElement_Adding;
+                }
+            }
         }
+
+
     }
 }
