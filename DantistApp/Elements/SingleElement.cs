@@ -22,10 +22,10 @@ namespace DantistApp
         Down
     }
 
-    public class ReplacingElement : Image
+    public class SingleElement : Image
     {
 
-        public ReplacingElement()
+        public SingleElement()
         {
             DataContext = this;
 
