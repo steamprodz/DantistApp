@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -131,6 +132,24 @@ namespace DantistApp
                     Canvas.SetTop(bindedImage, Canvas.GetTop(bindedImage) + offset.Y);
                 }
             }
+        }
+
+        private void MyCompositeElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DropShadowEffect glowEffect = new DropShadowEffect()
+            {
+                ShadowDepth = 0,
+                Color = Colors.Red,
+                Opacity = 1,
+                BlurRadius = 10
+            };
+
+            MyCompositeElement.Effect = glowEffect;
+        }
+
+        private void MyCompositeElement_Initialized(object sender, EventArgs e)
+        {
+            MyCompositeElement.Height = CenterDistance + image_bot.Height;
         }
 
     }

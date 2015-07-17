@@ -1,13 +1,19 @@
-﻿<UserControl x:Name="MyGroupedImage" x:Class="DantistApp.CompositeElement"
+﻿<UserControl x:Name="MyCompositeElement" x:Class="DantistApp.CompositeElement"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             mc:Ignorable="d" Height="172.8" Width="104">
+             xmlns:tools="clr-namespace:DantistApp.Tools"
+             mc:Ignorable="d" Width="{Binding Path=ElementWidth, ElementName=MyCompositeElement}" MouseLeftButtonDown="MyCompositeElement_MouseLeftButtonDown" Initialized="MyCompositeElement_Initialized">
+    <UserControl.Resources>
+        <tools:CompositeElementHeightConverter x:Key="hightConverter"/>
+    </UserControl.Resources>
     <Grid>
-        <Canvas x:Name="controlCanvas" MouseLeftButtonDown="CanvasMouseLeftButtonDown" MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove" Margin="0,0,0,-0.2">
-            <Image x:Name="image_top" Source="{Binding SourceTop}" Canvas.Top="0" Canvas.Left="0" Width="{Binding Path=ElementWidth, ElementName=MyGroupedImage}"/>
-            <Image x:Name="image_bot" Source="{Binding SourceBot}" Canvas.Top="{Binding Path=CenterDistance, ElementName=MyGroupedImage}" Canvas.Left="0" Width="{Binding Path=ElementWidth, ElementName=MyGroupedImage}"/>
-        </Canvas>
+        <Border BorderBrush="Black" BorderThickness="2">
+            <Canvas x:Name="controlCanvas" MouseLeftButtonDown="CanvasMouseLeftButtonDown" MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove">
+                <Image x:Name="image_top" Source="{Binding SourceTop}" Canvas.Top="0" Canvas.Left="0" Width="{Binding ElementWidth, ElementName=MyCompositeElement}"/>
+                <Image x:Name="image_bot" Source="{Binding SourceBot}" Canvas.Top="{Binding CenterDistance, ElementName=MyCompositeElement}" Canvas.Left="0" Width="{Binding ElementWidth, ElementName=MyCompositeElement}"/>
+            </Canvas>
+        </Border>
     </Grid>
 </UserControl>
