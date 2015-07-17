@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DantistApp
-{s
+{
     /// <summary>
     /// Interaction logic for GroupedImage.xaml
     /// </summary>
