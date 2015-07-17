@@ -19,8 +19,9 @@ namespace DantistApp
     /// <summary>
     /// Interaction logic for GroupedImage.xaml
     /// </summary>
-    public partial class GroupedImage : UserControl
+    public partial class CompositeElement : UserControl
     {
+
         //Currently moving object
         private Image MovingImage;
 
@@ -30,13 +31,18 @@ namespace DantistApp
         //Image binding
         private bool IsBinded;
 
-        public GroupedImage()
+        public CompositeElement()
         {
             InitializeComponent();
             DataContext = this;
 
-            // Related positioning (bottom image to top image, based on CenterDistance parameter)
-            //Canvas.SetTop(image_bot, Canvas.GetTop(image_top) + (double)CenterDistance);
+            IsBinded = true;
+        }
+
+        public double ElementWidth
+        {
+            get { return (double)base.GetValue(ElementWidthProperty); }
+            set { base.SetValue(ElementWidthProperty, value); }
         }
 
         public ImageSource SourceTop
@@ -51,20 +57,23 @@ namespace DantistApp
             set { base.SetValue(SourceBotProperty, value); }
         }
 
-        public int? CenterDistance
+        public int CenterDistance
         {
-            get { return base.GetValue(CenterDistanceProperty) as int?; }
+            get { return (int)base.GetValue(CenterDistanceProperty); }
             set { base.SetValue(CenterDistanceProperty, value); }
         }
 
         public static readonly DependencyProperty SourceTopProperty =
-            DependencyProperty.Register("SourceTop", typeof(ImageSource), typeof(GroupedImage));
+            DependencyProperty.Register("SourceTop", typeof(ImageSource), typeof(CompositeElement));
 
         public static readonly DependencyProperty SourceBotProperty =
-            DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(GroupedImage));
+            DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(CompositeElement));
 
         public static readonly DependencyProperty CenterDistanceProperty =
-            DependencyProperty.Register("CenterDistance", typeof(int?), typeof(GroupedImage));
+            DependencyProperty.Register("CenterDistance", typeof(int), typeof(CompositeElement));
+
+        public static readonly DependencyProperty ElementWidthProperty =
+            DependencyProperty.Register("ElementWidth", typeof(double), typeof(CompositeElement));
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -98,22 +107,25 @@ namespace DantistApp
                 Canvas.SetLeft(MovingImage, Canvas.GetLeft(MovingImage) + offset.X);
                 Canvas.SetTop(MovingImage, Canvas.GetTop(MovingImage) + offset.Y);
 
-                Image bindedImage;
-
-                if (MovingImage == image_bot)
+                if (IsBinded)
                 {
-                    bindedImage = image_bot;
-                }
-                else
-                {
-                    bindedImage = image_top;
-                }
+                    Image bindedImage;
 
-                var halfWidth = MovingImage.Width / 2;
-                var halfHeight = MovingImage.Height / 2;
+                    if (MovingImage == image_bot)
+                    {
+                        bindedImage = image_top;
+                    }
+                    else
+                    {
+                        bindedImage = image_bot;
+                    }
 
-                //Canvas.SetLeft(bindedImage, Canvas.GetLeft(bindedImage) + offset.X);
-                //Canvas.SetTop(bindedImage, Canvas.GetTop(bindedImage) + offset.Y);
+                    var halfWidth = MovingImage.Width / 2;
+                    var halfHeight = MovingImage.Height / 2;
+
+                    Canvas.SetLeft(bindedImage, Canvas.GetLeft(bindedImage) + offset.X);
+                    Canvas.SetTop(bindedImage, Canvas.GetTop(bindedImage) + offset.Y);
+                }
             }
         }
 
