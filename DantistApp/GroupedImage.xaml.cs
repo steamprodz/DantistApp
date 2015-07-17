@@ -66,6 +66,10 @@ namespace DantistApp
         public static readonly DependencyProperty CenterDistanceProperty =
             DependencyProperty.Register("CenterDistance", typeof(int?), typeof(GroupedImage));
 
+
+        //drglsnegrlsnegrklnjwekl
+
+
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var image = e.Source as Image;
