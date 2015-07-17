@@ -75,6 +75,10 @@ namespace DantistApp
         public static readonly DependencyProperty ElementWidthProperty =
             DependencyProperty.Register("ElementWidth", typeof(double), typeof(CompositeElement));
 
+
+        //drglsnegrlsnegrklnjwekl
+
+
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var image = e.Source as Image;
