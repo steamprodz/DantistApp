@@ -27,10 +27,16 @@ namespace DantistApp
         // Mouse tools
         private Point MousePosition;
 
+        //Image binding
+        private bool IsBinded;
+
         public GroupedImage()
         {
             InitializeComponent();
             DataContext = this;
+
+            // Related positioning (bottom image to top image, based on CenterDistance parameter)
+            //Canvas.SetTop(image_bot, Canvas.GetTop(image_top) + (double)CenterDistance);
         }
 
         public ImageSource SourceTop
@@ -45,11 +51,20 @@ namespace DantistApp
             set { base.SetValue(SourceBotProperty, value); }
         }
 
+        public int? CenterDistance
+        {
+            get { return base.GetValue(CenterDistanceProperty) as int?; }
+            set { base.SetValue(CenterDistanceProperty, value); }
+        }
+
         public static readonly DependencyProperty SourceTopProperty =
             DependencyProperty.Register("SourceTop", typeof(ImageSource), typeof(GroupedImage));
 
         public static readonly DependencyProperty SourceBotProperty =
             DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(GroupedImage));
+
+        public static readonly DependencyProperty CenterDistanceProperty =
+            DependencyProperty.Register("CenterDistance", typeof(int?), typeof(GroupedImage));
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -82,6 +97,23 @@ namespace DantistApp
                 MousePosition = position;
                 Canvas.SetLeft(MovingImage, Canvas.GetLeft(MovingImage) + offset.X);
                 Canvas.SetTop(MovingImage, Canvas.GetTop(MovingImage) + offset.Y);
+
+                Image bindedImage;
+
+                if (MovingImage == image_bot)
+                {
+                    bindedImage = image_bot;
+                }
+                else
+                {
+                    bindedImage = image_top;
+                }
+
+                var halfWidth = MovingImage.Width / 2;
+                var halfHeight = MovingImage.Height / 2;
+
+                //Canvas.SetLeft(bindedImage, Canvas.GetLeft(bindedImage) + offset.X);
+                //Canvas.SetTop(bindedImage, Canvas.GetTop(bindedImage) + offset.Y);
             }
         }
 
