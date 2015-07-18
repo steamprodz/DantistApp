@@ -215,7 +215,7 @@
             </TabItem>
             <TabItem x:Name="tab_zub_nij_chel" Header="4" Height="20" VerticalAlignment="Top" Margin="64.8,0,-86.4,0">
                 <Grid Background="#FFE5E5E5">
-                    <custom:CompositeElement CenterDistance="60" Size="5" SourceTop="/Image/main.png" SourceBot="/Image/main.png" Margin="177,-4,256.8,0.2"/>
+                    <custom:CompositeElement CenterDistance="50" Size="5" SourceTop="/Image/main.png" SourceBot="/Image/main.png" Margin="177,-4,256.8,0.2"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tab_lunki_plast_verh" Header="5" Height="20" VerticalAlignment="Top" Margin="86.4,0,-108,0">
