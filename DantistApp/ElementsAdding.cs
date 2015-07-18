@@ -24,13 +24,13 @@ namespace DantistApp
         /// </summary>
         private void Element_AddingOnDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            Element basicElement = sender as Element;
             bool canAdd = true;
 
             if (e.ClickCount == 2)
             {
-                Element basicElement = sender as Element;
 
-                if (sender is GroupElement)
+                if (basicElement is GroupElement)
                 {
                     GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
                                                      where item != null && item.GroupName == (basicElement as GroupElement).GroupName
