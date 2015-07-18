@@ -16,42 +16,64 @@ using System.Windows.Shapes;
 
 namespace DantistApp.Elements
 {
-    public class Element : Image
+    // IControlManipulate inherits INotifyPropertyChanged
+    public class Element : Image, IControlManipulate
     {
+        // Event handler for PropertyChange
+        public event PropertyChangedEventHandler PropertyChanged; 
 
-        public double? Size
+        private double _size;
+        private Point _startLocation;
+
+        public double Size
         {
-            get { return base.GetValue(SizeProperty) as double?; }
-            set 
+            get { return _size; }
+
+            set
             {
-                if (Size != null && Size != 0)
+                if (Size != 0)
                 {
                     Width /= (double)Size;
                     Height /= (double)Size;
                 }
                 Width *= (double)value;
                 Height *= (double)value;
-                base.SetValue(SizeProperty, value); 
+
+                _size = value;
+
+                // TODO: Raise the NotifyPropertyChanged event here
+                OnPropertyChanged("Size");
             }
         }
-
-        public static readonly DependencyProperty SizeProperty =
-           DependencyProperty.Register("Size", typeof(double), typeof(Element));
 
         public Point StartLocation
         {
-            get { return (Point)base.GetValue(StartLocationProperty); }
-            set 
+            get { return _startLocation; }
+            
+            set
             {
                 Canvas.SetLeft(this, value.X);
                 Canvas.SetTop(this, value.Y);
-                base.SetValue(StartLocationProperty, value); 
+
+                _startLocation = value;
+
+                // TODO: Raise the NotifyPropertyChanged event here
+                OnPropertyChanged("StartLocation");
             }
         }
-       
 
-        public static readonly DependencyProperty StartLocationProperty =
-           DependencyProperty.Register("StartLocation", typeof(Point), typeof(Element));
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
 
+        protected void OnPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
     }
 }
