@@ -54,6 +54,21 @@ namespace DantistApp
                 if (grid != null)
                     foreach (var item in grid.Children)
                     {
+                        if (item is CompositeElement)
+                        {
+                            Grid compositeElementGrid = (item as CompositeElement).Content as Grid;
+                            foreach (var gridElement in compositeElementGrid.Children)
+                            {
+                                try
+                                {
+                                    (gridElement as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
+                                }
+                                catch { }
+                            }
+                            //(item as CompositeElement).
+                        }
+                        if (item is Element)
+                        //if (item is CompositeElement || item is Element)
                         try
                         {
                             (item as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
