@@ -85,6 +85,7 @@
     <Compile Include="Elements\CompositeElement.xaml.cs">
       <DependentUpon>CompositeElement.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\GroupElement.cs" />
     <Compile Include="Elements\SingleElement.cs" />
     <Compile Include="Elements\UnlimitedElement.cs" />

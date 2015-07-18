@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 
 namespace DantistApp.Elements
 {
-    public class UnlimitedElement : Image
+    public class UnlimitedElement : Element
     {
         public UnlimitedElement()
         {
             DataContext = this;
 
         }
-
-
-        
 
 
     }

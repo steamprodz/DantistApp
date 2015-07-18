@@ -16,13 +16,12 @@ using System.Windows.Shapes;
 
 namespace DantistApp.Elements
 {
-    public class GroupElement : Image
+    public class GroupElement : Element
     {
         public GroupElement()
         {
             DataContext = this;
 
-            MouseLeftButtonDown += GroupElement_MouseLeftButtonDown;
         }
 
         public string GroupName
@@ -33,18 +32,6 @@ namespace DantistApp.Elements
 
         public static readonly DependencyProperty GroupNameProperty =
            DependencyProperty.Register("GroupName", typeof(String), typeof(GroupElement));
-
-
-        private void GroupElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                //...
-                //add element
-                //...
-            }
-        }
-
 
     }
 

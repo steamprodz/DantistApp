@@ -22,36 +22,23 @@ namespace DantistApp.Elements
         Down
     }
 
-    public class SingleElement : Image
+    public class SingleElement : Element
     {
 
         public SingleElement()
         {
             DataContext = this;
 
-            MouseLeftButtonDown += ReplacingElement_MouseLeftButtonDown;
         }
 
-        public ReplaceLocation? ReplaceLocation
+        public ReplaceLocation ReplaceLocation
         {
-            get { return base.GetValue(ReplaceLocationProperty) as ReplaceLocation?; }
+            get { return (ReplaceLocation)base.GetValue(ReplaceLocationProperty); }
             set { base.SetValue(ReplaceLocationProperty, value); }
         }
 
         public static readonly DependencyProperty ReplaceLocationProperty =
-           DependencyProperty.Register("ReplaceLocation", typeof(ReplaceLocation?), typeof(GroupElement));
-
-
-        private void ReplacingElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                //...
-                //add element
-                //...
-            }
-        }
-
+           DependencyProperty.Register("ReplaceLocation", typeof(ReplaceLocation), typeof(GroupElement));
 
     }
 

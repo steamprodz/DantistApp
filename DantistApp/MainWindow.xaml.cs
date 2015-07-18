@@ -21,7 +21,7 @@ namespace DantistApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        Image _activeElement;
+        Element _activeElement;
         Point _mousePosition;
 
         public MainWindow()

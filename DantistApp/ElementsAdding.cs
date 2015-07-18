@@ -44,8 +44,14 @@ namespace DantistApp
                 GroupElement element = new GroupElement();
                 element.Source = basicElement.Source;
                 element.GroupName = basicElement.GroupName;
-                //Canvas.SetTop(element, basicElement.Margin.Top);
-                //Canvas.SetLeft(element, basicElement.Margin.Left);
+                if (basicElement.StartLocation != null)
+                {
+                    element.StartLocation = basicElement.StartLocation;
+                }
+                element.Width = basicElement.Width;
+                element.Height = basicElement.Height;
+                if (basicElement.Size != 0)
+                    element.Size = basicElement.Size;
                 canvas_main.Children.Add(element);
             }
         }
