@@ -95,6 +95,17 @@
             </TabItem>
             <TabItem x:Name="tab_nij_chel" Header="2" Margin="22,0,-43,0" Height="20" VerticalAlignment="Bottom">
                 <Grid x:Name="grid_nij_chel" Background="#FFE5E5E5">
+                    <!--
+                    <custom:GroupElement  GroupName="verh_chel1" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Image\pazuhy\pazuha_l1.png" Height="44" Width="108" Margin="499,0,0,0">
+                        <custom:GroupElement.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="item1"/>
+                                <MenuItem Header="item2"/>
+                                <MenuItem Header="item3"/>
+                            </ContextMenu>
+                        </custom:GroupElement.ContextMenu>
+                    </custom:GroupElement>
+                    -->
                     <custom:UnlimitedElement x:Name="image_chel_2R" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="89" Margin="39,33,0,0" Source="Image\defekty_nsh\2R.png"/>
                     <custom:UnlimitedElement x:Name="image_chel_1RC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0" Source="Image\defekty_nsh\1RC.png" Height="27" Width="137"/>
                     <custom:UnlimitedElement x:Name="image_chel_2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,78,0,0" Source="Image\defekty_nsh\2.png" Height="40" Width="233"/>

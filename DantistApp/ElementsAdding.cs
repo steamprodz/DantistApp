@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 using DantistApp.Elements;
 
 namespace DantistApp
@@ -73,9 +74,65 @@ namespace DantistApp
             {
                 element.StartLocation = basicElement.StartLocation;
             }
+            AddContextMenu(element, canvas);
+        }
+
+        /// <summary>
+        /// Adds context menu to element according its type
+        /// </summary>
+        private void AddContextMenu(Element element, Canvas canvas)
+        {
+            ContextMenu contextMenu = new ContextMenu();
+
+            #region MENU ITEMS DECLARATION
+            MenuItem mi_delete = new MenuItem();
+            mi_delete.Header = "Удалить элемент";
+            mi_delete.Click += //ContextMenu_Delete_Click;
+                (object sender, RoutedEventArgs e) =>
+                {
+                    canvas.Children.Remove(element);
+                };
+
+            MenuItem mi_fix = new MenuItem();
+            MenuItem mi_unfix = new MenuItem();
+            mi_fix.Header = "Зафиксировать элемент";
+            mi_unfix.Header = "Отменить фиксацию";
+            mi_fix.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    element.IsFixed = true;
+                    element.ContextMenu.Items.Remove(mi_fix);
+                    element.ContextMenu.Items.Add(mi_unfix);
+                };
+            mi_unfix.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    element.IsFixed = false;
+                    element.ContextMenu.Items.Remove(mi_unfix);
+                    element.ContextMenu.Items.Add(mi_fix);
+                };
+            #endregion
+
+            if (element is GroupElement)
+            {
+                contextMenu.Items.Add(mi_delete);
+                contextMenu.Items.Add(mi_fix);
+            }
+
+            if (element is UnlimitedElement)
+            {
+                contextMenu.Items.Add(mi_delete);
+                contextMenu.Items.Add(mi_fix);
+            }
+
+            element.ContextMenu = contextMenu;
         }
 
 
+        private void ContextMenu_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            //DependencyObject lol = (((sender as MenuItem).Parent as ContextMenu).Parent as Popup).Parent;
+        }
     }
 
 }

@@ -19,7 +19,18 @@ namespace DantistApp.Elements
     // IControlManipulate inherits INotifyPropertyChanged
     public class Element : Image, IControlManipulate
     {
-        // Event handler for PropertyChange
+        /// <summary>
+        /// Gets or sets a value whether this element is fixed on the canvas.
+        /// </summary>
+        public bool IsFixed
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Event handler for PropertyChange
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged; 
 
         private double _size;
@@ -54,7 +65,7 @@ namespace DantistApp.Elements
             {
                 Canvas.SetLeft(this, value.X);
                 Canvas.SetTop(this, value.Y);
-
+                
                 _startLocation = value;
 
                 // TODO: Raise the NotifyPropertyChanged event here

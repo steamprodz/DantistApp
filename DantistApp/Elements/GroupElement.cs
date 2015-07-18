@@ -21,6 +21,7 @@ namespace DantistApp.Elements
         public GroupElement()
         {
             DataContext = this;
+
         }
 
         public GroupElement(string groupName) : base()
