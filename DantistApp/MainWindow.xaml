@@ -24,21 +24,20 @@
 
         <Menu x:Name="main_menu" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="1042" Grid.ColumnSpan="3" Margin="0,0,-0.4,0">
             <MenuItem Header="Очистить" Height="23">
-                <MenuItem Header="Все объекты"/>
+                <MenuItem x:Name="MenuItem_DeleteAllObjects" Header="Все объекты" Click="MenuItem_DeleteAllElements_Click"/>
             </MenuItem>
             <MenuItem Header="Печать" Height="23"/>
             <MenuItem Header="Сервис" Height="23">
                 <MenuItem Header="Объеденить все зубы"/>
-                <MenuItem Header="Разъеденить все зубы"/>
-                <MenuItem Header="Настройки"/>
+                <MenuItem Header="Разъединить все зубы"/>
+                <MenuItem x:Name="MenuItem_Service" Header="Настройки" Click="MenuItem_Service_Click"/>
                 <MenuItem Header="Показать номера зубов"/>
                 <MenuItem Header="Скрыть номера зубов"/>
             </MenuItem>
             <MenuItem Header="Выделенные объекты" Height="23">
                 <MenuItem Header="Уничтожить" HorizontalAlignment="Left" Width="154" Margin="0,0,-14.8,0"/>
             </MenuItem>
-            <MenuItem Header="Версия программы" Height="23"/>
-            <MenuItem Header="Панорама" Height="23"/>
+            <MenuItem x:Name="MenuItem_PanoramaWindow" Header="Панорама" Height="23" Click="MenuItem_PanoramaWindow_Click"/>
             <MenuItem Header="Выход" Height="23"/>
         </Menu>
         <StackPanel x:Name="panel_btns" Grid.Column="1" HorizontalAlignment="Left" Height="378" Margin="9.4,0.4,0,0" VerticalAlignment="Top" Width="189" Grid.Row="1">
