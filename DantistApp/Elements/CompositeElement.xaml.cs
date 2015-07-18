@@ -20,8 +20,9 @@ namespace DantistApp.Elements
     /// <summary>
     /// Interaction logic for GroupedImage.xaml
     /// </summary>
-    public partial class CompositeElement : UserControl
+    public partial class CompositeElement : UserControl, IControlManipulate
     {
+        private Canvas ControlCanvas;
 
         //Currently moving object
         private Image MovingImage;
@@ -40,11 +41,11 @@ namespace DantistApp.Elements
             IsBinded = true;
         }
 
-        public double ElementWidth
-        {
-            get { return (double)base.GetValue(ElementWidthProperty); }
-            set { base.SetValue(ElementWidthProperty, value); }
-        }
+        //public double ElementWidth
+        //{
+        //    get { return (double)base.GetValue(ElementWidthProperty); }
+        //    set { base.SetValue(ElementWidthProperty, value); }
+        //}
 
         public ImageSource SourceTop
         {
@@ -58,11 +59,17 @@ namespace DantistApp.Elements
             set { base.SetValue(SourceBotProperty, value); }
         }
 
-        public int CenterDistance
-        {
-            get { return (int)base.GetValue(CenterDistanceProperty); }
-            set { base.SetValue(CenterDistanceProperty, value); }
-        }
+        //public int CenterDistance
+        //{
+        //    get { return (int)base.GetValue(CenterDistanceProperty); }
+
+        //    set 
+        //    {
+        //        base.SetValue(MarginProperty, new Thickness(0, value, 0, -value));
+        //        image_bot.Margin = new Thickness(20, 20, 20, 20);
+        //        base.SetValue(CenterDistanceProperty, value); 
+        //    }
+        //}
 
         public static readonly DependencyProperty SourceTopProperty =
             DependencyProperty.Register("SourceTop", typeof(ImageSource), typeof(CompositeElement));
@@ -70,23 +77,108 @@ namespace DantistApp.Elements
         public static readonly DependencyProperty SourceBotProperty =
             DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(CompositeElement));
 
-        public static readonly DependencyProperty CenterDistanceProperty =
-            DependencyProperty.Register("CenterDistance", typeof(int), typeof(CompositeElement));
+        //public static readonly DependencyProperty CenterDistanceProperty =
+        //    DependencyProperty.Register("CenterDistance", typeof(int), typeof(CompositeElement));
 
-        public static readonly DependencyProperty ElementWidthProperty =
-            DependencyProperty.Register("ElementWidth", typeof(double), typeof(CompositeElement));
+        //public static readonly DependencyProperty ElementWidthProperty =
+        //    DependencyProperty.Register("ElementWidth", typeof(double), typeof(CompositeElement));
 
 
-        //drglsnegrlsnegrklnjwekl
 
+        #region IControlManipulate Implementation + CenterDistance Property
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private double _size;
+        private Point _startLocation;
+
+        private int _centerDistance;
+
+        public int CenterDistance
+        {
+            get { return _centerDistance; }
+
+            set
+            {
+                Height = image_bot.ActualHeight + value;
+
+                image_bot.Margin = new Thickness(0, value, 0, 0);
+
+                _centerDistance = value;
+
+                OnPropertyChanged("CenterDistance");
+            }
+        }
+
+        public double Size
+        {
+            get { return _size; }
+
+            set
+            {
+                if (Size != 0)
+                {
+                    Width /= (double)Size;
+                    Height /= (double)Size;
+                    //image_bot.Width /= (double)Size;
+                    //image_top.Width /= (double)Size;
+                    //image_bot.Height /= (double)Size;
+                    //image_top.Height /= (double)Size;
+
+                }
+                Width *= (double)value;
+                Height *= (double)value;
+                //image_bot.Width *= (double)value;
+                //image_top.Width *= (double)value;
+                //image_bot.Height *= (double)value;
+                //image_top.Height *= (double)value;
+
+                _size = value;
+
+                // TODO: Raise the NotifyPropertyChanged event here
+                OnPropertyChanged("Size");
+            }
+        }
+
+        public Point StartLocation
+        {
+            get { return _startLocation; }
+
+            set
+            {
+                Canvas.SetLeft(this, value.X);
+                Canvas.SetTop(this, value.Y);
+
+                _startLocation = value;
+
+                // TODO: Raise the NotifyPropertyChanged event here
+                OnPropertyChanged("StartLocation");
+            }
+        }
+
+        protected void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var image = e.Source as Image;
 
-            if (image != null && controlCanvas.CaptureMouse())
+            if (image != null && ControlCanvas.CaptureMouse())
             {
-                MousePosition = e.GetPosition(controlCanvas);
+                MousePosition = e.GetPosition(ControlCanvas);
                 MovingImage = image;
                 //Panel.SetZIndex(MovingImage, 1); // in case of multiple images
             }
@@ -96,7 +188,7 @@ namespace DantistApp.Elements
         {
             if (MovingImage != null)
             {
-                controlCanvas.ReleaseMouseCapture();
+                ControlCanvas.ReleaseMouseCapture();
                 //Panel.SetZIndex(MovingImage, 0);
                 MovingImage = null;
             }
@@ -106,7 +198,7 @@ namespace DantistApp.Elements
         {
             if (MovingImage != null)
             {
-                var position = e.GetPosition(controlCanvas);
+                var position = e.GetPosition(ControlCanvas);
                 var offset = position - MousePosition;
                 MousePosition = position;
                 Canvas.SetLeft(MovingImage, Canvas.GetLeft(MovingImage) + offset.X);
@@ -145,11 +237,6 @@ namespace DantistApp.Elements
             };
 
             MyCompositeElement.Effect = glowEffect;
-        }
-
-        private void MyCompositeElement_Initialized(object sender, EventArgs e)
-        {
-            MyCompositeElement.Height = CenterDistance + image_bot.Height;
         }
 
     }
