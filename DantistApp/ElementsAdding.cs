@@ -55,26 +55,38 @@ namespace DantistApp
         /// </summary>
         private void AddElement(Element basicElement, Canvas canvas)
         {
-            Element element = null;
-            if (basicElement is UnlimitedElement)
+            CompositeElement compositeParent = (basicElement.Parent as Grid).Parent as CompositeElement;
+            if (compositeParent != null)
             {
-                element = new UnlimitedElement();
+                CompositeElement newCompositeElement = new CompositeElement();
+                newCompositeElement.DataContext = compositeParent.DataContext;
+                newCompositeElement.Size = compositeParent.Size;
+                newCompositeElement.CenterDistance = compositeParent.CenterDistance;
+                canvas.Children.Add(newCompositeElement);
             }
-            if (basicElement is GroupElement)
+            else
             {
-                element = new GroupElement((basicElement as GroupElement).GroupName);
+                Element element = null;
+                if (basicElement is UnlimitedElement)
+                {
+                    element = new UnlimitedElement();
+                }
+                if (basicElement is GroupElement)
+                {
+                    element = new GroupElement((basicElement as GroupElement).GroupName);
+                }
+                element.Source = basicElement.Source;
+                element.Width = basicElement.Width;
+                element.Height = basicElement.Height;
+                if (basicElement.Size != 0)
+                    element.Size = basicElement.Size;
+                canvas.Children.Add(element);
+                if (basicElement.StartLocation != null)
+                {
+                    element.StartLocation = basicElement.StartLocation;
+                }
+                AddContextMenu(element, canvas);
             }
-            element.Source = basicElement.Source;
-            element.Width = basicElement.Width;
-            element.Height = basicElement.Height;
-            if (basicElement.Size != 0)
-                element.Size = basicElement.Size;
-            canvas.Children.Add(element);
-            if (basicElement.StartLocation != null)
-            {
-                element.StartLocation = basicElement.StartLocation;
-            }
-            AddContextMenu(element, canvas);
         }
 
         /// <summary>
