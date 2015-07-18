@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Elements\Element.cs" />
     <Compile Include="Elements\GroupElement.cs" />
+    <Compile Include="Elements\IControlManipulate.cs" />
     <Compile Include="Elements\SingleElement.cs" />
     <Compile Include="Elements\UnlimitedElement.cs" />
     <Compile Include="MainWindow.xaml.cs">
