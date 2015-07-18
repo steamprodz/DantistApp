@@ -19,40 +19,59 @@ namespace DantistApp
     public partial class MainWindow : Window
     {
 
-        private void UnlimitedElement_Adding(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Double click calls element (of corresponding type) adding
+        /// </summary>
+        private void Element_AddingOnDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            bool canAdd = true;
+
             if (e.ClickCount == 2)
             {
-                UnlimitedElement element = new UnlimitedElement();
-                element.Source = (sender as UnlimitedElement).Source;
-                canvas_main.Children.Add(element);
+                Element basicElement = sender as Element;
+
+                if (sender is GroupElement)
+                {
+                    GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
+                                                     where item != null && item.GroupName == (basicElement as GroupElement).GroupName
+                                                     select item).FirstOrDefault();
+                    if (sameGroupElement != null)
+                    {
+                        if (sameGroupElement.Source == basicElement.Source)
+                            canAdd = false;
+                        else
+                            canvas_main.Children.Remove(sameGroupElement);
+                    }
+                }
+
+                if (canAdd)
+                    AddElement(basicElement, canvas_main);
             }
         }
 
-        private void GroupElement_Adding(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Clones basic element into the new element on canvas
+        /// </summary>
+        private void AddElement(Element basicElement, Canvas canvas)
         {
-            if (e.ClickCount == 2)
+            Element element = null;
+            if (basicElement is UnlimitedElement)
             {
-                GroupElement basicElement = sender as GroupElement;
-                GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
-                                                where item != null && item.GroupName == basicElement.GroupName
-                                                select item).FirstOrDefault();
-
-                if (sameGroupElement != null)
-                    canvas_main.Children.Remove(sameGroupElement);
-                
-                GroupElement element = new GroupElement();
-                element.Source = basicElement.Source;
-                element.GroupName = basicElement.GroupName;
-                if (basicElement.StartLocation != null)
-                {
-                    element.StartLocation = basicElement.StartLocation;
-                }
-                element.Width = basicElement.Width;
-                element.Height = basicElement.Height;
-                if (basicElement.Size != 0)
-                    element.Size = basicElement.Size;
-                canvas_main.Children.Add(element);
+                element = new UnlimitedElement();
+            }
+            if (basicElement is GroupElement)
+            {
+                element = new GroupElement((basicElement as GroupElement).GroupName);
+            }
+            element.Source = basicElement.Source;
+            element.Width = basicElement.Width;
+            element.Height = basicElement.Height;
+            if (basicElement.Size != 0)
+                element.Size = basicElement.Size;
+            canvas.Children.Add(element);
+            if (basicElement.StartLocation != null)
+            {
+                element.StartLocation = basicElement.StartLocation;
             }
         }
 
