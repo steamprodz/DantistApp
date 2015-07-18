@@ -24,6 +24,11 @@ namespace DantistApp.Elements
 
         }
 
+        public GroupElement(string groupName) : base()
+        {
+            GroupName = groupName;
+        }
+
         public string GroupName
         {
             get { return base.GetValue(GroupNameProperty) as String; }

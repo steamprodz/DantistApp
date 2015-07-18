@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Controls.Primitives;
 using DantistApp.Elements;
 
 namespace DantistApp
@@ -19,44 +20,119 @@ namespace DantistApp
     public partial class MainWindow : Window
     {
 
-        private void UnlimitedElement_Adding(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Double click calls element (of corresponding type) adding
+        /// </summary>
+        private void Element_AddingOnDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            Element basicElement = sender as Element;
+            bool canAdd = true;
+
             if (e.ClickCount == 2)
             {
-                UnlimitedElement element = new UnlimitedElement();
-                element.Source = (sender as UnlimitedElement).Source;
-                canvas_main.Children.Add(element);
-            }
-        }
 
-        private void GroupElement_Adding(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                GroupElement basicElement = sender as GroupElement;
-                GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
-                                                where item != null && item.GroupName == basicElement.GroupName
-                                                select item).FirstOrDefault();
-
-                if (sameGroupElement != null)
-                    canvas_main.Children.Remove(sameGroupElement);
-                
-                GroupElement element = new GroupElement();
-                element.Source = basicElement.Source;
-                element.GroupName = basicElement.GroupName;
-                if (basicElement.StartLocation != null)
+                if (basicElement is GroupElement)
                 {
-                    element.StartLocation = basicElement.StartLocation;
+                    GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
+                                                     where item != null && item.GroupName == (basicElement as GroupElement).GroupName
+                                                     select item).FirstOrDefault();
+                    if (sameGroupElement != null)
+                    {
+                        if (sameGroupElement.Source == basicElement.Source)
+                            canAdd = false;
+                        else
+                            canvas_main.Children.Remove(sameGroupElement);
+                    }
                 }
-                element.Width = basicElement.Width;
-                element.Height = basicElement.Height;
-                if (basicElement.Size != 0)
-                    element.Size = basicElement.Size;
-                canvas_main.Children.Add(element);
+
+                if (canAdd)
+                    AddElement(basicElement, canvas_main);
             }
         }
 
+        /// <summary>
+        /// Clones basic element into the new element on canvas
+        /// </summary>
+        private void AddElement(Element basicElement, Canvas canvas)
+        {
+            Element element = null;
+            if (basicElement is UnlimitedElement)
+            {
+                element = new UnlimitedElement();
+            }
+            if (basicElement is GroupElement)
+            {
+                element = new GroupElement((basicElement as GroupElement).GroupName);
+            }
+            element.Source = basicElement.Source;
+            element.Width = basicElement.Width;
+            element.Height = basicElement.Height;
+            if (basicElement.Size != 0)
+                element.Size = basicElement.Size;
+            canvas.Children.Add(element);
+            if (basicElement.StartLocation != null)
+            {
+                element.StartLocation = basicElement.StartLocation;
+            }
+            AddContextMenu(element, canvas);
+        }
 
+        /// <summary>
+        /// Adds context menu to element according its type
+        /// </summary>
+        private void AddContextMenu(Element element, Canvas canvas)
+        {
+            ContextMenu contextMenu = new ContextMenu();
+
+            #region MENU ITEMS DECLARATION
+            MenuItem mi_delete = new MenuItem();
+            mi_delete.Header = "Удалить элемент";
+            mi_delete.Click += //ContextMenu_Delete_Click;
+                (object sender, RoutedEventArgs e) =>
+                {
+                    canvas.Children.Remove(element);
+                };
+
+            MenuItem mi_fix = new MenuItem();
+            MenuItem mi_unfix = new MenuItem();
+            mi_fix.Header = "Зафиксировать элемент";
+            mi_unfix.Header = "Отменить фиксацию";
+            mi_fix.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    element.IsFixed = true;
+                    element.ContextMenu.Items.Remove(mi_fix);
+                    element.ContextMenu.Items.Add(mi_unfix);
+                };
+            mi_unfix.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    element.IsFixed = false;
+                    element.ContextMenu.Items.Remove(mi_unfix);
+                    element.ContextMenu.Items.Add(mi_fix);
+                };
+            #endregion
+
+            if (element is GroupElement)
+            {
+                contextMenu.Items.Add(mi_delete);
+                contextMenu.Items.Add(mi_fix);
+            }
+
+            if (element is UnlimitedElement)
+            {
+                contextMenu.Items.Add(mi_delete);
+                contextMenu.Items.Add(mi_fix);
+            }
+
+            element.ContextMenu = contextMenu;
+        }
+
+
+        private void ContextMenu_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            //DependencyObject lol = (((sender as MenuItem).Parent as ContextMenu).Parent as Popup).Parent;
+        }
     }
 
 }

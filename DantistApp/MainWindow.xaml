@@ -24,21 +24,20 @@
 
         <Menu x:Name="main_menu" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="1042" Grid.ColumnSpan="3" Margin="0,0,-0.4,0">
             <MenuItem Header="Очистить" Height="23">
-                <MenuItem Header="Все объекты"/>
+                <MenuItem x:Name="MenuItem_DeleteAllObjects" Header="Все объекты" Click="MenuItem_DeleteAllElements_Click"/>
             </MenuItem>
             <MenuItem Header="Печать" Height="23"/>
             <MenuItem Header="Сервис" Height="23">
                 <MenuItem Header="Объеденить все зубы"/>
-                <MenuItem Header="Разъеденить все зубы"/>
-                <MenuItem Header="Настройки"/>
+                <MenuItem Header="Разъединить все зубы"/>
+                <MenuItem x:Name="MenuItem_Service" Header="Настройки" Click="MenuItem_Service_Click"/>
                 <MenuItem Header="Показать номера зубов"/>
                 <MenuItem Header="Скрыть номера зубов"/>
             </MenuItem>
             <MenuItem Header="Выделенные объекты" Height="23">
                 <MenuItem Header="Уничтожить" HorizontalAlignment="Left" Width="154" Margin="0,0,-14.8,0"/>
             </MenuItem>
-            <MenuItem Header="Версия программы" Height="23"/>
-            <MenuItem Header="Панорама" Height="23"/>
+            <MenuItem x:Name="MenuItem_PanoramaWindow" Header="Панорама" Height="23" Click="MenuItem_PanoramaWindow_Click"/>
             <MenuItem Header="Выход" Height="23"/>
         </Menu>
         <StackPanel x:Name="panel_btns" Grid.Column="1" HorizontalAlignment="Left" Height="378" Margin="9.4,0.4,0,0" VerticalAlignment="Top" Width="189" Grid.Row="1">
@@ -83,7 +82,7 @@
                     <custom:GroupElement x:Name="image_chel_pazuha_l1" GroupName="verh_chel1" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Image\pazuhy\pazuha_l1.png" Height="44" Width="108" Margin="499,0,0,0"/>
                     <custom:GroupElement x:Name="image_chel_pazuha_l2" GroupName="verh_chel1" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Margin="391,0,0,0" Source="Image/pazuhy/pazuha_l2.png" Width="103" RenderTransformOrigin="0.939,0.647"/>
                     <custom:GroupElement x:Name="image_chel_nisl" GroupName="verh_chel2" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Margin="279,0,0,0" Source="Image/nis/nisl.png" Width="26"/>
-                    <custom:GroupElement x:Name="image_chel_nisr" GroupName="verh_chel2" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Margin="310,0,0,0" Source="Image/nis/nisr.png"/>
+                    <custom:GroupElement x:Name="image_chel_nisr" GroupName="verh_chel8" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Margin="310,0,0,0" Source="Image/nis/nisr.png"/>
                     <custom:GroupElement x:Name="image_chel_pazuha_r1" GroupName="verh_chel3" Size="1.55" StartLocation="76,0" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Margin="123,0,0,0" Source="Image/pazuhy/pazuha_r2.png" Width="103"/>
                     <custom:GroupElement x:Name="image_chel_pazuha_r2" GroupName="verh_chel3" Size="1.55" StartLocation="76,0" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,0,0" Source="Image/pazuhy/pazuha_r1.png" Height="44" Width="108"/>
                     <custom:GroupElement x:Name="image_chel_2CR" GroupName="verh_chel4" Size="2.7" StartLocation="0,44" HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Margin="10,74,0,0" Source="Image\defekty_nsh\2CR.png" Width="126"/>
@@ -96,6 +95,17 @@
             </TabItem>
             <TabItem x:Name="tab_nij_chel" Header="2" Margin="22,0,-43,0" Height="20" VerticalAlignment="Bottom">
                 <Grid x:Name="grid_nij_chel" Background="#FFE5E5E5">
+                    <!--
+                    <custom:GroupElement  GroupName="verh_chel1" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Image\pazuhy\pazuha_l1.png" Height="44" Width="108" Margin="499,0,0,0">
+                        <custom:GroupElement.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="item1"/>
+                                <MenuItem Header="item2"/>
+                                <MenuItem Header="item3"/>
+                            </ContextMenu>
+                        </custom:GroupElement.ContextMenu>
+                    </custom:GroupElement>
+                    -->
                     <custom:UnlimitedElement x:Name="image_chel_2R" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="89" Margin="39,33,0,0" Source="Image\defekty_nsh\2R.png"/>
                     <custom:UnlimitedElement x:Name="image_chel_1RC" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0" Source="Image\defekty_nsh\1RC.png" Height="27" Width="137"/>
                     <custom:UnlimitedElement x:Name="image_chel_2" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,78,0,0" Source="Image\defekty_nsh\2.png" Height="40" Width="233"/>

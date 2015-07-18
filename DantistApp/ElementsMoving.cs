@@ -40,17 +40,14 @@ namespace DantistApp
         }
         private void Element_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_activeElement != null)
+            if (_activeElement != null && 
+                !_activeElement.IsFixed)
             {
                 var position = e.GetPosition(canvas_main);
                 var offset = position - _mousePosition;
                 _mousePosition = position;
                 Point p = _activeElement.TranslatePoint(new Point(0, 0), canvas_main);
 
-                //if (_activeElement.Size != null)
-                //{
-                //    offset /= (double)_activeElement.Size;
-                //}
                 Canvas.SetLeft(_activeElement, p.X + offset.X);
                 Canvas.SetTop(_activeElement, p.Y + offset.Y);
             }

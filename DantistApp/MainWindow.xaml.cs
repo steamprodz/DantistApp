@@ -24,6 +24,7 @@ namespace DantistApp
     {
         Element _activeElement;
         Point _mousePosition;
+        PanoramaWindow _panoramaWindow;
 
         public MainWindow()
         {
@@ -35,18 +36,37 @@ namespace DantistApp
                     (item as Button).Click += PanelBtn_Click;
             }
 
-            foreach (var item in grid_nij_chel.Children)
+            AddDoubleClickEvents();
+        }
+
+        /// <summary>
+        /// Adds double-click events for basic elements
+        /// </summary>
+        private void AddDoubleClickEvents()
+        {
+            List<Grid> grids = new List<Grid>();
+            foreach (TabItem tabItem in tabControl_elements.Items)
             {
-                if (item is UnlimitedElement)
-                    (item as UnlimitedElement).MouseLeftButtonDown += UnlimitedElement_Adding;
-            }
-            foreach (var item in grid_ver_chel.Children)
-            {
-                if (item is GroupElement)
-                    (item as GroupElement).MouseLeftButtonDown += GroupElement_Adding;
+                Grid grid = null;
+                if (tabItem.Content is Grid)
+                    grid = tabItem.Content as Grid;
+             
+                if (grid != null)
+                    foreach (var item in grid.Children)
+                    {
+                        try
+                        {
+                            (item as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
+                        }
+                        catch { }
+                    }
             }
         }
 
+        /// <summary>
+        /// Click from right side panel (with text descriptions)
+        /// calls bottom tabItem selecting
+        /// </summary>
         private void PanelBtn_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
@@ -56,6 +76,39 @@ namespace DantistApp
             tabControl_elements.SelectedIndex = number - 1;
         }
 
+        private void MenuItem_Service_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow wnd = new SettingsWindow();
+            wnd.ShowDialog();
+        }
+
+        private void MenuItem_PanoramaWindow_Click(object sender, RoutedEventArgs e)
+        {
+            if (_panoramaWindow == null || !_panoramaWindow.IsLoaded)
+            {
+                _panoramaWindow = new PanoramaWindow();
+                _panoramaWindow.Show();
+            }
+            else
+                _panoramaWindow.Activate();
+        }
+
+        private void MenuItem_DeleteAllElements_Click(object sender, RoutedEventArgs e)
+        {
+            int n = canvas_main.Children.Count;
+            for (int i = n-1; i >= 0; i--)
+            {
+                if (canvas_main.Children[i] is IControlManipulate)
+                {
+                    canvas_main.Children.RemoveAt(i);
+                }
+            }
+        }
+
+
 
     }
+
+
+
 }
