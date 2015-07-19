@@ -166,8 +166,11 @@ namespace DantistApp
                         compElement.IsMerged = true;
                         compElement.ContextMenu.Items.Remove(mi_merge);
                         compElement.ContextMenu.Items.Add(mi_unmerge);
-                        //compElement.RelativeElement.ContextMenu.Items.Remove(mi_merge);
-                        //compElement.RelativeElement.ContextMenu.Items.Add(mi_unmerge);
+                        MenuItem relative_mi_merge = (from item in compElement.RelativeElement.ContextMenu.Items.OfType<MenuItem>().DefaultIfEmpty()
+                                                        where item != null && item.Header == "Объединить элементы"
+                                                        select item).FirstOrDefault();
+                        if (relative_mi_merge != null)
+                            relative_mi_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
                     }
                 };
             mi_unmerge.Click +=
@@ -179,13 +182,11 @@ namespace DantistApp
                         compElement.IsMerged = false;
                         compElement.ContextMenu.Items.Remove(mi_unmerge);
                         compElement.ContextMenu.Items.Add(mi_merge);
-                        //MenuItem relative_mi_unmerge = (from item in compElement.RelativeElement.ContextMenu.Items.OfType<MenuItem>().DefaultIfEmpty()
-                        //                                where item != null && item.Header == "Разъединить элементы"
-                        //                                select item).FirstOrDefault();
-                      
-                        //relative_mi_unmerge.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                        //compElement.RelativeElement.ContextMenu.Items.Remove(relative_mi_unmerge);
-                        //compElement.RelativeElement.ContextMenu.Items.Add(mi_merge);
+                        MenuItem relative_mi_unmerge = (from item in compElement.RelativeElement.ContextMenu.Items.OfType<MenuItem>().DefaultIfEmpty()
+                                                        where item != null && item.Header == "Разъединить элементы"
+                                                        select item).FirstOrDefault();
+                        if (relative_mi_unmerge != null)
+                            relative_mi_unmerge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
                     }
                 };
             #endregion
