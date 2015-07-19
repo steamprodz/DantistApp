@@ -22,7 +22,7 @@ namespace DantistApp
         //Element _activeElement;
         FrameworkElement _activeElement;
 
-        private void Element_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void MainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //var element = e.Source as Element;
 
@@ -30,13 +30,13 @@ namespace DantistApp
 
             //if (element != null && canvas_main.CaptureMouse() &&
             //    (element is GroupElement || element is UnlimitedElement || element is SingleElement))
-            if (element is IControlManipulate && canvas_main.CaptureMouse())
+            if (element is IManipulatedElement && canvas_main.CaptureMouse())
             {
                 _mousePosition = e.GetPosition(canvas_main);
                 _activeElement = element;
             }
         }
-        private void Element_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void MainCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (_activeElement != null)
             {
@@ -44,10 +44,10 @@ namespace DantistApp
                 _activeElement = null;
             }
         }
-        private void Element_MouseMove(object sender, MouseEventArgs e)
+        private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (_activeElement != null && 
-                !(_activeElement as IControlManipulate).IsFixed)
+                !(_activeElement as IManipulatedElement).IsFixed)
             {
                 var position = e.GetPosition(canvas_main);
                 var offset = position - _mousePosition;

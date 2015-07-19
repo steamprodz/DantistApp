@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace DantistApp.Elements
 {
-    interface IControlManipulate : INotifyPropertyChanged
+    interface IManipulatedElement : INotifyPropertyChanged
     {
         double Size { get; set; }
         Point StartLocation { get; set; }

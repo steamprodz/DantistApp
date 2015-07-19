@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace DantistApp.Elements
 {
     // IControlManipulate inherits INotifyPropertyChanged
-    public class Element : Image, IControlManipulate
+    public class Element : Image, IManipulatedElement
     {
         /// <summary>
         /// Gets or sets a value whether this element is fixed on the canvas.

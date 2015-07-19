@@ -20,7 +20,7 @@ namespace DantistApp.Elements
     /// <summary>
     /// Interaction logic for GroupedImage.xaml
     /// </summary>
-    public partial class CompositeElement : UserControl, IControlManipulate
+    public partial class CompositeElement : UserControl, IManipulatedElement
     {
         private Canvas ControlCanvas;
 

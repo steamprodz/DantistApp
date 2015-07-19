@@ -112,7 +112,7 @@ namespace DantistApp
             int n = canvas_main.Children.Count;
             for (int i = n-1; i >= 0; i--)
             {
-                if (canvas_main.Children[i] is IControlManipulate)
+                if (canvas_main.Children[i] is IManipulatedElement)
                 {
                     canvas_main.Children.RemoveAt(i);
                 }
