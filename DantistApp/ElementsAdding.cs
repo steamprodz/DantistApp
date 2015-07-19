@@ -162,9 +162,12 @@ namespace DantistApp
                 {
                     if (element is CompositeElement)
                     {
-                        (element as CompositeElement).IsMerged = true;
-                        (element as CompositeElement).ContextMenu.Items.Remove(mi_merge);
-                        (element as CompositeElement).ContextMenu.Items.Add(mi_unmerge);
+                        CompositeElement compElement = element as CompositeElement;
+                        compElement.IsMerged = true;
+                        compElement.ContextMenu.Items.Remove(mi_merge);
+                        compElement.ContextMenu.Items.Add(mi_unmerge);
+                        //compElement.RelativeElement.ContextMenu.Items.Remove(mi_merge);
+                        //compElement.RelativeElement.ContextMenu.Items.Add(mi_unmerge);
                     }
                 };
             mi_unmerge.Click +=
@@ -172,9 +175,17 @@ namespace DantistApp
                 {
                     if (element is CompositeElement)
                     {
-                        (element as CompositeElement).IsMerged = false;
-                        (element as CompositeElement).ContextMenu.Items.Remove(mi_unmerge);
-                        (element as CompositeElement).ContextMenu.Items.Add(mi_merge);
+                        CompositeElement compElement = element as CompositeElement;
+                        compElement.IsMerged = false;
+                        compElement.ContextMenu.Items.Remove(mi_unmerge);
+                        compElement.ContextMenu.Items.Add(mi_merge);
+                        //MenuItem relative_mi_unmerge = (from item in compElement.RelativeElement.ContextMenu.Items.OfType<MenuItem>().DefaultIfEmpty()
+                        //                                where item != null && item.Header == "Разъединить элементы"
+                        //                                select item).FirstOrDefault();
+                      
+                        //relative_mi_unmerge.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                        //compElement.RelativeElement.ContextMenu.Items.Remove(relative_mi_unmerge);
+                        //compElement.RelativeElement.ContextMenu.Items.Add(mi_merge);
                     }
                 };
             #endregion
