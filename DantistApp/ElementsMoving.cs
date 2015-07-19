@@ -22,20 +22,7 @@ namespace DantistApp
         //Element _activeElement;
         FrameworkElement _activeElement;
 
-        private void MainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //var element = e.Source as Element;
-
-            var element = e.Source as FrameworkElement;
-
-            //if (element != null && canvas_main.CaptureMouse() &&
-            //    (element is GroupElement || element is UnlimitedElement || element is SingleElement))
-            if (element is IManipulatedElement && canvas_main.CaptureMouse())
-            {
-                _mousePosition = e.GetPosition(canvas_main);
-                _activeElement = element;
-            }
-        }
+        
 
 
         private void MainCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

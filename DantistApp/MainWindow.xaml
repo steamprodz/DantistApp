@@ -35,7 +35,7 @@
                 <MenuItem Header="Скрыть номера зубов"/>
             </MenuItem>
             <MenuItem Header="Выделенные объекты" Height="23">
-                <MenuItem Header="Уничтожить" HorizontalAlignment="Left" Width="154" Margin="0,0,-14.8,0"/>
+                <MenuItem x:Name="MenuItem_RemoveSelectedElements" Header="Уничтожить" HorizontalAlignment="Left" Width="154" Margin="0,0,-14.8,0" Click="MenuItem_RemoveSelectedElements_Click"/>
             </MenuItem>
             <MenuItem x:Name="MenuItem_PanoramaWindow" Header="Панорама" Height="23" Click="MenuItem_PanoramaWindow_Click"/>
             <MenuItem Header="Выход" Height="23"/>

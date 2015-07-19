@@ -25,12 +25,14 @@ namespace DantistApp
         Point _mousePosition;
         PanoramaWindow _panoramaWindow;
         UndoRedoBuffer _bufferUndoRedo;
+        List<Element> _selectedElements;
 
         public MainWindow()
         {
             InitializeComponent();
 
             _bufferUndoRedo = new UndoRedoBuffer();
+            _selectedElements = new List<Element>();
 
             foreach (var item in panel_btns.Children)
             {
@@ -145,6 +147,31 @@ namespace DantistApp
         {
             _bufferUndoRedo.Redo();
         }
+
+        private void MenuItem_RemoveSelectedElements_Click(object sender, RoutedEventArgs e)
+        {
+            List<Element> removedElements = new List<Element>();
+            BufferAction bufAct = new BufferAction();
+            bufAct.Do += () =>
+            {
+                foreach (var item in _selectedElements)
+                {
+                    removedElements.Add(item);
+                    canvas_main.Children.Remove(item);
+                }
+            };
+            bufAct.Undo += () =>
+            {
+                foreach (var item in removedElements)
+                {
+                    if (canvas_main.Children.Contains(item) == false)
+                        canvas_main.Children.Add(item as UIElement);
+                }
+                removedElements.Clear();
+            };
+            _bufferUndoRedo.NewAction(bufAct);
+        }
+
 
 
 

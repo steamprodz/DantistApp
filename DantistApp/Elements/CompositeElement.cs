@@ -22,7 +22,7 @@ namespace DantistApp.Elements
         Bot
     }
     
-    public class CompositeElement : Element
+    public class CompositeElement : GroupElement
     {
         public CompositeElement RelativeElement
         {

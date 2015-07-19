@@ -32,7 +32,7 @@ namespace DantistApp
             if (e.ClickCount == 2)
             {
 
-                if (basicElement is GroupElement)
+                if (basicElement is GroupElement && !(basicElement is CompositeElement))
                 {
                     GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
                                                      where item != null && item.GroupName == (basicElement as GroupElement).GroupName
@@ -98,7 +98,7 @@ namespace DantistApp
             {
                 element = new UnlimitedElement();
             }
-            if (basicElement is GroupElement)
+            if (basicElement is GroupElement && !(basicElement is CompositeElement))
             {
                 element = new GroupElement((basicElement as GroupElement).GroupName);
             }
@@ -228,7 +228,7 @@ namespace DantistApp
                 };
             #endregion
 
-            if (element is GroupElement)
+            if (element is GroupElement && !(element is CompositeElement))
             {
                 contextMenu.Items.Add(mi_delete);
                 contextMenu.Items.Add(mi_fix);
