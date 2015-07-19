@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 using DantistApp.Elements;
+using DantistApp.Tools;
 
 namespace DantistApp
 {
@@ -60,8 +61,15 @@ namespace DantistApp
             {
                 CompositeElement newCompositeElement = new CompositeElement();
                 newCompositeElement.DataContext = compositeParent.DataContext;
+                newCompositeElement.SourceTop = compositeParent.SourceTop;
+                newCompositeElement.SourceBot = compositeParent.SourceBot;
+                newCompositeElement.Width = compositeParent.Width / compositeParent.Size;
+                newCompositeElement.Height = compositeParent.Height;
                 newCompositeElement.Size = compositeParent.Size;
-                newCompositeElement.CenterDistance = compositeParent.CenterDistance;
+                newCompositeElement.StartLocation = compositeParent.StartLocation;
+
+                //var newCompositeElement = ObjectCopier.CopyObject(compositeParent);
+
                 canvas.Children.Add(newCompositeElement);
             }
             else

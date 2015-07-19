@@ -1,23 +1,23 @@
-﻿<UserControl x:Name="MyCompositeElement" x:Class="DantistApp.Elements.CompositeElement"
+﻿<UserControl x:Class="DantistApp.Elements.CompositeElement"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:custom="clr-namespace:DantistApp.Elements"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
-             Width="20" Height="20"
+             d:DesignHeight="20" d:DesignWidth="20"
+             Width="20"
              MouseLeftButtonDown="MyCompositeElement_MouseLeftButtonDown">
     <Grid>
+        <!--<Canvas x:Name="controlCanvas" MouseLeftButtonDown="CanvasMouseLeftButtonDown" MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove">
+                
+            </Canvas>-->
         <!--<Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="{Binding CenterDistance, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
             <RowDefinition/>
         </Grid.RowDefinitions>-->
-        <custom:Element x:Name="image_top" Source="{Binding SourceTop}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <custom:Element x:Name="image_bot" Source="{Binding SourceBot}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-            <!--<Canvas x:Name="controlCanvas" MouseLeftButtonDown="CanvasMouseLeftButtonDown" MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove">
-                
-            </Canvas>-->
+        <custom:Element Source="{Binding SourceTop}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <custom:Element Source="{Binding SourceBot}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

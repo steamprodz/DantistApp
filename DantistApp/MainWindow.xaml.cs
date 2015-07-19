@@ -22,7 +22,6 @@ namespace DantistApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        Element _activeElement;
         Point _mousePosition;
         PanoramaWindow _panoramaWindow;
 

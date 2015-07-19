@@ -80,7 +80,7 @@
             <TabItem x:Name="tab_ver_chel" Header="1" Margin="0,0,-21.4,0">
                 <Grid x:Name="grid_ver_chel" Background="#FFE5E5E5">
                     <custom:GroupElement x:Name="image_chel_pazuha_l1" GroupName="verh_chel1" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Image\pazuhy\pazuha_l1.png" Height="44" Width="108" Margin="499,0,0,0"/>
-                    <custom:GroupElement x:Name="image_chel_pazuha_l2" GroupName="verh_chel1" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Margin="391,0,0,0" Source="Image/pazuhy/pazuha_l2.png" Width="103" RenderTransformOrigin="0.939,0.647"/>
+                    <custom:GroupElement x:Name="image_chel_pazuha_l2" GroupName="verh_chel1" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Margin="391,0,0,0" Source="Image/pazuhy/pazuha_l2.png" Width="103"/>
                     <custom:GroupElement x:Name="image_chel_nisl" GroupName="verh_chel2" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Margin="279,0,0,0" Source="Image/nis/nisl.png" Width="26"/>
                     <custom:GroupElement x:Name="image_chel_nisr" GroupName="verh_chel8" HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Margin="310,0,0,0" Source="Image/nis/nisr.png"/>
                     <custom:GroupElement x:Name="image_chel_pazuha_r1" GroupName="verh_chel3" Size="1.55" StartLocation="76,0" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Margin="123,0,0,0" Source="Image/pazuhy/pazuha_r2.png" Width="103"/>
@@ -215,7 +215,7 @@
             </TabItem>
             <TabItem x:Name="tab_zub_nij_chel" Header="4" Height="20" VerticalAlignment="Top" Margin="64.8,0,-86.4,0">
                 <Grid Background="#FFE5E5E5">
-                    <custom:CompositeElement CenterDistance="20" Size="5" SourceTop="/Image/main.png" SourceBot="/Image/main.png" Margin="177,-4,256.8,0.2"/>
+                    <custom:CompositeElement StartLocation="50, 50" Size="2" SourceTop="/Image/main.png" SourceBot="/Image/main.png" Margin="220,26,0,0" Height="107" HorizontalAlignment="Left" VerticalAlignment="Top" Width="69"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tab_lunki_plast_verh" Header="5" Height="20" VerticalAlignment="Top" Margin="86.4,0,-108,0">

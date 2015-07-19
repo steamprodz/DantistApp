@@ -12,5 +12,6 @@ namespace DantistApp.Elements
     {
         double Size { get; set; }
         Point StartLocation { get; set; }
+        bool IsFixed { get; set; }
     }
 }

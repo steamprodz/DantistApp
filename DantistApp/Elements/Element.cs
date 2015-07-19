@@ -22,11 +22,7 @@ namespace DantistApp.Elements
         /// <summary>
         /// Gets or sets a value whether this element is fixed on the canvas.
         /// </summary>
-        public bool IsFixed
-        {
-            get;
-            set;
-        }
+        public bool IsFixed { get; set; }
 
         /// <summary>
         /// Event handler for PropertyChange

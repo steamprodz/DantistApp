@@ -39,6 +39,13 @@ namespace DantistApp.Elements
             DataContext = this;
 
             IsBinded = true;
+
+
+
+            //ControlCanvas = canvasMain;
+
+            //Canvas.SetLeft(image_top, 100);
+            //Canvas.SetTop(image_top, 100);
         }
 
         //public double ElementWidth
@@ -46,6 +53,8 @@ namespace DantistApp.Elements
         //    get { return (double)base.GetValue(ElementWidthProperty); }
         //    set { base.SetValue(ElementWidthProperty, value); }
         //}
+
+        public bool IsFixed { get; set; }
 
         public ImageSource SourceTop
         {
@@ -100,9 +109,9 @@ namespace DantistApp.Elements
 
             set
             {
-                Height = image_bot.ActualHeight + value;
+                //Height = image_bot.ActualHeight + value;
 
-                image_bot.Margin = new Thickness(0, value, 0, 0);
+                //image_bot.Margin = new Thickness(0, value, 0, 0);
 
                 _centerDistance = value;
 
@@ -119,7 +128,7 @@ namespace DantistApp.Elements
                 if (Size != 0)
                 {
                     Width /= (double)Size;
-                    Height /= (double)Size;
+                    //Height /= (double)Size;
                     //image_bot.Width /= (double)Size;
                     //image_top.Width /= (double)Size;
                     //image_bot.Height /= (double)Size;
@@ -127,7 +136,7 @@ namespace DantistApp.Elements
 
                 }
                 Width *= (double)value;
-                Height *= (double)value;
+                //Height *= (double)value;
                 //image_bot.Width *= (double)value;
                 //image_top.Width *= (double)value;
                 //image_bot.Height *= (double)value;
@@ -204,25 +213,25 @@ namespace DantistApp.Elements
                 Canvas.SetLeft(MovingImage, Canvas.GetLeft(MovingImage) + offset.X);
                 Canvas.SetTop(MovingImage, Canvas.GetTop(MovingImage) + offset.Y);
 
-                if (IsBinded)
-                {
-                    Image bindedImage;
+                //if (IsBinded)
+                //{
+                //    Image bindedImage;
 
-                    if (MovingImage == image_bot)
-                    {
-                        bindedImage = image_top;
-                    }
-                    else
-                    {
-                        bindedImage = image_bot;
-                    }
+                //    if (MovingImage == image_bot)
+                //    {
+                //        bindedImage = image_top;
+                //    }
+                //    else
+                //    {
+                //        bindedImage = image_bot;
+                //    }
 
-                    var halfWidth = MovingImage.Width / 2;
-                    var halfHeight = MovingImage.Height / 2;
+                //    var halfWidth = MovingImage.Width / 2;
+                //    var halfHeight = MovingImage.Height / 2;
 
-                    Canvas.SetLeft(bindedImage, Canvas.GetLeft(bindedImage) + offset.X);
-                    Canvas.SetTop(bindedImage, Canvas.GetTop(bindedImage) + offset.Y);
-                }
+                //    Canvas.SetLeft(bindedImage, Canvas.GetLeft(bindedImage) + offset.X);
+                //    Canvas.SetTop(bindedImage, Canvas.GetTop(bindedImage) + offset.Y);
+                //}
             }
         }
 
@@ -236,7 +245,7 @@ namespace DantistApp.Elements
                 BlurRadius = 10
             };
 
-            MyCompositeElement.Effect = glowEffect;
+            this.Effect = glowEffect;
         }
 
     }

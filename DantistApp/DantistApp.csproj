@@ -74,6 +74,8 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\CompositeElementHeightConverter.cs" />
+    <Compile Include="Tools\ObjectCopier.cs" />
     <Page Include="Elements\CompositeElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
