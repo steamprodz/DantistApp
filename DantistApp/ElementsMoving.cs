@@ -52,10 +52,9 @@ namespace DantistApp
                 var position = e.GetPosition(canvas_main);
                 var offset = position - _mousePosition;
                 _mousePosition = position;
-                Point p = _activeElement.TranslatePoint(new Point(0, 0), canvas_main);
 
-                Canvas.SetLeft(_activeElement, p.X + offset.X);
-                Canvas.SetTop(_activeElement, p.Y + offset.Y);
+                Canvas.SetLeft(_activeElement, Canvas.GetLeft(_activeElement) + offset.X);
+                Canvas.SetTop(_activeElement, Canvas.GetTop(_activeElement) + offset.Y);
             }
         }
 
