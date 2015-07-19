@@ -24,13 +24,13 @@ namespace DantistApp
     {
         Point _mousePosition;
         PanoramaWindow _panoramaWindow;
-        //Buffer _undoBuffer;
+        UndoRedoBuffer _bufferUndoRedo;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            //_undoBuffer = new Buffer();
+            _bufferUndoRedo = new UndoRedoBuffer();
 
             foreach (var item in panel_btns.Children)
             {
@@ -67,10 +67,8 @@ namespace DantistApp
                                 }
                                 catch { }
                             }
-                            //(item as CompositeElement).
                         }
                         if (item is Element)
-                        //if (item is CompositeElement || item is Element)
                         try
                         {
                             (item as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
@@ -110,26 +108,42 @@ namespace DantistApp
                 _panoramaWindow.Activate();
         }
 
-        private void MenuItem_DeleteAllElements_Click(object sender, RoutedEventArgs e)
+        private void MenuItem_RemoveAllElements_Click(object sender, RoutedEventArgs e)
         {
-            int n = canvas_main.Children.Count;
-            for (int i = n-1; i >= 0; i--)
+            List<Element> removedElements = new List<Element>();
+            BufferAction bufAct = new BufferAction();
+            bufAct.Do += () =>
             {
-                if (canvas_main.Children[i] is IManipulatedElement)
+                int n = canvas_main.Children.Count;
+                for (int i = n-1; i >= 0; i--)
                 {
-                    canvas_main.Children.RemoveAt(i);
+                    if (canvas_main.Children[i] is Element)
+                    {
+                        removedElements.Add(canvas_main.Children[i] as Element);
+                        canvas_main.Children.RemoveAt(i);
+                    }
                 }
-            }
+            };
+            bufAct.Undo += () =>
+                {
+                    foreach (var item in removedElements)
+                    {
+                        if (canvas_main.Children.Contains(item) == false)
+                            canvas_main.Children.Add(item as UIElement);
+                    }
+                    removedElements.Clear();
+                };
+            _bufferUndoRedo.NewAction(bufAct);
         }
 
         private void Btn_Undo_Click(object sender, RoutedEventArgs e)
         {
-            //_undoBuffer.Undo();
+            _bufferUndoRedo.Undo();
         }
 
         private void Btn_Redo_Click(object sender, RoutedEventArgs e)
         {
-            //_undoBuffer.Redo();
+            _bufferUndoRedo.Redo();
         }
 
 

@@ -47,76 +47,112 @@ namespace DantistApp
                 }
 
                 if (canAdd)
-                    AddElement(basicElement, canvas_main);
+                    AddToCanvas(basicElement, canvas_main);
             }
         }
 
         /// <summary>
-        /// Clones basic element into the new element on canvas
+        /// Clones basic element into the canvas
         /// </summary>
-        private void AddElement(Element basicElement, Canvas canvas)
+        private void AddToCanvas(Element basicElement, Canvas canvas)
         {
-            CompositeElementShell compositeParent = (basicElement.Parent as Grid).Parent as CompositeElementShell;
-            if (compositeParent != null)
+            CompositeElementShell compositeShell = (basicElement.Parent as Grid).Parent as CompositeElementShell;
+            if (compositeShell != null)
             {
-                #region BRANCH FOR COMPOSITE ELEMENT
-                Grid parentCompositeElementGrid = (compositeParent as CompositeElementShell).Content as Grid;
-                List<Element> parentElements = new List<Element>();
-                foreach (var gridElement in parentCompositeElementGrid.Children)
+                List<CompositeElement> elements = null;
+                BufferAction bufAct = new BufferAction();
+                bufAct.Do += () =>
                 {
-                    parentElements.Add(gridElement as Element);
-                }
-
-                List<CompositeElement> elements = new List<CompositeElement>();
-
-                for (int i = 0; i < parentElements.Count; i++)
+                    elements = AddCompositeElements(basicElement, canvas);
+                };
+                bufAct.Undo += () =>
                 {
-                    elements.Add(new CompositeElement());
-                    elements[i].Height = parentElements[i].ActualHeight;
-                    elements[i].Width = parentElements[i].ActualWidth;
-                    elements[i].Source = parentElements[i].Source;
-                    elements[i].Size = 1;
-                    elements[i].StartLocation = parentElements[i].StartLocation + new Vector(50,50);
-                    if (i == 1) elements[i].StartLocation += new Vector(0, compositeParent.ActualHeight - parentElements[1].ActualHeight);
-                }
-                elements[0].RelativeElement = elements[1];
-                elements[1].RelativeElement = elements[0];
-                elements[0].IsMerged = true;
-
-                foreach (var item in elements)
-                {
-                    canvas.Children.Add(item);
-                    item.Position = new Point(Canvas.GetLeft(item), Canvas.GetTop(item));
-                    AddContextMenu(item, canvas);
-                }
-                #endregion
+                    foreach (var item in elements)
+                    {
+                        canvas.Children.Remove(item);
+                    }
+                };
+                _bufferUndoRedo.NewAction(bufAct);
             }
             else
             {
-                #region BRANCH FOR SINGLE ELEMENT
                 Element element = null;
-                if (basicElement is UnlimitedElement)
-                {
-                    element = new UnlimitedElement();
-                }
-                if (basicElement is GroupElement)
-                {
-                    element = new GroupElement((basicElement as GroupElement).GroupName);
-                }
-                element.Source = basicElement.Source;
-                element.Width = basicElement.Width;
-                element.Height = basicElement.Height;
-                if (basicElement.Size != 0)
-                    element.Size = basicElement.Size;
-                canvas.Children.Add(element);
-                if (basicElement.StartLocation != null)
-                {
-                    element.StartLocation = basicElement.StartLocation;
-                }
-                AddContextMenu(element, canvas);
-                #endregion
+                BufferAction bufAct = new BufferAction();
+                bufAct.Do += () =>
+                    {
+                        element = AddSingleElement(basicElement, canvas);
+                    };
+                bufAct.Undo += () =>
+                    {
+                        canvas.Children.Remove(element);
+                    };
+                _bufferUndoRedo.NewAction(bufAct);
             }
         }
+
+
+        private Element AddSingleElement(Element basicElement, Canvas canvas)
+        {
+            Element element = null;
+            if (basicElement is UnlimitedElement)
+            {
+                element = new UnlimitedElement();
+            }
+            if (basicElement is GroupElement)
+            {
+                element = new GroupElement((basicElement as GroupElement).GroupName);
+            }
+            element.Source = basicElement.Source;
+            element.Width = basicElement.Width;
+            element.Height = basicElement.Height;
+            if (basicElement.Size != 0)
+                element.Size = basicElement.Size;
+            canvas.Children.Add(element);
+            if (basicElement.StartLocation != null)
+            {
+                element.StartLocation = basicElement.StartLocation;
+            }
+            AddContextMenu(element, canvas);
+
+            return element;
+        }
+
+        private List<CompositeElement> AddCompositeElements(Element basicElement, Canvas canvas)
+        {
+            CompositeElementShell compositeShell = (basicElement.Parent as Grid).Parent as CompositeElementShell;
+            Grid parentCompositeElementGrid = (compositeShell as CompositeElementShell).Content as Grid;
+            List<Element> parentElements = new List<Element>();
+            foreach (var gridElement in parentCompositeElementGrid.Children)
+            {
+                parentElements.Add(gridElement as Element);
+            }
+
+            List<CompositeElement> elements = new List<CompositeElement>();
+
+            for (int i = 0; i < parentElements.Count; i++)
+            {
+                elements.Add(new CompositeElement());
+                elements[i].Height = parentElements[i].ActualHeight;
+                elements[i].Width = parentElements[i].ActualWidth;
+                elements[i].Source = parentElements[i].Source;
+                elements[i].Size = 1;
+                elements[i].StartLocation = parentElements[i].StartLocation + new Vector(50, 50);
+                if (i == 1) elements[i].StartLocation += new Vector(0, compositeShell.ActualHeight - parentElements[1].ActualHeight);
+            }
+            elements[0].RelativeElement = elements[1];
+            elements[1].RelativeElement = elements[0];
+            elements[0].IsMerged = true;
+
+            foreach (var item in elements)
+            {
+                canvas.Children.Add(item);
+                item.Position = new Point(Canvas.GetLeft(item), Canvas.GetTop(item));
+                AddContextMenu(item, canvas);
+            }
+            return elements;
+        }
+
+
 
         /// <summary>
         /// Adds context menu to element according its type
@@ -131,7 +167,8 @@ namespace DantistApp
             mi_delete.Click += //ContextMenu_Delete_Click;
                 (object sender, RoutedEventArgs e) =>
                 {
-                    canvas.Children.Remove(element);
+                    RemoveElement(element, canvas);
+                    //canvas.Children.Remove(element);
                 };
 
             MenuItem mi_fix = new MenuItem();
@@ -214,10 +251,23 @@ namespace DantistApp
         }
 
 
-        private void ContextMenu_Delete_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Removes element from canvas
+        /// </summary>
+        private void RemoveElement(Element element, Canvas canvas)
         {
-            //DependencyObject lol = (((sender as MenuItem).Parent as ContextMenu).Parent as Popup).Parent;
+            BufferAction bufAct = new BufferAction();
+            bufAct.Do += () =>
+            {
+                canvas.Children.Remove(element);
+            };
+            bufAct.Undo += () =>
+            {
+                canvas.Children.Add(element);
+            };
+            _bufferUndoRedo.NewAction(bufAct);
         }
+
     }
 
 }

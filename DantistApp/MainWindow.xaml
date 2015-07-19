@@ -24,7 +24,7 @@
 
         <Menu x:Name="main_menu" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="1042" Grid.ColumnSpan="3" Margin="0,0,-0.4,0">
             <MenuItem Header="Очистить" Height="23">
-                <MenuItem x:Name="MenuItem_DeleteAllObjects" Header="Все объекты" Click="MenuItem_DeleteAllElements_Click"/>
+                <MenuItem x:Name="MenuItem_DeleteAllObjects" Header="Все объекты" Click="MenuItem_RemoveAllElements_Click"/>
             </MenuItem>
             <MenuItem Header="Печать" Height="23"/>
             <MenuItem Header="Сервис" Height="23">
