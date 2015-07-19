@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="DantistApp.Elements.CompositeElement"
+﻿<UserControl x:Class="DantistApp.Elements.CompositeElementShell"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,7 +17,7 @@
             <RowDefinition Height="{Binding CenterDistance, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" />
             <RowDefinition/>
         </Grid.RowDefinitions>-->
-        <custom:Element Source="{Binding SourceTop}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
-        <custom:Element Source="{Binding SourceBot}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+        <custom:CompositeElement x:Name="element_top" Source="{Binding SourceTop}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <custom:CompositeElement x:Name="element_bot" Source="{Binding SourceBot}" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

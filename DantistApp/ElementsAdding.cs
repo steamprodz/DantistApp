@@ -56,24 +56,44 @@ namespace DantistApp
         /// </summary>
         private void AddElement(Element basicElement, Canvas canvas)
         {
-            CompositeElement compositeParent = (basicElement.Parent as Grid).Parent as CompositeElement;
+            CompositeElementShell compositeParent = (basicElement.Parent as Grid).Parent as CompositeElementShell;
             if (compositeParent != null)
             {
-                CompositeElement newCompositeElement = new CompositeElement();
-                newCompositeElement.DataContext = compositeParent.DataContext;
-                newCompositeElement.SourceTop = compositeParent.SourceTop;
-                newCompositeElement.SourceBot = compositeParent.SourceBot;
-                newCompositeElement.Width = compositeParent.Width / compositeParent.Size;
-                newCompositeElement.Height = compositeParent.Height;
-                newCompositeElement.Size = compositeParent.Size;
-                newCompositeElement.StartLocation = compositeParent.StartLocation;
+                #region BRANCH FOR COMPOSITE ELEMENT
+                Grid parentCompositeElementGrid = (compositeParent as CompositeElementShell).Content as Grid;
+                List<Element> parentElements = new List<Element>();
+                foreach (var gridElement in parentCompositeElementGrid.Children)
+                {
+                    parentElements.Add(gridElement as Element);
+                }
 
-                //var newCompositeElement = ObjectCopier.CopyObject(compositeParent);
+                List<CompositeElement> elements = new List<CompositeElement>();
 
-                canvas.Children.Add(newCompositeElement);
+                for (int i = 0; i < parentElements.Count; i++)
+                {
+                    elements.Add(new CompositeElement());
+                    elements[i].Height = parentElements[i].ActualHeight;
+                    elements[i].Width = parentElements[i].ActualWidth;
+                    elements[i].Source = parentElements[i].Source;
+                    elements[i].Size = 1;
+                    elements[i].StartLocation = parentElements[i].StartLocation + new Vector(50,50);
+                    if (i == 1) elements[i].StartLocation += new Vector(0, compositeParent.ActualHeight - parentElements[1].ActualHeight);
+                }
+                elements[0].RelativeElement = elements[1];
+                elements[1].RelativeElement = elements[0];
+                elements[0].IsMerged = true;
+
+                foreach (var item in elements)
+                {
+                    canvas.Children.Add(item);
+                    item.Position = new Point(Canvas.GetLeft(item), Canvas.GetTop(item));
+                    AddContextMenu(item, canvas);
+                }
+                #endregion
             }
             else
             {
+                #region BRANCH FOR SINGLE ELEMENT
                 Element element = null;
                 if (basicElement is UnlimitedElement)
                 {
@@ -94,6 +114,7 @@ namespace DantistApp
                     element.StartLocation = basicElement.StartLocation;
                 }
                 AddContextMenu(element, canvas);
+                #endregion
             }
         }
 
@@ -131,6 +152,31 @@ namespace DantistApp
                     element.ContextMenu.Items.Remove(mi_unfix);
                     element.ContextMenu.Items.Add(mi_fix);
                 };
+
+            MenuItem mi_merge = new MenuItem();
+            MenuItem mi_unmerge = new MenuItem();
+            mi_merge.Header = "Объединить элементы";
+            mi_unmerge.Header = "Разъединить элементы";
+            mi_merge.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    if (element is CompositeElement)
+                    {
+                        (element as CompositeElement).IsMerged = true;
+                        (element as CompositeElement).ContextMenu.Items.Remove(mi_merge);
+                        (element as CompositeElement).ContextMenu.Items.Add(mi_unmerge);
+                    }
+                };
+            mi_unmerge.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    if (element is CompositeElement)
+                    {
+                        (element as CompositeElement).IsMerged = false;
+                        (element as CompositeElement).ContextMenu.Items.Remove(mi_unmerge);
+                        (element as CompositeElement).ContextMenu.Items.Add(mi_merge);
+                    }
+                };
             #endregion
 
             if (element is GroupElement)
@@ -143,6 +189,13 @@ namespace DantistApp
             {
                 contextMenu.Items.Add(mi_delete);
                 contextMenu.Items.Add(mi_fix);
+            }
+
+            if (element is CompositeElement)
+            {
+                contextMenu.Items.Add(mi_delete);
+                contextMenu.Items.Add(mi_fix);
+                contextMenu.Items.Add(mi_unmerge);
             }
 
             element.ContextMenu = contextMenu;

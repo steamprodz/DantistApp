@@ -20,39 +20,20 @@ namespace DantistApp.Elements
     /// <summary>
     /// Interaction logic for GroupedImage.xaml
     /// </summary>
-    public partial class CompositeElement : UserControl, IManipulatedElement
+    public partial class CompositeElementShell : UserControl, IManipulatedElement
     {
-        private Canvas ControlCanvas;
-
         //Currently moving object
         private Image MovingImage;
 
         // Mouse tools
         private Point MousePosition;
 
-        //Image binding
-        private bool IsBinded;
 
-        public CompositeElement()
+        public CompositeElementShell()
         {
             InitializeComponent();
             DataContext = this;
-
-            IsBinded = true;
-
-
-
-            //ControlCanvas = canvasMain;
-
-            //Canvas.SetLeft(image_top, 100);
-            //Canvas.SetTop(image_top, 100);
         }
-
-        //public double ElementWidth
-        //{
-        //    get { return (double)base.GetValue(ElementWidthProperty); }
-        //    set { base.SetValue(ElementWidthProperty, value); }
-        //}
 
         public bool IsFixed { get; set; }
 
@@ -81,10 +62,10 @@ namespace DantistApp.Elements
         //}
 
         public static readonly DependencyProperty SourceTopProperty =
-            DependencyProperty.Register("SourceTop", typeof(ImageSource), typeof(CompositeElement));
+            DependencyProperty.Register("SourceTop", typeof(ImageSource), typeof(CompositeElementShell));
 
         public static readonly DependencyProperty SourceBotProperty =
-            DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(CompositeElement));
+            DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(CompositeElementShell));
 
         //public static readonly DependencyProperty CenterDistanceProperty =
         //    DependencyProperty.Register("CenterDistance", typeof(int), typeof(CompositeElement));
@@ -183,55 +164,36 @@ namespace DantistApp.Elements
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var image = e.Source as Image;
+            //var image = e.Source as Image;
 
-            if (image != null && ControlCanvas.CaptureMouse())
-            {
-                MousePosition = e.GetPosition(ControlCanvas);
-                MovingImage = image;
-                //Panel.SetZIndex(MovingImage, 1); // in case of multiple images
-            }
+            //if (image != null && ControlCanvas.CaptureMouse())
+            //{
+            //    MousePosition = e.GetPosition(ControlCanvas);
+            //    MovingImage = image;
+            //    //Panel.SetZIndex(MovingImage, 1); // in case of multiple images
+            //}
         }
 
         private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (MovingImage != null)
-            {
-                ControlCanvas.ReleaseMouseCapture();
-                //Panel.SetZIndex(MovingImage, 0);
-                MovingImage = null;
-            }
+            //if (MovingImage != null)
+            //{
+            //    ControlCanvas.ReleaseMouseCapture();
+            //    //Panel.SetZIndex(MovingImage, 0);
+            //    MovingImage = null;
+            //}
         }
 
         private void CanvasMouseMove(object sender, MouseEventArgs e)
         {
             if (MovingImage != null)
             {
-                var position = e.GetPosition(ControlCanvas);
-                var offset = position - MousePosition;
-                MousePosition = position;
-                Canvas.SetLeft(MovingImage, Canvas.GetLeft(MovingImage) + offset.X);
-                Canvas.SetTop(MovingImage, Canvas.GetTop(MovingImage) + offset.Y);
+                //var position = e.GetPosition(ControlCanvas);
+                //var offset = position - MousePosition;
+                //MousePosition = position;
+                //Canvas.SetLeft(MovingImage, Canvas.GetLeft(MovingImage) + offset.X);
+                //Canvas.SetTop(MovingImage, Canvas.GetTop(MovingImage) + offset.Y);
 
-                //if (IsBinded)
-                //{
-                //    Image bindedImage;
-
-                //    if (MovingImage == image_bot)
-                //    {
-                //        bindedImage = image_top;
-                //    }
-                //    else
-                //    {
-                //        bindedImage = image_bot;
-                //    }
-
-                //    var halfWidth = MovingImage.Width / 2;
-                //    var halfHeight = MovingImage.Height / 2;
-
-                //    Canvas.SetLeft(bindedImage, Canvas.GetLeft(bindedImage) + offset.X);
-                //    Canvas.SetTop(bindedImage, Canvas.GetTop(bindedImage) + offset.Y);
-                //}
             }
         }
 

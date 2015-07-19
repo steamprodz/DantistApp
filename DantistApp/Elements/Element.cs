@@ -53,6 +53,19 @@ namespace DantistApp.Elements
             }
         }
 
+        protected Point _position;
+        public virtual Point Position
+        {
+            get { return _position; }
+
+            set
+            {
+                _position = value;
+                Canvas.SetLeft(this, _position.X);
+                Canvas.SetTop(this, _position.Y);
+            }
+        }
+
         public Point StartLocation
         {
             get { return _startLocation; }

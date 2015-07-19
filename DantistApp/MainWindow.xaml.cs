@@ -24,10 +24,13 @@ namespace DantistApp
     {
         Point _mousePosition;
         PanoramaWindow _panoramaWindow;
+        //Buffer _undoBuffer;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            //_undoBuffer = new Buffer();
 
             foreach (var item in panel_btns.Children)
             {
@@ -53,9 +56,9 @@ namespace DantistApp
                 if (grid != null)
                     foreach (var item in grid.Children)
                     {
-                        if (item is CompositeElement)
+                        if (item is CompositeElementShell)
                         {
-                            Grid compositeElementGrid = (item as CompositeElement).Content as Grid;
+                            Grid compositeElementGrid = (item as CompositeElementShell).Content as Grid;
                             foreach (var gridElement in compositeElementGrid.Children)
                             {
                                 try
@@ -117,6 +120,16 @@ namespace DantistApp
                     canvas_main.Children.RemoveAt(i);
                 }
             }
+        }
+
+        private void Btn_Undo_Click(object sender, RoutedEventArgs e)
+        {
+            //_undoBuffer.Undo();
+        }
+
+        private void Btn_Redo_Click(object sender, RoutedEventArgs e)
+        {
+            //_undoBuffer.Redo();
         }
 
 
