@@ -24,7 +24,7 @@ namespace DantistApp
         private void MainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //var element = e.Source as Element;
-
+            
             if (e.Source is Canvas)
             {
                 ClearSelection();
@@ -55,6 +55,8 @@ namespace DantistApp
 
         private void AddToSelection(Element element)
         {
+            if (element is CompositeElement)
+                label1.Content = (element as CompositeElement).GroupName;
             DropShadowEffect glowEffect = new DropShadowEffect()
             {
                 ShadowDepth = 0,

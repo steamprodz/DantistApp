@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DantistApp.Elements;
+using DantistApp.Tools;
 using System.Text.RegularExpressions;
 
 namespace DantistApp
@@ -49,35 +51,16 @@ namespace DantistApp
         private void AddDoubleClickEvents()
         {
             List<Grid> grids = new List<Grid>();
-            foreach (TabItem tabItem in tabControl_elements.Items)
+            List<Element> GroupElements = Helpers.GetLogicalChildCollection<Element>(this);
+            foreach (var item in GroupElements)
             {
-                Grid grid = null;
-                if (tabItem.Content is Grid)
-                    grid = tabItem.Content as Grid;
-             
-                if (grid != null)
-                    foreach (var item in grid.Children)
-                    {
-                        if (item is CompositeElementShell)
-                        {
-                            Grid compositeElementGrid = (item as CompositeElementShell).Content as Grid;
-                            foreach (var gridElement in compositeElementGrid.Children)
-                            {
-                                try
-                                {
-                                    (gridElement as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
-                                }
-                                catch { }
-                            }
-                        }
-                        if (item is Element)
-                        try
-                        {
-                            (item as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
-                        }
-                        catch { }
-                    }
+                try
+                {
+                    (item as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
+                }
+                catch { }
             }
+
         }
 
         /// <summary>

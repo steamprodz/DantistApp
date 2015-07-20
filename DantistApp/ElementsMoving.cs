@@ -48,30 +48,47 @@ namespace DantistApp
                 Point destinationPoint = new Point(Canvas.GetLeft(_activeElement) + offset.X,
                                                    Canvas.GetTop(_activeElement) + offset.Y);
 
-                Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y, 
-                                            _activeElement.ActualWidth, _activeElement.ActualHeight);
+                Rect checkRect = new Rect(canvas_main.RenderSize);
 
                 //========* check: canvas contains element *=========
-                Rect checkRect = new Rect(canvas_main.RenderSize);
+                Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y,
+                                            _activeElement.ActualWidth, _activeElement.ActualHeight);
                 checkRect.Intersect(elementRect);
-                if ((int)checkRect.Size.Width != (int)elementRect.Size.Width ||
-                    (int)checkRect.Size.Height != (int)elementRect.Size.Height)
-                    canMove = false;
+                try
+                {
+                    if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)elementRect.Size.Width) == false ||
+                        Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)elementRect.Size.Height) == false)
+                        canMove = false;
+                }
+                catch { canMove = false; }
                 //===================================================
 
                 checkRect = new Rect(canvas_main.RenderSize);
+
                 //=========* check: canvas contains relative element *==========
                 if (_activeElement is CompositeElement)
                 {
-                    CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
-                    Rect relativeElementRect = new Rect();
-                    relativeElementRect.Width = relativeElement.ActualWidth;
-                    relativeElementRect.Height = relativeElement.ActualHeight;
-                    relativeElementRect.Location = relativeElement.Position + offset;
-                    checkRect.Intersect(relativeElementRect);
-                    if ((int)checkRect.Size.Width != (int)relativeElementRect.Size.Width ||
-                        (int)checkRect.Size.Height != (int)relativeElementRect.Size.Height)
-                        canMove = false;
+                    if ((_activeElement as CompositeElement).RelativeElement != null)
+                    {
+                        CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
+                        Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
+                                                            relativeElement.ActualWidth, relativeElement.ActualHeight);
+                        //Point relativePos = new Point
+                        //{
+                        //    X = Canvas.GetLeft(relativeElement),
+                        //    Y = Canvas.GetTop(relativeElement)
+                        //};
+                        relativeElementRect.Location = relativeElement.Position + offset;
+
+                        checkRect.Intersect(relativeElementRect);
+                        try
+                        {
+                            if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)relativeElementRect.Size.Width) == false ||
+                                Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)relativeElementRect.Size.Height) == false)
+                                canMove = false;
+                        }
+                        catch { canMove = false; }
+                    }
                 }
                 //===============================================================
 

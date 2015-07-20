@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace DantistApp.Elements
 {
     // IControlManipulate inherits INotifyPropertyChanged
-    public class Element : Image, IManipulatedElement
+    public class Element : OpaqueClickableImage, IManipulatedElement
     {
         /// <summary>
         /// Gets or sets a value whether this element is fixed on the canvas.
@@ -30,8 +30,6 @@ namespace DantistApp.Elements
         public event PropertyChangedEventHandler PropertyChanged; 
 
         private double _size;
-        private Point _startLocation;
-
         public double Size
         {
             get { return _size; }
@@ -66,6 +64,7 @@ namespace DantistApp.Elements
             }
         }
 
+        private Point _startLocation;
         public Point StartLocation
         {
             get { return _startLocation; }
@@ -82,6 +81,37 @@ namespace DantistApp.Elements
             }
         }
 
+
+        public Element CloneIntoCanvas(Canvas canvas, Point point)
+        {
+            Element element = null;
+            if (this is UnlimitedElement)
+            {
+                element = new UnlimitedElement();
+            }
+            if (this is GroupElement && !(this is CompositeElement))
+            {
+                element = new GroupElement((this as GroupElement).GroupName);
+            }
+            if (this is CompositeElement)
+            {
+                element = new CompositeElement();
+            }
+            element.IsClone = true;
+            element.Source = this.Source;
+            element.Width = this.ActualWidth;
+            element.Height = this.ActualHeight;
+            if (this.Size != 0)
+                element.Size = this.Size;
+            else
+                element.Size = 1;
+            
+            canvas.Children.Add(element);
+            element.Position = point;
+
+            return element;
+        }
+
         protected void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -90,6 +120,7 @@ namespace DantistApp.Elements
                 handler(this, e);
             }
         }
+        
 
         protected void OnPropertyChanged(string propertyName)
         {

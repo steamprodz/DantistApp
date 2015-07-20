@@ -69,6 +69,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ElementsSelecting.cs" />
+    <Compile Include="OpaqueClickableImage.cs" />
     <Compile Include="PanoramaWindow.xaml.cs">
       <DependentUpon>PanoramaWindow.xaml</DependentUpon>
     </Compile>
@@ -78,6 +79,7 @@
     <Compile Include="Tools\CanvasHelper.cs" />
     <Compile Include="Tools\CompositeElementHeightConverter.cs" />
     <Compile Include="Tools\ImageHelper.cs" />
+    <Compile Include="Tools\Helpers.cs" />
     <Compile Include="Tools\ObjectCopier.cs" />
     <Compile Include="UndoRedoBuffer.cs" />
     <Compile Include="UserControls\ReportElement.xaml.cs">

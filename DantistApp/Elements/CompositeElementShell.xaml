@@ -6,8 +6,7 @@
              xmlns:custom="clr-namespace:DantistApp.Elements"
              mc:Ignorable="d"
              d:DesignHeight="20" d:DesignWidth="20"
-             Width="20"
-             MouseLeftButtonDown="MyCompositeElement_MouseLeftButtonDown">
+             Width="20">
     <Grid>
         <!--<Canvas x:Name="controlCanvas" MouseLeftButtonDown="CanvasMouseLeftButtonDown" MouseLeftButtonUp="CanvasMouseLeftButtonUp" MouseMove="CanvasMouseMove">
                 
