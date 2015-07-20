@@ -75,7 +75,9 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\CanvasHelper.cs" />
     <Compile Include="Tools\CompositeElementHeightConverter.cs" />
+    <Compile Include="Tools\ImageHelper.cs" />
     <Compile Include="Tools\ObjectCopier.cs" />
     <Compile Include="UndoRedoBuffer.cs" />
     <Compile Include="UserControls\ReportElement.xaml.cs">
@@ -864,6 +866,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\Download_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Arrow_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\plus_icon.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\minus_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\trash_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

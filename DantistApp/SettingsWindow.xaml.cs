@@ -19,9 +19,33 @@ namespace DantistApp
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        public SettingsWindow()
+        private StackPanel ThreatmentPlanPanel;
+
+        public SettingsWindow(StackPanel _stackPanel)
         {
             InitializeComponent();
+
+            ThreatmentPlanPanel = _stackPanel;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+
+            for (int i = 0; i < ThreatmentPlanPanel.Children.Count - 1; i++)
+            {
+                var comment = (ThreatmentPlanPanel.Children[i] as UserControls.ReportElement).Comment;
+
+                TextBox textBoxComment = new TextBox();
+                textBoxComment.Text = comment;
+
+                grid_comments.RowDefinitions.Add(new RowDefinition());
+                grid_comments.Children.Add(textBoxComment);
+
+                //var lll = grid_comments.RowDefinitions[1];
+            }
+
+            
         }
     }
 }

@@ -95,7 +95,7 @@ namespace DantistApp
 
         private void MenuItem_Service_Click(object sender, RoutedEventArgs e)
         {
-            SettingsWindow wnd = new SettingsWindow();
+            SettingsWindow wnd = new SettingsWindow(stackPanel_Report);
             wnd.ShowDialog();
         }
 
@@ -170,6 +170,16 @@ namespace DantistApp
                 removedElements.Clear();
             };
             _bufferUndoRedo.NewAction(bufAct);
+        }
+
+        private void button_AddReport_Click(object sender, RoutedEventArgs e)
+        {
+            UserControls.ReportElement reportElement = new UserControls.ReportElement();
+            reportElement.MainCanvas = canvas_main;
+
+            stackPanel_Report.Children.Remove(grid_ReportButtons);
+            stackPanel_Report.Children.Add(reportElement);
+            stackPanel_Report.Children.Add(grid_ReportButtons);
         }
 
 
