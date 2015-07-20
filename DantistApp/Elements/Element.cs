@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace DantistApp.Elements
 {
     // IControlManipulate inherits INotifyPropertyChanged
-    public class Element : Image, IManipulatedElement
+    public class Element : OpaqueClickableImage, IManipulatedElement
     {
         /// <summary>
         /// Gets or sets a value whether this element is fixed on the canvas.
@@ -82,6 +82,42 @@ namespace DantistApp.Elements
             }
         }
 
+
+        public Element CloneIntoCanvas(Canvas canvas, Point point)
+        {
+            Element element = null;
+            if (this is UnlimitedElement)
+            {
+                element = new UnlimitedElement();
+            }
+            if (this is GroupElement && !(this is CompositeElement))
+            {
+                element = new GroupElement((this as GroupElement).GroupName);
+            }
+            if (this is CompositeElement)
+            {
+                element = new CompositeElement();
+            }
+            element.IsClone = true;
+            element.Source = this.Source;
+            element.Width = this.ActualWidth;
+            element.Height = this.ActualHeight;
+            if (this.Size != 0)
+                element.Size = this.Size;
+            else
+                element.Size = 1;
+            
+            if (this.StartLocation != null)
+            {
+                element.StartLocation = this.StartLocation;
+            }
+            element.Position = new Point(Canvas.GetLeft(element), Canvas.GetTop(element));
+            canvas.Children.Add(element);
+            
+
+            return element;
+        }
+
         protected void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -90,6 +126,7 @@ namespace DantistApp.Elements
                 handler(this, e);
             }
         }
+        
 
         protected void OnPropertyChanged(string propertyName)
         {

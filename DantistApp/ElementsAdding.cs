@@ -94,25 +94,7 @@ namespace DantistApp
 
         private Element AddSingleElement(Element basicElement, Canvas canvas)
         {
-            Element element = null;
-            if (basicElement is UnlimitedElement)
-            {
-                element = new UnlimitedElement();
-            }
-            if (basicElement is GroupElement && !(basicElement is CompositeElement))
-            {
-                element = new GroupElement((basicElement as GroupElement).GroupName);
-            }
-            element.Source = basicElement.Source;
-            element.Width = basicElement.Width;
-            element.Height = basicElement.Height;
-            if (basicElement.Size != 0)
-                element.Size = basicElement.Size;
-            canvas.Children.Add(element);
-            if (basicElement.StartLocation != null)
-            {
-                element.StartLocation = basicElement.StartLocation;
-            }
+            Element element = basicElement.CloneIntoCanvas(canvas, basicElement.StartLocation);
             AddContextMenu(element, canvas);
 
             return element;
@@ -133,12 +115,10 @@ namespace DantistApp
             for (int i = 0; i < parentElements.Count; i++)
             {
                 elements.Add(new CompositeElement());
-                elements[i].Height = parentElements[i].ActualHeight;
-                elements[i].Width = parentElements[i].ActualWidth;
-                elements[i].Source = parentElements[i].Source;
-                elements[i].Size = 1;
-                elements[i].StartLocation = parentElements[i].StartLocation + new Vector(50, 50);
-                if (i == 1) elements[i].StartLocation += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth, compositeShell.ActualHeight - parentElements[1].ActualHeight);
+                elements[i] = parentElements[i].CloneIntoCanvas(canvas, parentElements[i].StartLocation) as CompositeElement;
+                if (i == 1) 
+                    elements[i].StartLocation += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth, 
+                                                            compositeShell.ActualHeight - parentElements[1].ActualHeight);
             }
             elements[0].RelativeElement = elements[1];
             elements[1].RelativeElement = elements[0];
@@ -146,8 +126,6 @@ namespace DantistApp
 
             foreach (var item in elements)
             {
-                canvas.Children.Add(item);
-                item.Position = new Point(Canvas.GetLeft(item), Canvas.GetTop(item));
                 AddContextMenu(item, canvas);
             }
             return elements;
