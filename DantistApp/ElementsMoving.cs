@@ -22,20 +22,9 @@ namespace DantistApp
         //Element _activeElement;
         FrameworkElement _activeElement;
 
-        private void MainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //var element = e.Source as Element;
+        
 
-            var element = e.Source as FrameworkElement;
 
-            //if (element != null && canvas_main.CaptureMouse() &&
-            //    (element is GroupElement || element is UnlimitedElement || element is SingleElement))
-            if (element is IManipulatedElement && canvas_main.CaptureMouse())
-            {
-                _mousePosition = e.GetPosition(canvas_main);
-                _activeElement = element;
-            }
-        }
         private void MainCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (_activeElement != null)
@@ -44,18 +33,54 @@ namespace DantistApp
                 _activeElement = null;
             }
         }
+
+
         private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (_activeElement != null && 
-                !(_activeElement as IManipulatedElement).IsFixed)
+                !(_activeElement as Element).IsFixed)
             {
+                bool canMove = true;
+
                 var position = e.GetPosition(canvas_main);
                 var offset = position - _mousePosition;
                 _mousePosition = position;
+                Point destinationPoint = new Point(Canvas.GetLeft(_activeElement) + offset.X,
+                                                   Canvas.GetTop(_activeElement) + offset.Y);
 
-                Point p = new Point(Canvas.GetLeft(_activeElement) + offset.X,
-                                    Canvas.GetTop(_activeElement) + offset.Y);
-                (_activeElement as Element).Position = p;
+                Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y, 
+                                            _activeElement.ActualWidth, _activeElement.ActualHeight);
+
+                //========* check: canvas contains element *=========
+                Rect checkRect = new Rect(canvas_main.RenderSize);
+                checkRect.Intersect(elementRect);
+                if ((int)checkRect.Size.Width != (int)elementRect.Size.Width ||
+                    (int)checkRect.Size.Height != (int)elementRect.Size.Height)
+                    canMove = false;
+                //===================================================
+
+                checkRect = new Rect(canvas_main.RenderSize);
+                //=========* check: canvas contains relative element *==========
+                if (_activeElement is CompositeElement)
+                {
+                    CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
+                    Rect relativeElementRect = new Rect();
+                    relativeElementRect.Width = relativeElement.ActualWidth;
+                    relativeElementRect.Height = relativeElement.ActualHeight;
+                    relativeElementRect.Location = relativeElement.Position + offset;
+                    checkRect.Intersect(relativeElementRect);
+                    if ((int)checkRect.Size.Width != (int)relativeElementRect.Size.Width ||
+                        (int)checkRect.Size.Height != (int)relativeElementRect.Size.Height)
+                        canMove = false;
+                }
+                //===============================================================
+
+                if (canMove)
+                {
+                    Point p = new Point(Canvas.GetLeft(_activeElement) + offset.X,
+                                        Canvas.GetTop(_activeElement) + offset.Y);
+                    (_activeElement as Element).Position = p;
+                }
             }
         }
 

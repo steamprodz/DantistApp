@@ -20,7 +20,6 @@ namespace DantistApp.Elements
     {
         public GroupElement()
         {
-            DataContext = this;
 
         }
 
