@@ -125,33 +125,20 @@ namespace DantistApp
                 if (parentElements[i].Source != null)
                 {
                     CompositeElement element = new CompositeElement();
-                    //elements.Add(new CompositeElement());
+              
                     element = parentElements[i].CloneIntoCanvas(canvas, startPos) as CompositeElement;
-                    //======!!!!!!!!!!!!!
-                    //element.GroupName = compositeShell.CompositeGroupID;
-
+                  
                     if (parentElements[i] == compositeShell.element_bot)
                     {
                         element.Position += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth,
                                                            compositeShell.ActualHeight - parentElements[1].ActualHeight);
                         element.CompositeLocation = CompositeLocation.Bot;
                         element.GroupName = "tooth" + Convert.ToInt32(Regex.Match(compositeShell.SourceBot.ToString(), @"\d+").Value);
-
-                        CompositeElement sameCompositeBot = SameCompositeBot(element, canvas);
-                        if (sameCompositeBot != null)
-                        {
-                            ReplaceCompositeElement(canvas, sameCompositeBot, element);
-                        }
                     }
                     if (parentElements[i] == compositeShell.element_top)
                     {
                         element.CompositeLocation = CompositeLocation.Top;
                         element.GroupName = "tooth" + Convert.ToInt32(Regex.Match(compositeShell.SourceTop.ToString(), @"\d+").Value);
-                        CompositeElement sameCompositeTop = SameCompositeTop(element, canvas);
-                        if (sameCompositeTop != null)
-                        {
-                            ReplaceCompositeElement(canvas, sameCompositeTop, element);
-                        }
                     }
                     elements.Add(element);
 
@@ -164,9 +151,25 @@ namespace DantistApp
                 elements[0].IsMerged = true;
             }
 
-            foreach (var item in elements)
+            foreach (CompositeElement element in elements)
             {
-                AddContextMenu(item, canvas);
+                if (element.CompositeLocation == CompositeLocation.Bot)
+                {
+                    CompositeElement sameCompositeBot = SameCompositeBot(element, canvas);
+                    if (sameCompositeBot != null)
+                    {
+                        ReplaceCompositeElement(canvas, sameCompositeBot, element);
+                    }
+                }
+                if (element.CompositeLocation == CompositeLocation.Top)
+                {
+                    CompositeElement sameCompositeTop = SameCompositeTop(element, canvas);
+                    if (sameCompositeTop != null)
+                    {
+                        ReplaceCompositeElement(canvas, sameCompositeTop, element);
+                    }
+                }
+                AddContextMenu(element, canvas);
             }
             return elements;
         }
@@ -198,17 +201,18 @@ namespace DantistApp
 
         private void ReplaceCompositeElement(Canvas canvas, CompositeElement oldElement, CompositeElement newElement)
         {
-            CompositeElement relElement = oldElement.RelativeElement;
-            newElement.Position = oldElement.Position;
-            if (relElement != null)
+            CompositeElement oldRelElement = oldElement.RelativeElement;
+            CompositeElement newRelElement = newElement.RelativeElement;
+            if (newRelElement == null)
+                newElement.Position = oldElement.Position;
+            if (oldRelElement != null)
             {
-                newElement.RelativeElement = relElement;
-                relElement.RelativeElement = newElement;
+                newElement.RelativeElement = oldRelElement;
+                oldRelElement.RelativeElement = newElement;
 
-                newElement.IsMerged = relElement.IsMerged;
+                newElement.IsMerged = oldRelElement.IsMerged;
             }
             canvas.Children.Remove(oldElement);
-            //canvas.Children.Add(newElement);
         }
 
 
@@ -222,11 +226,10 @@ namespace DantistApp
             #region MENU ITEMS DECLARATION
             MenuItem mi_delete = new MenuItem();
             mi_delete.Header = "Удалить элемент";
-            mi_delete.Click += //ContextMenu_Delete_Click;
+            mi_delete.Click += 
                 (object sender, RoutedEventArgs e) =>
                 {
                     RemoveElement(element, canvas);
-                    //canvas.Children.Remove(element);
                 };
 
             MenuItem mi_fix = new MenuItem();

@@ -29,15 +29,6 @@ namespace DantistApp.Elements
         {
             InitializeComponent();
             DataContext = this;
-
-            int number = 0;
-            if (SourceBot != null)
-                number = Convert.ToInt32(Regex.Match(SourceBot.ToString(), @"\d+").Value);
-            if (SourceTop != null)
-                number = Convert.ToInt32(Regex.Match(SourceTop.ToString(), @"\d+").Value);
-            element_bot.GroupName = "tooth" + number;
-            element_top.GroupName = "tooth" + number;
-            //element_bot.GroupName = 
         }
 
         public bool IsFixed { get; set; }
