@@ -115,10 +115,10 @@ namespace DantistApp
             for (int i = 0; i < parentElements.Count; i++)
             {
                 elements.Add(new CompositeElement());
-                elements[i] = parentElements[i].CloneIntoCanvas(canvas, parentElements[i].StartLocation) as CompositeElement;
+                elements[i] = parentElements[i].CloneIntoCanvas(canvas, parentElements[i].StartLocation + new Vector(50,50)) as CompositeElement;
                 if (i == 1) 
-                    elements[i].StartLocation += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth, 
-                                                            compositeShell.ActualHeight - parentElements[1].ActualHeight);
+                    elements[i].Position += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth, 
+                                                       compositeShell.ActualHeight - parentElements[1].ActualHeight);
             }
             elements[0].RelativeElement = elements[1];
             elements[1].RelativeElement = elements[0];

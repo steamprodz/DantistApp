@@ -54,9 +54,13 @@ namespace DantistApp
                 Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y,
                                             _activeElement.ActualWidth, _activeElement.ActualHeight);
                 checkRect.Intersect(elementRect);
-                if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)elementRect.Size.Width) == false ||
-                    Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)elementRect.Size.Height) == false)
-                    canMove = false;
+                try
+                {
+                    if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)elementRect.Size.Width) == false ||
+                        Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)elementRect.Size.Height) == false)
+                        canMove = false;
+                }
+                catch { canMove = false; }
                 //===================================================
 
                 checkRect = new Rect(canvas_main.RenderSize);
@@ -65,14 +69,23 @@ namespace DantistApp
                 if (_activeElement is CompositeElement)
                 {
                     CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
-                    Rect relativeElementRect = new Rect();
-                    relativeElementRect.Width = relativeElement.ActualWidth;
-                    relativeElementRect.Height = relativeElement.ActualHeight;
+                    Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
+                                                        relativeElement.ActualWidth, relativeElement.ActualHeight);
+                    //Point relativePos = new Point
+                    //{
+                    //    X = Canvas.GetLeft(relativeElement),
+                    //    Y = Canvas.GetTop(relativeElement)
+                    //};
                     relativeElementRect.Location = relativeElement.Position + offset;
+                    
                     checkRect.Intersect(relativeElementRect);
-                    if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)relativeElementRect.Size.Width) == false ||
-                        Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)relativeElementRect.Size.Height) == false)
-                        canMove = false;
+                    try
+                    {
+                        if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)relativeElementRect.Size.Width) == false ||
+                            Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)relativeElementRect.Size.Height) == false)
+                            canMove = false;
+                    }
+                    catch { canMove = false; }
                 }
                 //===============================================================
 

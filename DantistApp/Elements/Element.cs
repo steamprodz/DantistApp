@@ -107,13 +107,8 @@ namespace DantistApp.Elements
             else
                 element.Size = 1;
             
-            if (this.StartLocation != null)
-            {
-                element.StartLocation = this.StartLocation;
-            }
-            element.Position = new Point(Canvas.GetLeft(element), Canvas.GetTop(element));
             canvas.Children.Add(element);
-            
+            element.Position = point;
 
             return element;
         }
