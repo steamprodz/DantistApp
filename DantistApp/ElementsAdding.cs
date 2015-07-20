@@ -137,7 +137,7 @@ namespace DantistApp
                 elements[i].Source = parentElements[i].Source;
                 elements[i].Size = 1;
                 elements[i].StartLocation = parentElements[i].StartLocation + new Vector(50, 50);
-                if (i == 1) elements[i].StartLocation += new Vector(0, compositeShell.ActualHeight - parentElements[1].ActualHeight);
+                if (i == 1) elements[i].StartLocation += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth, compositeShell.ActualHeight - parentElements[1].ActualHeight);
             }
             elements[0].RelativeElement = elements[1];
             elements[1].RelativeElement = elements[0];

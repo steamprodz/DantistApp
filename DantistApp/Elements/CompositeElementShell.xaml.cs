@@ -49,29 +49,11 @@ namespace DantistApp.Elements
             set { base.SetValue(SourceBotProperty, value); }
         }
 
-        //public int CenterDistance
-        //{
-        //    get { return (int)base.GetValue(CenterDistanceProperty); }
-
-        //    set 
-        //    {
-        //        base.SetValue(MarginProperty, new Thickness(0, value, 0, -value));
-        //        image_bot.Margin = new Thickness(20, 20, 20, 20);
-        //        base.SetValue(CenterDistanceProperty, value); 
-        //    }
-        //}
-
         public static readonly DependencyProperty SourceTopProperty =
             DependencyProperty.Register("SourceTop", typeof(ImageSource), typeof(CompositeElementShell));
 
         public static readonly DependencyProperty SourceBotProperty =
             DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(CompositeElementShell));
-
-        //public static readonly DependencyProperty CenterDistanceProperty =
-        //    DependencyProperty.Register("CenterDistance", typeof(int), typeof(CompositeElement));
-
-        //public static readonly DependencyProperty ElementWidthProperty =
-        //    DependencyProperty.Register("ElementWidth", typeof(double), typeof(CompositeElement));
 
 
 
@@ -97,6 +79,72 @@ namespace DantistApp.Elements
                 _centerDistance = value;
 
                 OnPropertyChanged("CenterDistance");
+            }
+        }
+
+        private double _horizontalShift;
+
+        public double HorizontalShift
+        {
+            get { return _horizontalShift; }
+
+            set
+            {
+                foreach (Image image in (this.Content as Grid).Children)
+                {
+                    if (image.VerticalAlignment == System.Windows.VerticalAlignment.Bottom)
+                    {
+                        if (value != HorizontalShift)
+                        {
+                            image.Margin = new Thickness(image.Margin.Left - HorizontalShift, image.Margin.Top,
+                            image.Margin.Right + HorizontalShift, image.Margin.Bottom);
+                        }
+
+                        image.Margin = new Thickness(image.Margin.Left + value, image.Margin.Top,
+                            image.Margin.Right - value, image.Margin.Bottom);
+                    }
+                }
+
+                _horizontalShift = value;
+
+                OnPropertyChanged("HorizontalShift");
+            }
+        }
+
+        private double _botImageSize;
+
+        public double BotImageSize
+        {
+            get { return _botImageSize; }
+
+            set
+            {
+                foreach (Image image in (this.Content as Grid).Children)
+                {
+                    if (image.VerticalAlignment == System.Windows.VerticalAlignment.Bottom)
+                    {
+                        //if (BotImageSize != 0)
+                        //{
+                        //    image.Width = BotImageSize;
+                        //    //image.Height /= BotImageSize;
+                        //}
+                        ////image.Height *= value;
+                        //image.Width *= value;
+
+                        if (value != BotImageSize)
+                        {
+                            image.Margin = new Thickness(image.Margin.Left + BotImageSize, image.Margin.Top + BotImageSize,
+                            image.Margin.Right, image.Margin.Bottom);
+                        }
+
+                        image.Margin = new Thickness(image.Margin.Left - value, image.Margin.Top - value,
+                            image.Margin.Right, image.Margin.Bottom);
+                    }
+                }
+
+                _botImageSize = value;
+
+                OnPropertyChanged("BotImageSize");
             }
         }
 
