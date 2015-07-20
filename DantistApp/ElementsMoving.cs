@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DantistApp.Elements;
+using DantistApp.Tools;
 
 namespace DantistApp
 {
@@ -48,50 +49,27 @@ namespace DantistApp
                 Point destinationPoint = new Point(Canvas.GetLeft(_activeElement) + offset.X,
                                                    Canvas.GetTop(_activeElement) + offset.Y);
 
-                Rect checkRect = new Rect(canvas_main.RenderSize);
+                Rect canvasRect = new Rect(canvas_main.RenderSize);
 
-                //========* check: canvas contains element *=========
+                //check: canvas contains element
                 Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y,
-                                            _activeElement.ActualWidth, _activeElement.ActualHeight);
-                checkRect.Intersect(elementRect);
-                try
-                {
-                    if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)elementRect.Size.Width) == false ||
-                        Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)elementRect.Size.Height) == false)
-                        canMove = false;
-                }
-                catch { canMove = false; }
-                //===================================================
+                                        _activeElement.ActualWidth, _activeElement.ActualHeight);
+                if (Helpers.IsRectInRect(elementRect, canvasRect) == false) 
+                    canMove = false;
 
-                checkRect = new Rect(canvas_main.RenderSize);
-
-                //=========* check: canvas contains relative element *==========
-                if (_activeElement is CompositeElement)
+                //check: canvas contains relative element
+                if (_activeElement is CompositeElement && 
+                    (_activeElement as CompositeElement).RelativeElement != null)
                 {
-                    if ((_activeElement as CompositeElement).RelativeElement != null)
-                    {
                         CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
                         Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
                                                             relativeElement.ActualWidth, relativeElement.ActualHeight);
-                        //Point relativePos = new Point
-                        //{
-                        //    X = Canvas.GetLeft(relativeElement),
-                        //    Y = Canvas.GetTop(relativeElement)
-                        //};
-                        relativeElementRect.Location = relativeElement.Position + offset;
 
-                        checkRect.Intersect(relativeElementRect);
-                        try
-                        {
-                            if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)relativeElementRect.Size.Width) == false ||
-                                Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)relativeElementRect.Size.Height) == false)
-                                canMove = false;
-                        }
-                        catch { canMove = false; }
-                    }
+                        if (Helpers.IsRectInRect(relativeElementRect, canvasRect) == false) 
+                            canMove = false;
                 }
-                //===============================================================
 
+                //movement
                 if (canMove)
                 {
                     Point p = new Point(Canvas.GetLeft(_activeElement) + offset.X,
@@ -100,6 +78,7 @@ namespace DantistApp
                 }
             }
         }
+
 
 
     }
