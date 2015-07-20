@@ -35,7 +35,8 @@ namespace DantistApp
                 if (basicElement is GroupElement && !(basicElement is CompositeElement))
                 {
                     GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
-                                                     where item != null && item.GroupName == (basicElement as GroupElement).GroupName
+                                                     where item != null && !(item is CompositeElement) && 
+                                                     item.GroupName == (basicElement as GroupElement).GroupName
                                                      select item).FirstOrDefault();
                     if (sameGroupElement != null)
                     {
