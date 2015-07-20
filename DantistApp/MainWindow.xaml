@@ -225,22 +225,22 @@
             </TabItem>
             <TabItem x:Name="tab_zub_nij_chel" Header="4" Height="20" VerticalAlignment="Top" Margin="64.8,0,-86.4,0">
                 <Grid Background="#FFE5E5E5">
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Margin="25,42,0,0" SourceTop="Image/verh_zubiv/48.png" SourceBot="Image/koreni/48.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Margin="53,41,0,0" SourceTop="Image/verh_zubiv/47.png" SourceBot="Image/koreni/47.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Margin="87,41,0,0" SourceTop="Image/verh_zubiv/46.png" SourceBot="Image/koreni/46.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="121,43,0,0" SourceTop="Image/verh_zubiv/45.png" SourceBot="Image/koreni/45.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="69" VerticalAlignment="Top" Margin="159,44,0,0" SourceTop="Image/verh_zubiv/44.png" SourceBot="Image/koreni/44.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Margin="189,45,0,0" SourceTop="Image/verh_zubiv/43.png" SourceBot="Image/koreni/43.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Margin="222,46,0,0" SourceTop="Image/verh_zubiv/42.png" SourceBot="Image/koreni/42.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="79" VerticalAlignment="Top" Margin="259,47,0,0" SourceTop="Image/verh_zubiv/41.png" SourceBot="Image/koreni/41.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Margin="290,48,0,0" SourceTop="Image/verh_zubiv/31.png" SourceBot="Image/koreni/31.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="79" VerticalAlignment="Top" Margin="325,49,0,0" SourceTop="Image/verh_zubiv/32.png" SourceBot="Image/koreni/32.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Margin="369,51,0,0" SourceTop="Image/verh_zubiv/33.png" SourceBot="Image/koreni/33.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Margin="409,49,0,0" SourceTop="Image/verh_zubiv/34.png" SourceBot="Image/koreni/34.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="450,51,0,0" SourceTop="Image/verh_zubiv/35.png" SourceBot="Image/koreni/35.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Margin="483,52,0,0" SourceTop="Image/verh_zubiv/36.png" SourceBot="Image/koreni/36.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="43" VerticalAlignment="Top" Margin="510,53,0,0" SourceTop="Image/verh_zubiv/37.png" SourceBot="Image/koreni/37.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Margin="550,52,0,0" SourceTop="Image/verh_zubiv/38.png" SourceBot="Image/koreni/38.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub48" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Margin="52,34,0,0" SourceTop="Image/verh_zubiv/48.png" SourceBot="Image/koreni/48.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub47" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Margin="80,33,0,0" SourceTop="Image/verh_zubiv/47.png" SourceBot="Image/koreni/47.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub46" HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Margin="114,33,0,0" SourceTop="Image/verh_zubiv/46.png" SourceBot="Image/koreni/46.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub45" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="148,35,0,0" SourceTop="Image/verh_zubiv/45.png" SourceBot="Image/koreni/45.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub44" HorizontalAlignment="Left" Height="69" VerticalAlignment="Top" Margin="186,36,0,0" SourceTop="Image/verh_zubiv/44.png" SourceBot="Image/koreni/44.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub43" HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Margin="216,37,0,0" SourceTop="Image/verh_zubiv/43.png" SourceBot="Image/koreni/43.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub42" HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Margin="249,38,0,0" SourceTop="Image/verh_zubiv/42.png" SourceBot="Image/koreni/42.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub41" HorizontalAlignment="Left" Height="79" VerticalAlignment="Top" Margin="286,39,0,0" SourceTop="Image/verh_zubiv/41.png" SourceBot="Image/koreni/41.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub31" HorizontalAlignment="Left" Height="80" VerticalAlignment="Top" Margin="317,40,0,0" SourceTop="Image/verh_zubiv/31.png" SourceBot="Image/koreni/31.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub32" HorizontalAlignment="Left" Height="79" VerticalAlignment="Top" Margin="352,41,0,0" SourceTop="Image/verh_zubiv/32.png" SourceBot="Image/koreni/32.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub33" HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Margin="396,43,0,0" SourceTop="Image/verh_zubiv/33.png" SourceBot="Image/koreni/33.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub34" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Margin="436,41,0,0" SourceTop="Image/verh_zubiv/34.png" SourceBot="Image/koreni/34.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub35" HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Margin="477,43,0,0" SourceTop="Image/verh_zubiv/35.png" SourceBot="Image/koreni/35.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub36" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Margin="510,44,0,0" SourceTop="Image/verh_zubiv/36.png" SourceBot="Image/koreni/36.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub37" HorizontalAlignment="Left" Height="43" VerticalAlignment="Top" Margin="537,45,0,0" SourceTop="Image/verh_zubiv/37.png" SourceBot="Image/koreni/37.png"/>
+                    <custom:CompositeElementShell CompositeGroupID="zub38" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Margin="577,44,0,0" SourceTop="Image/verh_zubiv/38.png" SourceBot="Image/koreni/38.png"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tab_lunki_plast_verh" Header="5" Height="20" VerticalAlignment="Top" Margin="86.4,0,-108,0">
@@ -271,28 +271,28 @@
             </TabItem>
             <TabItem x:Name="tab_lunki_plast_niz" Header="6" Height="20" VerticalAlignment="Top" Margin="108,0,-128.6,0">
                 <Grid Background="#FFE5E5E5">
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="47" Margin="25,26,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/48.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="50" Margin="54,25,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/47.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="47" Margin="83,22,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/46.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="64" Margin="140,21,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/45.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="69" Margin="186,19,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/44.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="82" Margin="227,13,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/43.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="81" Margin="274,16,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/42.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="85" Margin="317,17,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/41.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="81" Margin="350,16,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/31.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="78" Margin="385,19,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/32.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="77" Margin="421,23,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/33.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="66" Margin="448,27,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/34.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="59" Margin="481,28,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/35.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="39" Margin="521,29,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/36.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="46" Margin="552,30,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/37.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="45" Margin="584,29,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/38.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="43" Margin="22,102,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/48a.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="46" Margin="52,100,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/47a.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="47" Margin="82,105,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/46a.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="45" Margin="519,106,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/38a.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="45" Margin="553,106,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/37a.png"/>
-                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="51" Margin="584,108,0,0" VerticalAlignment="Top" SourceTop="Image/lunky_plastyka/36a.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="47" Margin="25,26,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/48.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="50" Margin="54,25,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/47.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="47" Margin="83,22,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/46.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="64" Margin="140,21,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/45.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="69" Margin="186,19,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/44.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="82" Margin="227,13,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/43.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="81" Margin="274,16,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/42.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="85" Margin="317,17,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/41.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="81" Margin="350,16,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/31.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="78" Margin="385,19,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/32.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="77" Margin="421,23,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/33.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="66" Margin="448,27,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/34.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="59" Margin="481,28,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/35.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="39" Margin="521,29,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/36.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="46" Margin="552,30,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/37.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="45" Margin="584,29,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/38.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="43" Margin="22,102,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/48a.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="46" Margin="52,100,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/47a.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="47" Margin="82,105,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/46a.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="45" Margin="519,106,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/38a.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="45" Margin="553,106,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/37a.png"/>
+                    <custom:CompositeElementShell HorizontalAlignment="Left" Height="51" Margin="584,108,0,0" VerticalAlignment="Top" SourceBot="Image/lunky_plastyka/36a.png"/>
 
 
                 </Grid>

@@ -68,24 +68,27 @@ namespace DantistApp
                 //=========* check: canvas contains relative element *==========
                 if (_activeElement is CompositeElement)
                 {
-                    CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
-                    Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
-                                                        relativeElement.ActualWidth, relativeElement.ActualHeight);
-                    //Point relativePos = new Point
-                    //{
-                    //    X = Canvas.GetLeft(relativeElement),
-                    //    Y = Canvas.GetTop(relativeElement)
-                    //};
-                    relativeElementRect.Location = relativeElement.Position + offset;
-                    
-                    checkRect.Intersect(relativeElementRect);
-                    try
+                    if ((_activeElement as CompositeElement).RelativeElement != null)
                     {
-                        if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)relativeElementRect.Size.Width) == false ||
-                            Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)relativeElementRect.Size.Height) == false)
-                            canMove = false;
+                        CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
+                        Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
+                                                            relativeElement.ActualWidth, relativeElement.ActualHeight);
+                        //Point relativePos = new Point
+                        //{
+                        //    X = Canvas.GetLeft(relativeElement),
+                        //    Y = Canvas.GetTop(relativeElement)
+                        //};
+                        relativeElementRect.Location = relativeElement.Position + offset;
+
+                        checkRect.Intersect(relativeElementRect);
+                        try
+                        {
+                            if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)relativeElementRect.Size.Width) == false ||
+                                Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)relativeElementRect.Size.Height) == false)
+                                canMove = false;
+                        }
+                        catch { canMove = false; }
                     }
-                    catch { canMove = false; }
                 }
                 //===============================================================
 

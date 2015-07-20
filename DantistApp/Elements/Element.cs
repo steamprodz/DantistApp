@@ -30,8 +30,6 @@ namespace DantistApp.Elements
         public event PropertyChangedEventHandler PropertyChanged; 
 
         private double _size;
-        private Point _startLocation;
-
         public double Size
         {
             get { return _size; }
@@ -66,6 +64,7 @@ namespace DantistApp.Elements
             }
         }
 
+        private Point _startLocation;
         public Point StartLocation
         {
             get { return _startLocation; }

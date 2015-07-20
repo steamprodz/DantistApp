@@ -60,6 +60,16 @@ namespace DantistApp.Elements
             }
         }
 
+        /// <summary>
+        /// Sets position without changing relative element position
+        /// </summary>
+        public void SetPositionDirectly(Point pos)
+        {
+            _position = pos;
+            Canvas.SetLeft(this, pos.X);
+            Canvas.SetTop(this, pos.Y);
+        }
+
         public CompositeLocation CompositeLocation
         {
             get { return (CompositeLocation)base.GetValue(CompositeLocationProperty); }

@@ -14,6 +14,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace DantistApp.Elements
 {
@@ -22,17 +23,21 @@ namespace DantistApp.Elements
     /// </summary>
     public partial class CompositeElementShell : UserControl, IManipulatedElement
     {
-        //Currently moving object
-        private Image MovingImage;
-
-        // Mouse tools
-        private Point MousePosition;
-
+        
 
         public CompositeElementShell()
         {
             InitializeComponent();
             DataContext = this;
+
+            int number = 0;
+            if (SourceBot != null)
+                number = Convert.ToInt32(Regex.Match(SourceBot.ToString(), @"\d+").Value);
+            if (SourceTop != null)
+                number = Convert.ToInt32(Regex.Match(SourceTop.ToString(), @"\d+").Value);
+            element_bot.GroupName = "tooth" + number;
+            element_top.GroupName = "tooth" + number;
+            //element_bot.GroupName = 
         }
 
         public bool IsFixed { get; set; }
@@ -56,26 +61,20 @@ namespace DantistApp.Elements
             DependencyProperty.Register("SourceBot", typeof(ImageSource), typeof(CompositeElementShell));
 
 
-
         #region IControlManipulate Implementation + CenterDistance Property
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private double _size;
-        private Point _startLocation;
+        
+        
 
         private int _centerDistance;
-
         public int CenterDistance
         {
             get { return _centerDistance; }
 
             set
             {
-                //Height = image_bot.ActualHeight + value;
-
-                //image_bot.Margin = new Thickness(0, value, 0, 0);
-
                 _centerDistance = value;
 
                 OnPropertyChanged("CenterDistance");
@@ -83,7 +82,6 @@ namespace DantistApp.Elements
         }
 
         private double _horizontalShift;
-
         public double HorizontalShift
         {
             get { return _horizontalShift; }
@@ -112,7 +110,6 @@ namespace DantistApp.Elements
         }
 
         private double _botImageSize;
-
         public double BotImageSize
         {
             get { return _botImageSize; }
@@ -123,14 +120,6 @@ namespace DantistApp.Elements
                 {
                     if (image.VerticalAlignment == System.Windows.VerticalAlignment.Bottom)
                     {
-                        //if (BotImageSize != 0)
-                        //{
-                        //    image.Width = BotImageSize;
-                        //    //image.Height /= BotImageSize;
-                        //}
-                        ////image.Height *= value;
-                        //image.Width *= value;
-
                         if (value != BotImageSize)
                         {
                             image.Margin = new Thickness(image.Margin.Left + BotImageSize, image.Margin.Top + BotImageSize,
@@ -148,6 +137,7 @@ namespace DantistApp.Elements
             }
         }
 
+        private double _size;
         public double Size
         {
             get { return _size; }
@@ -157,19 +147,9 @@ namespace DantistApp.Elements
                 if (Size != 0)
                 {
                     Width /= (double)Size;
-                    //Height /= (double)Size;
-                    //image_bot.Width /= (double)Size;
-                    //image_top.Width /= (double)Size;
-                    //image_bot.Height /= (double)Size;
-                    //image_top.Height /= (double)Size;
 
                 }
                 Width *= (double)value;
-                //Height *= (double)value;
-                //image_bot.Width *= (double)value;
-                //image_top.Width *= (double)value;
-                //image_bot.Height *= (double)value;
-                //image_top.Height *= (double)value;
 
                 _size = value;
 
@@ -178,6 +158,7 @@ namespace DantistApp.Elements
             }
         }
 
+        private Point _startLocation;
         public Point StartLocation
         {
             get { return _startLocation; }
@@ -191,6 +172,17 @@ namespace DantistApp.Elements
 
                 // TODO: Raise the NotifyPropertyChanged event here
                 OnPropertyChanged("StartLocation");
+            }
+        }
+
+        private string _compositeGroupID;
+        public string CompositeGroupID
+        {
+            get { return _compositeGroupID; }
+            set
+            {
+                _compositeGroupID = value;
+                OnPropertyChanged("CompositeGroupID");
             }
         }
 
@@ -210,53 +202,6 @@ namespace DantistApp.Elements
 
         #endregion
 
-        private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //var image = e.Source as Image;
-
-            //if (image != null && ControlCanvas.CaptureMouse())
-            //{
-            //    MousePosition = e.GetPosition(ControlCanvas);
-            //    MovingImage = image;
-            //    //Panel.SetZIndex(MovingImage, 1); // in case of multiple images
-            //}
-        }
-
-        private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            //if (MovingImage != null)
-            //{
-            //    ControlCanvas.ReleaseMouseCapture();
-            //    //Panel.SetZIndex(MovingImage, 0);
-            //    MovingImage = null;
-            //}
-        }
-
-        private void CanvasMouseMove(object sender, MouseEventArgs e)
-        {
-            if (MovingImage != null)
-            {
-                //var position = e.GetPosition(ControlCanvas);
-                //var offset = position - MousePosition;
-                //MousePosition = position;
-                //Canvas.SetLeft(MovingImage, Canvas.GetLeft(MovingImage) + offset.X);
-                //Canvas.SetTop(MovingImage, Canvas.GetTop(MovingImage) + offset.Y);
-
-            }
-        }
-
-        private void MyCompositeElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //DropShadowEffect glowEffect = new DropShadowEffect()
-            //{
-            //    ShadowDepth = 0,
-            //    Color = Colors.Red,
-            //    Opacity = 1,
-            //    BlurRadius = 10
-            //};
-
-            //this.Effect = glowEffect;
-        }
-
+    
     }
 }

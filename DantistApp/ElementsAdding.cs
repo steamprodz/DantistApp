@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
+using System.Text.RegularExpressions;
 using DantistApp.Elements;
 using DantistApp.Tools;
 
@@ -64,7 +65,9 @@ namespace DantistApp
                 BufferAction bufAct = new BufferAction();
                 bufAct.Do += () =>
                 {
-                    elements = AddCompositeElements(basicElement, canvas);
+                    bool addBothParts = (compositeShell.element_bot.Source != null &&
+                                         compositeShell.element_top.Source != null);
+                    elements = AddCompositeElements(basicElement, canvas, addBothParts);
                 };
                 bufAct.Undo += () =>
                 {
@@ -100,7 +103,7 @@ namespace DantistApp
             return element;
         }
 
-        private List<CompositeElement> AddCompositeElements(Element basicElement, Canvas canvas)
+        private List<CompositeElement> AddCompositeElements(Element basicElement, Canvas canvas, bool addBothParts)
         {
             CompositeElementShell compositeShell = (basicElement.Parent as Grid).Parent as CompositeElementShell;
             Grid parentCompositeElementGrid = (compositeShell as CompositeElementShell).Content as Grid;
@@ -114,15 +117,52 @@ namespace DantistApp
 
             for (int i = 0; i < parentElements.Count; i++)
             {
-                elements.Add(new CompositeElement());
-                elements[i] = parentElements[i].CloneIntoCanvas(canvas, parentElements[i].StartLocation + new Vector(50,50)) as CompositeElement;
-                if (i == 1) 
-                    elements[i].Position += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth, 
-                                                       compositeShell.ActualHeight - parentElements[1].ActualHeight);
+                Point startPos = compositeShell.StartLocation;
+                if (startPos.X == 0 &&
+                    startPos.Y == 0)
+                    startPos = new Point(50, 50);
+
+                if (parentElements[i].Source != null)
+                {
+                    CompositeElement element = new CompositeElement();
+                    //elements.Add(new CompositeElement());
+                    element = parentElements[i].CloneIntoCanvas(canvas, startPos) as CompositeElement;
+                    //======!!!!!!!!!!!!!
+                    //element.GroupName = compositeShell.CompositeGroupID;
+
+                    if (parentElements[i] == compositeShell.element_bot)
+                    {
+                        element.Position += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth,
+                                                           compositeShell.ActualHeight - parentElements[1].ActualHeight);
+                        element.CompositeLocation = CompositeLocation.Bot;
+                        element.GroupName = "tooth" + Convert.ToInt32(Regex.Match(compositeShell.SourceBot.ToString(), @"\d+").Value);
+
+                        CompositeElement sameCompositeBot = SameCompositeBot(element, canvas);
+                        if (sameCompositeBot != null)
+                        {
+                            ReplaceCompositeElement(canvas, sameCompositeBot, element);
+                        }
+                    }
+                    if (parentElements[i] == compositeShell.element_top)
+                    {
+                        element.CompositeLocation = CompositeLocation.Top;
+                        element.GroupName = "tooth" + Convert.ToInt32(Regex.Match(compositeShell.SourceTop.ToString(), @"\d+").Value);
+                        CompositeElement sameCompositeTop = SameCompositeTop(element, canvas);
+                        if (sameCompositeTop != null)
+                        {
+                            ReplaceCompositeElement(canvas, sameCompositeTop, element);
+                        }
+                    }
+                    elements.Add(element);
+
+                }
             }
-            elements[0].RelativeElement = elements[1];
-            elements[1].RelativeElement = elements[0];
-            elements[0].IsMerged = true;
+            if (elements.Count > 1)
+            {
+                elements[0].RelativeElement = elements[1];
+                elements[1].RelativeElement = elements[0];
+                elements[0].IsMerged = true;
+            }
 
             foreach (var item in elements)
             {
@@ -131,6 +171,45 @@ namespace DantistApp
             return elements;
         }
 
+        private CompositeElement SameCompositeBot(CompositeElement element, Canvas canvas)
+        {
+            List<CompositeElement> sameCompositeElement = (from item in canvas.Children.OfType<CompositeElement>().DefaultIfEmpty()
+                                                           where item != null && item != element &&
+                                                           item.GroupName != String.Empty &&
+                                                           item.GroupName == (element as CompositeElement).GroupName
+                                                           select item).ToList();
+            CompositeElement sameCompositeBot = (from item in sameCompositeElement
+                                                 where item.CompositeLocation == CompositeLocation.Bot
+                                                 select item).FirstOrDefault();
+            return sameCompositeBot;
+        }
+        private CompositeElement SameCompositeTop(CompositeElement element, Canvas canvas)
+        {
+            List<CompositeElement> sameCompositeElement = (from item in canvas.Children.OfType<CompositeElement>().DefaultIfEmpty()
+                                                           where item != null && item != element &&
+                                                           item.GroupName != String.Empty &&
+                                                           item.GroupName == (element as CompositeElement).GroupName
+                                                           select item).ToList();
+            CompositeElement sameCompositeTop = (from item in sameCompositeElement
+                                                 where item.CompositeLocation == CompositeLocation.Top
+                                                 select item).FirstOrDefault();
+            return sameCompositeTop;
+        }
+
+        private void ReplaceCompositeElement(Canvas canvas, CompositeElement oldElement, CompositeElement newElement)
+        {
+            CompositeElement relElement = oldElement.RelativeElement;
+            newElement.Position = oldElement.Position;
+            if (relElement != null)
+            {
+                newElement.RelativeElement = relElement;
+                relElement.RelativeElement = newElement;
+
+                newElement.IsMerged = relElement.IsMerged;
+            }
+            canvas.Children.Remove(oldElement);
+            //canvas.Children.Add(newElement);
+        }
 
 
         /// <summary>
