@@ -247,15 +247,15 @@ namespace DantistApp.Elements
 
         private void MyCompositeElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DropShadowEffect glowEffect = new DropShadowEffect()
-            {
-                ShadowDepth = 0,
-                Color = Colors.Red,
-                Opacity = 1,
-                BlurRadius = 10
-            };
+            //DropShadowEffect glowEffect = new DropShadowEffect()
+            //{
+            //    ShadowDepth = 0,
+            //    Color = Colors.Red,
+            //    Opacity = 1,
+            //    BlurRadius = 10
+            //};
 
-            this.Effect = glowEffect;
+            //this.Effect = glowEffect;
         }
 
     }
