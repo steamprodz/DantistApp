@@ -78,6 +78,9 @@
     <Compile Include="Tools\CompositeElementHeightConverter.cs" />
     <Compile Include="Tools\ObjectCopier.cs" />
     <Compile Include="UndoRedoBuffer.cs" />
+    <Compile Include="UserControls\ReportElement.xaml.cs">
+      <DependentUpon>ReportElement.xaml</DependentUpon>
+    </Compile>
     <Page Include="Elements\CompositeElementShell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +112,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ReportElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -854,6 +861,9 @@
   <ItemGroup>
     <Resource Include="Image\karies_plomba\1s.png" />
     <Resource Include="Image\karies_plomba\2s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Download_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
