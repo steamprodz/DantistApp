@@ -19,10 +19,15 @@ namespace DantistApp.Elements
     // IControlManipulate inherits INotifyPropertyChanged
     public class Element : OpaqueClickableImage, IManipulatedElement
     {
+        protected bool _isFixed;
         /// <summary>
         /// Gets or sets a value whether this element is fixed on the canvas.
         /// </summary>
-        public bool IsFixed { get; set; }
+        public bool IsFixed 
+        { 
+            get { return _isFixed; }
+            set { _isFixed = value; } 
+        }
 
         /// <summary>
         /// Event handler for PropertyChange

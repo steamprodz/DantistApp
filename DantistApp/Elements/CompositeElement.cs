@@ -37,7 +37,8 @@ namespace DantistApp.Elements
             set
             {
                 _isMerged = value;
-                RelativeElement._isMerged = value;
+                if (RelativeElement != null)
+                    RelativeElement._isMerged = value;
             }
         }
 

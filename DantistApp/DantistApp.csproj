@@ -68,6 +68,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ElementsContextMenu.cs" />
     <Compile Include="ElementsSelecting.cs" />
     <Compile Include="OpaqueClickableImage.cs" />
     <Compile Include="PanoramaWindow.xaml.cs">
@@ -80,8 +81,8 @@
     <Compile Include="Tools\CompositeElementHeightConverter.cs" />
     <Compile Include="Tools\ImageHelper.cs" />
     <Compile Include="Tools\Helpers.cs" />
-    <Compile Include="Tools\ObjectCopier.cs" />
     <Compile Include="UndoRedoBuffer.cs" />
+    <Compile Include="UndoRedoBuffer_Old.cs" />
     <Compile Include="UserControls\ReportElement.xaml.cs">
       <DependentUpon>ReportElement.xaml</DependentUpon>
     </Compile>

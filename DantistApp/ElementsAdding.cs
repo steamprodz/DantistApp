@@ -61,36 +61,55 @@ namespace DantistApp
             CompositeElementShell compositeShell = (basicElement.Parent as Grid).Parent as CompositeElementShell;
             if (compositeShell != null)
             {
+                //List<CompositeElement> elements = null;
+                //BufferAction bufAct = new BufferAction();
+                //bufAct.Do += () =>
+                //{
+                //    bool addBothParts = (compositeShell.element_bot.Source != null &&
+                //                         compositeShell.element_top.Source != null);
+                //    if (elements == null)
+                //        elements = AddCompositeElements(basicElement, canvas, addBothParts);
+                //    else
+                //        foreach (var item in elements)
+                //        {
+                //            canvas.Children.Add(item);
+                //        }
+                //};
+                //bufAct.Undo += () =>
+                //{
+                //    foreach (var item in elements)
+                //    {
+                //        canvas.Children.Remove(item);
+                //    }
+                //};
+                //_bufferUndoRedo_Old.StartAction(bufAct);
+                _bufferUndoRedo.RecordStateBefore(canvas, true);
                 List<CompositeElement> elements = null;
-                BufferAction bufAct = new BufferAction();
-                bufAct.Do += () =>
-                {
-                    bool addBothParts = (compositeShell.element_bot.Source != null &&
-                                         compositeShell.element_top.Source != null);
-                    elements = AddCompositeElements(basicElement, canvas, addBothParts);
-                };
-                bufAct.Undo += () =>
-                {
-                    foreach (var item in elements)
-                    {
-                        canvas.Children.Remove(item);
-                    }
-                };
-                _bufferUndoRedo.StartAction(bufAct);
+                bool addBothParts = (compositeShell.element_bot.Source != null &&
+                                     compositeShell.element_top.Source != null);
+                elements = AddCompositeElements(basicElement, canvas, addBothParts);
+                _bufferUndoRedo.RecordStateAfter(canvas, true);
             }
             else
             {
-                Element element = null;
-                BufferAction bufAct = new BufferAction();
-                bufAct.Do += () =>
-                    {
-                        element = AddSingleElement(basicElement, canvas);
-                    };
-                bufAct.Undo += () =>
-                    {
-                        canvas.Children.Remove(element);
-                    };
-                _bufferUndoRedo.StartAction(bufAct);
+                //Element element = null;
+                //BufferAction bufAct = new BufferAction();
+                //bufAct.Do += () =>
+                //    {
+                //        if (element == null)
+                //            element = AddSingleElement(basicElement, canvas);
+                //        else
+                //            canvas.Children.Add(element);
+                //    };
+                //bufAct.Undo += () =>
+                //    {
+                //        canvas.Children.Remove(element);
+                //    };
+                //_bufferUndoRedo_Old.StartAction(bufAct);
+                
+                _bufferUndoRedo.RecordStateBefore(canvas, true);
+                Element element = AddSingleElement(basicElement, canvas);
+                _bufferUndoRedo.RecordStateAfter(canvas, true);
             }
         }
 
@@ -221,94 +240,24 @@ namespace DantistApp
         /// </summary>
         private void AddContextMenu(Element element, Canvas canvas)
         {
-            ContextMenu contextMenu = new ContextMenu();
-
-            #region MENU ITEMS DECLARATION
-            MenuItem mi_delete = new MenuItem();
-            mi_delete.Header = "Удалить элемент";
-            mi_delete.Click += 
-                (object sender, RoutedEventArgs e) =>
-                {
-                    RemoveElement(element, canvas);
-                };
-
-            MenuItem mi_fix = new MenuItem();
-            MenuItem mi_unfix = new MenuItem();
-            mi_fix.Header = "Зафиксировать элемент";
-            mi_unfix.Header = "Отменить фиксацию";
-            mi_fix.Click +=
-                (object sender, RoutedEventArgs e) =>
-                {
-                    element.IsFixed = true;
-                    element.ContextMenu.Items.Remove(mi_fix);
-                    element.ContextMenu.Items.Add(mi_unfix);
-                };
-            mi_unfix.Click +=
-                (object sender, RoutedEventArgs e) =>
-                {
-                    element.IsFixed = false;
-                    element.ContextMenu.Items.Remove(mi_unfix);
-                    element.ContextMenu.Items.Add(mi_fix);
-                };
-
-            MenuItem mi_merge = new MenuItem();
-            MenuItem mi_unmerge = new MenuItem();
-            mi_merge.Header = "Объединить элементы";
-            mi_unmerge.Header = "Разъединить элементы";
-            mi_merge.Click +=
-                (object sender, RoutedEventArgs e) =>
-                {
-                    if (element is CompositeElement)
-                    {
-                        CompositeElement compElement = element as CompositeElement;
-                        compElement.IsMerged = true;
-                        compElement.ContextMenu.Items.Remove(mi_merge);
-                        compElement.ContextMenu.Items.Add(mi_unmerge);
-                        MenuItem relative_mi_merge = (from item in compElement.RelativeElement.ContextMenu.Items.OfType<MenuItem>().DefaultIfEmpty()
-                                                        where item != null && item.Header == "Объединить элементы"
-                                                        select item).FirstOrDefault();
-                        if (relative_mi_merge != null)
-                            relative_mi_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                    }
-                };
-            mi_unmerge.Click +=
-                (object sender, RoutedEventArgs e) =>
-                {
-                    if (element is CompositeElement)
-                    {
-                        CompositeElement compElement = element as CompositeElement;
-                        compElement.IsMerged = false;
-                        compElement.ContextMenu.Items.Remove(mi_unmerge);
-                        compElement.ContextMenu.Items.Add(mi_merge);
-                        MenuItem relative_mi_unmerge = (from item in compElement.RelativeElement.ContextMenu.Items.OfType<MenuItem>().DefaultIfEmpty()
-                                                        where item != null && item.Header == "Разъединить элементы"
-                                                        select item).FirstOrDefault();
-                        if (relative_mi_unmerge != null)
-                            relative_mi_unmerge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                    }
-                };
-            #endregion
-
             if (element is GroupElement && !(element is CompositeElement))
             {
-                contextMenu.Items.Add(mi_delete);
-                contextMenu.Items.Add(mi_fix);
+                AddMenuItem(element, MenuItemType.Remove);
+                AddMenuItem(element, MenuItemType.Fix);
             }
 
             if (element is UnlimitedElement)
             {
-                contextMenu.Items.Add(mi_delete);
-                contextMenu.Items.Add(mi_fix);
+                AddMenuItem(element, MenuItemType.Remove);
+                AddMenuItem(element, MenuItemType.Fix);
             }
 
             if (element is CompositeElement)
             {
-                contextMenu.Items.Add(mi_delete);
-                contextMenu.Items.Add(mi_fix);
-                contextMenu.Items.Add(mi_unmerge);
+                AddMenuItem(element, MenuItemType.Remove);
+                AddMenuItem(element, MenuItemType.Fix);
+                AddMenuItem(element, MenuItemType.Merge);
             }
-
-            element.ContextMenu = contextMenu;
         }
 
 
@@ -317,16 +266,19 @@ namespace DantistApp
         /// </summary>
         private void RemoveElement(Element element, Canvas canvas)
         {
-            BufferAction bufAct = new BufferAction();
-            bufAct.Do += () =>
-            {
-                canvas.Children.Remove(element);
-            };
-            bufAct.Undo += () =>
-            {
-                canvas.Children.Add(element);
-            };
-            _bufferUndoRedo.StartAction(bufAct);
+            //BufferAction bufAct = new BufferAction();
+            //bufAct.Do += () =>
+            //{
+            //    canvas.Children.Remove(element);
+            //};
+            //bufAct.Undo += () =>
+            //{
+            //    canvas.Children.Add(element);
+            //};
+            //_bufferUndoRedo_Old.StartAction(bufAct);
+            _bufferUndoRedo.RecordStateBefore(canvas, true);
+            canvas.Children.Remove(element);
+            _bufferUndoRedo.RecordStateAfter(canvas, true);
         }
 
     }

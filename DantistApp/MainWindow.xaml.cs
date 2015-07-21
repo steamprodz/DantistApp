@@ -26,6 +26,7 @@ namespace DantistApp
     {
         Point _mousePosition;
         PanoramaWindow _panoramaWindow;
+        //UndoRedoBuffer_Old _bufferUndoRedo_Old;
         UndoRedoBuffer _bufferUndoRedo;
         List<Element> _selectedElements;
         Element _activeElement;
@@ -35,6 +36,7 @@ namespace DantistApp
         {
             InitializeComponent();
 
+            //_bufferUndoRedo_Old = new UndoRedoBuffer_Old();
             _bufferUndoRedo = new UndoRedoBuffer();
             _selectedElements = new List<Element>();
 
@@ -97,64 +99,77 @@ namespace DantistApp
 
         private void MenuItem_RemoveAllElements_Click(object sender, RoutedEventArgs e)
         {
-            List<Element> removedElements = new List<Element>();
-            BufferAction bufAct = new BufferAction();
-            bufAct.Do += () =>
-            {
-                int n = canvas_main.Children.Count;
-                for (int i = n-1; i >= 0; i--)
-                {
-                    if (canvas_main.Children[i] is Element)
-                    {
-                        removedElements.Add(canvas_main.Children[i] as Element);
-                        canvas_main.Children.RemoveAt(i);
-                    }
-                }
-            };
-            bufAct.Undo += () =>
-                {
-                    foreach (var item in removedElements)
-                    {
-                        if (canvas_main.Children.Contains(item) == false)
-                            canvas_main.Children.Add(item as UIElement);
-                    }
-                    removedElements.Clear();
-                };
-            _bufferUndoRedo.StartAction(bufAct);
+            //List<Element> removedElements = new List<Element>();
+            //BufferAction bufAct = new BufferAction();
+            //bufAct.Do += () =>
+            //{
+            //    int n = canvas_main.Children.Count;
+            //    for (int i = n-1; i >= 0; i--)
+            //    {
+            //        if (canvas_main.Children[i] is Element)
+            //        {
+            //            removedElements.Add(canvas_main.Children[i] as Element);
+            //            canvas_main.Children.RemoveAt(i);
+            //        }
+            //    }
+            //};
+            //bufAct.Undo += () =>
+            //    {
+            //        foreach (var item in removedElements)
+            //        {
+            //            if (canvas_main.Children.Contains(item) == false)
+            //                canvas_main.Children.Add(item as UIElement);
+            //        }
+            //        removedElements.Clear();
+            //    };
+            //_bufferUndoRedo_Old.StartAction(bufAct);
+            _bufferUndoRedo.RecordStateBefore(canvas_main, true);
+            canvas_main.Children.Clear();
+            _bufferUndoRedo.RecordStateAfter(canvas_main, true);
         }
 
         private void Btn_Undo_Click(object sender, RoutedEventArgs e)
         {
+            //_bufferUndoRedo_Old.Undo();
             _bufferUndoRedo.Undo();
         }
 
         private void Btn_Redo_Click(object sender, RoutedEventArgs e)
         {
+            //_bufferUndoRedo_Old.Redo();
             _bufferUndoRedo.Redo();
+            //label2.Content = Canvas.GetLeft(canvas_main.Children[0]);
+            //label3.Content = Canvas.GetTop(canvas_main.Children[0]);
         }
 
         private void MenuItem_RemoveSelectedElements_Click(object sender, RoutedEventArgs e)
         {
-            List<Element> removedElements = new List<Element>();
-            BufferAction bufAct = new BufferAction();
-            bufAct.Do += () =>
+            //List<Element> removedElements = new List<Element>();
+            //BufferAction bufAct = new BufferAction();
+            //bufAct.Do += () =>
+            //{
+            //    foreach (var item in _selectedElements)
+            //    {
+            //        removedElements.Add(item);
+            //        canvas_main.Children.Remove(item);
+            //    }
+            //};
+            //bufAct.Undo += () =>
+            //{
+            //    foreach (var item in removedElements)
+            //    {
+            //        if (canvas_main.Children.Contains(item) == false)
+            //            canvas_main.Children.Add(item as UIElement);
+            //    }
+            //    removedElements.Clear();
+            //};
+            //_bufferUndoRedo_Old.StartAction(bufAct);
+            _bufferUndoRedo.RecordStateBefore(canvas_main, true);
+            foreach (var item in _selectedElements)
             {
-                foreach (var item in _selectedElements)
-                {
-                    removedElements.Add(item);
-                    canvas_main.Children.Remove(item);
-                }
-            };
-            bufAct.Undo += () =>
-            {
-                foreach (var item in removedElements)
-                {
-                    if (canvas_main.Children.Contains(item) == false)
-                        canvas_main.Children.Add(item as UIElement);
-                }
-                removedElements.Clear();
-            };
-            _bufferUndoRedo.StartAction(bufAct);
+                canvas_main.Children.Remove(item);
+            }
+            _bufferUndoRedo.RecordStateAfter(canvas_main, true);
         }
 
         private void button_AddReport_Click(object sender, RoutedEventArgs e)

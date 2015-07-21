@@ -34,6 +34,8 @@ namespace DantistApp
             var element = e.Source as Element;
             if (element is Element && canvas_main.CaptureMouse())
             {
+                _bufferUndoRedo.RecordStateBefore(canvas_main, false);
+
                 if (Keyboard.IsKeyDown(Key.LeftShift) == false)
                 {
                     ClearSelection();

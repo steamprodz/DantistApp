@@ -5,6 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Windows.Markup;
+using System.Xml;
+using System.IO;
+using DantistApp.Elements;
+
 
 namespace DantistApp.Tools
 {
@@ -33,7 +46,28 @@ namespace DantistApp.Tools
             }
         }
 
+        public static T CopyObject<T>(T obj)
+        {
+            string objXaml = XamlWriter.Save(obj);
 
+            StringReader stringReader = new StringReader(objXaml);
+            XmlReader xmlReader = XmlReader.Create(stringReader);
+            T newObj = (T)XamlReader.Load(xmlReader);
+
+            return newObj;
+        }
+
+
+        public static void ReplaceMenuItem(MenuItem oldItem, MenuItem newItem)
+        {
+           ItemsControl menu = oldItem.Parent as ItemsControl;
+            if (menu != null)
+            {
+                int index = menu.Items.IndexOf(oldItem);
+                menu.Items.Remove(oldItem);
+                menu.Items.Insert(index, newItem);
+            }
+        }
 
     }
 

@@ -24,20 +24,22 @@ namespace DantistApp
         {
             if (_activeElement != null)
             {
-                Element bufElement = _activeElement;
-                Point bufPos = _activeElement.Position;
-                Point bufPrevPos = _previousActiveElementPos;
-                BufferAction bufAct = new BufferAction();
-                bufAct.Do += () =>
-                {
-                   bufElement.Position = bufPos;
-                };
-                bufAct.Undo += () =>
-                {
-                    if (_previousActiveElementPos != null)
-                        bufElement.Position = bufPrevPos;
-                };
-                _bufferUndoRedo.StartAction(bufAct);
+                _bufferUndoRedo.RecordStateAfter(canvas_main, false);
+                //Element bufElement = _activeElement;
+                //Point bufPos = _activeElement.Position;
+                //Point bufPrevPos = _previousActiveElementPos;
+                //BufferAction bufAct = new BufferAction();
+                //bufAct.Do += () =>
+                //{
+                //    bufElement.Position = bufPos;
+                //};
+                //bufAct.Undo += () =>
+                //{
+                //    if (_previousActiveElementPos != null)
+                //        bufElement.Position = bufPrevPos;
+                //};
+                //_bufferUndoRedo_Old.StartAction(bufAct);
+                //_bufferUndoRedo.RecordStateBefore(canvas_main, false);
 
                 canvas_main.ReleaseMouseCapture();
                 _activeElement = null;
