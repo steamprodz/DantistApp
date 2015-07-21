@@ -47,6 +47,15 @@ namespace DantistApp
                     AddToSelection(element as Element);
                 }
 
+                if (element is CompositeElement)
+                {
+                    CompositeElement relElement = (element as CompositeElement).RelativeElement;
+                    if (relElement != null && relElement.IsMerged)
+                    {
+                        AddToSelection(relElement);
+                    }
+                }
+
                 _mousePosition = e.GetPosition(canvas_main);
                 _activeElement = element;
             }
