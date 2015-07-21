@@ -28,6 +28,8 @@ namespace DantistApp
         PanoramaWindow _panoramaWindow;
         UndoRedoBuffer _bufferUndoRedo;
         List<Element> _selectedElements;
+        Element _activeElement;
+        Point _previousActiveElementPos;
 
         public MainWindow()
         {
@@ -118,7 +120,7 @@ namespace DantistApp
                     }
                     removedElements.Clear();
                 };
-            _bufferUndoRedo.NewAction(bufAct);
+            _bufferUndoRedo.StartAction(bufAct);
         }
 
         private void Btn_Undo_Click(object sender, RoutedEventArgs e)
@@ -152,7 +154,7 @@ namespace DantistApp
                 }
                 removedElements.Clear();
             };
-            _bufferUndoRedo.NewAction(bufAct);
+            _bufferUndoRedo.StartAction(bufAct);
         }
 
         private void button_AddReport_Click(object sender, RoutedEventArgs e)

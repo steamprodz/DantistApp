@@ -21,6 +21,7 @@ namespace DantistApp
 {
     public partial class MainWindow : Window
     {
+
         private void MainCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //var element = e.Source as Element;
@@ -30,7 +31,7 @@ namespace DantistApp
                 ClearSelection();
             }
 
-            var element = e.Source as FrameworkElement;
+            var element = e.Source as Element;
             if (element is Element && canvas_main.CaptureMouse())
             {
                 if (Keyboard.IsKeyDown(Key.LeftShift) == false)
@@ -58,6 +59,8 @@ namespace DantistApp
 
                 _mousePosition = e.GetPosition(canvas_main);
                 _activeElement = element;
+
+                _previousActiveElementPos = _mousePosition;
             }
         }
 
