@@ -22,15 +22,16 @@ namespace DantistApp
     {
         public Canvas Canvas;
         public List<Element> Elements;
+        public List<CompositeElement> RelativeElements;
         public List<Point> Positions;
         public List<bool> IsFixedFlags;
         public List<bool> IsMergedFlags;
-        public bool CountChanged;
 
-        public CanvasState(Canvas canvas, bool countChanged)
+        public CanvasState(Canvas canvas)
         {
             Canvas = canvas;
             Elements = new List<Element>();
+            RelativeElements = new List<CompositeElement>();
             Positions = new List<Point>();
             IsMergedFlags = new List<bool>();
             IsFixedFlags = new List<bool>();
@@ -42,12 +43,17 @@ namespace DantistApp
                     Positions.Add((item as Element).Position);
                     IsFixedFlags.Add((item as Element).IsFixed);
                     if (item is CompositeElement)
+                    {
+                        RelativeElements.Add((item as CompositeElement).RelativeElement);
                         IsMergedFlags.Add((item as CompositeElement).IsMerged);
+                    }
                     else
+                    {
+                        RelativeElements.Add(null);
                         IsMergedFlags.Add(false);
+                    }
                 }
             }
-            CountChanged = countChanged;
         }
     }
 
@@ -68,18 +74,18 @@ namespace DantistApp
             this.RedoStack = new Stack<BufferState>();
         }
 
-        public void RecordStateBefore(Canvas canvas, bool countChanged)
+        public void RecordStateBefore(Canvas canvas)
         {
-            CanvasState canvasState = new CanvasState(canvas, countChanged);
+            CanvasState canvasState = new CanvasState(canvas);
             
             UndoStack.Push(new BufferState());
             UndoStack.Peek().Before = canvasState;
             RedoStack.Clear();
         }
 
-        public void RecordStateAfter(Canvas canvas, bool countChanged)
+        public void RecordStateAfter(Canvas canvas)
         {
-            CanvasState canvasState = new CanvasState(canvas, countChanged);
+            CanvasState canvasState = new CanvasState(canvas);
 
             UndoStack.Peek().After = canvasState;
         }
@@ -91,26 +97,6 @@ namespace DantistApp
             {
                 BufferState bufferState = UndoStack.Pop();
                 CanvasState bufferStateBefore = bufferState.Before;
-                //if (bufferState.CountChanged)
-                //{
-                //    bufferState.Canvas.Children.Clear();
-                //    foreach (var item in bufferState.Elements)
-                //    {
-                //        bufferState.Canvas.Children.Add(item);    
-                //    }
-                //}
-                //else
-                //{
-                //    for (int i = 0; i < bufferState.Elements.Count; i++)
-                //    {
-                //        Element element = bufferState.Canvas.Children[i] as Element;
-                //        Element undoElement = bufferState.Elements[i] as Element;
-                //        element.Position = bufferState.Positions[i];
-                //        element.IsFixed = bufferState.IsFixedFlags[i];
-                //        if (element is CompositeElement)
-                //            (element as CompositeElement).IsMerged = bufferState.IsMergedFlags[i]; ;
-                //    }
-                //}
 
                 bufferStateBefore.Canvas.Children.Clear();
                 foreach (var item in bufferStateBefore.Elements)
@@ -124,7 +110,10 @@ namespace DantistApp
                     element.Position = bufferStateBefore.Positions[i];
                     element.IsFixed = bufferStateBefore.IsFixedFlags[i];
                     if (element is CompositeElement)
+                    {
+                        (element as CompositeElement).RelativeElement = bufferStateBefore.RelativeElements[i];
                         (element as CompositeElement).IsMerged = bufferStateBefore.IsMergedFlags[i];
+                    }
                 }
 
                 RedoStack.Push(bufferState);
@@ -137,26 +126,6 @@ namespace DantistApp
             {
                 BufferState bufferState = RedoStack.Pop();
                 CanvasState bufferStateAfter = bufferState.After;
-                //if (bufferState.CountChanged)
-                //{
-                //    bufferState.Canvas.Children.Clear();
-                //    foreach (var item in bufferState.Elements)
-                //    {
-                //        bufferState.Canvas.Children.Add(item);
-                //    }
-                //}
-                //else
-                //{
-                //    for (int i = 0; i < bufferState.Elements.Count; i++)
-                //    {
-                //        Element element = bufferState.Canvas.Children[i] as Element;
-                //        Element undoElement = bufferState.Elements[i] as Element;
-                //        element.Position = bufferState.Positions[i];
-                //        element.IsFixed = bufferState.IsFixedFlags[i];
-                //        if (element is CompositeElement) 
-                //            (element as CompositeElement).IsMerged = bufferState.IsMergedFlags[i];
-                //    }
-                //}
 
 
                 if (bufferStateAfter == null)
@@ -174,13 +143,17 @@ namespace DantistApp
                     element.Position = bufferStateAfter.Positions[i];
                     element.IsFixed = bufferStateAfter.IsFixedFlags[i];
                     if (element is CompositeElement)
+                    {
+                        (element as CompositeElement).RelativeElement = bufferStateAfter.RelativeElements[i];
                         (element as CompositeElement).IsMerged = bufferStateAfter.IsMergedFlags[i];
+                    }
                 }
 
 
                 UndoStack.Push(bufferState);
             }
         }
+
 
     }
 }
