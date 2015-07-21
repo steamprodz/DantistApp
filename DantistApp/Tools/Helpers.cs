@@ -33,6 +33,23 @@ namespace DantistApp.Tools
             }
         }
 
+
+        public static bool IsRectInRect(Rect rect1, Rect rect2)
+        {
+            bool b = false;
+            Rect checkRect = new Rect(rect2.Location, rect2.Size);
+            checkRect.Intersect(rect1);
+            try
+            {
+                if (Enumerable.Range((int)checkRect.Size.Width - 1, 2).Contains((int)rect1.Size.Width) &&
+                    Enumerable.Range((int)checkRect.Size.Height - 1, 2).Contains((int)rect1.Size.Height))
+                    b = true;
+            }
+            catch { }
+
+            return b;
+        }
+
     }
 
 
