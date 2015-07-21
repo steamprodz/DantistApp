@@ -83,12 +83,12 @@ namespace DantistApp
                 //    }
                 //};
                 //_bufferUndoRedo_Old.StartAction(bufAct);
-                _bufferUndoRedo.RecordStateBefore(canvas, true);
+                _bufferUndoRedo.RecordStateBefore(canvas);
                 List<CompositeElement> elements = null;
                 bool addBothParts = (compositeShell.element_bot.Source != null &&
                                      compositeShell.element_top.Source != null);
                 elements = AddCompositeElements(basicElement, canvas, addBothParts);
-                _bufferUndoRedo.RecordStateAfter(canvas, true);
+                _bufferUndoRedo.RecordStateAfter(canvas);
             }
             else
             {
@@ -107,9 +107,9 @@ namespace DantistApp
                 //    };
                 //_bufferUndoRedo_Old.StartAction(bufAct);
                 
-                _bufferUndoRedo.RecordStateBefore(canvas, true);
+                _bufferUndoRedo.RecordStateBefore(canvas);
                 Element element = AddSingleElement(basicElement, canvas);
-                _bufferUndoRedo.RecordStateAfter(canvas, true);
+                _bufferUndoRedo.RecordStateAfter(canvas);
             }
         }
 
@@ -276,9 +276,9 @@ namespace DantistApp
             //    canvas.Children.Add(element);
             //};
             //_bufferUndoRedo_Old.StartAction(bufAct);
-            _bufferUndoRedo.RecordStateBefore(canvas, true);
+            _bufferUndoRedo.RecordStateBefore(canvas);
             canvas.Children.Remove(element);
-            _bufferUndoRedo.RecordStateAfter(canvas, true);
+            _bufferUndoRedo.RecordStateAfter(canvas);
         }
 
     }
