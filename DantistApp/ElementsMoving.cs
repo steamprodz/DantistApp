@@ -20,19 +20,29 @@ namespace DantistApp
     public partial class MainWindow : Window
     {
 
-        //Element _activeElement;
-        FrameworkElement _activeElement;
-
-        
-
-
         private void MainCanvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (_activeElement != null)
             {
+                Element bufElement = _activeElement;
+                Point bufPos = _activeElement.Position;
+                Point bufPrevPos = _previousActiveElementPos;
+                BufferAction bufAct = new BufferAction();
+                bufAct.Do += () =>
+                {
+                   bufElement.Position = bufPos;
+                };
+                bufAct.Undo += () =>
+                {
+                    if (_previousActiveElementPos != null)
+                        bufElement.Position = bufPrevPos;
+                };
+                _bufferUndoRedo.StartAction(bufAct);
+
                 canvas_main.ReleaseMouseCapture();
                 _activeElement = null;
             }
+            
         }
 
         TextBox coordsTextBoxOld, coordsTextBoxNew;
@@ -53,22 +63,22 @@ namespace DantistApp
                 Rect canvasRect = new Rect(canvas_main.RenderSize);
 
                 //check: canvas contains element
-                //Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y,
-                //                        _activeElement.ActualWidth, _activeElement.ActualHeight);
-                //if (Helpers.IsRectInRect(elementRect, canvasRect) == false) 
-                //    canMove = false;
+                Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y,
+                                        _activeElement.ActualWidth, _activeElement.ActualHeight);
+                if (canvasRect.Contains(elementRect) == false)
+                    canMove = false;
 
-                ////check: canvas contains relative element
-                //if (_activeElement is CompositeElement && 
-                //    (_activeElement as CompositeElement).RelativeElement != null)
-                //{
-                //        CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
-                //        Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
-                //                                            relativeElement.ActualWidth, relativeElement.ActualHeight);
+                //check: canvas contains relative element
+                if (_activeElement is CompositeElement && 
+                    (_activeElement as CompositeElement).RelativeElement != null)
+                {
+                        CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
+                        Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
+                                                            relativeElement.ActualWidth, relativeElement.ActualHeight);
 
-                //        if (Helpers.IsRectInRect(relativeElementRect, canvasRect) == false) 
-                //            canMove = false;
-                //}
+                    if (canvasRect.Contains(relativeElementRect) == false)
+                        canMove = false;
+                }
 
                 //movement
                 if (canMove)

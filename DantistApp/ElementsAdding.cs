@@ -76,7 +76,7 @@ namespace DantistApp
                         canvas.Children.Remove(item);
                     }
                 };
-                _bufferUndoRedo.NewAction(bufAct);
+                _bufferUndoRedo.StartAction(bufAct);
             }
             else
             {
@@ -90,7 +90,7 @@ namespace DantistApp
                     {
                         canvas.Children.Remove(element);
                     };
-                _bufferUndoRedo.NewAction(bufAct);
+                _bufferUndoRedo.StartAction(bufAct);
             }
         }
 
@@ -326,7 +326,7 @@ namespace DantistApp
             {
                 canvas.Children.Add(element);
             };
-            _bufferUndoRedo.NewAction(bufAct);
+            _bufferUndoRedo.StartAction(bufAct);
         }
 
     }

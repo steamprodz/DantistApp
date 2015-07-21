@@ -33,7 +33,7 @@ namespace DantistApp
             this.RedoStack = new Stack<BufferAction>();
         }
         
-        public void NewAction(BufferAction bufferAction)
+        public void StartAction(BufferAction bufferAction)
         {
             bufferAction.Do();
             UndoStack.Push(bufferAction);
