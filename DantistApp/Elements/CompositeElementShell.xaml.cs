@@ -85,12 +85,26 @@ namespace DantistApp.Elements
                     {
                         if (value != HorizontalShift)
                         {
+                            
                             image.Margin = new Thickness(image.Margin.Left - HorizontalShift, image.Margin.Top,
-                            image.Margin.Right + HorizontalShift, image.Margin.Bottom);
+                                image.Margin.Right + HorizontalShift, image.Margin.Bottom);
                         }
 
                         image.Margin = new Thickness(image.Margin.Left + value, image.Margin.Top,
                             image.Margin.Right - value, image.Margin.Bottom);
+
+                        //if (image.Margin.Left < 0)
+                        //{
+                        //    this.Width += -image.Margin.Left;
+                        //    image.Margin = new Thickness(0, image.Margin.Top,
+                        //        image.Margin.Right + (-image.Margin.Left), image.Margin.Bottom);
+                        //}
+                        //if (image.Margin.Right < 0)
+                        //{
+                        //    this.Width += -image.Margin.Right;
+                        //    image.Margin = new Thickness(image.Margin.Left + (-image.Margin.Right),
+                        //        image.Margin.Top, 0, image.Margin.Bottom);
+                        //}
                     }
                 }
 
@@ -148,6 +162,50 @@ namespace DantistApp.Elements
                 OnPropertyChanged("Size");
             }
         }
+
+        //private double _sizeTop;
+        //public double SizeTop
+        //{
+        //    get { return _sizeTop; }
+
+        //    set
+        //    {
+        //        if (SizeTop != 0)
+        //        {
+        //            element_top.Width /= (double)SizeTop;
+        //            element_top.Height /= (double)SizeTop;
+        //        }
+        //        element_top.Width *= (double)value;
+        //        element_top.Height *= (double)value;
+
+        //        _sizeTop = value;
+
+        //        // TODO: Raise the NotifyPropertyChanged event here
+        //        OnPropertyChanged("SizeTop");
+        //    }
+        //}
+
+        //private double _sizeBot;
+        //public double SizeBot
+        //{
+        //    get { return _sizeBot; }
+
+        //    set
+        //    {
+        //        if (SizeBot != 0)
+        //        {
+        //            element_bot.Width /= (double)SizeBot;
+        //            element_bot.Height /= (double)SizeBot;
+        //        }
+        //        element_bot.Width *= (double)value;
+        //        element_bot.Height *= (double)value;
+
+        //        _sizeBot = value;
+
+        //        // TODO: Raise the NotifyPropertyChanged event here
+        //        OnPropertyChanged("SizeBot");
+        //    }
+        //}
 
         private Point _startLocation;
         public Point StartLocation
