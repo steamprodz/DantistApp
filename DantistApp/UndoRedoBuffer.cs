@@ -36,11 +36,16 @@ namespace DantistApp
             IsFixedFlags = new List<bool>();
             foreach (var item in canvas.Children)
             {
-                Elements.Add(item as Element);
-                Positions.Add((item as Element).Position);
-                IsFixedFlags.Add((item as Element).IsFixed);
-                if (item is CompositeElement)
-                    IsMergedFlags.Add((item as CompositeElement).IsMerged);
+                if (item is Element)
+                {
+                    Elements.Add(item as Element);
+                    Positions.Add((item as Element).Position);
+                    IsFixedFlags.Add((item as Element).IsFixed);
+                    if (item is CompositeElement)
+                        IsMergedFlags.Add((item as CompositeElement).IsMerged);
+                    else
+                        IsMergedFlags.Add(false);
+                }
             }
             CountChanged = countChanged;
         }
