@@ -101,6 +101,13 @@ namespace DantistApp.Elements
             if (this is CompositeElement)
             {
                 element = new CompositeElement();
+
+                if (this.Name == "element_bot")
+                {
+                    var elementShell = (this.Parent as Grid).Parent as CompositeElementShell;
+                    point += new Vector(elementShell.HorizontalShift, 0);
+                }
+
             }
             element.IsClone = true;
             element.Source = this.Source;

@@ -47,6 +47,7 @@ namespace DantistApp
             
         }
 
+        TextBox coordsTextBoxOld, coordsTextBoxNew;
 
         private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
         {
@@ -73,9 +74,9 @@ namespace DantistApp
                 if (_activeElement is CompositeElement && 
                     (_activeElement as CompositeElement).RelativeElement != null)
                 {
-                    CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
-                    Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
-                                                        relativeElement.ActualWidth, relativeElement.ActualHeight);
+                        CompositeElement relativeElement = (_activeElement as CompositeElement).RelativeElement;
+                        Rect relativeElementRect = new Rect(relativeElement.Position.X + offset.X, relativeElement.Position.Y + offset.Y,
+                                                            relativeElement.ActualWidth, relativeElement.ActualHeight);
 
                     if (canvasRect.Contains(relativeElementRect) == false)
                         canMove = false;
@@ -86,7 +87,21 @@ namespace DantistApp
                 {
                     Point p = new Point(Canvas.GetLeft(_activeElement) + offset.X,
                                         Canvas.GetTop(_activeElement) + offset.Y);
-                    _activeElement.Position = p;
+                    (_activeElement as Element).Position = p;
+
+                    if (coordsTextBoxOld != null)
+                    {
+                        canvas_main.Children.Remove(coordsTextBoxOld);
+                    }
+
+                    coordsTextBoxNew = new TextBox();
+                    //if (_activeElement is CompositeElement && (_activeElement.Name == "element_top"))
+                    coordsTextBoxNew.Text = string.Format("{0};{1}", p.X, p.Y);
+                    canvas_main.Children.Add(coordsTextBoxNew);
+                    Canvas.SetLeft(coordsTextBoxNew, p.X + 50);
+                    Canvas.SetTop(coordsTextBoxNew, p.Y + 50);
+
+                    coordsTextBoxOld = coordsTextBoxNew;
                 }
             }
         }
