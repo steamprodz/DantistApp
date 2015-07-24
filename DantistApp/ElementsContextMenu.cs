@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using System.Windows.Data;
+using System.Windows.Input;
 using DantistApp.Elements;
 using DantistApp.Tools;
 
@@ -24,7 +27,8 @@ namespace DantistApp
         {
             Remove,
             Fix,
-            Merge
+            Merge,
+            Replace
         }
 
         const string MENU_ITEM_NAME_REMOVE = "Удалить элемент";
@@ -32,6 +36,7 @@ namespace DantistApp
         const string MENU_ITEM_NAME_UNFIX = "Отменить фиксацию";
         const string MENU_ITEM_NAME_MERGE = "Объединить элементы";
         const string MENU_ITEM_NAME_UNMERGE = "Разъединить элементы";
+        const string MENU_ITEM_NAME_REPLACE = "Замена";
 
 
         private void AddMenuItem(Element element, MenuItemType menuItemType)
@@ -63,6 +68,12 @@ namespace DantistApp
                     InitMenuItem_Unmerge(mi_unmerge, element, canvas, mi_merge);
                     contextMenu.Items.Add(mi_unmerge);
                     break;
+                case MenuItemType.Replace:
+                    MenuItem mi_replace = new MenuItem();
+                    InitMenuItem_Replace(mi_replace, element, canvas);
+                    contextMenu.Items.Add(mi_replace);
+                    break;
+
                 default: break;
             }
             if (element.ContextMenu == null)
@@ -185,6 +196,95 @@ namespace DantistApp
                     _bufferUndoRedo.RecordStateAfter(canvas_main);
                 };
         }
+
+
+        private void InitMenuItem_Replace(MenuItem mi_replace, Element element, Canvas canvas)
+        {
+            //MenuItem mi_botPart = new MenuItem();
+            //MenuItem mi_topPart = new MenuItem();
+
+            List<Grid> grids = new List<Grid>();
+            List<Element> elements = Helpers.GetLogicalChildCollection<Element>(tabControl_elements);
+            foreach (var item in elements)
+            {
+                if (item is CompositeElement)
+                {
+                    CompositeElement currentElement = element as CompositeElement;
+                    CompositeElement foundBasicElement = item as CompositeElement;
+                    CompositeElementShell shell = (foundBasicElement.Parent as Grid).Parent as CompositeElementShell;
+                    int numFound = 0;
+                    if (shell.SourceBot != null)
+                        numFound = Convert.ToInt32(Regex.Match(shell.SourceBot.ToString(), @"\d+").Value);
+                    else
+                        numFound = Convert.ToInt32(Regex.Match(shell.SourceTop.ToString(), @"\d+").Value);
+                    int numCurrent = Convert.ToInt32(Regex.Match(currentElement.GroupName.ToString(), @"\d+").Value);
+
+                    if (numFound == numCurrent && 
+                        currentElement.CompositeLocation == foundBasicElement.CompositeLocation)
+                    {
+                        string extraTabName = String.Empty;
+                        int num_tabItem = 0;
+                       // int num_extraTabItem = 0;
+                        TabItem tabItemParent = FindParent_TabItem(foundBasicElement);
+                        if (FindParent_TabItem(tabItemParent) == null)
+                        {
+                            num_tabItem = Convert.ToInt32(tabItemParent.Header) - 1;
+                        }
+                        else
+                        {
+                            num_tabItem = Convert.ToInt32(FindParent_TabItem(tabItemParent).Header) - 1;
+                            extraTabName = ": " + tabItemParent.Header.ToString();
+                        }
+                        //try
+                        //{
+                        //    //num_tabItem = Convert.ToInt32(tabItemParent.Header) - 1;
+                        //}
+                        //catch
+                        //{
+                        //    num_tabItem = Convert.ToInt32(FindParent_TabItem(tabItemParent).Header) - 1;
+                        //    extraTabName = ": " + tabItemParent.Header.ToString();
+                        //}
+                        MenuItem mi = new MenuItem();
+                        mi_replace.Items.Add(mi);
+                        Button foundBtn = panel_btns.Children[num_tabItem] as Button;
+                        mi.Header = foundBtn.Content + extraTabName;
+                        mi.Tag = num_tabItem;
+
+                        mi.Click +=
+                            (object sender, RoutedEventArgs e) =>
+                            {
+                                //Element current = currentElement;
+                                _bufferUndoRedo.RecordStateBefore(canvas);
+                                List<CompositeElement> el = AddCompositeElement(foundBasicElement, canvas);
+                               // AddSingleElement(foundBasicElement, canvas);
+                                _bufferUndoRedo.RecordStateAfter(canvas);
+                            };
+                        //if (currentElement.CompositeLocation == CompositeLocation.Bot)
+                        //    mi_botPart.Items.Add(mi);
+                        //if (currentElement.CompositeLocation == CompositeLocation.Top)
+                        //    mi_topPart.Items.Add(mi);
+                    }
+                }
+            }
+            mi_replace.Header = MENU_ITEM_NAME_REPLACE;
+            mi_replace.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Tag",
+                    System.ComponentModel.ListSortDirection.Ascending));
+        }
+        
+
+
+        private TabItem FindParent_TabItem(FrameworkElement fworkElement)
+        {
+            fworkElement = fworkElement.Parent as FrameworkElement;
+            while (fworkElement is TabItem == false &&
+                   fworkElement != null)
+            {
+                fworkElement = fworkElement.Parent as FrameworkElement;
+            }
+            return fworkElement as TabItem;
+        }
+
+
 
 
         public void RefreshContextMenu(Element element, Canvas canvas)

@@ -87,7 +87,7 @@ namespace DantistApp
                 List<CompositeElement> elements = null;
                 bool addBothParts = (compositeShell.element_bot.Source != null &&
                                      compositeShell.element_top.Source != null);
-                elements = AddCompositeElements(basicElement, canvas, addBothParts);
+                elements = AddCompositeElement(basicElement, canvas);
                 _bufferUndoRedo.RecordStateAfter(canvas);
             }
             else
@@ -122,7 +122,7 @@ namespace DantistApp
             return element;
         }
 
-        private List<CompositeElement> AddCompositeElements(Element basicElement, Canvas canvas, bool addBothParts)
+        private List<CompositeElement> AddCompositeElement(Element basicElement, Canvas canvas)
         {
             CompositeElementShell compositeShell = (basicElement.Parent as Grid).Parent as CompositeElementShell;
             Grid parentCompositeElementGrid = (compositeShell as CompositeElementShell).Content as Grid;
@@ -177,7 +177,8 @@ namespace DantistApp
                     CompositeElement sameCompositeBot = SameCompositeBot(element, canvas);
                     if (sameCompositeBot != null)
                     {
-                        ReplaceCompositeElement(canvas, sameCompositeBot, element);
+                        sameCompositeBot.Replace(element);
+                        //ReplaceCompositeElement(canvas, sameCompositeBot, element);
                     }
                 }
                 if (element.CompositeLocation == CompositeLocation.Top)
@@ -185,7 +186,8 @@ namespace DantistApp
                     CompositeElement sameCompositeTop = SameCompositeTop(element, canvas);
                     if (sameCompositeTop != null)
                     {
-                        ReplaceCompositeElement(canvas, sameCompositeTop, element);
+                        sameCompositeTop.Replace(element);
+                        //ReplaceCompositeElement(canvas, sameCompositeTop, element);
                     }
                 }
                 AddContextMenu(element, canvas);
@@ -218,21 +220,21 @@ namespace DantistApp
             return sameCompositeTop;
         }
 
-        private void ReplaceCompositeElement(Canvas canvas, CompositeElement oldElement, CompositeElement newElement)
-        {
-            CompositeElement oldRelElement = oldElement.RelativeElement;
-            CompositeElement newRelElement = newElement.RelativeElement;
-            if (newRelElement == null)
-                newElement.Position = oldElement.Position;
-            if (oldRelElement != null)
-            {
-                newElement.RelativeElement = oldRelElement;
-                oldRelElement.RelativeElement = newElement;
+        //private void ReplaceCompositeElement(Canvas canvas, CompositeElement oldElement, CompositeElement newElement)
+        //{
+        //    CompositeElement oldRelElement = oldElement.RelativeElement;
+        //    CompositeElement newRelElement = newElement.RelativeElement;
+        //    if (newRelElement == null)
+        //        newElement.Position = oldElement.Position;
+        //    if (oldRelElement != null)
+        //    {
+        //        newElement.RelativeElement = oldRelElement;
+        //        oldRelElement.RelativeElement = newElement;
 
-                newElement.IsMerged = oldRelElement.IsMerged;
-            }
-            canvas.Children.Remove(oldElement);
-        }
+        //        newElement.IsMerged = oldRelElement.IsMerged;
+        //    }
+        //    canvas.Children.Remove(oldElement);
+        //}
 
 
         /// <summary>
@@ -257,6 +259,7 @@ namespace DantistApp
                 AddMenuItem(element, MenuItemType.Remove);
                 AddMenuItem(element, MenuItemType.Fix);
                 AddMenuItem(element, MenuItemType.Merge);
+               // AddMenuItem(element, MenuItemType.Replace);
             }
         }
 

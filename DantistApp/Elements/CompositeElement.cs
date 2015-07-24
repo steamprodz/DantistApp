@@ -71,6 +71,27 @@ namespace DantistApp.Elements
             Canvas.SetTop(this, pos.Y);
         }
 
+
+        public void Replace(CompositeElement newElement)
+        {
+            Canvas canvas = Parent as Canvas;
+            if (canvas == null)
+                return;
+            CompositeElement oldElement = this;
+            CompositeElement oldRelElement = oldElement.RelativeElement;
+            CompositeElement newRelElement = newElement.RelativeElement;
+            if (newRelElement == null)
+                newElement.Position = oldElement.Position;
+            if (oldRelElement != null)
+            {
+                newElement.RelativeElement = oldRelElement;
+                oldRelElement.RelativeElement = newElement;
+
+                newElement.IsMerged = oldRelElement.IsMerged;
+            }
+            canvas.Children.Remove(oldElement);
+        }
+
         public CompositeLocation CompositeLocation
         {
             get { return (CompositeLocation)base.GetValue(CompositeLocationProperty); }

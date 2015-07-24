@@ -53,8 +53,8 @@ namespace DantistApp
         private void AddDoubleClickEvents()
         {
             List<Grid> grids = new List<Grid>();
-            List<Element> GroupElements = Helpers.GetLogicalChildCollection<Element>(this);
-            foreach (var item in GroupElements)
+            List<Element> elements = Helpers.GetLogicalChildCollection<Element>(this);
+            foreach (var item in elements)
             {
                 try
                 {
@@ -140,6 +140,7 @@ namespace DantistApp
             stackPanel_Report.Children.Add(reportElement);
             stackPanel_Report.Children.Add(grid_ReportButtons);
         }
+        
 
 
     }

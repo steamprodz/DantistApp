@@ -19,7 +19,7 @@
             <ColumnDefinition Width="188*"/>
             <ColumnDefinition Width="213*"/>
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="canvas_main" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="612" Grid.Row="1" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp" MouseMove="MainCanvas_MouseMove" Margin="0,0.4,0,0">
+        <Canvas x:Name="canvas_main" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="612" Grid.Row="1" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp" MouseMove="MainCanvas_MouseMove" Margin="0,0.4,0,0" MouseRightButtonDown="canvas_main_MouseRightButtonDown">
             <Canvas.Background>
                 <ImageBrush ImageSource="Image/main.png" Stretch="Uniform"/>
             </Canvas.Background>
