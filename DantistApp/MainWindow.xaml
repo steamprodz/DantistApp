@@ -107,13 +107,13 @@
                         </custom:GroupElement.ContextMenu>
                     </custom:GroupElement>
                     -->
-                    <custom:GroupElement x:Name="image_chel_2R" GroupName="left" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="89" Margin="39,33,0,0" Source="Image\defekty_nsh\2R.png" Size="3" Position="0,0" StartLocation="37,197"/>
-                    <custom:GroupElement x:Name="image_chel_1RC" GroupName="left" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0" Source="Image\defekty_nsh\1RC.png" Height="27" Width="137" Size="2.5" StartLocation="41,213"/>
-                    <custom:GroupElement x:Name="image_chel_2" GroupName="center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,78,0,0" Source="Image\defekty_nsh\2.png" Height="40" Width="233" Size="2.3" StartLocation="38,204"/>
-                    <custom:GroupElement x:Name="image_chel_1R2C1L" GroupName="center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,33,0,0" Source="Image\defekty_nsh\1R2C1L.png" Height="37" Width="233" Size="2.3" StartLocation="38,204"/>
-                    <custom:GroupElement x:Name="image_chel_2C" GroupName="center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="272,10,0,0" Source="Image\defekty_nsh\2C.png" Height="18" Width="82" Size="2.3" StartLocation="220,258"/>
-                    <custom:GroupElement x:Name="image_chel_1CL" GroupName="right" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="137" Margin="470,91,0,0" Source="Image\defekty_nsh\1CL.png" Size="2.5" StartLocation="227,213"/>
-                    <custom:GroupElement x:Name="image_chel_2L" GroupName="right" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="89" Margin="489,33,0,0" Source="Image\defekty_nsh\2L.png" Size="3" StartLocation="308,197"/>
+                    <custom:GroupElement x:Name="image_chel_2R" GroupName="chel bot left" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="89" Margin="39,33,0,0" Source="Image\defekty_nsh\2R.png" Size="3" Position="0,0" StartLocation="37,197"/>
+                    <custom:GroupElement x:Name="image_chel_1RC" GroupName="chel bot left" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,91,0,0" Source="Image\defekty_nsh\1RC.png" Height="27" Width="137" Size="2.5" StartLocation="41,213"/>
+                    <custom:GroupElement x:Name="image_chel_2" GroupName="chel bot mid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,78,0,0" Source="Image\defekty_nsh\2.png" Height="40" Width="233" Size="2.3" StartLocation="38,204"/>
+                    <custom:GroupElement x:Name="image_chel_1R2C1L" GroupName="chel bot mid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="194,33,0,0" Source="Image\defekty_nsh\1R2C1L.png" Height="37" Width="233" Size="2.3" StartLocation="38,204"/>
+                    <custom:GroupElement x:Name="image_chel_2C" GroupName="chel bot mid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="272,10,0,0" Source="Image\defekty_nsh\2C.png" Height="18" Width="82" Size="2.3" StartLocation="220,258"/>
+                    <custom:GroupElement x:Name="image_chel_1CL" GroupName="chel bot right" HorizontalAlignment="Left" Height="27" VerticalAlignment="Top" Width="137" Margin="470,91,0,0" Source="Image\defekty_nsh\1CL.png" Size="2.5" StartLocation="227,213"/>
+                    <custom:GroupElement x:Name="image_chel_2L" GroupName="chel bot right" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="89" Margin="489,33,0,0" Source="Image\defekty_nsh\2L.png" Size="3" StartLocation="308,197"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tab_zub_verh_chel" Header="3" Height="20" VerticalAlignment="Top" Margin="43.2,0,-64.8,0">
