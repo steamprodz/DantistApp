@@ -38,14 +38,16 @@ namespace DantistApp.UserControls
 
         private void button_SaveImage_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var item in ((this.Content as Border).Child as Grid).Children)
-            {
-                if (item is Image)
-                {
-                    Image image = item as Image;
-                    Tools.ImageHelper.SaveImageToFile((BitmapSource)image.Source);
-                }
-            }
+            //foreach (var item in ((this.Content as Border).Child as Grid).Children)
+            //{
+            //    if (item is Image)
+            //    {
+            //        Image image = item as Image;
+            //        Tools.ImageHelper.SaveImageToFile((BitmapSource)image.Source);
+            //    }
+            //}
+
+            Tools.ImageHelper.SaveImageToFile((BitmapSource)image_CanvasScreenshot.Source);
         }
 
         private void button_LoadImage_Click(object sender, RoutedEventArgs e)
@@ -67,6 +69,26 @@ namespace DantistApp.UserControls
 
             stackPanel.Children.RemoveAt(elemIndex);
 
+            if (stackPanel.Children.Count > 1)
+                stackPanel.Children.RemoveAt(elemIndex + 1);
+
+        }
+
+        private void expander_Comments_Expanded(object sender, RoutedEventArgs e)
+        {
+            Panel.SetZIndex(this, 99);
+            Panel.SetZIndex(((StackPanel)this.Parent).Parent as ScrollViewer, 99);
+        }
+
+        private void expander_Comments_Collapsed(object sender, RoutedEventArgs e)
+        {
+            Panel.SetZIndex(this, 0);
+            Panel.SetZIndex(((StackPanel)this.Parent).Parent as ScrollViewer, -1);
+        }
+
+        private void UserControl_LostFocus(object sender, RoutedEventArgs e)
+        {
+            expander_Comments.IsExpanded = false;
         }
     }
 }

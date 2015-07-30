@@ -28,29 +28,34 @@ namespace DantistApp
         private void Element_AddingOnDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Element basicElement = sender as Element;
-            bool canAdd = true;
 
             if (e.ClickCount == 2)
             {
-
-                if (basicElement is GroupElement && !(basicElement is CompositeElement))
-                {
-                    GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
-                                                     where item != null && !(item is CompositeElement) && 
-                                                     item.GroupName == (basicElement as GroupElement).GroupName
-                                                     select item).FirstOrDefault();
-                    if (sameGroupElement != null)
-                    {
-                        if (sameGroupElement.Source == basicElement.Source)
-                            canAdd = false;
-                        else
-                            canvas_main.Children.Remove(sameGroupElement);
-                    }
-                }
-
-                if (canAdd)
-                    AddToCanvas(basicElement, canvas_main);
+                AddElementToCanvas(basicElement);
             }
+        }
+
+        public void AddElementToCanvas(Element basicElement)
+        {
+            bool canAdd = true;
+
+            if (basicElement is GroupElement && !(basicElement is CompositeElement))
+            {
+                GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
+                                                 where item != null && !(item is CompositeElement) &&
+                                                 item.GroupName == (basicElement as GroupElement).GroupName
+                                                 select item).FirstOrDefault();
+                if (sameGroupElement != null)
+                {
+                    if (sameGroupElement.Source == basicElement.Source)
+                        canAdd = false;
+                    else
+                        canvas_main.Children.Remove(sameGroupElement);
+                }
+            }
+
+            if (canAdd)
+                AddToCanvas(basicElement, canvas_main);
         }
 
         /// <summary>
@@ -144,7 +149,22 @@ namespace DantistApp
                 if (parentElements[i].Source != null)
                 {
                     CompositeElement element = new CompositeElement();
-              
+
+                    // ща как накостыляю
+                    // впиливаем в статику нужный нам номер зуба
+                    ImageSource source;
+
+                    if (compositeShell.SourceBot != null)
+                    {
+                        source = compositeShell.SourceBot;
+                    }
+                    else
+                    {
+                        source = compositeShell.SourceTop;
+                    }
+
+                    (parentElements[i] as CompositeElement).GroupName = "tooth" + Convert.ToInt32(Regex.Match(source.ToString(), @"\d+").Value);
+
                     element = parentElements[i].CloneIntoCanvas(canvas, startPos) as CompositeElement;
                   
                     if (parentElements[i] == compositeShell.element_bot)
@@ -152,7 +172,8 @@ namespace DantistApp
                         element.Position += new Vector(compositeShell.ActualWidth - parentElements[1].ActualWidth,
                                                            compositeShell.ActualHeight - parentElements[1].ActualHeight);
                         element.CompositeLocation = CompositeLocation.Bot;
-                        element.GroupName = "tooth" + Convert.ToInt32(Regex.Match(compositeShell.SourceBot.ToString(), @"\d+").Value);
+                        //element.GroupName = "tooth" + Convert.ToInt32(Regex.Match(compositeShell.SourceBot.ToString(), @"\d+").Value);
+                        element.GroupName = (parentElements[i] as CompositeElement).GroupName;
                     }
                     if (parentElements[i] == compositeShell.element_top)
                     {
@@ -277,7 +298,18 @@ namespace DantistApp
             //};
             //_bufferUndoRedo_Old.StartAction(bufAct);
             _bufferUndoRedo.RecordStateBefore(canvas);
-            canvas.Children.Remove(element);
+
+            // костылэйшн: удаление всего композита вместо частей
+            if (element is CompositeElement &&
+                (element as CompositeElement).IsMerged == true)
+            {
+                canvas.Children.Remove(element);
+                canvas.Children.Remove((element as CompositeElement).RelativeElement);
+            }
+            else
+            {
+                canvas.Children.Remove(element);
+            }
             _bufferUndoRedo.RecordStateAfter(canvas);
         }
 

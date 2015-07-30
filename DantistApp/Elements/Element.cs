@@ -41,13 +41,13 @@ namespace DantistApp.Elements
 
             set
             {
-                if (Size != 0)
-                {
-                    Width /= (double)Size;
-                    Height /= (double)Size;
-                }
-                Width *= (double)value;
-                Height *= (double)value;
+                //if (Size != 0)
+                //{
+                //    Width /= (double)Size;
+                //    Height /= (double)Size;
+                //}
+                //Width *= (double)value;
+                //Height *= (double)value;
 
                 _size = value;
 
@@ -114,7 +114,11 @@ namespace DantistApp.Elements
             element.Width = this.ActualWidth;
             element.Height = this.ActualHeight;
             if (this.Size != 0)
+            {
                 element.Size = this.Size;
+                element.Width *= this.Size;
+                element.Height *= this.Size;
+            }
             else
                 element.Size = 1;
             

@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using DantistApp.Elements;
 using DantistApp.Tools;
 using System.Text.RegularExpressions;
+using System.Windows.Media.Effects;
 
 namespace DantistApp
 {
@@ -28,15 +29,24 @@ namespace DantistApp
         PanoramaWindow _panoramaWindow;
         UndoRedoBuffer _bufferUndoRedo;
         List<Element> _selectedElements;
+        List<CompositeElementShell> _tabSelectedElements;
         Element _activeElement;
         Point _previousActiveElementPos;
+
+        // Shortcuts
+        public static RoutedCommand UndoCommand = new RoutedCommand();
+        public static RoutedCommand RedoCommand = new RoutedCommand();
 
         public MainWindow()
         {
             InitializeComponent();
 
+            UndoCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
+            RedoCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control | ModifierKeys.Shift));
+
             _bufferUndoRedo = new UndoRedoBuffer();
             _selectedElements = new List<Element>();
+            _tabSelectedElements = new List<CompositeElementShell>();
 
             foreach (var item in panel_btns.Children)
             {
@@ -136,10 +146,168 @@ namespace DantistApp
             UserControls.ReportElement reportElement = new UserControls.ReportElement();
             reportElement.MainCanvas = canvas_main;
 
-            stackPanel_Report.Children.Remove(grid_ReportButtons);
-            stackPanel_Report.Children.Add(reportElement);
-            stackPanel_Report.Children.Add(grid_ReportButtons);
+            var buttonContainer = Helpers.CopyObject(button_AddReport.Parent as Grid);
+            (buttonContainer.Children[0] as Button).Click += button_AddReport_Click;
+
+            var elementIndex = stackPanel_Report.Children.IndexOf((sender as Button).Parent as UIElement);
+
+            if (elementIndex == stackPanel_Report.Children.Count - 1)
+            {
+                stackPanel_Report.Children.Add(reportElement);
+
+                stackPanel_Report.Children.Add(buttonContainer);
+            }
+            else
+            {
+                var nextElement = stackPanel_Report.Children[elementIndex];
+
+                for (int i = elementIndex; i < stackPanel_Report.Children.Count - 1; i += 2)
+                {
+                    var currentElement = nextElement;
+                    nextElement = stackPanel_Report.Children[i + 2];
+
+                    stackPanel_Report.Children[i + 2] = currentElement;
+                }
+
+                stackPanel_Report.Children.Add(nextElement);
+                stackPanel_Report.Children.Add(buttonContainer);
+                stackPanel_Report.Children[elementIndex] = reportElement;
+            }
         }
+
+        private void button_AddCurrent16Teeth_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedTab = tabControl_elements.SelectedItem as TabItem;
+
+            if ((selectedTab.Content as Grid).Children[0] is TabControl)
+            {
+                var subTab = (selectedTab.Content as Grid).Children[0] as TabControl;
+                selectedTab = subTab.SelectedItem as TabItem;
+            }
+
+            var compositeElementShellList = Tools.Helpers.GetLogicalChildCollection<CompositeElementShell>(selectedTab);
+
+            //var compositeElementList = Tools.Helpers.GetLogicalChildCollection<CompositeElement>(compositeElementShellList);
+
+
+            AddSelectedElementsToCanvas(compositeElementShellList);
+        }
+
+        private void AddSelectedElementsToCanvas(List<CompositeElementShell> compositeElementShellList)
+        {
+            //List<CompositeElement> compositeElementList = new List<CompositeElement>();
+
+            foreach (CompositeElementShell compositeElementShell in compositeElementShellList)
+            {
+                foreach (CompositeElement element in (compositeElementShell.Content as Grid).Children)
+                {
+                    //compositeElementList.Add(element);
+                    AddElementToCanvas(element);
+                }
+            }
+
+            //foreach (CompositeElement element in compositeElementList)
+            //{
+            //    AddElementToCanvas(element);
+            //}
+        }
+
+        private void tabControl_elements_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!(e.Source is CompositeElementShell ||
+                    Keyboard.IsKeyDown(Key.LeftShift)))
+            {
+                TabClearSelection();
+            }
+
+            var element = e.Source as CompositeElementShell;
+            
+            if (element is CompositeElementShell)// && tabControl_elements.CaptureMouse())
+            {
+                if (Keyboard.IsKeyDown(Key.LeftShift) == false)
+                {
+                    TabClearSelection();
+                }
+
+                if (_tabSelectedElements.Contains(element) && Keyboard.IsKeyDown(Key.LeftShift))
+                {
+                    TabRemoveFromSelection(element as CompositeElementShell);
+                }
+                else
+                {
+                    TabAddToSelection(element as CompositeElementShell);
+                }                
+            }
+        }
+
+        private void TabAddToSelection(CompositeElementShell element)
+        {
+            DropShadowEffect glowEffect = new DropShadowEffect()
+            {
+                ShadowDepth = 0,
+                Color = Colors.GreenYellow,
+                Opacity = 1,
+                BlurRadius = 20
+            };
+            element.Effect = glowEffect;
+
+            _tabSelectedElements.Add(element);
+        }
+
+        private void TabRemoveFromSelection(CompositeElementShell element)
+        {
+            element.Effect = null;
+            _tabSelectedElements.Remove(element);
+        }
+
+        private void TabClearSelection()
+        {
+            foreach (var item in _tabSelectedElements)
+            {
+                item.Effect = null;
+            }
+            _tabSelectedElements.Clear();
+        }
+
+        private void Button_AddSelectedTeeth_Click(object sender, RoutedEventArgs e)
+        {
+            AddSelectedElementsToCanvas(_tabSelectedElements);
+        }
+
+        private void Button_RemoveSelectedTeeth_Click(object sender, RoutedEventArgs e)
+        {
+            List<CompositeElement> removeList = new List<CompositeElement>();
+
+            foreach (CompositeElementShell compositeElementShell in _tabSelectedElements)
+            {
+                foreach (CompositeElement element in (compositeElementShell.Content as Grid).Children)
+                {
+                    foreach (var item in canvas_main.Children)
+                    {
+                        if (item is CompositeElement)
+                        {
+                            var canvasElement = item as CompositeElement;
+
+                            if (canvasElement.GroupName == element.GroupName)
+                            {
+                                removeList.Add(canvasElement);
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (var item in removeList)
+            {
+                RemoveElement(item, canvas_main);
+            }
+        }
+
+        private void tabControl_elements_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TabClearSelection();
+        }
+
 
 
     }

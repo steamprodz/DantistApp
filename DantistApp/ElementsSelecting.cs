@@ -27,6 +27,8 @@ namespace DantistApp
             //var element = e.Source as Element;
             
             if (e.Source is Canvas)
+            //if (!(e.Source is Element ||
+            //        Keyboard.IsKeyDown(Key.LeftShift)))
             {
                 ClearSelection();
             }

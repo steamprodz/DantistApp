@@ -24,6 +24,7 @@ namespace DantistApp.Elements
     
     public class CompositeElement : GroupElement
     {
+
         public CompositeElement RelativeElement
         {
             get;

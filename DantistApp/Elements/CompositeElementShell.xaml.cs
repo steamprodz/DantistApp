@@ -149,12 +149,12 @@ namespace DantistApp.Elements
 
             set
             {
-                if (Size != 0)
-                {
-                    Width /= (double)Size;
+                //if (Size != 0)
+                //{
+                //    Width /= (double)Size;
 
-                }
-                Width *= (double)value;
+                //}
+                //Width *= (double)value;
 
                 _size = value;
 
