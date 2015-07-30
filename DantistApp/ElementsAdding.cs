@@ -31,11 +31,11 @@ namespace DantistApp
 
             if (e.ClickCount == 2)
             {
-                AddElementToCanvas(basicElement);
+                AddElementToCanvas(basicElement, true);
             }
         }
 
-        public void AddElementToCanvas(Element basicElement)
+        public void AddElementToCanvas(Element basicElement, bool recordInBuffer)
         {
             bool canAdd = true;
 
@@ -55,7 +55,15 @@ namespace DantistApp
             }
 
             if (canAdd)
+            {
+                if (recordInBuffer)
+                    _bufferUndoRedo.RecordStateBefore(canvas_main);
+
                 AddToCanvas(basicElement, canvas_main);
+
+                if (recordInBuffer)
+                    _bufferUndoRedo.RecordStateAfter(canvas_main);
+            }
         }
 
         /// <summary>
@@ -64,57 +72,17 @@ namespace DantistApp
         private void AddToCanvas(Element basicElement, Canvas canvas)
         {
             CompositeElementShell compositeShell = (basicElement.Parent as Grid).Parent as CompositeElementShell;
+            
             if (compositeShell != null)
             {
-                //List<CompositeElement> elements = null;
-                //BufferAction bufAct = new BufferAction();
-                //bufAct.Do += () =>
-                //{
-                //    bool addBothParts = (compositeShell.element_bot.Source != null &&
-                //                         compositeShell.element_top.Source != null);
-                //    if (elements == null)
-                //        elements = AddCompositeElements(basicElement, canvas, addBothParts);
-                //    else
-                //        foreach (var item in elements)
-                //        {
-                //            canvas.Children.Add(item);
-                //        }
-                //};
-                //bufAct.Undo += () =>
-                //{
-                //    foreach (var item in elements)
-                //    {
-                //        canvas.Children.Remove(item);
-                //    }
-                //};
-                //_bufferUndoRedo_Old.StartAction(bufAct);
-                _bufferUndoRedo.RecordStateBefore(canvas);
                 List<CompositeElement> elements = null;
                 bool addBothParts = (compositeShell.element_bot.Source != null &&
                                      compositeShell.element_top.Source != null);
                 elements = AddCompositeElement(basicElement, canvas);
-                _bufferUndoRedo.RecordStateAfter(canvas);
             }
             else
             {
-                //Element element = null;
-                //BufferAction bufAct = new BufferAction();
-                //bufAct.Do += () =>
-                //    {
-                //        if (element == null)
-                //            element = AddSingleElement(basicElement, canvas);
-                //        else
-                //            canvas.Children.Add(element);
-                //    };
-                //bufAct.Undo += () =>
-                //    {
-                //        canvas.Children.Remove(element);
-                //    };
-                //_bufferUndoRedo_Old.StartAction(bufAct);
-                
-                _bufferUndoRedo.RecordStateBefore(canvas);
                 Element element = AddSingleElement(basicElement, canvas);
-                _bufferUndoRedo.RecordStateAfter(canvas);
             }
         }
 

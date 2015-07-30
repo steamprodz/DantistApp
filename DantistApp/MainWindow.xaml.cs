@@ -197,14 +197,16 @@ namespace DantistApp
         {
             //List<CompositeElement> compositeElementList = new List<CompositeElement>();
 
+            _bufferUndoRedo.RecordStateBefore(canvas_main);
             foreach (CompositeElementShell compositeElementShell in compositeElementShellList)
             {
                 foreach (CompositeElement element in (compositeElementShell.Content as Grid).Children)
                 {
                     //compositeElementList.Add(element);
-                    AddElementToCanvas(element);
+                    AddElementToCanvas(element, false);
                 }
             }
+            _bufferUndoRedo.RecordStateAfter(canvas_main);
 
             //foreach (CompositeElement element in compositeElementList)
             //{
