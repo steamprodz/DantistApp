@@ -68,9 +68,18 @@ namespace DantistApp
             }
         }
 
+        private void canvas_main_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ClearSelection();
+            var element = e.Source as Element;
+            if (element != null)
+                AddToSelection(element);
+        }
 
         private void AddToSelection(Element element)
         {
+            if (_selectedElements.Contains(element))
+                return;
             if (element is CompositeElement)
                 label1.Content = (element as CompositeElement).GroupName;
             DropShadowEffect glowEffect = new DropShadowEffect()

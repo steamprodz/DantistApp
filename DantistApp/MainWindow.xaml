@@ -10,7 +10,7 @@
         <RoutedUICommand x:Key="RedoCommand" Text="Redo last action" />
         <RoutedUICommand x:Key="UndoCommand" Text="Undo last action" />
     </Window.Resources>
-
+        
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource RedoCommand}" 
                     Executed="Btn_Redo_Click" />
@@ -35,7 +35,7 @@
             <ColumnDefinition Width="617*"/>
             <ColumnDefinition Width="401*"/>
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="canvas_main" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="612" Grid.Row="1" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp" MouseMove="MainCanvas_MouseMove" Margin="0,0.4,0,0">
+        <Canvas x:Name="canvas_main" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="612" Grid.Row="1" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp" MouseMove="MainCanvas_MouseMove" Margin="0,0.4,0,0" MouseRightButtonDown="canvas_main_MouseRightButtonDown">
             <Canvas.Background>
                 <ImageBrush ImageSource="Image/main.png" Stretch="Uniform"/>
             </Canvas.Background>
@@ -134,15 +134,15 @@
                     <custom:CompositeElementShell SourceTop="Image/koreni/13.png" SourceBot="Image/verh_zubiv/13.png" Size="1" Width="22" Height="91" BotImageSize="5" HorizontalShift="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" StartLocation="230,52" Margin="224,0,0,25" Grid.Row="1"/>
                     <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="223,0,408.4,0" Grid.Row="1"/>
                     <custom:CompositeElementShell SourceTop="Image/koreni/12.png" SourceBot="Image/verh_zubiv/12.png" Size="1" Width="19" Height="74" BotImageSize="3" HorizontalShift="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="258,0,0,25" Grid.Row="1">
-                        <custom:CompositeElementShell.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform/>
-                                <SkewTransform/>
+                                <custom:CompositeElementShell.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
                                 <RotateTransform Angle="-0.56099999999999994"/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </custom:CompositeElementShell.RenderTransform>
-                    </custom:CompositeElementShell>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </custom:CompositeElementShell.RenderTransform>
+                            </custom:CompositeElementShell>
                     <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="256,0,376.4,0" Grid.Row="1"/>
                     <custom:CompositeElementShell SourceTop="Image/koreni/11.png" SourceBot="Image/verh_zubiv/11.png" Size="1" Width="24" HorizontalShift="1" Height="84" BotImageSize="2" VerticalAlignment="Bottom" HorizontalAlignment="Left" StartLocation="282,56" Margin="287,0,0,25" Grid.Row="1"/>
                     <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="288,0,343.4,0" Grid.Row="1"/>
@@ -721,7 +721,7 @@
                                 <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Center" Width="22" Margin="225,0.8,325,67.8" Grid.Row="1"/>
                                 <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="225,30.8,324,37.8" Grid.Row="1" Width="23"/>
                                 <custom:CompositeElementShell SourceBot="Image/pervynni/12.png" Size="1" Width="Auto" Height="74" BotImageSize="3" HorizontalShift="1" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="227,-28,325,1.2"/>
-                            </Grid>
+                                    </Grid>
                         </TabItem>
                         <TabItem Header="временные">
                             <Grid Background="#FFE5E5E5">

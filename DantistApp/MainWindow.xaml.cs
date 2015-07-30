@@ -63,8 +63,8 @@ namespace DantistApp
         private void AddDoubleClickEvents()
         {
             List<Grid> grids = new List<Grid>();
-            List<Element> GroupElements = Helpers.GetLogicalChildCollection<Element>(this);
-            foreach (var item in GroupElements)
+            List<Element> elements = Helpers.GetLogicalChildCollection<Element>(this);
+            foreach (var item in elements)
             {
                 try
                 {
@@ -302,6 +302,7 @@ namespace DantistApp
                 RemoveElement(item, canvas_main);
             }
         }
+        
 
         private void tabControl_elements_LostFocus(object sender, RoutedEventArgs e)
         {

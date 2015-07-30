@@ -29,6 +29,11 @@ namespace DantistApp.Elements
         {
             InitializeComponent();
             DataContext = this;
+
+            element_bot.CompositeLocation = CompositeLocation.Bot;
+            element_top.CompositeLocation = CompositeLocation.Top;
+            //element_bot.GroupName = "tooth" + Convert.ToInt32(Regex.Match(SourceBot.ToString(), @"\d+").Value);
+            //element_top.GroupName = "tooth" + Convert.ToInt32(Regex.Match(SourceTop.ToString(), @"\d+").Value);
         }
 
         public bool IsFixed { get; set; }
