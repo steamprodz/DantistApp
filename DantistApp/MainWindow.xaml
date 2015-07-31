@@ -165,7 +165,7 @@
                     <custom:CompositeElementShell SourceTop="Image/koreni/28.png" SourceBot="Image/verh_zubiv/28.png" Width="24" Size="1" BotImageSize="3" HorizontalShift="2" HorizontalAlignment="Right" StartLocation="507,61" Margin="0,58.8,62.4,26" Grid.Row="1" Height="60"/>
                     <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="569,0,63.4,0" Grid.Row="1"/>
 
-                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click" Grid.RowSpan="2"/>
+                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click" Grid.RowSpan="2"/>
                     <Button Content="+" HorizontalAlignment="Left" Margin="611,29.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                     <Button Content="-" HorizontalAlignment="Left" Margin="611,53.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
 
@@ -327,7 +327,7 @@
                             <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,0,0,0.2" Height="25"/>
                         </Grid>
                     </Grid>
-                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click" Grid.RowSpan="2"/>
+                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click" Grid.RowSpan="2"/>
                     <Button Content="+" HorizontalAlignment="Left" Margin="611,24.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                     <Button Content="-" HorizontalAlignment="Left" Margin="611,48.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                 </Grid>
@@ -426,7 +426,7 @@
                         </Grid>
                         <Rectangle Fill="#FFE5E5E5" HorizontalAlignment="Left" Height="28" Stroke="Black" VerticalAlignment="Top" Width="518" Margin="0,44,0,0" StrokeThickness="0"/>
                     </Grid>
-                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click"/>
+                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                     <Button Content="+" HorizontalAlignment="Left" Margin="611,41,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                     <Button Content="-" HorizontalAlignment="Left" Margin="611,65,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                 </Grid>
@@ -529,7 +529,7 @@
 
 
                     </Grid>
-                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click" Grid.RowSpan="2"/>
+                    <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click" Grid.RowSpan="2"/>
                     <Button Content="+" HorizontalAlignment="Left" Margin="611,16.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                     <Button Content="-" HorizontalAlignment="Left" Margin="611,40.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
 
@@ -712,7 +712,7 @@
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="490,1.8,59,66.8" Grid.Row="1" Height="25"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="490,39.8,59,30.8" Grid.Row="1" Height="23"/>
                                 <custom:CompositeElementShell SourceBot="Image/pervynni/28.png" Width="24" Size="1" Height="60" BotImageSize="3" HorizontalShift="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" StartLocation="507,61" Margin="490,-13,0,0.2"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click"/>
+                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click" Grid.RowSpan="2"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,18.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/pervynni/43.png" Width="25" Margin="194,57.8,353,0" Grid.Row="1" Grid.RowSpan="2"/>
@@ -775,7 +775,7 @@
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/tymchasovi/38.png" Width="30" Margin="487,117,54.2,0"/>
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="491,48,57.2,97.6"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="490,88,57.2,57.6"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click"/>
+                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,66,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell SourceBot="Image/tymchasovi/18.png" Width="24" Size="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" BotImageSize="3" HorizontalShift="1" StartLocation="88,61" Margin="0,-13,528.2,0"/>
@@ -846,7 +846,7 @@
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni/38.png" Width="30" Margin="487,117,54.2,0"/>
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="491,48,57.2,97.6"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="490,88,57.2,57.6"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click"/>
+                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,66,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell SourceBot="Image/postiyni/18.png" Width="24" Size="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" BotImageSize="3" HorizontalShift="1" StartLocation="88,61" Margin="0,-13,528.2,0"/>
@@ -917,7 +917,7 @@
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/viniry/38.png" Width="30" Margin="487,117,54.2,0"/>
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="491,48,57.2,97.6"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="490,88,57.2,57.6"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrent16Teeth_Click"/>
+                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,66,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell SourceBot="Image/viniry/18.png" Width="24" Size="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" BotImageSize="3" HorizontalShift="1" StartLocation="88,61" Margin="0,-13,528.2,0"/>

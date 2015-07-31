@@ -143,39 +143,57 @@ namespace DantistApp
 
         private void button_AddReport_Click(object sender, RoutedEventArgs e)
         {
-            UserControls.ReportElement reportElement = new UserControls.ReportElement();
+            UserControls.ReportElement reportElement = new UserControls.ReportElement { Width = 190 };
             reportElement.MainCanvas = canvas_main;
 
             var buttonContainer = Helpers.CopyObject(button_AddReport.Parent as Grid);
             (buttonContainer.Children[0] as Button).Click += button_AddReport_Click;
 
+            int totalReportElements = stackPanel_Report.Children.Count;
+
             var elementIndex = stackPanel_Report.Children.IndexOf((sender as Button).Parent as UIElement);
 
-            if (elementIndex == stackPanel_Report.Children.Count - 1)
+            if (elementIndex == totalReportElements - 1)
             {
+                if (elementIndex == 0)
+                {
+                    stackPanel_Report.Children.RemoveAt(0);
+                }
+
                 stackPanel_Report.Children.Add(reportElement);
 
                 stackPanel_Report.Children.Add(buttonContainer);
             }
             else
             {
-                var nextElement = stackPanel_Report.Children[elementIndex];
+                var actionResult = MessageBox.Show("Вы действительно хотите изменить историю болезни?",
+                    "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-                for (int i = elementIndex; i < stackPanel_Report.Children.Count - 1; i += 2)
+                if (actionResult == MessageBoxResult.Yes)
                 {
-                    var currentElement = nextElement;
-                    nextElement = stackPanel_Report.Children[i + 2];
 
-                    stackPanel_Report.Children[i + 2] = currentElement;
+                    List<UIElement> shiftedReportElements = new List<UIElement>();
+
+                    for (int i = totalReportElements - 1; i > elementIndex; i--)
+                    {
+                        // add in backwards order
+                        shiftedReportElements.Add(stackPanel_Report.Children[i]);
+                        stackPanel_Report.Children.RemoveAt(i);
+                    }
+
+                    stackPanel_Report.Children.Add(reportElement);
+                    stackPanel_Report.Children.Add(buttonContainer);
+
+                    // add back to panel in backwards order
+                    for (int i = shiftedReportElements.Count - 1; i > 0; i--)
+                    {
+                        stackPanel_Report.Children.Add(shiftedReportElements[i]);
+                    }
                 }
-
-                stackPanel_Report.Children.Add(nextElement);
-                stackPanel_Report.Children.Add(buttonContainer);
-                stackPanel_Report.Children[elementIndex] = reportElement;
             }
         }
 
-        private void button_AddCurrent16Teeth_Click(object sender, RoutedEventArgs e)
+        private void button_AddCurrentTeeth_Click(object sender, RoutedEventArgs e)
         {
             var selectedTab = tabControl_elements.SelectedItem as TabItem;
 
