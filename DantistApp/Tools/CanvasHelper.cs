@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace DantistApp.Tools
@@ -13,21 +14,29 @@ namespace DantistApp.Tools
     {
         public static RenderTargetBitmap SaveCanvasToBitmap(Canvas canvas)
         {
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)canvas.RenderSize.Width, 
-                (int)canvas.RenderSize.Height, 96d, 96d, System.Windows.Media.PixelFormats.Default);
-            rtb.Render(canvas);
+            // Save current canvas transform
+            Transform transform = canvas.LayoutTransform;
+            // reset current transform (in case it is scaled or rotated)
+            canvas.LayoutTransform = null;
 
-            return rtb;
+            // Get the size of canvas
+            Size size = new Size(canvas.Width, canvas.Height);
+            // Measure and arrange the surface
+            // VERY IMPORTANT
+            canvas.Measure(size);
+            canvas.Arrange(new Rect(size));
 
-            //var crop = new CroppedBitmap(rtb, new Int32Rect(50, 50, 250, 250));
+            // Create a render bitmap and push the surface to it
+            RenderTargetBitmap renderBitmap =
+              new RenderTargetBitmap(
+                (int)size.Width,
+                (int)size.Height,
+                96d,
+                96d,
+                PixelFormats.Pbgra32);
+            renderBitmap.Render(canvas);
 
-            //BitmapEncoder pngEncoder = new PngBitmapEncoder();
-            //pngEncoder.Frames.Add(BitmapFrame.Create(crop));
-
-            //using (var fs = System.IO.File.OpenWrite("logo.png"))
-            //{
-            //    pngEncoder.Save(fs);
-            //}
+            return renderBitmap;
         }
     }
 }

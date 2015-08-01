@@ -3,32 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="125" d:DesignWidth="180"
-             Height="150" LostFocus="UserControl_LostFocus">
+             mc:Ignorable="d" d:DesignWidth="180"
+             Height="118" LostFocus="UserControl_LostFocus">
     <Border BorderThickness="1" BorderBrush="Black" Margin="0,0,0,0.4">
         <Grid Margin="0.2,0.2,0.4,-1.2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="21*"/>
-                <RowDefinition Height="4*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" BorderThickness="0" Height="29" Click="button_LoadImage_Click">
+            <Image HorizontalAlignment="Right" Height="36" Margin="0,79,1,0" VerticalAlignment="Top" Width="36" Source="/DantistApp;component/Icons/download_icon.png" MouseDown="button_SaveImage_Click" Panel.ZIndex="1"/>
+            <Image HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="34" Source="/DantistApp;component/Icons/arrow_icon.png" MouseDown="button_LoadImage_Click" Panel.ZIndex="1" Margin="1,-4,0,0"/>
+            <Image HorizontalAlignment="Right" Height="32" Margin="0,2,2,0" VerticalAlignment="Top" Width="32" Source="/DantistApp;component/Icons/trash_icon.png" MouseDown="button_DeleteElement" Panel.ZIndex="1"/>
+
+            <!--<Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" BorderThickness="0" Height="29" Click="button_LoadImage_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/DantistApp;component/Icons/Arrow_icon.png" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="39" Height="37" BorderThickness="0" Click="button_SaveImage_Click" Margin="0,0,2,2.6" Grid.RowSpan="2">
+            <Button HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="39" Height="37" BorderThickness="0" Click="button_SaveImage_Click" Margin="0,0,2,2.6">
                 <Button.Background>
                     <ImageBrush ImageSource="/DantistApp;component/Icons/Download_icon.png"/>
                 </Button.Background>
             </Button>
-            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="37" BorderThickness="0" Height="28" Click="button_DeleteElement" Margin="0,118,0,0" Grid.RowSpan="2">
+
+            <Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="37" BorderThickness="0" Height="28" Click="button_DeleteElement" Margin="140,1,0,0">
                 <Button.Background>
                     <ImageBrush ImageSource="/DantistApp;component/Icons/trash_icon.png" Stretch="Uniform"/>
                 </Button.Background>
-            </Button>
-            <Image x:Name="image_CanvasScreenshot" Panel.ZIndex="-1" Margin="0,0,0,-0.4" Grid.RowSpan="2"/>
-            <Expander x:Name="expander_Comments" Header="Коммент." HorizontalAlignment="Center" VerticalAlignment="Top" Height="153" Margin="-113,17,170,-20.4" IsExpanded="False" Panel.ZIndex="100" Expanded="expander_Comments_Expanded" Collapsed="expander_Comments_Collapsed" Width="120" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
+            </Button>-->
+            <Image x:Name="image_CanvasScreenshot" Panel.ZIndex="-1" Margin="0,0,0,-0.4"/>
+            <Rectangle Fill="White" HorizontalAlignment="Left" Height="79" Stroke="#FFE8B8B8" VerticalAlignment="Top" Width="23" Margin="0,29,0,0" RadiusY="8.5" RadiusX="8.5"/>
+            <Expander x:Name="expander_Comments" Header="Коммент." HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="153" Margin="-120,0,174,-49.4" IsExpanded="False" Expanded="expander_Comments_Expanded" Collapsed="expander_Comments_Collapsed" Width="123" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="1" LostFocus="expander_Comments_LostFocus">
                 <Expander.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -38,7 +42,7 @@
                     </TransformGroup>
                 </Expander.RenderTransform>
                 <Grid Width="124" Margin="0,0,-5.6,0" Height="120">
-                    <TextBox BorderThickness="2" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderBrush="Black" Background="#FFC5F896" FontFamily="Arial" FontSize="11" HorizontalAlignment="Center" Width="119" RenderTransformOrigin="0.5,0.5" Margin="1,-2,4,-1">
+                    <TextBox x:Name="textBox_Comments" BorderThickness="2" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderBrush="Black" Background="#FFC5F896" FontFamily="Arial" FontSize="11" HorizontalAlignment="Center" Width="119" RenderTransformOrigin="0.5,0.5" Margin="1,-2,4,-1" LostFocus="TextBox_LostFocus">
                         <TextBox.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
