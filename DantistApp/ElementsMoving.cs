@@ -74,6 +74,24 @@ namespace DantistApp
                                         Canvas.GetTop(_activeElement) + offset.Y);
                     (_activeElement as Element).Position = p;
 
+                    if (_activeElement is CompositeElement)
+                    {
+                        var activeComposite = _activeElement as CompositeElement;
+
+                        if (activeComposite.RelativeToothNumber != null)
+                        {
+                            Canvas.SetLeft(activeComposite.RelativeToothNumber, p.X);
+                            Canvas.SetTop(activeComposite.RelativeToothNumber, p.Y);
+                        }
+                        else if (activeComposite.RelativeElement.RelativeToothNumber != null)
+                        {
+                            Canvas.SetLeft(activeComposite.RelativeElement.RelativeToothNumber, p.X);
+                            Canvas.SetTop(activeComposite.RelativeElement.RelativeToothNumber, p.Y);
+                        }
+
+
+                    }
+
                     if (coordsTextBoxOld != null)
                     {
                         canvas_main.Children.Remove(coordsTextBoxOld);

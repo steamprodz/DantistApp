@@ -92,6 +92,7 @@
     </Compile>
     <Compile Include="Tools\CanvasHelper.cs" />
     <Compile Include="Tools\CompositeElementHeightConverter.cs" />
+    <Compile Include="Tools\EffectsHelper.cs" />
     <Compile Include="Tools\ImageHelper.cs" />
     <Compile Include="Tools\Helpers.cs" />
     <Compile Include="Tools\PdfHelper.cs" />

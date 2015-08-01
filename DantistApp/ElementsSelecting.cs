@@ -82,14 +82,16 @@ namespace DantistApp
                 return;
             if (element is CompositeElement)
                 label1.Content = (element as CompositeElement).GroupName;
-            DropShadowEffect glowEffect = new DropShadowEffect()
-            {
-                ShadowDepth = 0,
-                Color = Colors.GreenYellow,
-                Opacity = 1,
-                BlurRadius = 20
-            };
-            element.Effect = glowEffect;
+            //DropShadowEffect glowEffect = new DropShadowEffect()
+            //{
+            //    ShadowDepth = 0,
+            //    Color = Colors.GreenYellow,
+            //    Opacity = 1,
+            //    BlurRadius = 20
+            //};
+            //element.Effect = glowEffect;
+
+            element.Effect = Tools.EffectsHelper.CreateGlowEffect(Colors.GreenYellow);
             _selectedElements.Add(element as Element);
         }
 

@@ -121,14 +121,17 @@ namespace DantistApp
                     // ща как накостыляю
                     // впиливаем в статику нужный нам номер зуба
                     ImageSource source;
+                    string groupName;
 
                     if (compositeShell.SourceBot != null)
                     {
                         source = compositeShell.SourceBot;
+                        groupName = "ToothBot";
                     }
                     else
                     {
                         source = compositeShell.SourceTop;
+                        groupName = "ToothTop";
                     }
 
                     (parentElements[i] as CompositeElement).GroupName = "tooth" + Convert.ToInt32(Regex.Match(source.ToString(), @"\d+").Value);

@@ -256,15 +256,16 @@ namespace DantistApp
 
         private void TabAddToSelection(CompositeElementShell element)
         {
-            DropShadowEffect glowEffect = new DropShadowEffect()
-            {
-                ShadowDepth = 0,
-                Color = Colors.GreenYellow,
-                Opacity = 1,
-                BlurRadius = 20
-            };
-            element.Effect = glowEffect;
+            //DropShadowEffect glowEffect = new DropShadowEffect()
+            //{
+            //    ShadowDepth = 0,
+            //    Color = Colors.GreenYellow,
+            //    Opacity = 1,
+            //    BlurRadius = 20
+            //};
+            //element.Effect = glowEffect;
 
+            element.Effect = Tools.EffectsHelper.CreateGlowEffect(Colors.GreenYellow);
             _tabSelectedElements.Add(element);
         }
 
@@ -397,7 +398,68 @@ namespace DantistApp
             this.Close();
         }
 
+        private void menuItem_ShowTeethNumbers_Click(object sender, RoutedEventArgs e)
+        {
+            List<CompositeElement> RelativeElements = new List<CompositeElement>();
+            List<CompositeElement> DrawElements = new List<CompositeElement>();
 
+            foreach (var canvasItem in canvas_main.Children)
+            {
+                if (canvasItem is CompositeElement)
+                {
+                    var element = canvasItem as CompositeElement;
+
+                    if (!(RelativeElements.Contains(element)))
+                    {
+                        if (element.RelativeElement != null && element.IsMerged)
+                            RelativeElements.Add(element.RelativeElement);
+
+                        DrawElements.Add(element);
+                    }
+                }
+            }
+
+            foreach (CompositeElement element in DrawElements)
+            {
+                DrawToothNumber(element);
+            }
+        }
+
+        private void DrawToothNumber(CompositeElement element)
+        {
+            Label labelToothNumber = new Label();
+
+            var groupNameLength = element.GroupName.Length;
+            labelToothNumber.Content = element.GroupName.Substring(groupNameLength - 2);
+
+            element.RelativeToothNumber = labelToothNumber;
+
+            canvas_main.Children.Add(labelToothNumber);
+            Canvas.SetLeft(labelToothNumber, Canvas.GetLeft(element));
+            Canvas.SetTop(labelToothNumber, Canvas.GetTop(element));
+        }
+
+        private void DeleteToothNumber(Label labelToothNumber, CompositeElement element)
+        {
+            element.RelativeToothNumber = null;
+            canvas_main.Children.Remove(labelToothNumber);
+        }
+
+        private void menuItem_HideTeethNumbers_Click(object sender, RoutedEventArgs e)
+        {
+            List<Label> removeList = new List<Label>();
+
+            foreach (var item in canvas_main.Children)
+            {
+                if (item is Label)
+                    removeList.Add(item as Label);
+            }
+
+            foreach (var item in removeList)
+            {
+                canvas_main.Children.Remove(item);
+            }
+        }
 
     }
 

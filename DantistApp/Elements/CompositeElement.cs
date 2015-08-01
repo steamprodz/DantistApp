@@ -31,6 +31,8 @@ namespace DantistApp.Elements
             set;
         }
 
+        public Label RelativeToothNumber { get; set; }
+
         private bool _isMerged;
         public bool IsMerged
         {
