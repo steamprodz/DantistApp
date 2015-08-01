@@ -149,10 +149,10 @@ namespace DantistApp
 
             if (elementIndex == totalReportElements - 1)
             {
-                if (elementIndex == 0)
-                {
-                    stackPanel_Report.Children.RemoveAt(0);
-                }
+                //if (elementIndex == 0)
+                //{
+                //    stackPanel_Report.Children.RemoveAt(0);
+                //}
 
                 stackPanel_Report.Children.Add(reportElement);
 
@@ -179,7 +179,7 @@ namespace DantistApp
                     stackPanel_Report.Children.Add(buttonContainer);
 
                     // add back to panel in backwards order
-                    for (int i = shiftedReportElements.Count - 1; i > 0; i--)
+                    for (int i = shiftedReportElements.Count - 1; i >= 0; i--)
                     {
                         stackPanel_Report.Children.Add(shiftedReportElements[i]);
                     }
@@ -325,37 +325,76 @@ namespace DantistApp
 
         private void menuItem_Print_Click(object sender, RoutedEventArgs e)
         {
-            // Some PDF shit
-            const int pdfHeaderHeight = 40;
-            const int pdfLeftMargin = 20;
-            const int pdfTextPadding = 25;
-            const int pdfImagePadding = 35;
-
-            string pdfFileName = @"D:\test.pdf";
-
-            // Initialize PDF document
-            PdfSharp.Pdf.PdfDocument pdfDocument = new PdfSharp.Pdf.PdfDocument();
-            PdfSharp.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
-            PdfSharp.Drawing.XGraphics pdfGFX = PdfSharp.Drawing.XGraphics.FromPdfPage(pdfPage);
-            PdfSharp.Drawing.XFont pdfFont = new PdfSharp.Drawing.XFont("Vendetta", 20, PdfSharp.Drawing.XFontStyle.Regular);
-
-            int yPos = pdfHeaderHeight;
-            int xPos = pdfLeftMargin;
-
-            // Parse data to PDF
-            for (int i = 0; i < stackPanel_Report.Children.Count; i+=2)
+            if (stackPanel_Report.Children.Count > 1)
             {
-                var selectedItem = stackPanel_Report.Children[i] as UserControls.ReportElement;
+                // Some PDF shit
+                const int pdfHeaderHeight = 40;
+                const int pdfLeftMargin = 20;
+                const int pdfTextPadding = 25;
+                const int pdfImagePadding = 10;
 
-                pdfGFX.DrawString(selectedItem.textBox_Comments.Text, pdfFont, PdfSharp.Drawing.XBrushes.Black, 
-                    new PdfSharp.Drawing.XRect(xPos, yPos, pdfPage.Width, 0));
+                //string pdfFileName = @"D:\test.pdf";
 
-                yPos += pdfTextPadding;
+                // Initialize PDF document
+                PdfSharp.Pdf.PdfDocument pdfDocument = new PdfSharp.Pdf.PdfDocument();
+                // Create page and GFX
+                PdfSharp.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
+                PdfSharp.Drawing.XGraphics pdfGFX = PdfSharp.Drawing.XGraphics.FromPdfPage(pdfPage);
+                PdfSharp.Drawing.XFont pdfFont = new PdfSharp.Drawing.XFont("Vendetta", 20, PdfSharp.Drawing.XFontStyle.Regular);
+
+                int yPos = pdfHeaderHeight;
+                int xPos = pdfLeftMargin;
+
+                // Parse data to PDF
+                for (int i = 1; i < stackPanel_Report.Children.Count; i += 2)
+                {
+                    // 2 elements per page
+                    if ((i - 1) % 4 == 0 && (i - 1) != 0)
+                    {
+                        // Create new page and GFX
+                        pdfPage = pdfDocument.AddPage();
+                        pdfGFX = PdfSharp.Drawing.XGraphics.FromPdfPage(pdfPage);
+                        
+                        yPos = pdfHeaderHeight;
+                        xPos = pdfLeftMargin;
+                    }
+
+                    // Add elements to page
+                    var selectedItem = stackPanel_Report.Children[i] as UserControls.ReportElement;
+
+                    try
+                    {
+
+                        pdfGFX.DrawString(selectedItem.textBox_Comments.Text, pdfFont, PdfSharp.Drawing.XBrushes.Black,
+                            new PdfSharp.Drawing.XRect(xPos, yPos, pdfPage.Width, 0));
+
+                        yPos += pdfTextPadding;
+
+                        PdfSharp.Drawing.XImage pdfImage = PdfSharp.Drawing.XImage.FromGdiPlusImage(
+                            Tools.ImageHelper.ImageWpfToGDI(selectedItem.image_CanvasScreenshot.Source));
+                        pdfGFX.DrawImage(pdfImage, xPos, yPos);
+
+                        yPos += (int)pdfImage.Height + pdfImagePadding;
+                    }
+                    catch { }
+                }
+
+                var pdfFileName = Tools.PdfHelper.SavePdfToFile(pdfDocument);
+
+                //pdfDocument.Save(pdfFileName);
+                if (pdfFileName != null)
+                    System.Diagnostics.Process.Start(pdfFileName);
+                else
+                    MessageBox.Show("Не удалось создать PDF документ", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-            pdfDocument.Save(pdfFileName);
-            System.Diagnostics.Process.Start(pdfFileName);
+            else
+                MessageBox.Show("История болезни пуста", "Ошибка печати", MessageBoxButton.OK, MessageBoxImage.Stop);
             
+        }
+
+        private void menuItem_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
 

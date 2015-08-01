@@ -44,6 +44,17 @@ namespace DantistApp.Tools
             }
         }
 
+        public static System.Drawing.Image ImageWpfToGDI(System.Windows.Media.ImageSource imageSource)
+        {
+            MemoryStream ms = new MemoryStream();
+            var encoder = new System.Windows.Media.Imaging.BmpBitmapEncoder();
+            encoder.Frames.Add(System.Windows.Media.Imaging.BitmapFrame.Create(imageSource as System.Windows.Media.Imaging.BitmapSource));
+            encoder.Save(ms);
+            ms.Flush();
+
+            return System.Drawing.Image.FromStream(ms);
+        }
+
         public static string ReadJPEGComment(string imageFlePath)
         {
             string jpegDirectory = Path.GetDirectoryName(imageFlePath);

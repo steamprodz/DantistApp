@@ -125,7 +125,7 @@ namespace DantistApp.UserControls
             stackPanel.Children.RemoveAt(elemIndex);
 
             // upper element goes down and gets the same index
-            if (stackPanel.Children.Count > 1)
+            //if (stackPanel.Children.Count > 1)
                 stackPanel.Children.RemoveAt(elemIndex);
         }
     }

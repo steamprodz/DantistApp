@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
-using System.Windows.Data;
-using System.Windows.Input;
 using DantistApp.Elements;
 using DantistApp.Tools;
 
