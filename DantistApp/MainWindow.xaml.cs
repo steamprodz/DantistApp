@@ -82,7 +82,7 @@ namespace DantistApp
             tabControl_elements.SelectedIndex = number - 1;
         }
 
-        private void MenuItem_Service_Click(object sender, RoutedEventArgs e)
+        private void menuItem_Settings_Click(object sender, RoutedEventArgs e)
         {
             SettingsWindow wnd = new SettingsWindow(stackPanel_Report);
             wnd.ShowDialog();
@@ -106,7 +106,7 @@ namespace DantistApp
             _bufferUndoRedo.RecordStateAfter(canvas_main);
         }
 
-        private void Btn_Undo_Click(object sender, RoutedEventArgs e)
+        private void commandBinding_Undo_Executed(object sender, RoutedEventArgs e)
         {
             //_bufferUndoRedo_Old.Undo();
             _bufferUndoRedo.Undo();
@@ -116,7 +116,7 @@ namespace DantistApp
             }
         }
 
-        private void Btn_Redo_Click(object sender, RoutedEventArgs e)
+        private void commandBinding_Redo_Executed(object sender, RoutedEventArgs e)
         {
             _bufferUndoRedo.Redo();
             foreach (var item in canvas_main.Children)
@@ -323,7 +323,7 @@ namespace DantistApp
             TabClearSelection();
         }
 
-        private void menuItem_Print_Click(object sender, RoutedEventArgs e)
+        private void menuItem_SaveAsPdf_Click(object sender, RoutedEventArgs e)
         {
             if (stackPanel_Report.Children.Count > 1)
             {

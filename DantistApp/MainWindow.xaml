@@ -6,21 +6,15 @@
         xmlns:local="clr-namespace:DantistApp"
         xmlns:UserControls="clr-namespace:DantistApp.UserControls" mc:Ignorable="d" x:Class="DantistApp.MainWindow"
         Title="Dantist Application" Height="656.4" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <RoutedUICommand x:Key="RedoCommand" Text="Redo last action" />
-        <RoutedUICommand x:Key="UndoCommand" Text="Undo last action" />
-    </Window.Resources>
 
     <Window.CommandBindings>
-        <CommandBinding Command="{StaticResource RedoCommand}" 
-                    Executed="Btn_Redo_Click" />
-        <CommandBinding Command="{StaticResource UndoCommand}" 
-                    Executed="Btn_Undo_Click" />
+        <CommandBinding Command="Redo" Executed="commandBinding_Redo_Executed" />
+        <CommandBinding Command="Undo" Executed="commandBinding_Undo_Executed" />
     </Window.CommandBindings>
 
     <Window.InputBindings>
-        <KeyBinding Key="Z" Modifiers="Ctrl+Shift" Command="{StaticResource RedoCommand}" />
-        <KeyBinding Key="Z" Modifiers="Ctrl" Command="{StaticResource UndoCommand}" />
+        <KeyBinding Key="Z" Modifiers="Ctrl+Shift" Command="Redo" />
+        <KeyBinding Key="Z" Modifiers="Ctrl" Command="Undo" />
     </Window.InputBindings>
 
     <Grid>
@@ -41,22 +35,24 @@
         </Canvas>
 
         <Menu x:Name="main_menu" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="1018" Grid.ColumnSpan="2" Margin="0,0,-0.4,0">
-            <MenuItem Header="Очистить" Height="23">
-                <MenuItem x:Name="MenuItem_DeleteAllObjects" Header="Все объекты" Click="MenuItem_RemoveAllElements_Click"/>
+            <MenuItem Header="Файл">
+                <MenuItem Header="Сохранить в PDF" HorizontalAlignment="Left" Width="178" Click="menuItem_SaveAsPdf_Click"/>
+                <MenuItem x:Name="menuItem_Exit" Header="Выход" HorizontalAlignment="Left" Width="178" Click="menuItem_Exit_Click"/>
             </MenuItem>
-            <MenuItem x:Name="menuItem_Print" Header="Печать" Height="23" Click="menuItem_Print_Click"/>
-            <MenuItem Header="Сервис" Height="23">
-                <MenuItem Header="Объеденить все зубы"/>
-                <MenuItem Header="Разъединить все зубы"/>
-                <MenuItem x:Name="MenuItem_Service" Header="Настройки" Click="MenuItem_Service_Click"/>
-                <MenuItem Header="Показать номера зубов"/>
-                <MenuItem Header="Скрыть номера зубов"/>
+            <MenuItem Header="Правка">
+                <MenuItem Header="Отменить" HorizontalAlignment="Left" Width="320" InputGestureText="Ctrl+Z" Command="Undo"/>
+                <MenuItem Header="Повторить" HorizontalAlignment="Left" Width="320" InputGestureText="Ctrl+Shift+Z" Command="Redo"/>
+                <MenuItem Header="Удалить все объекты" HorizontalAlignment="Left" Width="320" Click="MenuItem_RemoveAllElements_Click"/>
+                <MenuItem Header="Удалить выделенные объекты" HorizontalAlignment="Left" Width="320" Click="MenuItem_RemoveSelectedElements_Click"/>
             </MenuItem>
-            <MenuItem Header="Выделенные объекты" Height="23">
-                <MenuItem x:Name="MenuItem_RemoveSelectedElements" Header="Уничтожить" HorizontalAlignment="Left" Width="154" Margin="0,0,-14.8,0" Click="MenuItem_RemoveSelectedElements_Click"/>
+            <MenuItem Header="Зубы" Height="23">
+                <MenuItem Header="Объеденить все"/>
+                <MenuItem Header="Разъединить все"/>
+                <MenuItem Header="Показать номера"/>
+                <MenuItem Header="Скрыть номера"/>
             </MenuItem>
             <MenuItem x:Name="MenuItem_PanoramaWindow" Header="Панорама" Height="23" Click="MenuItem_PanoramaWindow_Click"/>
-            <MenuItem x:Name="menuItem_Exit" Header="Выход" Height="23" Click="menuItem_Exit_Click"/>
+            <MenuItem x:Name="menuItem_Settings" Header="Настройки" Click="menuItem_Settings_Click"/>
         </Menu>
         <StackPanel x:Name="panel_btns" Grid.Column="1" HorizontalAlignment="Left" Height="378" Margin="1.2,25,0,0" VerticalAlignment="Top" Width="178" Grid.RowSpan="2">
             <Button x:Name="btn_verh_chel" Content="1. Верхняя челюсть" Height="28" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
@@ -1193,8 +1189,8 @@
             </TabItem>
         </TabControl>
         <Grid Grid.Column="1" Margin="64.2,13.2,255.6,8.4" Grid.Row="2">
-            <Button x:Name="Btn_Undo" Content="Undo" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="75" Command="{StaticResource UndoCommand}" Click="Btn_Undo_Click" Height="19"/>
-            <Button x:Name="Btn_Redo" Content="Redo" HorizontalAlignment="Left" Margin="1,27,0,0" VerticalAlignment="Top" Width="75" Command="{StaticResource RedoCommand}" Click="Btn_Redo_Click" Height="19"/>
+            <Button x:Name="Btn_Undo" Content="Undo" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="75" Command="Undo"/>
+            <Button x:Name="Btn_Redo" Content="Redo" HorizontalAlignment="Left" Margin="1,27,0,0" VerticalAlignment="Top" Width="75" Command="Redo"/>
             <Label x:Name="label1" Content="DebugLabel1" HorizontalAlignment="Left" Margin="0,63,0,0" VerticalAlignment="Top" Height="26" Width="80"/>
             <Label x:Name="label2" Content="DebugLabel2" HorizontalAlignment="Left" Margin="0,89,0,0" VerticalAlignment="Top" Height="26" Width="80"/>
             <Label x:Name="label3" Content="DebugLabel3" HorizontalAlignment="Left" Margin="0,115,0,0" VerticalAlignment="Top" Height="26" Width="80"/>
