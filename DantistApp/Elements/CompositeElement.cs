@@ -93,6 +93,16 @@ namespace DantistApp.Elements
             canvas.Children.Remove(oldElement);
         }
 
+        public void Replace(CompositeElement newElement, Vector shift)
+        {
+            if (newElement.CompositeLocation == Elements.CompositeLocation.Bot)
+            {
+                newElement.Position -= shift;
+                Replace(newElement);
+            }
+                
+        }
+
         public CompositeLocation CompositeLocation
         {
             get { return (CompositeLocation)base.GetValue(CompositeLocationProperty); }

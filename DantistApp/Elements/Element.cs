@@ -102,17 +102,18 @@ namespace DantistApp.Elements
             {
                 element = new CompositeElement();
 
-                if (this.Name == "element_bot")
-                {
-                    var elementShell = (this.Parent as Grid).Parent as CompositeElementShell;
-                    point += new Vector(elementShell.HorizontalShift, 0);
-                }
+                //if (this.Name == "element_bot")
+                //{
+                //    var elementShell = (this.Parent as Grid).Parent as CompositeElementShell;
+                //    //point += new Vector(elementShell.HorizontalShift, 0);
+                //}
 
             }
             element.IsClone = true;
             element.Source = this.Source;
             element.Width = this.ActualWidth;
             element.Height = this.ActualHeight;
+            
             if (this.Size != 0)
             {
                 element.Size = this.Size;
@@ -124,6 +125,11 @@ namespace DantistApp.Elements
             
             canvas.Children.Add(element);
             element.Position = point;
+            if (element is CompositeElement && this.Name == "element_bot")
+            {
+                var elementShell = (this.Parent as Grid).Parent as CompositeElementShell;
+                element.Position += new Vector(elementShell.HorizontalShift, 0);
+            }
 
             return element;
         }
