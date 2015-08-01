@@ -329,6 +329,41 @@ namespace DantistApp
             TabClearSelection();
         }
 
+        private void menuItem_Print_Click(object sender, RoutedEventArgs e)
+        {
+            // Some PDF shit
+            const int pdfHeaderHeight = 40;
+            const int pdfLeftMargin = 20;
+            const int pdfTextPadding = 25;
+            const int pdfImagePadding = 35;
+
+            string pdfFileName = @"D:\test.pdf";
+
+            // Initialize PDF document
+            PdfSharp.Pdf.PdfDocument pdfDocument = new PdfSharp.Pdf.PdfDocument();
+            PdfSharp.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
+            PdfSharp.Drawing.XGraphics pdfGFX = PdfSharp.Drawing.XGraphics.FromPdfPage(pdfPage);
+            PdfSharp.Drawing.XFont pdfFont = new PdfSharp.Drawing.XFont("Vendetta", 20, PdfSharp.Drawing.XFontStyle.Regular);
+
+            int yPos = pdfHeaderHeight;
+            int xPos = pdfLeftMargin;
+
+            // Parse data to PDF
+            for (int i = 0; i < stackPanel_Report.Children.Count; i+=2)
+            {
+                var selectedItem = stackPanel_Report.Children[i] as UserControls.ReportElement;
+
+                pdfGFX.DrawString(selectedItem.textBox_Comments.Text, pdfFont, PdfSharp.Drawing.XBrushes.Black, 
+                    new PdfSharp.Drawing.XRect(xPos, yPos, pdfPage.Width, 0));
+
+                yPos += pdfTextPadding;
+            }
+
+            pdfDocument.Save(pdfFileName);
+            System.Diagnostics.Process.Start(pdfFileName);
+            
+        }
+
 
 
     }

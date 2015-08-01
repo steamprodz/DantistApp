@@ -166,7 +166,7 @@ namespace DantistApp
                     CompositeElement sameCompositeBot = SameCompositeBot(element, canvas);
                     if (sameCompositeBot != null)
                     {
-                        sameCompositeBot.Replace(element);
+                        sameCompositeBot.Replace(element, new Vector(compositeShell.HorizontalShift, 0));
                         //ReplaceCompositeElement(canvas, sameCompositeBot, element);
                     }
                 }
@@ -175,7 +175,7 @@ namespace DantistApp
                     CompositeElement sameCompositeTop = SameCompositeTop(element, canvas);
                     if (sameCompositeTop != null)
                     {
-                        sameCompositeTop.Replace(element);
+                        sameCompositeTop.Replace(element, new Vector(0, 0));
                         //ReplaceCompositeElement(canvas, sameCompositeTop, element);
                     }
                 }

@@ -73,7 +73,7 @@ namespace DantistApp.Elements
         }
 
 
-        public void Replace(CompositeElement newElement)
+        public void Replace(CompositeElement newElement, Vector oldShift)
         {
             Canvas canvas = Parent as Canvas;
             if (canvas == null)
@@ -81,8 +81,9 @@ namespace DantistApp.Elements
             CompositeElement oldElement = this;
             CompositeElement oldRelElement = oldElement.RelativeElement;
             CompositeElement newRelElement = newElement.RelativeElement;
-            if (newRelElement == null)
-                newElement.Position = oldElement.Position;
+            //if (newRelElement == null && newElement.Source != oldElement.Source)
+            //    //newElement.Position = new Point(100, 100);
+            //    newElement.Position = oldElement.Position - oldShift;
             if (oldRelElement != null)
             {
                 newElement.RelativeElement = oldRelElement;
