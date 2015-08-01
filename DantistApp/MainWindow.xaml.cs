@@ -33,16 +33,10 @@ namespace DantistApp
         Element _activeElement;
         Point _previousActiveElementPos;
 
-        // Shortcuts
-        public static RoutedCommand UndoCommand = new RoutedCommand();
-        public static RoutedCommand RedoCommand = new RoutedCommand();
 
         public MainWindow()
         {
             InitializeComponent();
-
-            UndoCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control));
-            RedoCommand.InputGestures.Add(new KeyGesture(Key.Z, ModifierKeys.Control | ModifierKeys.Shift));
 
             _bufferUndoRedo = new UndoRedoBuffer();
             _selectedElements = new List<Element>();
