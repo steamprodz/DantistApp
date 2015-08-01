@@ -95,11 +95,8 @@ namespace DantistApp.Elements
 
         public void Replace(CompositeElement newElement, Vector shift)
         {
-            if (newElement.CompositeLocation == Elements.CompositeLocation.Bot)
-            {
-                newElement.Position -= shift;
-                Replace(newElement);
-            }
+           // newElement.Position -= shift;
+            Replace(newElement);
                 
         }
 
