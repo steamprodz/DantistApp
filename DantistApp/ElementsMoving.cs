@@ -88,8 +88,6 @@ namespace DantistApp
                             Canvas.SetLeft(activeComposite.RelativeElement.RelativeToothNumber, p.X);
                             Canvas.SetTop(activeComposite.RelativeElement.RelativeToothNumber, p.Y);
                         }
-
-
                     }
 
                     if (coordsTextBoxOld != null)

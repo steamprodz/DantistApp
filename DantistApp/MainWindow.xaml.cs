@@ -402,30 +402,45 @@ namespace DantistApp
         {
             List<CompositeElement> RelativeElements = new List<CompositeElement>();
             List<CompositeElement> DrawElements = new List<CompositeElement>();
+            List<CompositeElement> CompositeElements = new List<CompositeElement>();
 
-            foreach (var canvasItem in canvas_main.Children)
+            foreach (var item in canvas_main.Children)
             {
-                if (canvasItem is CompositeElement)
+                if (item is CompositeElement)
                 {
-                    var element = canvasItem as CompositeElement;
-
-                    if (!(RelativeElements.Contains(element)))
-                    {
-                        if (element.RelativeElement != null && element.IsMerged)
-                            RelativeElements.Add(element.RelativeElement);
-
-                        DrawElements.Add(element);
-                    }
+                    CompositeElements.Add(item as CompositeElement);
                 }
             }
 
-            foreach (CompositeElement element in DrawElements)
+            //foreach (var canvasItem in canvas_main.Children)
+            //{
+            //    if (canvasItem is CompositeElement)
+            //    {
+            //        var element = canvasItem as CompositeElement;
+
+            //        if (!(RelativeElements.Contains(element)))
+            //        {
+            //            if (element.RelativeElement != null && element.IsMerged)
+            //                RelativeElements.Add(element.RelativeElement);
+
+            //            DrawElements.Add(element);
+            //        }
+            //    }
+            //}
+
+            foreach (CompositeElement element in CompositeElements)
             {
-                DrawToothNumber(element);
+                //if (element.RelativeElement != null)
+                //{
+                //    DrawToothNumber(element.RelativeElement);
+                //}
+                Label label = DrawToothNumber(element);
+                if (element.CompositeLocation == CompositeLocation.Bot)
+                    label.Visibility = System.Windows.Visibility.Hidden;
             }
         }
 
-        private void DrawToothNumber(CompositeElement element)
+        private Label DrawToothNumber(CompositeElement element)
         {
             Label labelToothNumber = new Label();
 
@@ -434,9 +449,23 @@ namespace DantistApp
 
             element.RelativeToothNumber = labelToothNumber;
 
+            labelToothNumber.IsHitTestVisible = false;
+            //labelToothNumber.Foreground = Brushes.AliceBlue;
+            labelToothNumber.FontSize = 14;
+            labelToothNumber.FontWeight = FontWeights.UltraBold;
+            labelToothNumber.Effect = new DropShadowEffect()
+                {
+                    ShadowDepth=0,
+                          Color=Colors.Yellow,
+                          Opacity=0.8,
+                          BlurRadius=3
+                };
+
             canvas_main.Children.Add(labelToothNumber);
             Canvas.SetLeft(labelToothNumber, Canvas.GetLeft(element));
             Canvas.SetTop(labelToothNumber, Canvas.GetTop(element));
+
+            return labelToothNumber;
         }
 
         private void DeleteToothNumber(Label labelToothNumber, CompositeElement element)

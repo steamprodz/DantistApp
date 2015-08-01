@@ -273,16 +273,25 @@ namespace DantistApp
             //_bufferUndoRedo_Old.StartAction(bufAct);
             _bufferUndoRedo.RecordStateBefore(canvas);
 
-            // костылэйшн: удаление всего композита вместо частей
-            if (element is CompositeElement &&
-                (element as CompositeElement).IsMerged == true)
+            if (element is CompositeElement)
             {
-                canvas.Children.Remove(element);
-                canvas.Children.Remove((element as CompositeElement).RelativeElement);
-            }
-            else
-            {
-                canvas.Children.Remove(element);
+                CompositeElement compElement = element as CompositeElement;
+                if (compElement.RelativeToothNumber != null)
+                {
+                    canvas.Children.Remove(compElement.RelativeToothNumber);
+                }
+                // костылэйшн: удаление всего композита вместо частей
+                if (compElement.IsMerged == true)
+                {
+                    canvas.Children.Remove(compElement);
+                    canvas.Children.Remove(compElement.RelativeElement);
+                    if (compElement.RelativeElement.RelativeToothNumber != null)
+                        canvas.Children.Remove(compElement.RelativeElement.RelativeToothNumber);
+                }
+                else
+                {
+                    canvas.Children.Remove(compElement);
+                }
             }
             _bufferUndoRedo.RecordStateAfter(canvas);
         }
