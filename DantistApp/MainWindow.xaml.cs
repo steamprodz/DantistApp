@@ -404,7 +404,7 @@ namespace DantistApp
             List<CompositeElement> DrawElements = new List<CompositeElement>();
             List<CompositeElement> CompositeElements = new List<CompositeElement>();
 
-            foreach (var item in canvas_main.Children)
+            foreach (var item in CanvasMain.Children)
             {
                 if (item is CompositeElement)
                 {
@@ -461,7 +461,7 @@ namespace DantistApp
                           BlurRadius=3
                 };
 
-            canvas_main.Children.Add(labelToothNumber);
+            CanvasMain.Children.Add(labelToothNumber);
             Canvas.SetLeft(labelToothNumber, Canvas.GetLeft(element));
             Canvas.SetTop(labelToothNumber, Canvas.GetTop(element));
 
