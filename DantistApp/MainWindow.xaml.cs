@@ -101,44 +101,44 @@ namespace DantistApp
 
         private void MenuItem_RemoveAllElements_Click(object sender, RoutedEventArgs e)
         {
-            _bufferUndoRedo.RecordStateBefore(canvas_main);
-            canvas_main.Children.Clear();
-            _bufferUndoRedo.RecordStateAfter(canvas_main);
+            _bufferUndoRedo.RecordStateBefore(CanvasMain);
+            CanvasMain.Children.Clear();
+            _bufferUndoRedo.RecordStateAfter(CanvasMain);
         }
 
         private void commandBinding_Undo_Executed(object sender, RoutedEventArgs e)
         {
             //_bufferUndoRedo_Old.Undo();
             _bufferUndoRedo.Undo();
-            foreach (var item in canvas_main.Children)
+            foreach (var item in CanvasMain.Children)
             {
-                RefreshContextMenu(item as Element, canvas_main);
+                RefreshContextMenu(item as Element, CanvasMain);
             }
         }
 
         private void commandBinding_Redo_Executed(object sender, RoutedEventArgs e)
         {
             _bufferUndoRedo.Redo();
-            foreach (var item in canvas_main.Children)
+            foreach (var item in CanvasMain.Children)
             {
-                RefreshContextMenu(item as Element, canvas_main);
+                RefreshContextMenu(item as Element, CanvasMain);
             }
         }
 
         private void MenuItem_RemoveSelectedElements_Click(object sender, RoutedEventArgs e)
         {
-            _bufferUndoRedo.RecordStateBefore(canvas_main);
+            _bufferUndoRedo.RecordStateBefore(CanvasMain);
             foreach (var item in _selectedElements)
             {
-                canvas_main.Children.Remove(item);
+                CanvasMain.Children.Remove(item);
             }
-            _bufferUndoRedo.RecordStateAfter(canvas_main);
+            _bufferUndoRedo.RecordStateAfter(CanvasMain);
         }
 
         private void button_AddReport_Click(object sender, RoutedEventArgs e)
         {
             UserControls.ReportElement reportElement = new UserControls.ReportElement { Width = 190 };
-            reportElement.MainCanvas = canvas_main;
+            reportElement.MainCanvas = CanvasMain;
 
             var buttonContainer = Helpers.CopyObject(button_AddReport.Parent as Grid);
             (buttonContainer.Children[0] as Button).Click += button_AddReport_Click;
@@ -209,7 +209,7 @@ namespace DantistApp
         {
             //List<CompositeElement> compositeElementList = new List<CompositeElement>();
 
-            _bufferUndoRedo.RecordStateBefore(canvas_main);
+            _bufferUndoRedo.RecordStateBefore(CanvasMain);
             foreach (CompositeElementShell compositeElementShell in compositeElementShellList)
             {
                 foreach (CompositeElement element in (compositeElementShell.Content as Grid).Children)
@@ -218,7 +218,7 @@ namespace DantistApp
                     AddElementToCanvas(element, false);
                 }
             }
-            _bufferUndoRedo.RecordStateAfter(canvas_main);
+            _bufferUndoRedo.RecordStateAfter(CanvasMain);
 
             //foreach (CompositeElement element in compositeElementList)
             //{
@@ -297,7 +297,7 @@ namespace DantistApp
             {
                 foreach (CompositeElement element in (compositeElementShell.Content as Grid).Children)
                 {
-                    foreach (var item in canvas_main.Children)
+                    foreach (var item in CanvasMain.Children)
                     {
                         if (item is CompositeElement)
                         {
@@ -314,7 +314,7 @@ namespace DantistApp
 
             foreach (var item in removeList)
             {
-                RemoveElement(item, canvas_main);
+                RemoveElement(item, CanvasMain);
             }
         }
         
@@ -403,7 +403,7 @@ namespace DantistApp
             List<CompositeElement> RelativeElements = new List<CompositeElement>();
             List<CompositeElement> DrawElements = new List<CompositeElement>();
 
-            foreach (var canvasItem in canvas_main.Children)
+            foreach (var canvasItem in CanvasMain.Children)
             {
                 if (canvasItem is CompositeElement)
                 {
@@ -434,7 +434,7 @@ namespace DantistApp
 
             element.RelativeToothNumber = labelToothNumber;
 
-            canvas_main.Children.Add(labelToothNumber);
+            CanvasMain.Children.Add(labelToothNumber);
             Canvas.SetLeft(labelToothNumber, Canvas.GetLeft(element));
             Canvas.SetTop(labelToothNumber, Canvas.GetTop(element));
         }
@@ -442,14 +442,14 @@ namespace DantistApp
         private void DeleteToothNumber(Label labelToothNumber, CompositeElement element)
         {
             element.RelativeToothNumber = null;
-            canvas_main.Children.Remove(labelToothNumber);
+            CanvasMain.Children.Remove(labelToothNumber);
         }
 
         private void menuItem_HideTeethNumbers_Click(object sender, RoutedEventArgs e)
         {
             List<Label> removeList = new List<Label>();
 
-            foreach (var item in canvas_main.Children)
+            foreach (var item in CanvasMain.Children)
             {
                 if (item is Label)
                     removeList.Add(item as Label);
@@ -457,7 +457,7 @@ namespace DantistApp
 
             foreach (var item in removeList)
             {
-                canvas_main.Children.Remove(item);
+                CanvasMain.Children.Remove(item);
             }
         }
 

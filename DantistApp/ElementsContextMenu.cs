@@ -97,7 +97,7 @@ namespace DantistApp
                 (object sender, RoutedEventArgs e) =>
                 {
 
-                    _bufferUndoRedo.RecordStateBefore(canvas_main);
+                    _bufferUndoRedo.RecordStateBefore(CanvasMain);
 
                     element.IsFixed = true;
                     Helpers.ReplaceMenuItem(mi_fix, mi_unfix);
@@ -112,7 +112,7 @@ namespace DantistApp
                         }
                     }
 
-                    _bufferUndoRedo.RecordStateAfter(canvas_main);
+                    _bufferUndoRedo.RecordStateAfter(CanvasMain);
 
                 };
         }
@@ -123,7 +123,7 @@ namespace DantistApp
             mi_unfix.Click +=
                 (object sender, RoutedEventArgs e) =>
                 {
-                    _bufferUndoRedo.RecordStateBefore(canvas_main);
+                    _bufferUndoRedo.RecordStateBefore(CanvasMain);
 
                     element.IsFixed = false;
                     Helpers.ReplaceMenuItem(mi_unfix, mi_fix);
@@ -138,7 +138,7 @@ namespace DantistApp
                         }
                     }
 
-                    _bufferUndoRedo.RecordStateAfter(canvas_main);
+                    _bufferUndoRedo.RecordStateAfter(CanvasMain);
 
                 };
         }
@@ -154,7 +154,7 @@ namespace DantistApp
                     if (element is CompositeElement == false)
                         return;
 
-                    _bufferUndoRedo.RecordStateBefore(canvas_main);
+                    _bufferUndoRedo.RecordStateBefore(CanvasMain);
 
                     CompositeElement compElement = element as CompositeElement;
                     compElement.IsMerged = true;
@@ -166,7 +166,7 @@ namespace DantistApp
                         _bufferUndoRedo.UndoStack.Pop();
                     }
 
-                    _bufferUndoRedo.RecordStateAfter(canvas_main);
+                    _bufferUndoRedo.RecordStateAfter(CanvasMain);
                 };
         }
 
@@ -179,7 +179,7 @@ namespace DantistApp
                     if (element is CompositeElement == false)
                         return;
 
-                    _bufferUndoRedo.RecordStateBefore(canvas_main);
+                    _bufferUndoRedo.RecordStateBefore(CanvasMain);
 
                     CompositeElement compElement = element as CompositeElement;
                     compElement.IsMerged = false;
@@ -191,7 +191,7 @@ namespace DantistApp
                         _bufferUndoRedo.UndoStack.Pop();
                     }
 
-                    _bufferUndoRedo.RecordStateAfter(canvas_main);
+                    _bufferUndoRedo.RecordStateAfter(CanvasMain);
                 };
         }
 

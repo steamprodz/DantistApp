@@ -61,8 +61,34 @@ namespace DantistApp.Elements
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
-        
+
+        private int _zIndexBot;
+        public int ZIndexBot
+        {
+            get { return _zIndexBot; }
+
+            set
+            {
+                Panel.SetZIndex(element_bot, value);
+                _zIndexBot = value;
+
+                OnPropertyChanged("ZIndexBot");
+            }
+        }
+
+        private int _zIndexTop;
+        public int ZIndexTop
+        {
+            get { return _zIndexTop; }
+
+            set
+            {
+                Panel.SetZIndex(element_top, value);
+                _zIndexTop = value;
+
+                OnPropertyChanged("ZIndexTop");
+            }
+        }
 
         private int _centerDistance;
         public int CenterDistance
