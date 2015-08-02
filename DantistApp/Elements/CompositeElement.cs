@@ -39,9 +39,28 @@ namespace DantistApp.Elements
             get { return _isMerged; }
             set
             {
+
+                
+
                 _isMerged = value;
                 if (RelativeElement != null)
                     RelativeElement._isMerged = value;
+
+                if (RelativeToothNumber != null)
+                {
+                    if (IsMerged)
+                    {
+                        if (CompositeLocation == Elements.CompositeLocation.Bot)
+                            RelativeToothNumber.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    else
+                    {
+                        RelativeToothNumber.Visibility = System.Windows.Visibility.Visible;
+                        Canvas.SetLeft(RelativeToothNumber, Position.X);
+                        Canvas.SetTop(RelativeToothNumber, Position.Y);
+                    }
+                }
+                
             }
         }
 
@@ -57,9 +76,22 @@ namespace DantistApp.Elements
                     Canvas.SetTop(RelativeElement, RelativeElement.Position.Y + value.Y - _position.Y);
                     RelativeElement._position = new Point(RelativeElement.Position.X + value.X - _position.X,
                                                             RelativeElement.Position.Y + value.Y - _position.Y);
+                    
                 }
                 Canvas.SetLeft(this, value.X);
                 Canvas.SetTop(this, value.Y);
+
+                if (RelativeToothNumber != null)
+                {
+                    Canvas.SetLeft(RelativeToothNumber, value.X);
+                    Canvas.SetTop(RelativeToothNumber, value.Y);
+                    if (CompositeLocation == Elements.CompositeLocation.Bot)
+                    {
+                        Canvas.SetLeft(RelativeElement.RelativeToothNumber, RelativeElement.Position.X);
+                        Canvas.SetTop(RelativeElement.RelativeToothNumber, RelativeElement.Position.Y);
+                    }
+                }
+                
                 _position = value;
             }
         }
