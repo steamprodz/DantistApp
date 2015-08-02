@@ -24,9 +24,9 @@ namespace DantistApp
         {
             if (_activeElement != null)
             {
-                _bufferUndoRedo.RecordStateAfter(canvas_main);
+                _bufferUndoRedo.RecordStateAfter(CanvasMain);
                 
-                canvas_main.ReleaseMouseCapture();
+                CanvasMain.ReleaseMouseCapture();
                 _activeElement = null;
             }
             
@@ -41,13 +41,13 @@ namespace DantistApp
             {
                 bool canMove = true;
 
-                var position = e.GetPosition(canvas_main);
+                var position = e.GetPosition(CanvasMain);
                 var offset = position - _mousePosition;
                 _mousePosition = position;
                 Point destinationPoint = new Point(Canvas.GetLeft(_activeElement) + offset.X,
                                                    Canvas.GetTop(_activeElement) + offset.Y);
 
-                Rect canvasRect = new Rect(canvas_main.RenderSize);
+                Rect canvasRect = new Rect(CanvasMain.RenderSize);
 
                 //check: canvas contains element
                 Rect elementRect = new Rect(destinationPoint.X, destinationPoint.Y,
@@ -92,13 +92,13 @@ namespace DantistApp
 
                     if (coordsTextBoxOld != null)
                     {
-                        canvas_main.Children.Remove(coordsTextBoxOld);
+                        CanvasMain.Children.Remove(coordsTextBoxOld);
                     }
 
                     coordsTextBoxNew = new TextBox();
                     //if (_activeElement is CompositeElement && (_activeElement.Name == "element_top"))
                     coordsTextBoxNew.Text = string.Format("{0};{1}", p.X, p.Y);
-                    canvas_main.Children.Add(coordsTextBoxNew);
+                    CanvasMain.Children.Add(coordsTextBoxNew);
                     Canvas.SetLeft(coordsTextBoxNew, p.X + 50);
                     Canvas.SetTop(coordsTextBoxNew, p.Y + 50);
 

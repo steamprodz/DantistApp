@@ -41,7 +41,7 @@ namespace DantistApp
 
             if (basicElement is GroupElement && !(basicElement is CompositeElement))
             {
-                GroupElement sameGroupElement = (from item in canvas_main.Children.OfType<GroupElement>().DefaultIfEmpty()
+                GroupElement sameGroupElement = (from item in CanvasMain.Children.OfType<GroupElement>().DefaultIfEmpty()
                                                  where item != null && !(item is CompositeElement) &&
                                                  item.GroupName == (basicElement as GroupElement).GroupName
                                                  select item).FirstOrDefault();
@@ -50,19 +50,19 @@ namespace DantistApp
                     if (sameGroupElement.Source == basicElement.Source)
                         canAdd = false;
                     else
-                        canvas_main.Children.Remove(sameGroupElement);
+                        CanvasMain.Children.Remove(sameGroupElement);
                 }
             }
 
             if (canAdd)
             {
                 if (recordInBuffer)
-                    _bufferUndoRedo.RecordStateBefore(canvas_main);
+                    _bufferUndoRedo.RecordStateBefore(CanvasMain);
 
-                AddToCanvas(basicElement, canvas_main);
+                AddToCanvas(basicElement, CanvasMain);
 
                 if (recordInBuffer)
-                    _bufferUndoRedo.RecordStateAfter(canvas_main);
+                    _bufferUndoRedo.RecordStateAfter(CanvasMain);
             }
         }
 

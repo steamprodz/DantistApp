@@ -34,9 +34,9 @@ namespace DantistApp
             }
 
             var element = e.Source as Element;
-            if (element is Element && canvas_main.CaptureMouse())
+            if (element is Element && CanvasMain.CaptureMouse())
             {
-                _bufferUndoRedo.RecordStateBefore(canvas_main);
+                _bufferUndoRedo.RecordStateBefore(CanvasMain);
 
                 if (Keyboard.IsKeyDown(Key.LeftShift) == false)
                 {
@@ -61,7 +61,7 @@ namespace DantistApp
                     }
                 }
 
-                _mousePosition = e.GetPosition(canvas_main);
+                _mousePosition = e.GetPosition(CanvasMain);
                 _activeElement = element;
 
                 _previousActiveElementPos = _mousePosition;
