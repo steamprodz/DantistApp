@@ -208,7 +208,7 @@ namespace DantistApp
         private void AddSelectedElementsToCanvas(List<CompositeElementShell> compositeElementShellList)
         {
             //List<CompositeElement> compositeElementList = new List<CompositeElement>();
-
+            int i = 0;
             _bufferUndoRedo.RecordStateBefore(canvas_main);
             foreach (CompositeElementShell compositeElementShell in compositeElementShellList)
             {
@@ -216,6 +216,7 @@ namespace DantistApp
                 {
                     //compositeElementList.Add(element);
                     AddElementToCanvas(element, false);
+                    i++;     
                 }
             }
             _bufferUndoRedo.RecordStateAfter(canvas_main);
