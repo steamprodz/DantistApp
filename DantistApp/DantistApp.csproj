@@ -49,17 +49,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>App_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.5.6\lib\itextsharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -99,6 +94,10 @@
     <Compile Include="Tools\ImageHelper.cs" />
     <Compile Include="Tools\Helpers.cs" />
     <Compile Include="Tools\PdfHelper.cs" />
+    <Compile Include="Tools\ProductCode.xaml.cs">
+      <DependentUpon>ProductCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\Security.cs" />
     <Compile Include="Tools\TwoColumnHeaderFooter.cs" />
     <Compile Include="UndoRedoBuffer.cs" />
     <Compile Include="UndoRedoBuffer_Old.cs" />
@@ -140,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SettingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\ProductCode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -908,6 +911,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\open_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\key_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\App_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="App_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,13 @@
+﻿<Window x:Class="DantistApp.Tools.ProductCode"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Код продукта" Height="220.8" Width="488.8" ResizeMode="NoResize">
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="57" Margin="10,10,0,0" VerticalAlignment="Top" Width="57" Source="Icons/key_icon.png"/>
+        <Label Content="Код продукта" HorizontalAlignment="Left" Margin="10,85,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox_ProductKey" HorizontalAlignment="Left" Height="23" Margin="124,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="344"/>
+        <Button x:Name="button_OK" Content="OK" HorizontalAlignment="Left" Margin="277,149,0,0" VerticalAlignment="Top" Width="79" Height="27" Click="button_OK_Click"/>
+        <Button x:Name="button_Cancel" Content="Отмена" HorizontalAlignment="Left" Margin="389,149,0,0" VerticalAlignment="Top" Width="79" Height="27" Click="button_Cancel_Click"/>
+
+    </Grid>
+</Window>
