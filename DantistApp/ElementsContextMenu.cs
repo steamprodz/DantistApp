@@ -298,15 +298,19 @@ namespace DantistApp
                     ScalingWindow.Top = this.Top + compElement.Position.Y - 50;
                     ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(compElement.Source.ToString(), @"\d+").Value) + ")";
                     ScalingWindow.Show();
-                    DrawScalingLine(compElement, canvas);
+                    RefreshScalingLine(compElement, canvas);
 
                     ScalingWindow.Slider_Scale.ValueChanged += (object sender_slider, RoutedPropertyChangedEventArgs<double> e_slider) =>
                         {
-                            DrawScalingLine(compElement, canvas);
+                            RefreshScalingLine(ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
                         };
                     ScalingWindow.LocationChanged += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
                         {
-                            DrawScalingLine(compElement, canvas);
+                            RefreshScalingLine(ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
+                        };
+                    ScalingWindow.Closed += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
+                        {
+                            canvas.Children.Remove(ScalingLine);
                         };
 
                     ScalingWindow.Slider_Scale.Tag = compElement;
@@ -315,28 +319,7 @@ namespace DantistApp
         #endregion MENU_ITEMS
         //==============================================================================================
 
-        private void DrawScalingLine(CompositeElement compElement, Canvas canvas)
-        {
-            Vector offset = new Vector(ScalingWindow.Width / 2, 0);//ScalingWindow.Height + 125);
-            Point translatedPoint = ScalingWindow.TranslatePoint(new Point(0, 0) + offset, canvas);
-
-            canvas.Children.Remove(ScalingLine);
-
-            ScalingLine = new Line();
-            ScalingLine.X1 = translatedPoint.X;
-            ScalingLine.Y1 = translatedPoint.Y;
-            
-            ScalingLine.X2 = compElement.Position.X + compElement.Width / 2;
-            ScalingLine.Y2 = compElement.Position.Y + compElement.Height / 8;
-            SolidColorBrush redBrush = new SolidColorBrush();
-            redBrush.Color = Colors.DarkGreen;
-            ScalingLine.StrokeThickness = 3;
-            ScalingLine.Stroke = redBrush;
-
-            //проверка, находится ли ScalingWindow в области канваса
-            if (new Rect(canvas.RenderSize).Contains(new Point(ScalingLine.X1, ScalingLine.Y1)) )
-                canvas.Children.Add(ScalingLine);
-        }
+        
 
         private TabItem FindParent_TabItem(FrameworkElement fworkElement)
         {

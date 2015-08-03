@@ -115,10 +115,10 @@ namespace DantistApp.Elements
             CompositeElement oldElement = this;
             CompositeElement oldRelElement = oldElement.RelativeElement;
             CompositeElement newRelElement = newElement.RelativeElement;
-            if (newRelElement == null )//&& newElement.Source != oldElement.Source)
+            if (newRelElement == null && oldRelElement != null)//&& newElement.Source != oldElement.Source)
             {
-                newElement.Position = new Point(oldElement.RelativeElement.Position.X - oldShift.X, oldElement.Position.Y);
-                newElement.Position = oldElement.Position;//new Point(oldElement.Position.X, oldElement.Position.Y);
+                //newElement.Position = new Point(oldRelElement.Position.X - oldShift.X, oldElement.Position.Y);
+                newElement.Position = oldElement.Position;
             }
             if (oldRelElement != null)
             {

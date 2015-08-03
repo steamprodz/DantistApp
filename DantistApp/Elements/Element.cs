@@ -146,6 +146,7 @@ namespace DantistApp.Elements
             {
                 CompositeElement compElement = this as CompositeElement;
                 CompositeElement relElement = compElement.RelativeElement;
+                
                 if (relElement != null && compElement.IsMerged)
                 {
                     relElement.Width /= relElement.Size;
