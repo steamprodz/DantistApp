@@ -31,6 +31,8 @@ namespace DantistApp.Elements
             set;
         }
 
+        public double HorizontalShift { get; set; }
+
         public Label RelativeToothNumber { get; set; }
 
         private bool _isMerged;
@@ -115,6 +117,25 @@ namespace DantistApp.Elements
             CompositeElement oldElement = this;
             CompositeElement oldRelElement = oldElement.RelativeElement;
             CompositeElement newRelElement = newElement.RelativeElement;
+
+            newElement.Position = oldElement.Position;
+            var dx = newElement.Width - oldElement.Width;
+            var dy = newElement.Height - oldElement.Height;
+
+            if (oldElement.CompositeLocation == Elements.CompositeLocation.Bot &&
+                newElement.Source != oldElement.Source)
+            {
+                newElement.Position -= new Vector(oldElement.HorizontalShift, 0);
+                newElement.Position += oldShift;
+            }
+
+            if (oldElement.CompositeLocation == Elements.CompositeLocation.Bot)
+            {
+                newElement.Position -= new Vector(dx, 0);
+            }
+            else
+                newElement.Position -= new Vector(dx / 2, dy);
+            
             //if (newRelElement == null && newElement.Source != oldElement.Source)
             //    //newElement.Position = new Point(100, 100);
             //    newElement.Position = oldElement.Position - oldShift;
