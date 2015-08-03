@@ -46,8 +46,8 @@
                 <MenuItem Header="Удалить выделенные объекты" HorizontalAlignment="Left" Width="320" Click="MenuItem_RemoveSelectedElements_Click"/>
             </MenuItem>
             <MenuItem Header="Зубы" Height="23">
-                <MenuItem Header="Объеденить все"/>
-                <MenuItem Header="Разъединить все"/>
+                <MenuItem x:Name="menuItem_MergeAllTeeth" Header="Объеденить все" Click="menuItem_MergeAllTeeth_Click"/>
+                <MenuItem x:Name="menuItem_UnmergeAllTeeth" Header="Разъединить все" Click="menuItem_UnmergeAllTeeth_Click"/>
                 <MenuItem x:Name="menuItem_ShowTeethNumbers" Header="Показать номера" Click="menuItem_ShowTeethNumbers_Click"/>
                 <MenuItem x:Name="menuItem_HideTeethNumbers" Header="Скрыть номера" Click="menuItem_HideTeethNumbers_Click"/>
             </MenuItem>

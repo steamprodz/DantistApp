@@ -481,6 +481,43 @@ namespace DantistApp
             }
         }
 
+        private void menuItem_MergeAllTeeth_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in CanvasMain.Children)
+            {
+                if (item is CompositeElement)
+                {
+                    CompositeElement compElement = item as CompositeElement;
+                    MenuItem contextMenu_merge = FindMenuItem(compElement.ContextMenu, MENU_ITEM_NAME_MERGE);
+                    if (contextMenu_merge != null)
+                    {
+                        contextMenu_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                        _bufferUndoRedo.UndoStack.Pop();
+                    }
+                }
+            }
+            
+        }
+
+        private void menuItem_UnmergeAllTeeth_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in CanvasMain.Children)
+            {
+                if (item is CompositeElement)
+                {
+                    CompositeElement compElement = item as CompositeElement;
+                    MenuItem contextMenu_merge = FindMenuItem(compElement.ContextMenu, MENU_ITEM_NAME_UNMERGE);
+                    if (contextMenu_merge != null)
+                    {
+                        contextMenu_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                        _bufferUndoRedo.UndoStack.Pop();
+                    }
+                }
+            }
+
+        }
+
+
     }
 
 
