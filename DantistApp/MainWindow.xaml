@@ -20,15 +20,17 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="26*"/>
-            <RowDefinition Height="387*"/>
-            <RowDefinition Height="182*"/>
+            <RowDefinition Height="386*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="59*"/>
+            <RowDefinition Height="53*"/>
             <RowDefinition Height="32*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="617*"/>
             <ColumnDefinition Width="401*"/>
         </Grid.ColumnDefinitions>
-        <Canvas x:Name="CanvasMain" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="612" Grid.Row="1" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp" MouseMove="MainCanvas_MouseMove" Margin="0,0.4,0,0" MouseRightButtonDown="canvas_main_MouseRightButtonDown">
+        <Canvas x:Name="CanvasMain" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="612" Grid.Row="1" MouseLeftButtonDown="MainCanvas_MouseLeftButtonDown" MouseLeftButtonUp="MainCanvas_MouseLeftButtonUp" MouseMove="MainCanvas_MouseMove" Margin="0,0.6,0,0" MouseRightButtonDown="canvas_main_MouseRightButtonDown">
             <Canvas.Background>
                 <ImageBrush ImageSource="Image/main.png" Stretch="Uniform"/>
             </Canvas.Background>
@@ -69,8 +71,8 @@
             <Button x:Name="btn_koronki_na_implantah" Content="12. Коронки на имплантах" Height="28" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
             <Button x:Name="btn_bolshe" Content="13. Больше" Height="30" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
         </StackPanel>
-        <Label Content="История болезни" Grid.Column="1" HorizontalAlignment="Left" Margin="230.2,2.4,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="110"/>
-        <TabControl x:Name="tabControl_elements" HorizontalAlignment="Left" Height="203" Margin="0,10.2,0,0" Grid.Row="2" VerticalAlignment="Top" Width="660" TabStripPlacement="Bottom" Grid.ColumnSpan="2" Grid.RowSpan="2" MouseDown="tabControl_elements_MouseDown" LostFocus="tabControl_elements_LostFocus">
+        <Label Content="История болезни" Grid.Column="1" HorizontalAlignment="Left" Margin="230.2,2.6,0,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="110"/>
+        <TabControl x:Name="tabControl_elements" HorizontalAlignment="Left" Height="203" Margin="0,10.2,0,0" Grid.Row="2" VerticalAlignment="Top" Width="660" TabStripPlacement="Bottom" Grid.ColumnSpan="2" Grid.RowSpan="4" MouseDown="tabControl_elements_MouseDown" LostFocus="tabControl_elements_LostFocus">
             <TabItem x:Name="tab_ver_chel" Header="1" Margin="0,0,-21.4,0">
                 <Grid x:Name="grid_ver_chel" Background="#FFE5E5E5">
                     <custom:GroupElement x:Name="image_chel_pazuha_l1" GroupName="chel top mid right" Size="1.55" StartLocation="378,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="Image\pazuhy\pazuha_l1.png" Height="44" Width="108" Margin="499,0,0,0"/>
@@ -707,7 +709,7 @@
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="490,1.8,59,66.8" Grid.Row="1" Height="25"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="490,39.8,59,30.8" Grid.Row="1" Height="23"/>
                                 <custom:CompositeElementShell SourceBot="Image/pervynni/28.png" Width="24" Size="1" Height="60" BotImageSize="3" HorizontalShift="2" HorizontalAlignment="Left" VerticalAlignment="Bottom" StartLocation="507,61" Margin="490,-13,0,0.2"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click" Grid.RowSpan="2"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,18.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/pervynni/43.png" Width="25" Margin="194,57.8,353,0" Grid.Row="1" Grid.RowSpan="2"/>
@@ -770,7 +772,7 @@
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/tymchasovi/38.png" Width="30" Margin="487,117,54.2,0"/>
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="491,48,57.2,97.6"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="490,88,57.2,57.6"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,66,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell SourceBot="Image/tymchasovi/18.png" Width="24" Size="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" BotImageSize="3" HorizontalShift="1" StartLocation="88,61" Margin="0,-13,528.2,0"/>
@@ -841,7 +843,7 @@
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni/38.png" Width="30" Margin="487,117,54.2,0"/>
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="491,48,57.2,97.6"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="490,88,57.2,57.6"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,66,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell SourceBot="Image/postiyni/18.png" Width="24" Size="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" BotImageSize="3" HorizontalShift="1" StartLocation="88,61" Margin="0,-13,528.2,0"/>
@@ -912,7 +914,7 @@
                                 <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/viniry/38.png" Width="30" Margin="487,117,54.2,0"/>
                                 <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="491,48,57.2,97.6"/>
                                 <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="490,88,57.2,57.6"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="529,12,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="529,43,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="529,66,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                                 <custom:CompositeElementShell SourceBot="Image/viniry/18.png" Width="24" Size="1" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" BotImageSize="3" HorizontalShift="1" StartLocation="88,61" Margin="0,-13,528.2,0"/>
@@ -941,87 +943,19 @@
                     <TabControl HorizontalAlignment="Left" Height="175" VerticalAlignment="Top" Width="654" Margin="0,0,-0.4,0" TabStripPlacement="Right">
                         <TabItem Header="1" HorizontalAlignment="Left" Width="60">
                             <Grid Background="#FFE5E5E5">
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/18.png" Width="24" Margin="16,0,546.4,121.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/48.png" Width="30" Margin="13,118,543.4,0"/>
-                                <Label Content="18" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="17,49,543.4,96.6"/>
-                                <Label Content="48" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="15,89,545.4,56.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/15.PNG" Margin="132,0,434.4,119.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/45.PNG" Width="27" Margin="129,112,430.4,0"/>
-                                <Label Content="15" HorizontalAlignment="Center" VerticalAlignment="Center" Width="25" Margin="131,49,430.4,96.6"/>
-                                <Label Content="45" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="131,83,433.4,62.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/13.png" Width="22" Margin="196,0,368.4,120.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/43.PNG" Width="25" Margin="194,105,367.4,0"/>
-                                <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="195,48,368.4,97.6"/>
-                                <Label Content="43" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="195,76,368.4,69.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/11.png" Width="24" Margin="251,0,311.4,120.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/41.png" Width="22" Margin="252,109,312.4,0"/>
-                                <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="252,50,311.4,94.6"/>
-                                <Label Content="41" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="252,79,311.4,64.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/21.PNG" Width="24" Margin="278,0,284.4,120.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/31.PNG" Width="22" Margin="279,109,285.4,0"/>
-                                <Label Content="21" HorizontalAlignment="Center" VerticalAlignment="Center" Width="22" Margin="280,50,284.4,94.6"/>
-                                <Label Content="31" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Margin="280,79,286.4,65.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/25.PNG" Margin="389,0,177.4,120.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/35.PNG" Width="27" Margin="386,111,173.4,0"/>
-                                <Label Content="25" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="388,47,176.4,98.6"/>
-                                <Label Content="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="388,82,176.4,63.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/26.png" Width="32" Margin="414,0,140.4,122.6"/>
-                                <custom:CompositeElementShell VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/36.PNG" Width="32" HorizontalAlignment="Right" Margin="0,115,140.4,0"/>
-                                <Label Content="26" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="418,48,142.4,97.6"/>
-                                <Label Content="36" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="418,82,142.4,63.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/17.PNG" Width="31" Margin="52,0,503.4,120.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/47.png" Width="32" Margin="51,117,503.4,0"/>
-                                <Label Content="17" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="26" Margin="55,51,507.4,92.6"/>
-                                <Label Content="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="26" Margin="55,90,507.4,53.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/16.png" Width="32" Margin="90,0,464.4,122.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/46.png" Width="34" Margin="89,115,463.4,0"/>
-                                <Label Content="16" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="93,48,467.4,97.6"/>
-                                <Label Content="46" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="93,86,467.4,59.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/14.PNG" Width="21" Margin="164,0,401.4,119.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/44.png" Width="26" Margin="162,110,398.4,0"/>
-                                <Label Content="14" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,51,398.4,93.6"/>
-                                <Label Content="44" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,80,398.4,63.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/12.png" Width="18" Margin="228,0,340.4,120.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/42.png" Width="22" Margin="226,109,338.4,0"/>
-                                <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Center" Width="22" Margin="225,49,339.4,95.6"/>
-                                <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="226,79,338.4,65.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/22.png" Width="18" Margin="310,0,258.4,121.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/32.png" Width="22" Margin="308,108,256.4,0"/>
-                                <Label Content="22" HorizontalAlignment="Center" VerticalAlignment="Center" Width="22" Margin="307,50,257.4,94.6"/>
-                                <Label Content="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="308,78,255.4,67.6" Height="24"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/23.png" Width="22" Margin="334,0,230.4,121.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/33.PNG" Width="25" Margin="333,104,228.4,0"/>
-                                <Label Content="23" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Margin="333,49,229.4,96.6"/>
-                                <Label Content="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="22" Margin="334,76,230.4,69.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/24.PNG" Width="21" Margin="361,0,204.4,121.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/34.png" Width="26" Margin="358,108,202.4,0"/>
-                                <Label Content="24" HorizontalAlignment="Center" VerticalAlignment="Center" Width="25" Margin="359,49,202.4,95.6"/>
-                                <Label Content="34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="25" Margin="359,78,202.4,66.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/27.png" Width="31" Margin="449,0,106.4,119.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/37.png" Width="32" Margin="448,117,106.4,0"/>
-                                <Label Content="27" HorizontalAlignment="Center" VerticalAlignment="Center" Width="25" Margin="452,48,109.4,97.6"/>
-                                <Label Content="37" HorizontalAlignment="Center" VerticalAlignment="Center" Width="25" Margin="452,83,109.4,62.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Bottom" SourceBot="Image/postiyni_mostovi/28.PNG" Width="24" Margin="489,0,73.4,122.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/38.png" Width="30" Margin="486,117,70.4,0"/>
-                                <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="490,48,73.4,97.6"/>
-                                <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="490,88,73.4,57.6"/>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="2" HorizontalAlignment="Left" Width="60">
-                            <Grid Background="#FFE5E5E5">
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/18.PNG" Width="24" Size="1" HorizontalAlignment="Right" BotImageSize="8" HorizontalShift="5.5" StartLocation="88,61" Margin="0,-17,562.4,116.8" Height="69"/>
-                                <Label Content="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="-1,0,567.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/17.PNG" Width="31" Size="1" HorizontalShift="4" HorizontalAlignment="Left" StartLocation="116,65" Margin="30,-18,0,0" BotImageSize="9" Height="73" VerticalAlignment="Top"/>
-                                <Label Content="17" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="39,0,536.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/16.PNG" Width="32" Size="1" HorizontalAlignment="Center" HorizontalShift="4" Height="79" VerticalAlignment="Bottom" StartLocation="148,62" Margin="68,-28,486.4,117.8" BotImageSize="8"/>
-                                <Label Content="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="73,0,492.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/15.PNG" Size="1" Width="20" BotImageSize="10" HorizontalShift="5" Height="84" VerticalAlignment="Bottom" HorizontalAlignment="Center" StartLocation="181,61" Margin="114,-29,452.4,113.8"/>
-                                <Label Content="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="114,0,453.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/14.PNG" Size="1" Width="21" Height="80" VerticalAlignment="Bottom" HorizontalAlignment="Center" HorizontalShift="6" BotImageSize="12" StartLocation="205,63" Margin="147,-25,418.4,113.8"/>
-                                <Label Content="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="146,0,420.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/13.PNG" Size="1" Width="22" BotImageSize="11" HorizontalShift="5" HorizontalAlignment="Left" StartLocation="230,52" Margin="182,-36,0,113.8" Height="91" VerticalAlignment="Bottom"/>
-                                <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="181,0,385.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/12.PNG" Size="1" Width="19" BotImageSize="12" HorizontalShift="6.5" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="216,-31,0,0" Height="85" VerticalAlignment="Top">
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/18.PNG" Width="24" Size="1" HorizontalAlignment="Right" BotImageSize="8" HorizontalShift="5.5" StartLocation="88,61" Margin="0,-17,553.4,117.6"/>
+                                <Label Content="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="7,0,555.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/17.PNG" Width="31" Size="1" HorizontalShift="4" HorizontalAlignment="Left" StartLocation="116,65" Margin="40,-21,0,117.6" BotImageSize="9"/>
+                                <Label Content="17" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="41,0,520.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/16.PNG" Width="32" Size="1" HorizontalAlignment="Left" HorizontalShift="4" StartLocation="148,62" Margin="76,-27,0,117.6" BotImageSize="8"/>
+                                <Label Content="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="77,0,484.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/15.png" Size="1" Width="20" BotImageSize="10" HorizontalShift="5" HorizontalAlignment="Left" StartLocation="181,61" Margin="113,-32,0,117.6"/>
+                                <Label Content="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="109,0,452.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/14.PNG" Size="1" Width="21" HorizontalAlignment="Left" HorizontalShift="6" BotImageSize="12" StartLocation="205,63" Margin="143,-27,0,117.6"/>
+                                <Label Content="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="140,0,420.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/13.png" Size="1" Width="22" BotImageSize="11" HorizontalShift="5" HorizontalAlignment="Left" StartLocation="230,52" Margin="176,-38,0,117.6"/>
+                                <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="174,0,388.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/12.PNG" Size="1" Width="19" BotImageSize="12" HorizontalShift="6.5" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="208,-34,0,117.6">
                                     <custom:CompositeElementShell.RenderTransform>
                                         <TransformGroup>
                                             <ScaleTransform/>
@@ -1031,74 +965,388 @@
                                         </TransformGroup>
                                     </custom:CompositeElementShell.RenderTransform>
                                 </custom:CompositeElementShell>
-                                <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="215,0,351.4,89.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/11.PNG" Size="1" Width="24" HorizontalShift="6" Height="97" BotImageSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Center" StartLocation="282,56" Margin="245,-42,317.4,113.8"/>
-                                <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="246,0,320.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/21.PNG" Size="1" Width="24" BotImageSize="14" HorizontalShift="8" Height="97" HorizontalAlignment="Center" VerticalAlignment="Bottom" StartLocation="311,56" Margin="277,-42,285.4,113.8"/>
-                                <Label Content="21" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="278,0,288.4,88.8"/>
-                                <custom:CompositeElementShell x:Name="_1" SourceBot="Image/postiyni_mostovi/22.PNG" Size="1" Width="19" Height="85" VerticalAlignment="Bottom" HorizontalAlignment="Left" BotImageSize="12" HorizontalShift="6" StartLocation="339,65" Margin="313,-30,0,113.8"/>
-                                <Label Content="22" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="311,0,255.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/23.PNG" Size="1" Width="22" BotImageSize="11" HorizontalShift="6" HorizontalAlignment="Left" Height="95" VerticalAlignment="Bottom" StartLocation="364,52" Margin="344,-40,0,113.8"/>
-                                <Label Content="23" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="344,0,222.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/24.PNG" Width="21" Size="1" Height="80" BotImageSize="12" HorizontalShift="6.5" HorizontalAlignment="Center" VerticalAlignment="Bottom" StartLocation="392,63" Margin="380,-25,185.4,113.8"/>
-                                <Label Content="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="379,0,187.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/25.PNG" Width="20" Size="1" Height="84" HorizontalShift="4.5" HorizontalAlignment="Center" VerticalAlignment="Bottom" StartLocation="416,61" Margin="414,-29,152.4,113.8" BotImageSize="10"/>
-                                <Label Content="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="413,0,153.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/26.PNG" Width="32" Size="1" Height="79" VerticalAlignment="Bottom" HorizontalAlignment="Center" StartLocation="439,62" Margin="444,-24,110.4,113.8" BotImageSize="8" HorizontalShift="4"/>
-                                <Label Content="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="450,0,117.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/27.PNG" Width="31" Size="1" HorizontalAlignment="Right" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="0,-18,69.4,113.8" BotImageSize="9" HorizontalShift="4"/>
-                                <Label Content="27" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="490,0,76.4,88.8"/>
-                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/28.PNG" Width="24" Size="1" Height="69" BotImageSize="8" HorizontalShift="2.5" HorizontalAlignment="Center" VerticalAlignment="Bottom" StartLocation="507,61" Margin="526,-14,36.4,113.8"/>
-                                <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="528,0,39.4,88.8"/>
-                                <Button Content="+16" HorizontalAlignment="Left" Margin="549,1,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="206,0,356.4,89.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/11.png" Size="1" Width="24" HorizontalShift="6" Height="97" BotImageSize="14" VerticalAlignment="Bottom" StartLocation="282,56" Margin="0,-45,320.4,117.6" HorizontalAlignment="Right"/>
+                                <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="241,0,319.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/21.png" Size="1" Width="24" BotImageSize="14" HorizontalShift="8" StartLocation="311,56" Margin="0,-45,286.4,0" VerticalAlignment="Top" Height="97" HorizontalAlignment="Right"/>
+                                <Label Content="21" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="277,0,283.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/22.png" Size="1" Width="19" HorizontalAlignment="Left" BotImageSize="12" HorizontalShift="6" StartLocation="339,65" Margin="311,-30,0,117.6"/>
+                                <Label Content="22" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="308.5,0,252.9,88.8" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/23.png" Size="1" Width="22" BotImageSize="11" HorizontalShift="6" HorizontalAlignment="Left" StartLocation="364,52" Margin="340,-40,0,117.6"/>
+                                <Label Content="23" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="338,0,222.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/24.png" Width="21" Size="1" BotImageSize="12" HorizontalShift="6.5" HorizontalAlignment="Left" StartLocation="392,63" Margin="373,-25,0,117.6"/>
+                                <Label Content="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="372,0,190.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/25.png" Width="20" Size="1" HorizontalShift="4.5" HorizontalAlignment="Left" StartLocation="416,61" Margin="405,-29,0,117.6" BotImageSize="10"/>
+                                <Label Content="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="403,0,159.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/26.png" Width="32" Size="1" HorizontalAlignment="Left" StartLocation="439,62" Margin="431,-24,0,117.6" BotImageSize="8" HorizontalShift="4"/>
+                                <Label Content="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="435,0,126.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/27.png" Width="31" Size="1" HorizontalAlignment="Left" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="470,10,0,117.6" BotImageSize="9" HorizontalShift="4"/>
+                                <Label Content="27" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="472,0,89.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_mostovi/28.png" Width="24" Size="1" BotImageSize="8" HorizontalShift="2.5" HorizontalAlignment="Left" StartLocation="507,61" Margin="510,-14,0,117.6"/>
+                                <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="511,0,50.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/48.PNG" Width="36" Margin="6,119,0,-49.4" Height="100" BotImageSize="-5" ZIndexTop="1" HorizontalShift="-6" StartLocation="84,219"/>
+                                <Label Content="48" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="8.5,92.8,550.9,52.8" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/45.png" Width="35" Margin="119,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="180,232"/>
+                                <Label Content="45" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="124,93,435.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/43.png" Width="34" Margin="185,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="239,228"/>
+                                <Label Content="43" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="190,93,370.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/41.png" Width="30" Margin="246,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="287,233"/>
+                                <Label Content="41" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="249,93,311.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/31.png" Width="30" Margin="271,119,285.4,-17.4" Height="68" ZIndexTop="1" StartLocation="309,233"/>
+                                <Label Content="31" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="276,93,284.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/35.png" Width="35" Margin="394,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="409,232"/>
+                                <Label Content="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="396,93,162.4,52.6" Width="28" Height="24"/>
+                                <custom:CompositeElementShell VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/36.png" Width="Auto" Margin="423,119,121.4,-45.4" Height="96" ZIndexTop="1" StartLocation="438,229"/>
+                                <Label Content="36" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="432,93,127.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/47.png" Width="41" Margin="39,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="112,224"/>
+                                <Label Content="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Height="24" Margin="45.5,92.8,513.9,52.8"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/46.PNG" Width="42" Margin="79,119,0,-50.4" Height="101" ZIndexTop="1" StartLocation="146,229"/>
+                                <Label Content="46" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="86,93,474.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/44.png" Width="34" Margin="154,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="209,232"/>
+                                <Label Content="44" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,93,402.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/42.png" Width="28" Margin="218,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="262,235"/>
+                                <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="220,93,340.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/32.png" Width="28" Margin="301,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="332,235"/>
+                                <Label Content="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="303,93,256.4,52.6" Height="24" Width="27"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/33.png" Width="34" Margin="327,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="356,228"/>
+                                <Label Content="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="28" Margin="330,93,228.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/34.png" Width="34" Margin="360,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="382,232"/>
+                                <Label Content="34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="363,93,196.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/37.png" Width="41" Margin="463,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="473,224"/>
+                                <Label Content="37" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="470,93,89.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/38.png" Width="36" Margin="504,119,0,-41.4" Height="92" ZIndexTop="1" StartLocation="504,219"/>
+                                <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="511,93,48.4,52.6" Height="24"/>
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="549,1,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
                                 <Button Content="+" HorizontalAlignment="Left" Margin="549,32,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
                                 <Button Content="-" HorizontalAlignment="Left" Margin="549,56,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="3" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="60">
+                        <TabItem Header="2" HorizontalAlignment="Left" Width="60">
                             <Grid Background="#FFE5E5E5">
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/48.PNG" Width="36" Margin="10,66,0,0" Height="100" BotImageSize="-5" ZIndexTop="1" HorizontalShift="-6" StartLocation="84,219"/>
-                                <Label Content="48" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="15,22,545.4,123.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/45.png" Width="35" Margin="123,54,0,0" Height="82" ZIndexTop="1" StartLocation="180,232"/>
-                                <Label Content="45" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="132,16,434.4,129.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/43.png" Width="34" Margin="189,47,0,0" Height="74" ZIndexTop="1" StartLocation="239,228"/>
-                                <Label Content="43" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="196,9,369.4,136.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/41.png" Width="30" Margin="248,47,0,0" Height="68" ZIndexTop="1" StartLocation="287,233"/>
-                                <Label Content="41" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="253,12,312.4,131.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/31.png" Width="30" Margin="279,47,285.4,0" Height="68" ZIndexTop="1" StartLocation="309,233"/>
-                                <Label Content="31" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Margin="280,12,286.4,133.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/35.png" Width="35" Margin="393,50,0,0" Height="82" ZIndexTop="1" StartLocation="409,232"/>
-                                <Label Content="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="389,15,177.4,130.6"/>
-                                <custom:CompositeElementShell VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/36.png" Width="Auto" Margin="425,54,119.4,0" Height="96" ZIndexTop="1" StartLocation="438,229"/>
-                                <Label Content="36" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="418,15,142.4,130.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/47.png" Width="41" Margin="45,64,0,0" Height="96" ZIndexTop="1" StartLocation="112,224"/>
-                                <Label Content="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="26" Margin="55,23,507.4,120.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/46.PNG" Width="42" Margin="84,60,0,0" Height="101" ZIndexTop="1" StartLocation="146,229"/>
-                                <Label Content="46" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="93,19,467.4,126.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/44.png" Width="34" Margin="158,50,0,0" Height="78" ZIndexTop="1" StartLocation="209,232"/>
-                                <Label Content="44" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,13,398.4,130.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/42.png" Width="28" Margin="222,47,0,0" Height="68" ZIndexTop="1" StartLocation="262,235"/>
-                                <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="227,12,339.4,133.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/32.png" Width="28" Margin="305,45,0,0" Height="68" ZIndexTop="1" StartLocation="332,235"/>
-                                <Label Content="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="309,11,256.4,134.6" Height="24"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/33.png" Width="34" Margin="328,37,0,0" Height="74" ZIndexTop="1" StartLocation="356,228"/>
-                                <Label Content="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="22" Margin="334,9,230.4,136.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/34.png" Width="34" Margin="362,45,0,0" Height="78" ZIndexTop="1" StartLocation="382,232"/>
-                                <Label Content="34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="25" Margin="359,11,202.4,134.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/37.png" Width="41" Margin="467,54,0,0" Height="96" ZIndexTop="1" StartLocation="473,224"/>
-                                <Label Content="37" HorizontalAlignment="Center" VerticalAlignment="Center" Width="25" Margin="452,16,109.4,129.6"/>
-                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_mostovi/38.png" Width="36" Margin="513,54,0,0" Height="92" ZIndexTop="1" StartLocation="504,219"/>
-                                <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="23" Margin="490,21,73.4,124.6"/>
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="549,1,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+" HorizontalAlignment="Left" Margin="549,32,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
+                                <Button Content="-" HorizontalAlignment="Left" Margin="549,56,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/18.PNG" Width="24" Size="1" HorizontalAlignment="Right" BotImageSize="8" HorizontalShift="5.5" StartLocation="88,61" Margin="0,-17,553.4,117.6"/>
+                                <Label Content="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="7,0,555.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/17.PNG" Width="31" Size="1" HorizontalShift="4" HorizontalAlignment="Left" StartLocation="116,65" Margin="40,-21,0,117.6" BotImageSize="9"/>
+                                <Label Content="17" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="41,0,520.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/16.PNG" Width="32" Size="1" HorizontalAlignment="Left" HorizontalShift="4" StartLocation="148,62" Margin="76,-27,0,117.6" BotImageSize="8"/>
+                                <Label Content="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="77,0,484.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/15.png" Size="1" Width="20" BotImageSize="10" HorizontalShift="5" HorizontalAlignment="Left" StartLocation="181,61" Margin="113,-32,0,117.6"/>
+                                <Label Content="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="109,0,452.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/14.PNG" Size="1" Width="21" HorizontalAlignment="Left" HorizontalShift="6" BotImageSize="12" StartLocation="205,63" Margin="143,-27,0,117.6"/>
+                                <Label Content="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="140,0,420.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/13.png" Size="1" Width="22" BotImageSize="11" HorizontalShift="5" HorizontalAlignment="Left" StartLocation="230,52" Margin="176,-38,0,117.6"/>
+                                <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="174,0,388.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/12.PNG" Size="1" Width="19" BotImageSize="12" HorizontalShift="6.5" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="208,-34,0,117.6">
+                                    <custom:CompositeElementShell.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-0.56099999999999983"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </custom:CompositeElementShell.RenderTransform>
+                                </custom:CompositeElementShell>
+                                <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="206,0,356.4,89.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/11.png" Size="1" Width="24" HorizontalShift="6" Height="97" BotImageSize="14" VerticalAlignment="Bottom" StartLocation="282,56" Margin="0,-45,320.4,117.6" HorizontalAlignment="Right"/>
+                                <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="241,0,319.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/21.png" Size="1" Width="24" BotImageSize="14" HorizontalShift="8" StartLocation="311,56" Margin="0,-45,286.4,0" VerticalAlignment="Top" Height="97" HorizontalAlignment="Right"/>
+                                <Label Content="21" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="277,0,283.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/22.png" Size="1" Width="19" HorizontalAlignment="Left" BotImageSize="12" HorizontalShift="6" StartLocation="339,65" Margin="311,-30,0,117.6"/>
+                                <Label Content="22" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="308.5,0,252.9,88.8" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/23.png" Size="1" Width="22" BotImageSize="11" HorizontalShift="6" HorizontalAlignment="Left" StartLocation="364,52" Margin="340,-40,0,117.6"/>
+                                <Label Content="23" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="338,0,222.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/24.png" Width="21" Size="1" BotImageSize="12" HorizontalShift="6.5" HorizontalAlignment="Left" StartLocation="392,63" Margin="373,-25,0,117.6"/>
+                                <Label Content="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="372,0,190.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/25.png" Width="20" Size="1" HorizontalShift="4.5" HorizontalAlignment="Left" StartLocation="416,61" Margin="405,-29,0,117.6" BotImageSize="10"/>
+                                <Label Content="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="403,0,159.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/26.png" Width="32" Size="1" HorizontalAlignment="Left" StartLocation="439,62" Margin="431,-24,0,117.6" BotImageSize="8" HorizontalShift="4"/>
+                                <Label Content="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="435,0,126.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/27.png" Width="31" Size="1" HorizontalAlignment="Left" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="470,10,0,117.6" BotImageSize="9" HorizontalShift="4"/>
+                                <Label Content="27" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="472,0,89.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_mostovi/28.png" Width="24" Size="1" BotImageSize="8" HorizontalShift="2.5" HorizontalAlignment="Left" StartLocation="507,61" Margin="510,-14,0,117.6"/>
+                                <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="511,0,50.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/48.PNG" Width="36" Margin="6,119,0,-49.4" Height="100" BotImageSize="-5" ZIndexTop="1" HorizontalShift="-6" StartLocation="84,219"/>
+                                <Label Content="48" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="8.5,92.8,550.9,52.8" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/45.png" Width="35" Margin="119,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="180,232"/>
+                                <Label Content="45" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="124,93,435.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/43.png" Width="34" Margin="185,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="239,228"/>
+                                <Label Content="43" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="190,93,370.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/41.png" Width="30" Margin="246,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="287,233"/>
+                                <Label Content="41" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="249,93,311.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/31.png" Width="30" Margin="271,119,285.4,-17.4" Height="68" ZIndexTop="1" StartLocation="309,233"/>
+                                <Label Content="31" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="276,93,284.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/35.png" Width="35" Margin="394,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="409,232"/>
+                                <Label Content="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="396,93,162.4,52.6" Width="28" Height="24"/>
+                                <custom:CompositeElementShell VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/36.png" Width="Auto" Margin="423,119,121.4,-45.4" Height="96" ZIndexTop="1" StartLocation="438,229"/>
+                                <Label Content="36" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="432,93,127.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/47.png" Width="41" Margin="39,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="112,224"/>
+                                <Label Content="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Height="24" Margin="45.5,92.8,513.9,52.8"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/46.PNG" Width="42" Margin="79,119,0,-50.4" Height="101" ZIndexTop="1" StartLocation="146,229"/>
+                                <Label Content="46" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="86,93,474.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/44.png" Width="34" Margin="154,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="209,232"/>
+                                <Label Content="44" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,93,402.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/42.png" Width="28" Margin="218,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="262,235"/>
+                                <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="220,93,340.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/32.png" Width="28" Margin="301,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="332,235"/>
+                                <Label Content="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="303,93,256.4,52.6" Height="24" Width="27"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/33.png" Width="34" Margin="327,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="356,228"/>
+                                <Label Content="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="28" Margin="330,93,228.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/34.png" Width="34" Margin="360,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="382,232"/>
+                                <Label Content="34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="363,93,196.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/37.png" Width="41" Margin="463,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="473,224"/>
+                                <Label Content="37" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="470,93,89.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_mostovi/38.png" Width="36" Margin="504,119,0,-41.4" Height="92" ZIndexTop="1" StartLocation="504,219"/>
+                                <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="511,93,48.4,52.6" Height="24"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="3" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="60.8">
+                            <Grid Background="#FFE5E5E5">
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/18.png" Width="20" Size="1" HorizontalAlignment="Right" BotImageSize="8" HorizontalShift="2" StartLocation="88,61" Margin="0,-17,548.6,117.6"/>
+                                <Label Content="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="12,0,549.6,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/17.PNG" Width="25" Size="1" HorizontalShift="1" HorizontalAlignment="Left" StartLocation="116,65" Margin="51,-21,0,117.6" BotImageSize="9"/>
+                                <Label Content="17" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="45,0,515.6,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/16.PNG" Width="25" Size="1" HorizontalAlignment="Left" StartLocation="148,62" Margin="87,-27,0,117.6" BotImageSize="8"/>
+                                <Label Content="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="81,0,479.6,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/15.png" Size="1" Width="13" BotImageSize="10" HorizontalShift="2" HorizontalAlignment="Right" StartLocation="181,61" Margin="0,-32,446.6,117.6"/>
+                                <Label Content="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="116,0,444.6,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/14.PNG" Size="1" Width="16" HorizontalAlignment="Left" HorizontalShift="4" BotImageSize="12" StartLocation="205,63" Margin="155,-27,0,117.6"/>
+                                <Label Content="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="148,0,411.6,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/13.png" Size="1" Width="16" BotImageSize="11" HorizontalShift="3" HorizontalAlignment="Left" StartLocation="230,52" Margin="189,-38,0,117.6"/>
+                                <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="181,0,380.6,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/12.PNG" Size="1" Width="9" BotImageSize="12" HorizontalShift="2" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="223,-34,0,117.6">
+                                    <custom:CompositeElementShell.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-0.56099999999999983"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </custom:CompositeElementShell.RenderTransform>
+                                </custom:CompositeElementShell>
+                                <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="212,0,349.6,89.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/11.png" Size="1" Width="13" HorizontalShift="1" Height="97" BotImageSize="14" VerticalAlignment="Bottom" StartLocation="282,56" Margin="0,-45,318.6,117.6" HorizontalAlignment="Right"/>
+                                <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="243,0,316.6,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/21.png" Size="1" Width="13" BotImageSize="14" HorizontalShift="1" StartLocation="311,56" Margin="0,-45,286.6,0" VerticalAlignment="Top" Height="97" HorizontalAlignment="Right"/>
+                                <Label Content="21" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="275,0,284.6,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/22.png" Size="1" Width="9" HorizontalAlignment="Left" BotImageSize="12" StartLocation="339,65" Margin="318,-30,0,117.6"/>
+                                <Label Content="22" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="305,0,256.6,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/23.png" Size="1" Width="16" BotImageSize="11" HorizontalShift="3" HorizontalAlignment="Left" StartLocation="364,52" Margin="340,-40,0,117.6"/>
+                                <Label Content="23" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="333,0,226.6,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/24.png" Width="16" Size="1" BotImageSize="12" HorizontalShift="4" HorizontalAlignment="Left" StartLocation="392,63" Margin="373,-25,0,117.6"/>
+                                <Label Content="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="366,0,195.6,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/25.png" Width="13" Size="1" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="416,61" Margin="407,-29,0,117.6" BotImageSize="10"/>
+                                <Label Content="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="398,0,163.6,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/26.png" Width="25" Size="1" HorizontalAlignment="Left" StartLocation="439,62" Margin="434,-24,0,117.6" BotImageSize="8"/>
+                                <Label Content="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="429,0,131.6,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/27.png" Width="25" Size="1" HorizontalAlignment="Left" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="471,10,0,117.6" BotImageSize="9" HorizontalShift="1"/>
+                                <Label Content="27" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="467,0,93.6,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/postiyni_oporni/28.png" Width="20" Size="1" BotImageSize="8" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="507,61" Margin="509,-14,0,117.6"/>
+                                <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="504,0,56.6,88.6" Width="25"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/48.PNG" Width="31" Margin="10,119,0,-49.4" Height="100" BotImageSize="-5" ZIndexTop="1" HorizontalShift="-6" StartLocation="84,219"/>
+                                <Label Content="48" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="14,93,545.6,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/45.png" Width="27" Margin="127,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="180,232"/>
+                                <Label Content="45" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="128,93,430.6,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/43.png" Width="25" Margin="190,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="239,228"/>
+                                <Label Content="43" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="190,93,369.6,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/41.png" Width="21" Margin="250,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="287,233"/>
+                                <Label Content="41" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="249,93,310.6,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/31.png" Width="21" Margin="271,119,284.6,-17.4" Height="68" ZIndexTop="1" StartLocation="309,233"/>
+                                <Label Content="31" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="274,93,285.6,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/35.png" Width="27" Margin="392,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="409,232"/>
+                                <Label Content="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="392,93,165.6,52.6" Width="28" Height="24"/>
+                                <custom:CompositeElementShell VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/36.png" Width="38" Margin="422,119,125.6,-45.4" Height="96" ZIndexTop="1" StartLocation="438,229"/>
+                                <Label Content="36" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="429,93,129.6,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/47.png" Width="36" Margin="44,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="112,224"/>
+                                <Label Content="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="28" Height="24" Margin="51,93,506.6,52.6"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/46.PNG" Width="38" Margin="85,119,0,-50.4" Height="101" ZIndexTop="1" StartLocation="146,229"/>
+                                <Label Content="46" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="91,93,468.6,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/44.png" Width="26" Margin="160,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="209,232"/>
+                                <Label Content="44" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,93,399.6,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/42.png" Width="22" Margin="221,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="262,235"/>
+                                <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="220,93,339.6,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/32.png" Width="22" Margin="303,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="332,235"/>
+                                <Label Content="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="302,93,256.6,52.6" Height="24" Width="27"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/33.png" Width="25" Margin="331,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="356,228"/>
+                                <Label Content="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="28" Margin="331,93,226.6,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/34.png" Width="26" Margin="361,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="382,232"/>
+                                <Label Content="34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="360,93,198.6,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/37.png" Width="36" Margin="463,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="473,224"/>
+                                <Label Content="37" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="468,93,90.6,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/postiyni_oporni/38.png" Width="31" Margin="503,119,0,-41.4" Height="92" ZIndexTop="1" StartLocation="504,219"/>
+                                <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="506,93,52.6,52.6" Height="24"/>
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="549,1,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+" HorizontalAlignment="Left" Margin="549,32,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
+                                <Button Content="-" HorizontalAlignment="Left" Margin="549,56,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="4" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="60">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid Background="#FFE5E5E5">
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="549,1,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+" HorizontalAlignment="Left" Margin="549,32,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
+                                <Button Content="-" HorizontalAlignment="Left" Margin="549,56,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/18.png" Width="20" Size="1" HorizontalAlignment="Right" BotImageSize="8" HorizontalShift="2" StartLocation="88,61" Margin="0,-17,549.4,117.6"/>
+                                <Label Content="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="12,0,550.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/17.png" Width="25" Size="1" HorizontalShift="1" HorizontalAlignment="Left" StartLocation="116,65" Margin="51,-21,0,117.6" BotImageSize="9"/>
+                                <Label Content="17" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="45,0,516.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/16.png" Width="25" Size="1" HorizontalAlignment="Left" StartLocation="148,62" Margin="87,-27,0,117.6" BotImageSize="8"/>
+                                <Label Content="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="81,0,480.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/15.png" Size="1" Width="13" BotImageSize="10" HorizontalShift="2" HorizontalAlignment="Right" StartLocation="181,61" Margin="0,-32,447.4,117.6"/>
+                                <Label Content="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="116,0,445.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/14.png" Size="1" Width="16" HorizontalAlignment="Left" HorizontalShift="4" BotImageSize="12" StartLocation="205,63" Margin="155,-27,0,117.6"/>
+                                <Label Content="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="148,0,412.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/13.png" Size="1" Width="16" BotImageSize="11" HorizontalShift="3" HorizontalAlignment="Left" StartLocation="230,52" Margin="189,-38,0,117.6"/>
+                                <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="181,0,381.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/12.png" Size="1" Width="9" BotImageSize="12" HorizontalShift="2" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="223,-34,0,117.6">
+                                    <custom:CompositeElementShell.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-0.56099999999999983"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </custom:CompositeElementShell.RenderTransform>
+                                </custom:CompositeElementShell>
+                                <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="212,0,350.4,89.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/11.png" Size="1" Width="13" HorizontalShift="1" Height="97" BotImageSize="14" VerticalAlignment="Bottom" StartLocation="282,56" Margin="0,-45,319.4,117.6" HorizontalAlignment="Right"/>
+                                <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="243,0,317.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/21.PNG" Size="1" Width="13" BotImageSize="14" HorizontalShift="1" StartLocation="311,56" Margin="0,-45,287.4,0" VerticalAlignment="Top" Height="97" HorizontalAlignment="Right"/>
+                                <Label Content="21" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="275,0,285.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/22.png" Size="1" Width="9" HorizontalAlignment="Left" BotImageSize="12" StartLocation="339,65" Margin="318,-30,0,117.6"/>
+                                <Label Content="22" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="305,0,257.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/23.PNG" Size="1" Width="16" BotImageSize="11" HorizontalShift="3" HorizontalAlignment="Left" StartLocation="364,52" Margin="340,-40,0,117.6"/>
+                                <Label Content="23" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="333,0,227.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/24.png" Width="16" Size="1" BotImageSize="12" HorizontalShift="4" HorizontalAlignment="Left" StartLocation="392,63" Margin="373,-25,0,117.6"/>
+                                <Label Content="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="366,0,196.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/25.png" Width="13" Size="1" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="416,61" Margin="407,-29,0,117.6" BotImageSize="10"/>
+                                <Label Content="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="398,0,164.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/26.png" Width="25" Size="1" HorizontalAlignment="Left" StartLocation="439,62" Margin="434,-24,0,117.6" BotImageSize="8"/>
+                                <Label Content="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="429,0,132.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/27.PNG" Width="25" Size="1" HorizontalAlignment="Left" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="471,10,0,117.6" BotImageSize="9" HorizontalShift="1"/>
+                                <Label Content="27" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="467,0,94.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/tumch_oporni/28.PNG" Width="20" Size="1" BotImageSize="8" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="507,61" Margin="509,-14,0,117.6"/>
+                                <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="504,0,57.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/48.png" Width="31" Margin="10,119,0,-49.4" Height="100" BotImageSize="-5" ZIndexTop="1" HorizontalShift="-6" StartLocation="84,219"/>
+                                <Label Content="48" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="14,93,546.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/45.png" Width="27" Margin="127,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="180,232"/>
+                                <Label Content="45" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="128,93,431.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/43.PNG" Width="25" Margin="190,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="239,228"/>
+                                <Label Content="43" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="190,93,370.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/41.png" Width="21" Margin="250,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="287,233"/>
+                                <Label Content="41" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="249,93,311.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/31.png" Width="21" Margin="275.5,119,289.9,-17.4" Height="68" ZIndexTop="1" StartLocation="309,233"/>
+                                <Label Content="31" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="274,93,286.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/35.png" Width="27" Margin="392,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="409,232"/>
+                                <Label Content="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="392,93,166.4,52.6" Width="28" Height="24"/>
+                                <custom:CompositeElementShell VerticalAlignment="Top" SourceTop="Image/tumch_oporni/36.png" Width="38" Margin="422,119,126.4,-45.4" Height="96" ZIndexTop="1" StartLocation="438,229"/>
+                                <Label Content="36" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="429,93,130.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/47.png" Width="36" Margin="44,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="112,224"/>
+                                <Label Content="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="28" Height="24" Margin="51,93,507.4,52.6"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/46.PNG" Width="38" Margin="85,119,0,-50.4" Height="101" ZIndexTop="1" StartLocation="146,229"/>
+                                <Label Content="46" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="91,93,469.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/44.png" Width="26" Margin="160,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="209,232"/>
+                                <Label Content="44" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,93,400.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/42.PNG" Width="22" Margin="221,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="262,235"/>
+                                <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="220,93,340.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/32.png" Width="22" Margin="303,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="332,235"/>
+                                <Label Content="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="302,93,257.4,52.6" Height="24" Width="27"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/33.png" Width="25" Margin="331,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="356,228"/>
+                                <Label Content="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="28" Margin="331,93,227.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/34.png" Width="26" Margin="361,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="382,232"/>
+                                <Label Content="34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="360,93,199.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/37.png" Width="36" Margin="463,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="473,224"/>
+                                <Label Content="37" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="468,93,91.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/tumch_oporni/38.png" Width="31" Margin="503,119,0,-41.4" Height="92" ZIndexTop="1" StartLocation="504,219"/>
+                                <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="506,93,53.4,52.6" Height="24"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="5" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="60">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid Background="#FFE5E5E5">
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="549,1,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+" HorizontalAlignment="Left" Margin="549,32,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
+                                <Button Content="-" HorizontalAlignment="Left" Margin="549,56,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/18.PNG" Width="19" Size="1" HorizontalAlignment="Right" BotImageSize="8" HorizontalShift="2" StartLocation="88,61" Margin="0,-17,553.4,117.6"/>
+                                <Label Content="18" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="7,0,555.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/17.PNG" Width="24" Size="1" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="116,65" Margin="40,-21,0,117.6" BotImageSize="9"/>
+                                <Label Content="17" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="41,0,520.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/16.PNG" Width="25" Size="1" HorizontalAlignment="Left" HorizontalShift="1" StartLocation="148,62" Margin="76,-27,0,117.6" BotImageSize="8"/>
+                                <Label Content="16" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="77,0,484.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/15.png" Size="1" Width="14" BotImageSize="10" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="181,61" Margin="113,-32,0,117.6"/>
+                                <Label Content="15" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="109,0,452.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/14.PNG" Size="1" Width="16" HorizontalAlignment="Left" HorizontalShift="4" BotImageSize="12" StartLocation="205,63" Margin="143,-27,0,117.6"/>
+                                <Label Content="14" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="140,0,420.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/13.png" Size="1" Width="14" BotImageSize="11" HorizontalShift="3" HorizontalAlignment="Left" StartLocation="230,52" Margin="176,-38,0,117.6"/>
+                                <Label Content="13" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="174,0,388.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/12.PNG" Size="1" Width="8" BotImageSize="12" HorizontalShift="2" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="208,-34,0,117.6">
+                                    <custom:CompositeElementShell.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform Angle="-0.56099999999999983"/>
+                                            <TranslateTransform/>
+                                        </TransformGroup>
+                                    </custom:CompositeElementShell.RenderTransform>
+                                </custom:CompositeElementShell>
+                                <Label Content="12" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="206,0,356.4,89.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/11.png" Size="1" Width="13" HorizontalShift="2" Height="97" BotImageSize="14" VerticalAlignment="Top" StartLocation="282,56" Margin="253,-45,0,0" HorizontalAlignment="Left"/>
+                                <Label Content="11" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="241,0,319.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/21.png" Size="1" Width="13" BotImageSize="14" HorizontalShift="2" StartLocation="311,56" Margin="0,-45,286.4,0" VerticalAlignment="Top" Height="97" HorizontalAlignment="Right"/>
+                                <Label Content="21" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="277,0,283.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/22.png" Size="1" Width="8" HorizontalAlignment="Left" BotImageSize="12" HorizontalShift="1" StartLocation="339,65" Margin="311,-30,0,117.6"/>
+                                <Label Content="22" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="308.5,0,252.9,88.8" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/23.png" Size="1" Width="14" BotImageSize="11" HorizontalShift="1" HorizontalAlignment="Left" StartLocation="364,52" Margin="340,-40,0,117.6"/>
+                                <Label Content="23" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="338,0,222.4,88.6" Width="26"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/24.png" Width="16" Size="1" BotImageSize="12" HorizontalShift="4" HorizontalAlignment="Left" StartLocation="392,63" Margin="373,-25,0,117.6"/>
+                                <Label Content="24" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="372,0,190.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/25.png" Width="14" Size="1" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="416,61" Margin="405,-29,0,117.6" BotImageSize="10"/>
+                                <Label Content="25" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="403,0,159.4,88.6" Width="24"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/26.png" Width="25" Size="1" HorizontalAlignment="Left" StartLocation="439,62" Margin="431,-24,0,117.6" BotImageSize="8" HorizontalShift="1"/>
+                                <Label Content="26" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="435,0,126.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/27.png" Width="24" Size="1" HorizontalAlignment="Left" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="470,10,0,117.6" BotImageSize="9" HorizontalShift="2"/>
+                                <Label Content="27" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="472,0,89.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell SourceBot="Image/korpost/28.png" Width="19" Size="1" BotImageSize="8" HorizontalShift="2" HorizontalAlignment="Left" StartLocation="507,61" Margin="510,-14,0,117.6"/>
+                                <Label Content="28" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="25" Margin="511,0,50.4,88.6" Width="25"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/48.PNG" Width="30" Margin="6,119,0,-49.4" Height="100" BotImageSize="-5" ZIndexTop="1" HorizontalShift="-6" StartLocation="84,219"/>
+                                <Label Content="48" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="8.5,92.8,550.9,52.8" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/45.png" Width="27" Margin="119,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="180,232"/>
+                                <Label Content="45" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="124,93,435.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/43.png" Width="25" Margin="185,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="239,228"/>
+                                <Label Content="43" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="190,93,370.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/41.png" Width="22" Margin="246,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="287,233"/>
+                                <Label Content="41" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="249,93,311.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Center" VerticalAlignment="Top" SourceTop="Image/korpost/31.png" Width="22" Margin="271,119,285.4,-17.4" Height="68" ZIndexTop="1" StartLocation="309,233"/>
+                                <Label Content="31" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="276,93,284.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/35.png" Width="27" Margin="394,119,0,-31.4" Height="82" ZIndexTop="1" StartLocation="409,232"/>
+                                <Label Content="35" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="396,93,162.4,52.6" Width="28" Height="24"/>
+                                <custom:CompositeElementShell VerticalAlignment="Top" SourceTop="Image/korpost/36.png" Width="38" Margin="423,119,121.4,-45.4" Height="96" ZIndexTop="1" StartLocation="438,229"/>
+                                <Label Content="36" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="432,93,127.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/47.png" Width="35" Margin="39,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="112,224"/>
+                                <Label Content="47" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Height="24" Margin="45.5,92.8,513.9,52.8"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/46.PNG" Width="38" Margin="79,119,0,-50.4" Height="101" ZIndexTop="1" StartLocation="146,229"/>
+                                <Label Content="46" HorizontalAlignment="Center" VerticalAlignment="Center" Width="26" Margin="86,93,474.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/44.png" Width="27" Margin="154,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="209,232"/>
+                                <Label Content="44" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,93,402.4,52.6" Width="27" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/42.png" Width="23" Margin="218,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="262,235"/>
+                                <Label Content="42" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="220,93,340.4,52.6" Width="26" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/32.png" Width="23" Margin="301,119,0,-17.4" Height="68" ZIndexTop="1" StartLocation="332,235"/>
+                                <Label Content="32" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="303,93,256.4,52.6" Height="24" Width="27"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/33.png" Width="25" Margin="327,119,0,-23.4" Height="74" ZIndexTop="1" StartLocation="356,228"/>
+                                <Label Content="33" HorizontalAlignment="Center" VerticalAlignment="Center" Width="28" Margin="330,93,228.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/34.png" Width="27" Margin="360,119,0,-27.4" Height="78" ZIndexTop="1" StartLocation="382,232"/>
+                                <Label Content="34" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="363,93,196.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/37.png" Width="35" Margin="463,119,0,-45.4" Height="96" ZIndexTop="1" StartLocation="473,224"/>
+                                <Label Content="37" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="470,93,89.4,52.6" Height="24"/>
+                                <custom:CompositeElementShell HorizontalAlignment="Left" VerticalAlignment="Top" SourceTop="Image/korpost/38.png" Width="30" Margin="504,119,0,-41.4" Height="92" ZIndexTop="1" StartLocation="504,219"/>
+                                <Label Content="38" HorizontalAlignment="Center" VerticalAlignment="Center" Width="27" Margin="511,93,48.4,52.6" Height="24"/>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="6" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="60">
-                            <Grid Background="#FFE5E5E5"/>
+                            <Grid Background="#FFE5E5E5">
+                                <Button Content="+32" HorizontalAlignment="Left" Margin="549,1,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click"/>
+                                <Button Content="+" HorizontalAlignment="Left" Margin="549,32,0,0" VerticalAlignment="Top" Width="33" Click="Button_AddSelectedTeeth_Click"/>
+                                <Button Content="-" HorizontalAlignment="Left" Margin="549,56,0,0" VerticalAlignment="Top" Width="33" Click="Button_RemoveSelectedTeeth_Click"/>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
@@ -1187,14 +1435,14 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Grid Grid.Column="1" Margin="64.2,13.2,255.6,8.4" Grid.Row="2">
+        <Grid Grid.Column="1" Margin="64.2,13.2,255.6,8.4" Grid.Row="2" Grid.RowSpan="3">
             <Button x:Name="Btn_Undo" Content="Undo" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="75" Command="Undo"/>
             <Button x:Name="Btn_Redo" Content="Redo" HorizontalAlignment="Left" Margin="1,27,0,0" VerticalAlignment="Top" Width="75" Command="Redo"/>
             <Label x:Name="label1" Content="DebugLabel1" HorizontalAlignment="Left" Margin="0,63,0,0" VerticalAlignment="Top" Height="26" Width="80"/>
             <Label x:Name="label2" Content="DebugLabel2" HorizontalAlignment="Left" Margin="0,89,0,0" VerticalAlignment="Top" Height="26" Width="80"/>
             <Label x:Name="label3" Content="DebugLabel3" HorizontalAlignment="Left" Margin="0,115,0,0" VerticalAlignment="Top" Height="26" Width="80"/>
         </Grid>
-        <ScrollViewer x:Name="scrollViewer_History" Grid.Column="1" HorizontalAlignment="Left" Height="562" Margin="64.2,28.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="336" Grid.RowSpan="3" Panel.ZIndex="-1">
+        <ScrollViewer x:Name="scrollViewer_History" Grid.Column="1" HorizontalAlignment="Left" Height="562" Margin="64.2,28.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="336" Grid.RowSpan="5" Panel.ZIndex="-1">
             <StackPanel x:Name="stackPanel_Report" Width="194" HorizontalAlignment="Right">
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type UserControls:ReportElement}">

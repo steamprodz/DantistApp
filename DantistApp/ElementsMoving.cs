@@ -78,8 +78,12 @@ namespace DantistApp
                     {
                         var activeComposite = _activeElement as CompositeElement;
 
-                        if (ScalingWindow.IsLoaded)
-                            RefreshScalingLine(activeComposite, CanvasMain);
+                        try
+                        {
+                            if (ScalingWindow.IsLoaded)
+                                RefreshScalingLine(activeComposite, CanvasMain);
+                        }
+                        catch { }
 
                         if (activeComposite.RelativeToothNumber != null)
                         {
