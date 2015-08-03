@@ -411,43 +411,29 @@ namespace DantistApp
 
         private void menuItem_ShowTeethNumbers_Click(object sender, RoutedEventArgs e)
         {
-            List<CompositeElement> RelativeElements = new List<CompositeElement>();
-            List<CompositeElement> DrawElements = new List<CompositeElement>();
-            List<CompositeElement> CompositeElements = new List<CompositeElement>();
+            List<CompositeElement> compositeElements = new List<CompositeElement>();
 
             foreach (var item in CanvasMain.Children)
             {
                 if (item is CompositeElement)
                 {
-                    CompositeElements.Add(item as CompositeElement);
+                    compositeElements.Add(item as CompositeElement);
                 }
             }
 
-            //foreach (var canvasItem in canvas_main.Children)
-            //{
-            //    if (canvasItem is CompositeElement)
-            //    {
-            //        var element = canvasItem as CompositeElement;
-
-            //        if (!(RelativeElements.Contains(element)))
-            //        {
-            //            if (element.RelativeElement != null && element.IsMerged)
-            //                RelativeElements.Add(element.RelativeElement);
-
-            //            DrawElements.Add(element);
-            //        }
-            //    }
-            //}
-
-            foreach (CompositeElement element in CompositeElements)
+            foreach (CompositeElement element in compositeElements)
             {
-                //if (element.RelativeElement != null)
-                //{
-                //    DrawToothNumber(element.RelativeElement);
-                //}
-                Label label = DrawToothNumber(element);
-                if (element.CompositeLocation == CompositeLocation.Bot)
-                    label.Visibility = System.Windows.Visibility.Hidden;
+                if (element.RelativeToothNumber == null)
+                {
+                    Label label = DrawToothNumber(element);
+                    if (element.CompositeLocation == CompositeLocation.Bot)
+                        label.Visibility = System.Windows.Visibility.Hidden;
+                }
+                else
+                {
+                    if (element.CompositeLocation == CompositeLocation.Top)
+                        element.RelativeToothNumber.Visibility = System.Windows.Visibility.Visible;
+                }
             }
         }
 
@@ -487,19 +473,61 @@ namespace DantistApp
 
         private void menuItem_HideTeethNumbers_Click(object sender, RoutedEventArgs e)
         {
-            List<Label> removeList = new List<Label>();
+            List<CompositeElement> compositeElements = new List<CompositeElement>();
 
             foreach (var item in CanvasMain.Children)
             {
-                if (item is Label)
-                    removeList.Add(item as Label);
+                if (item is CompositeElement)
+                {
+                    compositeElements.Add(item as CompositeElement);
+                }
             }
 
-            foreach (var item in removeList)
+            foreach (CompositeElement element in compositeElements)
             {
-                CanvasMain.Children.Remove(item);
+                if (element.RelativeToothNumber != null)
+                {
+                    element.RelativeToothNumber.Visibility = System.Windows.Visibility.Hidden;
+                }
             }
         }
+
+        private void menuItem_MergeAllTeeth_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in CanvasMain.Children)
+            {
+                if (item is CompositeElement)
+                {
+                    CompositeElement compElement = item as CompositeElement;
+                    MenuItem contextMenu_merge = FindMenuItem(compElement.ContextMenu, MENU_ITEM_NAME_MERGE);
+                    if (contextMenu_merge != null)
+                    {
+                        contextMenu_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                        _bufferUndoRedo.UndoStack.Pop();
+                    }
+                }
+            }
+            
+        }
+
+        private void menuItem_UnmergeAllTeeth_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in CanvasMain.Children)
+            {
+                if (item is CompositeElement)
+                {
+                    CompositeElement compElement = item as CompositeElement;
+                    MenuItem contextMenu_merge = FindMenuItem(compElement.ContextMenu, MENU_ITEM_NAME_UNMERGE);
+                    if (contextMenu_merge != null)
+                    {
+                        contextMenu_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                        _bufferUndoRedo.UndoStack.Pop();
+                    }
+                }
+            }
+
+        }
+
 
     }
 
