@@ -429,8 +429,11 @@ namespace DantistApp
                 if (element.RelativeToothNumber == null)
                 {
                     Label label = DrawToothNumber(element);
-                    if (element.CompositeLocation == CompositeLocation.Bot)
-                        label.Visibility = System.Windows.Visibility.Hidden;
+                    if (element.RelativeElement != null)
+                    {
+                        if (element.CompositeLocation == CompositeLocation.Bot)
+                            label.Visibility = System.Windows.Visibility.Hidden;
+                    }
                 }
                 else
                 {

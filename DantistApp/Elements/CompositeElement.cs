@@ -87,7 +87,7 @@ namespace DantistApp.Elements
                 {
                     Canvas.SetLeft(RelativeToothNumber, value.X);
                     Canvas.SetTop(RelativeToothNumber, value.Y);
-                    if (CompositeLocation == Elements.CompositeLocation.Bot)
+                    if (CompositeLocation == Elements.CompositeLocation.Bot && RelativeElement != null)
                     {
                         Canvas.SetLeft(RelativeElement.RelativeToothNumber, RelativeElement.Position.X);
                         Canvas.SetTop(RelativeElement.RelativeToothNumber, RelativeElement.Position.Y);

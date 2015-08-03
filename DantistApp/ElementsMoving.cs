@@ -90,7 +90,7 @@ namespace DantistApp
                             Canvas.SetLeft(activeComposite.RelativeToothNumber, p.X);
                             Canvas.SetTop(activeComposite.RelativeToothNumber, p.Y);
                         }
-                        else if (activeComposite.RelativeElement.RelativeToothNumber != null)
+                        else if (activeComposite.RelativeElement != null && activeComposite.RelativeElement.RelativeToothNumber != null)
                         {
                             Canvas.SetLeft(activeComposite.RelativeElement.RelativeToothNumber, p.X);
                             Canvas.SetTop(activeComposite.RelativeElement.RelativeToothNumber, p.Y);

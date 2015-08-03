@@ -113,11 +113,14 @@ namespace DantistApp
                     if (element is CompositeElement)
                     {
                         CompositeElement compElement = element as CompositeElement;
-                        MenuItem relative_mi_fix = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_FIX);
-                        if (compElement.IsMerged && relative_mi_fix != null)
+                        if (compElement.RelativeElement != null)
                         {
-                            relative_mi_fix.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                            _bufferUndoRedo.UndoStack.Pop();
+                            MenuItem relative_mi_fix = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_FIX);
+                            if (compElement.IsMerged && relative_mi_fix != null)
+                            {
+                                relative_mi_fix.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                                _bufferUndoRedo.UndoStack.Pop();
+                            }
                         }
                     }
 
@@ -139,11 +142,14 @@ namespace DantistApp
                     if (element is CompositeElement)
                     {
                         CompositeElement compElement = element as CompositeElement;
-                        MenuItem relative_mi_unfix = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_UNFIX);
-                        if (compElement.IsMerged && relative_mi_unfix != null)
+                        if (compElement.RelativeElement != null)
                         {
-                            relative_mi_unfix.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                            _bufferUndoRedo.UndoStack.Pop();
+                            MenuItem relative_mi_unfix = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_UNFIX);
+                            if (compElement.IsMerged && relative_mi_unfix != null)
+                            {
+                                relative_mi_unfix.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                                _bufferUndoRedo.UndoStack.Pop();
+                            }
                         }
                     }
 
@@ -168,11 +174,14 @@ namespace DantistApp
                     CompositeElement compElement = element as CompositeElement;
                     compElement.IsMerged = true;
                     Helpers.ReplaceMenuItem(mi_merge, mi_unmerge);
-                    MenuItem relative_mi_merge = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_MERGE);
-                    if (relative_mi_merge != null)
+                    if (compElement.RelativeElement != null)
                     {
-                        relative_mi_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                        _bufferUndoRedo.UndoStack.Pop();
+                        MenuItem relative_mi_merge = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_MERGE);
+                        if (relative_mi_merge != null)
+                        {
+                            relative_mi_merge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                            _bufferUndoRedo.UndoStack.Pop();
+                        }
                     }
 
                     _bufferUndoRedo.RecordStateAfter(CanvasMain);
@@ -193,11 +202,14 @@ namespace DantistApp
                     CompositeElement compElement = element as CompositeElement;
                     compElement.IsMerged = false;
                     Helpers.ReplaceMenuItem(mi_unmerge, mi_merge);
-                    MenuItem relative_mi_unmerge = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_UNMERGE);
-                    if (relative_mi_unmerge != null)
+                    if (compElement.RelativeElement != null)
                     {
-                        relative_mi_unmerge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
-                        _bufferUndoRedo.UndoStack.Pop();
+                        MenuItem relative_mi_unmerge = FindMenuItem(compElement.RelativeElement.ContextMenu, MENU_ITEM_NAME_UNMERGE);
+                        if (relative_mi_unmerge != null)
+                        {
+                            relative_mi_unmerge.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
+                            _bufferUndoRedo.UndoStack.Pop();
+                        }
                     }
 
                     _bufferUndoRedo.RecordStateAfter(CanvasMain);
