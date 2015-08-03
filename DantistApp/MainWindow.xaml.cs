@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ using DantistApp.Elements;
 using DantistApp.Tools;
 using System.Text.RegularExpressions;
 using System.Windows.Media.Effects;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Element = DantistApp.Elements.Element;
+using Image = iTextSharp.text.Image;
+using Paragraph = iTextSharp.text.Paragraph;
 
 namespace DantistApp
 {
@@ -331,70 +337,75 @@ namespace DantistApp
         {
             if (stackPanel_Report.Children.Count > 1)
             {
-                // Some PDF shit
-                const int pdfHeaderHeight = 40;
-                const int pdfLeftMargin = 20;
-                const int pdfTextPadding = 25;
-                const int pdfImagePadding = 10;
+                var pdfFileName = Tools.PdfHelper.SavePdfToFile();
 
-                //string pdfFileName = @"D:\test.pdf";
-
-                // Initialize PDF document
-                PdfSharp.Pdf.PdfDocument pdfDocument = new PdfSharp.Pdf.PdfDocument();
-                // Create page and GFX
-                PdfSharp.Pdf.PdfPage pdfPage = pdfDocument.AddPage();
-                PdfSharp.Drawing.XGraphics pdfGFX = PdfSharp.Drawing.XGraphics.FromPdfPage(pdfPage);
-                PdfSharp.Drawing.XFont pdfFont = new PdfSharp.Drawing.XFont("Vendetta", 20, PdfSharp.Drawing.XFontStyle.Regular);
-
-                int yPos = pdfHeaderHeight;
-                int xPos = pdfLeftMargin;
-
-                // Parse data to PDF
-                for (int i = 1; i < stackPanel_Report.Children.Count; i += 2)
-                {
-                    // 2 elements per page
-                    if ((i - 1) % 4 == 0 && (i - 1) != 0)
-                    {
-                        // Create new page and GFX
-                        pdfPage = pdfDocument.AddPage();
-                        pdfGFX = PdfSharp.Drawing.XGraphics.FromPdfPage(pdfPage);
-                        
-                        yPos = pdfHeaderHeight;
-                        xPos = pdfLeftMargin;
-                    }
-
-                    // Add elements to page
-                    var selectedItem = stackPanel_Report.Children[i] as UserControls.ReportElement;
-
-                    try
-                    {
-
-                        pdfGFX.DrawString(selectedItem.textBox_Comments.Text, pdfFont, PdfSharp.Drawing.XBrushes.Black,
-                            new PdfSharp.Drawing.XRect(xPos, yPos, pdfPage.Width, 0));
-
-                        yPos += pdfTextPadding;
-
-                        PdfSharp.Drawing.XImage pdfImage = PdfSharp.Drawing.XImage.FromGdiPlusImage(
-                            Tools.ImageHelper.ImageWpfToGDI(selectedItem.image_CanvasScreenshot.Source));
-                        pdfGFX.DrawImage(pdfImage, xPos, yPos);
-
-                        yPos += (int)pdfImage.Height + pdfImagePadding;
-                    }
-                    catch { }
-                }
-
-                var pdfFileName = Tools.PdfHelper.SavePdfToFile(pdfDocument);
-
-                //pdfDocument.Save(pdfFileName);
                 if (pdfFileName != null)
+                {
+                    // Create empty PDF with predefined structure
+                    Document pdfDoc = new Document();
+                    var fileStream = new FileStream(pdfFileName, FileMode.Create);
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, fileStream);
+
+                    var fontArial = Tools.Helpers.GetFontPath("arial.ttf");
+                    var bf = BaseFont.CreateFont(fontArial, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                    var arial = new Font(bf, 11);
+                    TwoColumnHeaderFooter PageEventHandler = new TwoColumnHeaderFooter();
+                    PageEventHandler.Title = "Отчет";
+                    writer.PageEvent = PageEventHandler;
+                    pdfDoc.Open();
+
+                    // Parse data to PDF
+                    for (int i = 1; i < stackPanel_Report.Children.Count; i += 2)
+                    {
+                        // 2 elements per page
+                        if ((i - 1) % 4 == 0 && (i - 1) != 0)
+                        {
+                            pdfDoc.NewPage();
+                        }
+
+                        // Add elements to page
+                        var selectedItem = stackPanel_Report.Children[i] as UserControls.ReportElement;
+
+                        try
+                        {
+                            pdfDoc.Add(new Paragraph(selectedItem.textBox_Comments.Text, arial));
+
+                            var image =
+                                Image.GetInstance(
+                                    Tools.ImageHelper.ImageWpfToGDI(selectedItem.image_CanvasScreenshot.Source),
+                                    BaseColor.BLACK);
+
+                            image.ScalePercent(80f);
+
+                            pdfDoc.Add(image);
+                        }
+                        catch { }
+                    }
+
+                    pdfDoc.Close();
+                    writer.Close();
+
+                    // Open PDF file
                     System.Diagnostics.Process.Start(pdfFileName);
-                else
-                    MessageBox.Show("Не удалось создать PDF документ", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
             else
                 MessageBox.Show("История болезни пуста", "Ошибка печати", MessageBoxButton.OK, MessageBoxImage.Stop);
             
         }
+
+        //public static PdfPTable GetHeaderTable(int x, int y)
+        //{
+        //    PdfPTable table = new PdfPTable(2);
+        //    table.TotalWidth = 527;
+        //    table.LockedWidth = true;
+        //    table.DefaultCell.FixedHeight = 20;
+        //    table.DefaultCell.Border = iTextSharp.text.Rectangle.BOTTOM_BORDER;
+        //    table.AddCell("FOOBAR FILMFESTIVAL");
+        //    table.DefaultCell.HorizontalAlignment = iTextSharp.text.Element.ALIGN_RIGHT;
+        //    table.AddCell(string.Format("Page {0} of {1}", x, y));
+        //    return table;
+        //} 
 
         private void menuItem_Exit_Click(object sender, RoutedEventArgs e)
         {

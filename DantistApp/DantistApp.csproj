@@ -99,6 +99,7 @@
     <Compile Include="Tools\ImageHelper.cs" />
     <Compile Include="Tools\Helpers.cs" />
     <Compile Include="Tools\PdfHelper.cs" />
+    <Compile Include="Tools\TwoColumnHeaderFooter.cs" />
     <Compile Include="UndoRedoBuffer.cs" />
     <Compile Include="UndoRedoBuffer_Old.cs" />
     <Compile Include="UserControls\ReportElement.xaml.cs">
@@ -904,6 +905,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\trash_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\open_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

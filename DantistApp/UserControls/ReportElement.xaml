@@ -10,9 +10,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image HorizontalAlignment="Right" Height="36" Margin="0,79,1,0" VerticalAlignment="Top" Width="36" Source="/DantistApp;component/Icons/download_icon.png" MouseDown="button_SaveImage_Click" Panel.ZIndex="1"/>
-            <Image HorizontalAlignment="Left" Height="34" VerticalAlignment="Top" Width="34" Source="/DantistApp;component/Icons/arrow_icon.png" MouseDown="button_LoadImage_Click" Panel.ZIndex="1" Margin="1,-4,0,0"/>
-            <Image HorizontalAlignment="Right" Height="32" Margin="0,2,2,0" VerticalAlignment="Top" Width="32" Source="/DantistApp;component/Icons/trash_icon.png" MouseDown="button_DeleteElement" Panel.ZIndex="1"/>
+            <Image HorizontalAlignment="Right" Height="36" Margin="0,79,1,0" VerticalAlignment="Top" Width="36" Source="/DantistApp;component/Icons/download_icon.png" MouseDown="button_SaveImage_Click" Panel.ZIndex="1" ToolTip="Сохранить изображение на диск"/>
+            <Image HorizontalAlignment="Left" ToolTip="Перенести изображение с макета" Height="34" VerticalAlignment="Top" Width="34" Source="/DantistApp;component/Icons/arrow_icon.png" MouseDown="button_LoadImage_Click" Panel.ZIndex="1" Margin="1,-4,0,0"/>
+            <Image HorizontalAlignment="Right" ToolTip="Удалить элемент истории" Height="32" Margin="0,2,2,0" VerticalAlignment="Top" Width="32" Source="/DantistApp;component/Icons/trash_icon.png" MouseDown="button_DeleteElement" Panel.ZIndex="1"/>
 
             <!--<Button HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" BorderThickness="0" Height="29" Click="button_LoadImage_Click">
                 <Button.Background>
@@ -42,7 +42,7 @@
                     </TransformGroup>
                 </Expander.RenderTransform>
                 <Grid Width="124" Margin="0,0,-5.6,0" Height="120">
-                    <TextBox x:Name="textBox_Comments" BorderThickness="2" TextWrapping="Wrap" Text="TextBox" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderBrush="Black" Background="#FFC5F896" FontFamily="Arial" FontSize="11" HorizontalAlignment="Center" Width="119" RenderTransformOrigin="0.5,0.5" Margin="1,-2,4,-1" LostFocus="TextBox_LostFocus">
+                    <TextBox x:Name="textBox_Comments" BorderThickness="2" TextWrapping="Wrap" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" BorderBrush="Black" Background="#FFC5F896" FontFamily="Arial" FontSize="11" HorizontalAlignment="Center" Width="119" RenderTransformOrigin="0.5,0.5" Margin="1,-2,4,-1" LostFocus="TextBox_LostFocus">
                         <TextBox.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -54,6 +54,7 @@
                     </TextBox>
                 </Grid>
             </Expander>
+            <Image HorizontalAlignment="Right" Height="32" Margin="0,42,2,0" VerticalAlignment="Top" Width="32" Source="/DantistApp;component/Icons/open_icon.png" MouseDown="button_OpenImage_Click" ToolTip="Загрузить изображение с диска"/>
 
         </Grid>
     </Border>
