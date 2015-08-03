@@ -69,6 +69,13 @@ namespace DantistApp.Tools
             }
         }
 
+        public static string GetFontPath(string fontName)
+        {
+            var windir = Environment.GetEnvironmentVariable("windir");
+            var path = windir + @"\Fonts\" + fontName;
+
+            return path;
+        }
     }
 
 

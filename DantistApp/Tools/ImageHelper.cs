@@ -7,13 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace DantistApp.Tools
 {
-    class ImageHelper
+    static class ImageHelper
     {
-        public static void SaveImageToFile(BitmapSource image)
+        public static string SaveImageToFile(BitmapSource image)
         {
             SaveFileDialog dlg = new SaveFileDialog();
 
@@ -24,14 +25,18 @@ namespace DantistApp.Tools
             // Show save file dialog box
             bool? result = dlg.ShowDialog();
 
+            string filePath = null;
+
             // Process save file dialog box results
             if (result == true)
             {
                 // Save document
-                string filePath = dlg.FileName;
+                filePath = dlg.FileName;
 
                 SaveClipboardImageToFile(filePath, image);
             }
+
+            return filePath;
         }
 
         private static void SaveClipboardImageToFile(string filePath, BitmapSource image)
@@ -75,21 +80,22 @@ namespace DantistApp.Tools
                     decoder = new JpegBitmapDecoder(jpegStreamIn, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
                 }
 
-                
-
                 bitmapFrame = decoder.Frames[0];
                 metadata = (BitmapMetadata)bitmapFrame.Metadata;
 
-                if (bitmapFrame != null)
-                {
-                    BitmapMetadata metaData = (BitmapMetadata)bitmapFrame.Metadata.Clone();
+                if (metadata.Comment != null)
+                    return metadata.Comment.ToString();
+                return null;
+                //if (bitmapFrame != null)
+                //{
+                //    BitmapMetadata metaData = (BitmapMetadata)bitmapFrame.Metadata.Clone();
 
-                    if (metaData != null)
-                    {
-                        // read the metadata   
-                         comments = metaData.GetQuery("/app1/ifd/exif:{uint=40092}").ToString();
-                    }
-                }
+                //    if (metaData != null)
+                //    {
+                //        // read the metadata   
+                //         comments = metaData.Comment.ToString();
+                //    }
+                //}
             }
 
             return comments;
@@ -123,7 +129,8 @@ namespace DantistApp.Tools
                     if (metaData != null)
                     {
                         // modify the metadata   
-                        metaData.SetQuery("/app1/ifd/exif:{uint=40092}", comments);
+                        metaData.Comment = comments;
+                        //metaData.SetQuery("/app1/ifd/exif:{uint=40092}", comments);
                         //metaData.GetQuery("/app1/ifd/exif:{uint=40092}");
 
                         // get an encoder to create a new jpg file with the new metadata.      
@@ -142,6 +149,43 @@ namespace DantistApp.Tools
                     }
                 }
             }
+        }
+
+        public static string LoadImageToControl(Image image)
+        {
+            Stream stream = null;
+            OpenFileDialog dlg = new OpenFileDialog();
+
+            dlg.Filter = "JPEG файлы (*.jpg)|*.jpg";
+            dlg.RestoreDirectory = true;
+
+            if (dlg.ShowDialog() == true)
+            {
+                try
+                {
+                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+                    if ((stream = dlg.OpenFile()) != null)
+                    {
+                        using (stream)
+                        {
+                            var bitmap = new BitmapImage();
+                            bitmap.BeginInit();
+                            bitmap.StreamSource = stream;
+                            bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                            bitmap.EndInit();
+                            bitmap.Freeze();
+
+                            image.Source = bitmap;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Файл не поддается чтению");
+                }
+            }
+
+            return dlg.FileName;
         }
 
     }

@@ -25,8 +25,6 @@ namespace DantistApp.UserControls
             InitializeComponent();
         }
 
-        public string Comment { get; set; }
-
         public Canvas MainCanvas
         {
             get { return (Canvas)base.GetValue(MainCanvasProperty); }
@@ -108,7 +106,13 @@ namespace DantistApp.UserControls
 
         private void button_SaveImage_Click(object sender, MouseButtonEventArgs e)
         {
-            Tools.ImageHelper.SaveImageToFile((BitmapSource)image_CanvasScreenshot.Source);
+            var filepath = Tools.ImageHelper.SaveImageToFile((BitmapSource)image_CanvasScreenshot.Source);
+
+            if (filepath != null)
+            {
+                var comment = textBox_Comments.Text;
+                Tools.ImageHelper.WriteJPEGComment(filepath, comment);
+            }
         }
 
         private void button_LoadImage_Click(object sender, MouseButtonEventArgs e)
@@ -127,6 +131,14 @@ namespace DantistApp.UserControls
             // upper element goes down and gets the same index
             //if (stackPanel.Children.Count > 1)
                 stackPanel.Children.RemoveAt(elemIndex);
+        }
+
+        private void button_OpenImage_Click(object sender, MouseButtonEventArgs e)
+        {
+            var imagePath = Tools.ImageHelper.LoadImageToControl(image_CanvasScreenshot);
+            var comments = Tools.ImageHelper.ReadJPEGComment(imagePath);
+
+            textBox_Comments.Text = comments;
         }
     }
 }

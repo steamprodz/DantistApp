@@ -1202,20 +1202,22 @@
                     </Style>
                 </StackPanel.Resources>
                 <Grid Height="30">
-                    <Button x:Name="button_AddReport1" HorizontalAlignment="Center" Width="30" BorderThickness="0" Click="button_AddReport_Click">
-                        <Button.Background>
+                    <Button x:Name="button_AddReport1" HorizontalAlignment="Center" Width="30" BorderThickness="0" Click="button_AddReport_Click" ToolTip="Добавить элемент истории" Background="White">
+                        <Image Source="Icons/plus_icon.gif" Stretch="Uniform"/>
+                        <!--<Button.Background>
                             <ImageBrush ImageSource="Icons/plus_icon.gif" Stretch="Uniform"/>
-                        </Button.Background>
+                        </Button.Background>-->
                     </Button>
 
                 </Grid>
 
                 <UserControls:ReportElement MainCanvas="{Binding ElementName=CanvasMain}" HorizontalAlignment="Left" Width="190"/>
                 <Grid Height="30">
-                    <Button x:Name="button_AddReport" HorizontalAlignment="Center" Width="30" BorderThickness="0" Click="button_AddReport_Click">
-                        <Button.Background>
+                    <Button x:Name="button_AddReport" HorizontalAlignment="Center" Width="30" BorderThickness="0" Click="button_AddReport_Click" ToolTip="Добавить элемент истории" Background="White">
+                        <Image Source="Icons/plus_icon.gif" Stretch="Uniform"/>
+                        <!--<Button.Background>
                             <ImageBrush ImageSource="Icons/plus_icon.gif" Stretch="Uniform"/>
-                        </Button.Background>
+                        </Button.Background>-->
                     </Button>
 
                 </Grid>
