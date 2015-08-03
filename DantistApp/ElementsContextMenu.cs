@@ -26,7 +26,8 @@ namespace DantistApp
             Remove,
             Fix,
             Merge,
-            Replace
+            Replace,
+            Scaling
         }
 
         const string MENU_ITEM_NAME_REMOVE = "Удалить элемент";
@@ -35,6 +36,7 @@ namespace DantistApp
         const string MENU_ITEM_NAME_MERGE = "Объединить элементы";
         const string MENU_ITEM_NAME_UNMERGE = "Разъединить элементы";
         const string MENU_ITEM_NAME_REPLACE = "Замена";
+        const string MENU_ITEM_NAME_SCALING = "Масштабирование";
 
 
         private void AddMenuItem(Element element, MenuItemType menuItemType)
@@ -71,6 +73,11 @@ namespace DantistApp
                     InitMenuItem_Replace(mi_replace, element, canvas);
                     contextMenu.Items.Add(mi_replace);
                     break;
+                case MenuItemType.Scaling:
+                    MenuItem mi_scaling = new MenuItem();
+                    InitMenuItem_Scaling(mi_scaling, element, canvas);
+                    contextMenu.Items.Add(mi_scaling);
+                    break;
 
                 default: break;
             }
@@ -79,6 +86,8 @@ namespace DantistApp
         }
 
 
+        //==============================================================================================
+        #region MENU_ITEMS
         private void InitMenuItem_Remove(MenuItem mi_remove, Element element, Canvas canvas)
         {
             mi_remove.Header = MENU_ITEM_NAME_REMOVE;
@@ -268,8 +277,66 @@ namespace DantistApp
             mi_replace.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Tag",
                     System.ComponentModel.ListSortDirection.Ascending));
         }
-        
 
+
+        private void InitMenuItem_Scaling(MenuItem mi_scaling, Element element, Canvas canvas)
+        {
+            mi_scaling.Header = MENU_ITEM_NAME_SCALING;
+            mi_scaling.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    if (element is CompositeElement == false)
+                        return;
+
+                    CompositeElement compElement = element as CompositeElement;
+
+                    if (ScalingWindow != null)
+                        ScalingWindow.Close();
+                    ScalingWindow = new ScalingWindow();
+                    //scalingWnd.WindowStartupLocation = System.Windows.WindowStartupLocation.Manual;
+                    ScalingWindow.Left = this.Left + compElement.Position.X - ScalingWindow.Width/2;
+                    ScalingWindow.Top = this.Top + compElement.Position.Y - 50;
+                    ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(compElement.Source.ToString(), @"\d+").Value) + ")";
+                    ScalingWindow.Show();
+                    DrawScalingLine(compElement, canvas);
+
+                    ScalingWindow.Slider_Scale.ValueChanged += (object sender_slider, RoutedPropertyChangedEventArgs<double> e_slider) =>
+                        {
+                            DrawScalingLine(compElement, canvas);
+                        };
+                    ScalingWindow.LocationChanged += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
+                        {
+                            DrawScalingLine(compElement, canvas);
+                        };
+
+                    ScalingWindow.Slider_Scale.Tag = compElement;
+                };
+        }
+        #endregion MENU_ITEMS
+        //==============================================================================================
+
+        private void DrawScalingLine(CompositeElement compElement, Canvas canvas)
+        {
+            Vector offset = new Vector(ScalingWindow.Width / 2, 0);//ScalingWindow.Height + 125);
+            Point translatedPoint = ScalingWindow.TranslatePoint(new Point(0, 0) + offset, canvas);
+
+            canvas.Children.Remove(ScalingLine);
+
+            ScalingLine = new Line();
+            ScalingLine.X1 = translatedPoint.X;
+            ScalingLine.Y1 = translatedPoint.Y;
+            
+            ScalingLine.X2 = compElement.Position.X + compElement.Width / 2;
+            ScalingLine.Y2 = compElement.Position.Y + compElement.Height / 8;
+            SolidColorBrush redBrush = new SolidColorBrush();
+            redBrush.Color = Colors.DarkGreen;
+            ScalingLine.StrokeThickness = 3;
+            ScalingLine.Stroke = redBrush;
+
+            //проверка, находится ли ScalingWindow в области канваса
+            if (new Rect(canvas.RenderSize).Contains(new Point(ScalingLine.X1, ScalingLine.Y1)) )
+                canvas.Children.Add(ScalingLine);
+        }
 
         private TabItem FindParent_TabItem(FrameworkElement fworkElement)
         {
@@ -281,8 +348,6 @@ namespace DantistApp
             }
             return fworkElement as TabItem;
         }
-
-
 
 
         public void RefreshContextMenu(Element element, Canvas canvas)

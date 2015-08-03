@@ -27,11 +27,14 @@ namespace DantistApp
     {
         Point _mousePosition;
         PanoramaWindow _panoramaWindow;
+        ScalingWindow ScalingWindow;
+        Line ScalingLine;
         UndoRedoBuffer _bufferUndoRedo;
         List<Element> _selectedElements;
         List<CompositeElementShell> _tabSelectedElements;
         Element _activeElement;
         Point _previousActiveElementPos;
+        
 
 
         public MainWindow()

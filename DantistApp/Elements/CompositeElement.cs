@@ -118,6 +118,7 @@ namespace DantistApp.Elements
             if (newRelElement == null )//&& newElement.Source != oldElement.Source)
             {
                 newElement.Position = new Point(oldElement.RelativeElement.Position.X - oldShift.X, oldElement.Position.Y);
+                newElement.Position = oldElement.Position;//new Point(oldElement.Position.X, oldElement.Position.Y);
             }
             if (oldRelElement != null)
             {
