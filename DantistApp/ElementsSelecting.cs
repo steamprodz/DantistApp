@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Windows.Controls.Primitives;
 using DantistApp.Elements;
 using DantistApp.Tools;
+using System.Text.RegularExpressions;
 
 namespace DantistApp
 {
@@ -54,6 +55,11 @@ namespace DantistApp
 
                 if (element is CompositeElement)
                 {
+                    if (ScalingWindow.IsLoaded)
+                    {
+                        ScalingWindow.Slider_Scale.Tag = element as CompositeElement;
+                        ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(element.Source.ToString(), @"\d+").Value) + ")";
+                    }
                     CompositeElement relElement = (element as CompositeElement).RelativeElement;
                     if (relElement != null && relElement.IsMerged)
                     {

@@ -134,6 +134,40 @@ namespace DantistApp.Elements
             return element;
         }
 
+        public void ChangeSize(double newSize, bool countingRelative)
+        {
+            Width /= Size;
+            Height /= Size;
+            Width *= newSize;
+            Height *= newSize;
+            Size = newSize;
+
+            if (countingRelative && this is CompositeElement)
+            {
+                CompositeElement compElement = this as CompositeElement;
+                CompositeElement relElement = compElement.RelativeElement;
+                
+                if (relElement != null && compElement.IsMerged)
+                {
+                    relElement.Width /= relElement.Size;
+                    relElement.Height /= relElement.Size;
+                    relElement.Width *= newSize;
+                    relElement.Height *= newSize;
+                    relElement.Size = newSize;
+
+                    //была писечка до фикса, но дьяк забил
+                    //Vector compElementPos = new Vector(compElement.Position.X, compElement.Position.Y);
+                    //Vector relElementPos = new Vector(relElement.Position.X, relElement.Position.Y);
+
+                    //Vector offset = relElementPos - compElementPos;
+                    //relElementPos -= offset;
+                    //relElementPos += offset * newSize;
+
+                    //relElement.SetPositionDirectly(new Point(relElementPos.X, relElementPos.Y));
+                }
+            }
+        }
+
         protected void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

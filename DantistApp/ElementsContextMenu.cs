@@ -26,7 +26,8 @@ namespace DantistApp
             Remove,
             Fix,
             Merge,
-            Replace
+            Replace,
+            Scaling
         }
 
         const string MENU_ITEM_NAME_REMOVE = "Удалить элемент";
@@ -35,6 +36,7 @@ namespace DantistApp
         const string MENU_ITEM_NAME_MERGE = "Объединить элементы";
         const string MENU_ITEM_NAME_UNMERGE = "Разъединить элементы";
         const string MENU_ITEM_NAME_REPLACE = "Замена";
+        const string MENU_ITEM_NAME_SCALING = "Масштабирование";
 
 
         private void AddMenuItem(Element element, MenuItemType menuItemType)
@@ -71,6 +73,11 @@ namespace DantistApp
                     InitMenuItem_Replace(mi_replace, element, canvas);
                     contextMenu.Items.Add(mi_replace);
                     break;
+                case MenuItemType.Scaling:
+                    MenuItem mi_scaling = new MenuItem();
+                    InitMenuItem_Scaling(mi_scaling, element, canvas);
+                    contextMenu.Items.Add(mi_scaling);
+                    break;
 
                 default: break;
             }
@@ -79,6 +86,8 @@ namespace DantistApp
         }
 
 
+        //==============================================================================================
+        #region MENU_ITEMS
         private void InitMenuItem_Remove(MenuItem mi_remove, Element element, Canvas canvas)
         {
             mi_remove.Header = MENU_ITEM_NAME_REMOVE;
@@ -268,8 +277,49 @@ namespace DantistApp
             mi_replace.Items.SortDescriptions.Add(new System.ComponentModel.SortDescription("Tag",
                     System.ComponentModel.ListSortDirection.Ascending));
         }
-        
 
+
+        private void InitMenuItem_Scaling(MenuItem mi_scaling, Element element, Canvas canvas)
+        {
+            mi_scaling.Header = MENU_ITEM_NAME_SCALING;
+            mi_scaling.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    if (element is CompositeElement == false)
+                        return;
+
+                    CompositeElement compElement = element as CompositeElement;
+
+                    if (ScalingWindow != null)
+                        ScalingWindow.Close();
+                    ScalingWindow = new ScalingWindow();
+                    //scalingWnd.WindowStartupLocation = System.Windows.WindowStartupLocation.Manual;
+                    ScalingWindow.Left = this.Left + compElement.Position.X - ScalingWindow.Width/2;
+                    ScalingWindow.Top = this.Top + compElement.Position.Y - 50;
+                    ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(compElement.Source.ToString(), @"\d+").Value) + ")";
+                    ScalingWindow.Show();
+                    RefreshScalingLine(compElement, canvas);
+
+                    ScalingWindow.Slider_Scale.ValueChanged += (object sender_slider, RoutedPropertyChangedEventArgs<double> e_slider) =>
+                        {
+                            RefreshScalingLine(ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
+                        };
+                    ScalingWindow.LocationChanged += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
+                        {
+                            RefreshScalingLine(ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
+                        };
+                    ScalingWindow.Closed += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
+                        {
+                            canvas.Children.Remove(ScalingLine);
+                        };
+
+                    ScalingWindow.Slider_Scale.Tag = compElement;
+                };
+        }
+        #endregion MENU_ITEMS
+        //==============================================================================================
+
+        
 
         private TabItem FindParent_TabItem(FrameworkElement fworkElement)
         {
@@ -281,8 +331,6 @@ namespace DantistApp
             }
             return fworkElement as TabItem;
         }
-
-
 
 
         public void RefreshContextMenu(Element element, Canvas canvas)

@@ -252,6 +252,7 @@ namespace DantistApp
                 AddMenuItem(element, MenuItemType.Remove);
                 AddMenuItem(element, MenuItemType.Fix);
                 AddMenuItem(element, MenuItemType.Merge);
+                AddMenuItem(element, MenuItemType.Scaling);
                // AddMenuItem(element, MenuItemType.Replace);
             }
         }

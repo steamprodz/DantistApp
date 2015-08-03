@@ -78,6 +78,9 @@ namespace DantistApp
                     {
                         var activeComposite = _activeElement as CompositeElement;
 
+                        if (ScalingWindow.IsLoaded)
+                            RefreshScalingLine(activeComposite, CanvasMain);
+
                         if (activeComposite.RelativeToothNumber != null)
                         {
                             Canvas.SetLeft(activeComposite.RelativeToothNumber, p.X);
