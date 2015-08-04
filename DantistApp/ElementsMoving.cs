@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -102,14 +101,14 @@ namespace DantistApp
                         CanvasMain.Children.Remove(coordsTextBoxOld);
                     }
 
-                    coordsTextBoxNew = new TextBox();
-                    //if (_activeElement is CompositeElement && (_activeElement.Name == "element_top"))
-                    coordsTextBoxNew.Text = string.Format("{0};{1}", p.X, p.Y);
-                    CanvasMain.Children.Add(coordsTextBoxNew);
-                    Canvas.SetLeft(coordsTextBoxNew, p.X + 50);
-                    Canvas.SetTop(coordsTextBoxNew, p.Y + 50);
+                    //coordsTextBoxNew = new TextBox();
+                    ////if (_activeElement is CompositeElement && (_activeElement.Name == "element_top"))
+                    //coordsTextBoxNew.Text = string.Format("{0};{1}", p.X, p.Y);
+                    //CanvasMain.Children.Add(coordsTextBoxNew);
+                    //Canvas.SetLeft(coordsTextBoxNew, p.X + 50);
+                    //Canvas.SetTop(coordsTextBoxNew, p.Y + 50);
 
-                    coordsTextBoxOld = coordsTextBoxNew;
+                    //coordsTextBoxOld = coordsTextBoxNew;
                 }
             }
         }
