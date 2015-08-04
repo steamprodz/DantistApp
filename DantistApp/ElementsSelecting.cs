@@ -91,8 +91,8 @@ namespace DantistApp
         {
             if (_selectedElements.Contains(element))
                 return;
-            if (element is CompositeElement)
-                label1.Content = (element as CompositeElement).GroupName;
+            //if (element is CompositeElement)
+            //    label1.Content = (element as CompositeElement).GroupName;
             //DropShadowEffect glowEffect = new DropShadowEffect()
             //{
             //    ShadowDepth = 0,

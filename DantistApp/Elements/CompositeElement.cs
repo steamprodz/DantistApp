@@ -133,7 +133,8 @@ namespace DantistApp.Elements
             {
                 newElement.Position -= new Vector(dx, 0);
             }
-            else
+            //Image/lunky_plastyka/48.png 21 14
+            else if (newElement.Source.ToString().Substring(newElement.Source.ToString().Length - 21, 14) != "lunky_plastyka")
                 newElement.Position -= new Vector(dx / 2, dy);
             
             //if (newRelElement == null && newElement.Source != oldElement.Source)
