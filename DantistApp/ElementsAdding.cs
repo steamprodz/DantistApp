@@ -105,6 +105,8 @@ namespace DantistApp
                 parentElements.Add(gridElement as Element);
             }
 
+            ImageSource source;
+            int toothNumber = 0;
             List<CompositeElement> elements = new List<CompositeElement>();
 
             for (int i = 0; i < parentElements.Count; i++)
@@ -118,23 +120,14 @@ namespace DantistApp
                 {
                     CompositeElement element = new CompositeElement();
 
-                    // ща как накостыляю
-                    // впиливаем в статику нужный нам номер зуба
-                    ImageSource source;
-                    string groupName;
-
                     if (compositeShell.SourceBot != null)
-                    {
                         source = compositeShell.SourceBot;
-                        groupName = "ToothBot";
-                    }
                     else
-                    {
                         source = compositeShell.SourceTop;
-                        groupName = "ToothTop";
-                    }
 
-                    (parentElements[i] as CompositeElement).GroupName = "tooth" + Convert.ToInt32(Regex.Match(source.ToString(), @"\d+").Value);
+                    toothNumber = Convert.ToInt32(Regex.Match(source.ToString(), @"\d+").Value);
+
+                    (parentElements[i] as CompositeElement).GroupName = "tooth" + toothNumber;
 
                     element = parentElements[i].CloneIntoCanvas(canvas, startPos) as CompositeElement;
                   
@@ -150,7 +143,7 @@ namespace DantistApp
                     if (parentElements[i] == compositeShell.element_top)
                     {
                         element.CompositeLocation = CompositeLocation.Top;
-                        element.GroupName = "tooth" + Convert.ToInt32(Regex.Match(compositeShell.SourceTop.ToString(), @"\d+").Value);
+                        element.GroupName = "tooth" + toothNumber;//Convert.ToInt32(Regex.Match(compositeShell.SourceTop.ToString(), @"\d+").Value);
                     }
                     elements.Add(element);
 
@@ -163,11 +156,13 @@ namespace DantistApp
                 elements[0].IsMerged = true;
             }
 
+            CompositeElement sameCompositeBot = null;
+            CompositeElement sameCompositeTop = null;
             foreach (CompositeElement element in elements)
             {
                 if (element.CompositeLocation == CompositeLocation.Bot)
                 {
-                    CompositeElement sameCompositeBot = SameCompositeBot(element, canvas);
+                    sameCompositeBot = SameCompositeBot(element, canvas);
                     if (sameCompositeBot != null)
                     {
                         if (elements.Count > 1)
@@ -179,7 +174,7 @@ namespace DantistApp
                 }
                 if (element.CompositeLocation == CompositeLocation.Top)
                 {
-                    CompositeElement sameCompositeTop = SameCompositeTop(element, canvas);
+                    sameCompositeTop = SameCompositeTop(element, canvas);
                     if (sameCompositeTop != null)
                     {
                         if (elements.Count > 1)
@@ -190,6 +185,19 @@ namespace DantistApp
                     }
                 }
                 AddContextMenu(element, canvas);
+            }
+
+            if (sameCompositeBot == null && sameCompositeTop == null &&
+                elements.Count == 1 && elements[0].CompositeLocation == CompositeLocation.Top) 
+            {
+                int ind = 0;
+                foreach (var item in _basicTeethShells)
+	            {
+                    int compareNumber = Convert.ToInt32(Regex.Match(item.SourceTop.ToString(), @"\d+").Value);
+                    if (toothNumber == compareNumber)
+                        ind = _basicTeethShells.IndexOf(item);
+	            }
+                elements[0].Position = _basicTeethShells[ind].StartLocation;
             }
             return elements;
         }
@@ -300,6 +308,10 @@ namespace DantistApp
                 {
                     canvas.Children.Remove(compElement);
                 }
+            }
+            else
+            {
+                canvas.Children.Remove(element);
             }
             _bufferUndoRedo.RecordStateAfter(canvas);
         }
