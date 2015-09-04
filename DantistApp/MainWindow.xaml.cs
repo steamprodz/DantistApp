@@ -38,6 +38,7 @@ namespace DantistApp
         UndoRedoBuffer _bufferUndoRedo;
         List<Element> _selectedElements;
         List<CompositeElementShell> _tabSelectedElements;
+        List<CompositeElementShell> _basicTeethShells;
         Element _activeElement;
         Point _previousActiveElementPos;
         
@@ -50,6 +51,7 @@ namespace DantistApp
             _bufferUndoRedo = new UndoRedoBuffer();
             _selectedElements = new List<Element>();
             _tabSelectedElements = new List<CompositeElementShell>();
+            _basicTeethShells = new List<CompositeElementShell>();
 
             foreach (var item in panel_btns.Children)
             {
@@ -57,14 +59,15 @@ namespace DantistApp
                     (item as Button).Click += PanelBtn_Click;
             }
 
-            AddDoubleClickEvents();
+            InitElements();
         }
 
         /// <summary>
-        /// Adds double-click events for basic elements
+        /// Initialization of all Elements of the window
         /// </summary>
-        private void AddDoubleClickEvents()
+        private void InitElements()
         {
+            //adding double-click events for basic elements
             List<Grid> grids = new List<Grid>();
             List<Element> elements = Helpers.GetLogicalChildCollection<Element>(this);
             foreach (var item in elements)
@@ -74,6 +77,17 @@ namespace DantistApp
                     (item as Element).MouseLeftButtonDown += Element_AddingOnDoubleClick;
                 }
                 catch { }
+
+               
+            }
+
+            
+            List<CompositeElementShell> shells = Helpers.GetLogicalChildCollection<CompositeElementShell>(this);
+            //заполняем массив базовых зубов
+            foreach (var item in shells)
+            {
+                if (item.SourceBot != null && item.SourceTop != null)
+                    _basicTeethShells.Add(item);
             }
 
         }
