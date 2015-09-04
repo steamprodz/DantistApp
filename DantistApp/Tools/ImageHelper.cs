@@ -103,6 +103,7 @@ namespace DantistApp.Tools
                     //}
                 }
             }
+            catch { }
 
             return comments;
         }

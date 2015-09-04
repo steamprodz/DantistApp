@@ -574,6 +574,11 @@ namespace DantistApp
                 canvas.Children.Add(ScalingLine);
         }
 
+        private void CompositeElementShell_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
     }
 
