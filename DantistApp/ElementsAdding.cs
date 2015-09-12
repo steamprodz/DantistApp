@@ -249,20 +249,26 @@ namespace DantistApp
         /// </summary>
         private void AddContextMenu(Element element, Canvas canvas)
         {
+            AddMenuItem(element, MenuItemType.Remove);
+            AddMenuItem(element, MenuItemType.Fix);
+            AddMenuItem(element, MenuItemType.LayerDown);
+            AddMenuItem(element, MenuItemType.LayerUp);
+            AddMenuItem(element, MenuItemType.MakeBg);
+            AddMenuItem(element, MenuItemType.MakeFg);
+
             if (element is GroupElement && !(element is CompositeElement))
             {
-                AddMenuItem(element, MenuItemType.Remove);
-                AddMenuItem(element, MenuItemType.Fix);
+                //...индивидуальные меню для Group элементов
             }
 
             if (element is UnlimitedElement)
             {
-                AddMenuItem(element, MenuItemType.Remove);
-                AddMenuItem(element, MenuItemType.Fix);
+                //...индивидуальные меню для Unlimited элементов
             }
 
             if (element is CompositeElement)
             {
+                //...индивидуальные меню для Composite элементов
                 AddMenuItem(element, MenuItemType.Remove);
                 AddMenuItem(element, MenuItemType.Fix);
                 AddMenuItem(element, MenuItemType.Merge);

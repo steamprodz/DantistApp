@@ -87,6 +87,17 @@ namespace DantistApp.Elements
         }
 
 
+        private int _zIndex;
+        public int ZIndex
+        {
+            get { return _zIndex; }
+            set 
+            { 
+                _zIndex = value; 
+                Canvas.SetZIndex(this, _zIndex); 
+            }
+        }
+
         public Element CloneIntoCanvas(Canvas canvas, Point point)
         {
             Element element = null;

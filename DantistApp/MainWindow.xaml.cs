@@ -36,17 +36,22 @@ namespace DantistApp
         ScalingWindow ScalingWindow;
         Line ScalingLine;
         UndoRedoBuffer _bufferUndoRedo;
+        List<Element> _elements;
         List<Element> _selectedElements;
         List<CompositeElementShell> _tabSelectedElements;
         List<CompositeElementShell> _basicTeethShells;
         Element _activeElement;
         Point _previousActiveElementPos;
-        
+        int _minZindex;
+        int _maxZindex;
 
 
         public MainWindow()
         {
             InitializeComponent();
+
+            _minZindex = 0;
+            _maxZindex = 0;
 
             _bufferUndoRedo = new UndoRedoBuffer();
             _selectedElements = new List<Element>();

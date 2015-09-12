@@ -90,6 +90,11 @@ namespace DantistApp
             UndoStack.Peek().After = canvasState;
         }
 
+        public List<Element> GetCurrentElements()
+        {
+            return UndoStack.Peek().After.Elements;
+        }
+
 
         public void Undo()
         {

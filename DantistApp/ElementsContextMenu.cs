@@ -27,7 +27,11 @@ namespace DantistApp
             Fix,
             Merge,
             Replace,
-            Scaling
+            Scaling,
+            MakeBg,
+            MakeFg,
+            LayerDown,
+            LayerUp
         }
 
         const string MENU_ITEM_NAME_REMOVE = "Удалить элемент";
@@ -37,7 +41,10 @@ namespace DantistApp
         const string MENU_ITEM_NAME_UNMERGE = "Разъединить элементы";
         const string MENU_ITEM_NAME_REPLACE = "Замена";
         const string MENU_ITEM_NAME_SCALING = "Масштабирование";
-
+        const string MENU_ITEM_NAME_MAKE_BACKGROUND = "Вынести на задний план";
+        const string MENU_ITEM_NAME_MAKE_FOREGROUND = "Вынести на передний план";
+        const string MENU_ITEM_NAME_LAYER_DOWN = "На слой ниже";
+        const string MENU_ITEM_NAME_LAYER_UP = "На слой выше";
 
         private void AddMenuItem(Element element, MenuItemType menuItemType)
         {
@@ -77,6 +84,26 @@ namespace DantistApp
                     MenuItem mi_scaling = new MenuItem();
                     InitMenuItem_Scaling(mi_scaling, element, canvas);
                     contextMenu.Items.Add(mi_scaling);
+                    break;
+                case MenuItemType.MakeBg:
+                    MenuItem mi_makeBg = new MenuItem();
+                    InitMenuItem_MakeBackground(mi_makeBg, element, canvas);
+                    contextMenu.Items.Add(mi_makeBg);
+                    break;
+                case MenuItemType.MakeFg:
+                    MenuItem mi_makeFg = new MenuItem();
+                    InitMenuItem_MakeForeground(mi_makeFg, element, canvas);
+                    contextMenu.Items.Add(mi_makeFg);
+                    break;
+                case MenuItemType.LayerDown:
+                    MenuItem mi_layerDown = new MenuItem();
+                    InitMenuItem_LayerDown(mi_layerDown, element, canvas);
+                    contextMenu.Items.Add(mi_layerDown);
+                    break;
+                case MenuItemType.LayerUp:
+                    MenuItem mi_layerUp = new MenuItem();
+                    InitMenuItem_LayerUp(mi_layerUp, element, canvas);
+                    contextMenu.Items.Add(mi_layerUp);
                     break;
 
                 default: break;
@@ -326,6 +353,78 @@ namespace DantistApp
                         };
 
                     ScalingWindow.Slider_Scale.Tag = compElement;
+                };
+        }
+
+        private void InitMenuItem_MakeBackground(MenuItem mi_makeBg, Element element, Canvas canvas)
+        {
+            mi_makeBg.Header = MENU_ITEM_NAME_MAKE_BACKGROUND;
+            mi_makeBg.Click +=
+                (object sender, RoutedEventArgs eargs) =>
+                {
+                    if (element.ZIndex == _minZindex)
+                    {
+                        List<Element> allElements = _bufferUndoRedo.GetCurrentElements();
+                        if (allElements.FirstOrDefault(e => e != element && e.ZIndex == element.ZIndex) != null)
+                        {
+                            element.ZIndex = _minZindex - 1;
+                            _minZindex--;
+                        }
+                    }
+                    else
+                    {
+                        element.ZIndex = _minZindex - 1;
+                        _minZindex--;
+                    }
+                    
+                };
+        }
+
+        private void InitMenuItem_MakeForeground(MenuItem mi_makeFg, Element element, Canvas canvas)
+        {
+            mi_makeFg.Header = MENU_ITEM_NAME_MAKE_FOREGROUND;
+            mi_makeFg.Click +=
+                (object sender, RoutedEventArgs eargs) =>
+                {
+                    if (element.ZIndex == _maxZindex)
+                    {
+                        List<Element> allElements = _bufferUndoRedo.GetCurrentElements();
+                        if (allElements.FirstOrDefault(e => e != element && e.ZIndex == element.ZIndex) != null)
+                        {
+                            element.ZIndex = _maxZindex + 1;
+                            _maxZindex++;
+                        }
+                    }
+                    else
+                    {
+                        element.ZIndex = _maxZindex + 1;
+                        _maxZindex++;
+                    }
+                    
+                };
+        }
+
+        private void InitMenuItem_LayerDown(MenuItem mi_layerDown, Element element, Canvas canvas)
+        {
+            mi_layerDown.Header = MENU_ITEM_NAME_LAYER_DOWN;
+            mi_layerDown.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    element.ZIndex++;
+                    if (element.ZIndex < _minZindex)
+                        _minZindex = element.ZIndex;
+                };
+        }
+
+        private void InitMenuItem_LayerUp(MenuItem mi_layerUp, Element element, Canvas canvas)
+        {
+            mi_layerUp.Header = MENU_ITEM_NAME_LAYER_UP;
+            mi_layerUp.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    element.ZIndex++;
+                    if (element.ZIndex > _maxZindex)
+                        _maxZindex = element.ZIndex;
                 };
         }
         #endregion MENU_ITEMS
