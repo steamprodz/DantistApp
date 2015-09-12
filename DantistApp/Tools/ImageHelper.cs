@@ -62,41 +62,48 @@ namespace DantistApp.Tools
 
         public static string ReadJPEGComment(string imageFlePath)
         {
-            string jpegDirectory = Path.GetDirectoryName(imageFlePath);
-            string jpegFileName = Path.GetFileNameWithoutExtension(imageFlePath);
-
-            BitmapDecoder decoder = null;
-            BitmapFrame bitmapFrame = null;
-            BitmapMetadata metadata = null;
-            FileInfo originalImage = new FileInfo(imageFlePath);
-
             string comments = "";
 
-            if (File.Exists(imageFlePath))
+
+            try
             {
-                // load the jpg file with a JpegBitmapDecoder    
-                using (Stream jpegStreamIn = File.Open(imageFlePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                string jpegDirectory = Path.GetDirectoryName(imageFlePath);
+                string jpegFileName = Path.GetFileNameWithoutExtension(imageFlePath);
+
+                BitmapDecoder decoder = null;
+                BitmapFrame bitmapFrame = null;
+                BitmapMetadata metadata = null;
+                FileInfo originalImage = new FileInfo(imageFlePath);
+
+
+
+                if (File.Exists(imageFlePath))
                 {
-                    decoder = new JpegBitmapDecoder(jpegStreamIn, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                    // load the jpg file with a JpegBitmapDecoder    
+                    using (Stream jpegStreamIn = File.Open(imageFlePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                    {
+                        decoder = new JpegBitmapDecoder(jpegStreamIn, BitmapCreateOptions.PreservePixelFormat, BitmapCacheOption.OnLoad);
+                    }
+
+                    bitmapFrame = decoder.Frames[0];
+                    metadata = (BitmapMetadata)bitmapFrame.Metadata;
+
+                    if (metadata.Comment != null)
+                        return metadata.Comment.ToString();
+                    return null;
+                    //if (bitmapFrame != null)
+                    //{
+                    //    BitmapMetadata metaData = (BitmapMetadata)bitmapFrame.Metadata.Clone();
+
+                    //    if (metaData != null)
+                    //    {
+                    //        // read the metadata   
+                    //         comments = metaData.Comment.ToString();
+                    //    }
+                    //}
                 }
-
-                bitmapFrame = decoder.Frames[0];
-                metadata = (BitmapMetadata)bitmapFrame.Metadata;
-
-                if (metadata.Comment != null)
-                    return metadata.Comment.ToString();
-                return null;
-                //if (bitmapFrame != null)
-                //{
-                //    BitmapMetadata metaData = (BitmapMetadata)bitmapFrame.Metadata.Clone();
-
-                //    if (metaData != null)
-                //    {
-                //        // read the metadata   
-                //         comments = metaData.Comment.ToString();
-                //    }
-                //}
             }
+            catch { }
 
             return comments;
         }

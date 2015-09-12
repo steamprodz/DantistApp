@@ -145,6 +145,8 @@ namespace DantistApp
                         element.CompositeLocation = CompositeLocation.Top;
                         element.GroupName = "tooth" + toothNumber;//Convert.ToInt32(Regex.Match(compositeShell.SourceTop.ToString(), @"\d+").Value);
                     }
+
+                    Panel.SetZIndex(element, 2);
                     elements.Add(element);
 
                 }
