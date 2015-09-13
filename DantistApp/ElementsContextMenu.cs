@@ -389,6 +389,10 @@ namespace DantistApp
                     if (element.ZIndex == _maxZindex)
                     {
                         List<Element> allElements = _bufferUndoRedo.GetCurrentElements();
+                        var lol = (from a
+                                       in allElements
+                                   select a.ZIndex);
+                        //List<int> lol = allElements.ToDictionary<int>(e => e.ZIndex).ToArray();
                         if (allElements.FirstOrDefault(e => e != element && e.ZIndex == element.ZIndex) != null)
                         {
                             element.ZIndex = _maxZindex + 1;

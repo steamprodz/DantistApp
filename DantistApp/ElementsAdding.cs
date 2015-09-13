@@ -79,10 +79,13 @@ namespace DantistApp
                 bool addBothParts = (compositeShell.element_bot.Source != null &&
                                      compositeShell.element_top.Source != null);
                 elements = AddCompositeElement(basicElement, canvas);
+                elements.ForEach(e => e.ZIndex = 2);
+                if (_maxZindex < 2) _maxZindex = 2;
             }
             else
             {
                 Element element = AddSingleElement(basicElement, canvas);
+                element.ZIndex = 0;
             }
         }
 
