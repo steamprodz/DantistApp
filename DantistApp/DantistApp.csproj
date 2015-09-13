@@ -83,6 +83,9 @@
     <Compile Include="PanoramaWindow.xaml.cs">
       <DependentUpon>PanoramaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RotatingWindow.xaml.cs">
+      <DependentUpon>RotatingWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ScalingWindow.xaml.cs">
       <DependentUpon>ScalingWindow.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PanoramaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RotatingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

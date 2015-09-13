@@ -260,6 +260,7 @@ namespace DantistApp
             AddMenuItem(element, MenuItemType.LayerUp);
             AddMenuItem(element, MenuItemType.MakeBg);
             AddMenuItem(element, MenuItemType.MakeFg);
+            AddMenuItem(element, MenuItemType.Rotate);
 
             if (element is GroupElement && !(element is CompositeElement))
             {

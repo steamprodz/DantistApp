@@ -34,6 +34,7 @@ namespace DantistApp
         Point _mousePosition;
         PanoramaWindow _panoramaWindow;
         ScalingWindow ScalingWindow;
+        RotatingWindow RotatingWindow;
         Line ScalingLine;
         UndoRedoBuffer _bufferUndoRedo;
         List<Element> _elements;
@@ -556,10 +557,10 @@ namespace DantistApp
 
 
 
-        private void RefreshScalingLine(CompositeElement compElement, Canvas canvas)
+        private void RefreshScalingLine(Window wnd, Element element, Canvas canvas)
         {
-            Vector offset = new Vector(ScalingWindow.Width / 2, 0);//ScalingWindow.Height + 125);
-            Point translatedPoint = ScalingWindow.TranslatePoint(new Point(0, 0) + offset, canvas);
+            Vector offset = new Vector(wnd.Width / 2, 0);//ScalingWindow.Height + 125);
+            Point translatedPoint = wnd.TranslatePoint(new Point(0, 0) + offset, canvas);
 
             canvas.Children.Remove(ScalingLine);
 
@@ -567,14 +568,14 @@ namespace DantistApp
             ScalingLine.X1 = translatedPoint.X;
             ScalingLine.Y1 = translatedPoint.Y;
 
-            ScalingLine.X2 = compElement.Position.X + compElement.Width / 2;
-            ScalingLine.Y2 = compElement.Position.Y + compElement.Height / 8;
+            ScalingLine.X2 = element.Position.X + element.Width / 2;
+            ScalingLine.Y2 = element.Position.Y + element.Height / 8;
             SolidColorBrush redBrush = new SolidColorBrush();
             redBrush.Color = Colors.DarkGreen;
             ScalingLine.StrokeThickness = 3;
             ScalingLine.Stroke = redBrush;
 
-            //проверка, находится ли ScalingWindow в области канваса
+            //проверка, находится ли это окно в области канваса
             if (new Rect(canvas.RenderSize).Contains(new Point(ScalingLine.X1, ScalingLine.Y1)))
                 canvas.Children.Add(ScalingLine);
         }

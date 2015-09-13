@@ -74,6 +74,13 @@ namespace DantistApp
                                         Canvas.GetTop(_activeElement) + offset.Y);
                     (_activeElement as Element).Position = p;
 
+                    try
+                    {
+                        if (RotatingWindow.IsLoaded)
+                            RefreshScalingLine(RotatingWindow, _activeElement, CanvasMain);
+                    }
+                    catch { }
+
                     if (_activeElement is CompositeElement)
                     {
                         var activeComposite = _activeElement as CompositeElement;
@@ -81,7 +88,8 @@ namespace DantistApp
                         try
                         {
                             if (ScalingWindow.IsLoaded)
-                                RefreshScalingLine(activeComposite, CanvasMain);
+                                RefreshScalingLine(ScalingWindow, activeComposite, CanvasMain);
+                            
                         }
                         catch { }
 

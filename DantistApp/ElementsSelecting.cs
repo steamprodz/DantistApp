@@ -53,6 +53,12 @@ namespace DantistApp
                     AddToSelection(element as Element);
                 }
 
+                if (RotatingWindow.IsLoaded)
+                {
+                    RotatingWindow.Slider_Rotate.Tag = element;
+                    //ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(element.Source.ToString(), @"\d+").Value) + ")";
+                }
+
                 if (element is CompositeElement)
                 {
                     try

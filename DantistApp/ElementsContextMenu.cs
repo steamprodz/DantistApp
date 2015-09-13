@@ -31,7 +31,8 @@ namespace DantistApp
             MakeBg,
             MakeFg,
             LayerDown,
-            LayerUp
+            LayerUp,
+            Rotate
         }
 
         const string MENU_ITEM_NAME_REMOVE = "Удалить элемент";
@@ -45,6 +46,7 @@ namespace DantistApp
         const string MENU_ITEM_NAME_MAKE_FOREGROUND = "Вынести на передний план";
         const string MENU_ITEM_NAME_LAYER_DOWN = "На слой ниже";
         const string MENU_ITEM_NAME_LAYER_UP = "На слой выше";
+        const string MENU_ITEM_NAME_ROTATE = "Повернуть";
 
         private void AddMenuItem(Element element, MenuItemType menuItemType)
         {
@@ -104,6 +106,11 @@ namespace DantistApp
                     MenuItem mi_layerUp = new MenuItem();
                     InitMenuItem_LayerUp(mi_layerUp, element, canvas);
                     contextMenu.Items.Add(mi_layerUp);
+                    break;
+                case MenuItemType.Rotate:
+                    MenuItem mi_rotate = new MenuItem();
+                    InitMenuItem_Rotate(mi_rotate, element, canvas);
+                    contextMenu.Items.Add(mi_rotate);
                     break;
 
                 default: break;
@@ -337,15 +344,15 @@ namespace DantistApp
                     ScalingWindow.Top = this.Top + compElement.Position.Y - 50;
                     ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(compElement.Source.ToString(), @"\d+").Value) + ")";
                     ScalingWindow.Show();
-                    RefreshScalingLine(compElement, canvas);
+                    RefreshScalingLine(ScalingWindow, compElement, canvas);
 
                     ScalingWindow.Slider_Scale.ValueChanged += (object sender_slider, RoutedPropertyChangedEventArgs<double> e_slider) =>
                         {
-                            RefreshScalingLine(ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
+                            RefreshScalingLine(ScalingWindow, ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
                         };
                     ScalingWindow.LocationChanged += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
                         {
-                            RefreshScalingLine(ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
+                            RefreshScalingLine(ScalingWindow, ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
                         };
                     ScalingWindow.Closed += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
                         {
@@ -431,6 +438,45 @@ namespace DantistApp
                         _maxZindex = element.ZIndex;
                 };
         }
+
+        private void InitMenuItem_Rotate(MenuItem mi_rotate, Element element, Canvas canvas)
+        {
+            mi_rotate.Header = MENU_ITEM_NAME_ROTATE;
+            mi_rotate.Click +=
+                (object sender, RoutedEventArgs e) =>
+                {
+                    //if (element is CompositeElement == false)
+                     //   return;
+
+                    //CompositeElement compElement = element as CompositeElement;
+
+                    if (RotatingWindow != null)
+                        RotatingWindow.Close();
+                    RotatingWindow = new RotatingWindow();
+                    RotatingWindow.Left = this.Left + element.Position.X - RotatingWindow.Width / 2;
+                    RotatingWindow.Top = this.Top + element.Position.Y - 50;
+                    //RotatingWindow.Title = "Поворот (зуб №" + Convert.ToInt32(Regex.Match(compElement.Source.ToString(), @"\d+").Value) + ")";
+                    RotatingWindow.Show();
+                    RefreshScalingLine(RotatingWindow, element, canvas);
+
+                    RotatingWindow.Slider_Rotate.ValueChanged += (object sender_slider, RoutedPropertyChangedEventArgs<double> e_slider) =>
+                    {
+                        RefreshScalingLine(RotatingWindow, RotatingWindow.Slider_Rotate.Tag as Element, canvas);
+                    };
+                    RotatingWindow.LocationChanged += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
+                    {
+                        RefreshScalingLine(RotatingWindow, RotatingWindow.Slider_Rotate.Tag as Element, canvas);
+                    };
+                    RotatingWindow.Closed += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
+                    {
+                        canvas.Children.Remove(ScalingLine);
+                    };
+
+                    RotatingWindow.Slider_Rotate.Tag = element;
+                };
+        }
+
+
         #endregion MENU_ITEMS
         //==============================================================================================
 
