@@ -31,6 +31,9 @@ namespace DantistApp.Elements
             set;
         }
 
+        // Для корня - пломбирование
+        public Element RootSeal { get; set; }
+
         public double HorizontalShift { get; set; }
 
         public Label RelativeToothNumber { get; set; }
@@ -93,7 +96,13 @@ namespace DantistApp.Elements
                         Canvas.SetTop(RelativeElement.RelativeToothNumber, RelativeElement.Position.Y);
                     }
                 }
-                
+
+                //if (RootSeal != null)
+                //{
+                //    Canvas.SetLeft(RootSeal, RootSeal.Position.X + value.X - _position.X);
+                //    Canvas.SetTop(RootSeal, RootSeal.Position.Y + value.Y - _position.Y);
+                //}
+
                 _position = value;
             }
         }
@@ -133,9 +142,29 @@ namespace DantistApp.Elements
             {
                 newElement.Position -= new Vector(dx, 0);
             }
+
             //Image/lunky_plastyka/48.png 21 14
-            //else if (newElement.Source.ToString().Substring(newElement.Source.ToString().Length - 21, 14) != "lunky_plastyka")
-            //    newElement.Position -= new Vector(dx / 2, dy);
+            //if (newElement.Source.ToString().Substring(newElement.Source.ToString().Length - 21, 14) == "lunky_plastyka"
+            //    || newElement.Source.ToString().Substring(newElement.Source.ToString().Length - 20, 14) == "lunky_plastyka")
+            if (newElement.Source.ToString().Contains("lunky_plastyka"))
+            {
+                if (newElement is CompositeElement)
+                {
+                    if (oldElement.CompositeLocation == CompositeLocation.Top 
+                        && (oldElement.GroupName.Substring(5, 1) == "1" || oldElement.GroupName.Substring(5, 1) == "2"))
+                    {
+                        if (oldElement.RelativeElement != null)
+                            canvas.Children.Remove(oldElement.RelativeElement);
+                    }
+                    else if (oldElement.CompositeLocation == CompositeLocation.Bot
+                        && (oldElement.GroupName.Substring(5, 1) == "3" || oldElement.GroupName.Substring(5, 1) == "4"))
+                    {
+                        if (oldElement.RelativeElement != null)
+                            canvas.Children.Remove(oldElement.RelativeElement);
+                    }
+                }
+            }
+                //newElement.Position -= new Vector(dx / 2, dy);
             
             //if (newRelElement == null && newElement.Source != oldElement.Source)
             //    //newElement.Position = new Point(100, 100);

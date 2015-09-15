@@ -135,6 +135,12 @@ namespace DantistApp.Elements
                 element.Size = 1;
             
             canvas.Children.Add(element);
+
+            if (element.Source.ToString().Contains("karies_plomba"))
+            {
+                element.ZIndex = 20;
+            }
+
             element.Position = point;
             if (element is CompositeElement && this.Name == "element_bot")
             {
@@ -147,10 +153,25 @@ namespace DantistApp.Elements
 
         public void ChangeSize(double newSize, bool countingRelative)
         {
+            var elementHeightOld = Height;
+            var elementWidthOld = Width;
+
             Width /= Size;
             Height /= Size;
             Width *= newSize;
             Height *= newSize;
+            
+
+            if (this is CompositeElement && (this as CompositeElement).RootSeal != null)
+            {
+                var composite = this as CompositeElement;
+
+                composite.RootSeal.Width /= Size;
+                composite.RootSeal.Height /= Size;
+                composite.RootSeal.Width *= newSize;
+                composite.RootSeal.Height *= newSize;
+            }
+
             Size = newSize;
 
             if (countingRelative && this is CompositeElement)
@@ -160,11 +181,16 @@ namespace DantistApp.Elements
                 
                 if (relElement != null && compElement.IsMerged)
                 {
+                    var relElementHeightOld = relElement.Height;
+                    var relElementWidthOld = relElement.Width;
+
                     relElement.Width /= relElement.Size;
                     relElement.Height /= relElement.Size;
                     relElement.Width *= newSize;
                     relElement.Height *= newSize;
                     relElement.Size = newSize;
+
+
 
                     //была писечка до фикса, но дьяк забил
                     //Vector compElementPos = new Vector(compElement.Position.X, compElement.Position.Y);
@@ -175,7 +201,30 @@ namespace DantistApp.Elements
                     //relElementPos += offset * newSize;
 
                     //relElement.SetPositionDirectly(new Point(relElementPos.X, relElementPos.Y));
+                    
+                    
+                    var dyRelative = relElement.Height - relElementHeightOld;
+                    //var dxRelative = relElement.Width - relElementWidthOld;
+
+                    var dy = Height - elementHeightOld;
+                    //var dx = Width - elementWidthOld;
+
+                    if (compElement.CompositeLocation == CompositeLocation.Top)
+                    {
+                        Canvas.SetTop(relElement, Canvas.GetTop(relElement) + dy);
+                    }
+                    else
+                    {
+                        Canvas.SetTop(compElement, Canvas.GetTop(compElement) + dyRelative);
+                    }
+                    //Canvas.SetLeft(relElement, Canvas.GetLeft(relElement) + dxRelative);
+                    
+                    //Canvas.SetTop(compElement, Canvas.GetTop(compElement) - (dy + dyRelative) / 2);
+                    //Canvas.SetLeft(compElement, Canvas.GetLeft(compElement) + dx);
+
+                    
                 }
+
             }
         }
 

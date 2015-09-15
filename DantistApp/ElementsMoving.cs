@@ -89,7 +89,7 @@ namespace DantistApp
                         {
                             if (ScalingWindow.IsLoaded)
                                 RefreshScalingLine(ScalingWindow, activeComposite, CanvasMain);
-                            
+
                         }
                         catch { }
 
@@ -108,6 +108,16 @@ namespace DantistApp
                     if (coordsTextBoxOld != null)
                     {
                         CanvasMain.Children.Remove(coordsTextBoxOld);
+                    }
+
+
+                    // Для пломбированного корня
+                    if (_activeElement is CompositeElement && (_activeElement as CompositeElement).RootSeal != null)
+                    {
+                        var composite = _activeElement as CompositeElement;
+
+                        Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite.RootSeal) + offset.Y);
+                        Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite.RootSeal) + offset.X);
                     }
 
                     //coordsTextBoxNew = new TextBox();

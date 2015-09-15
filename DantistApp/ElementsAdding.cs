@@ -219,6 +219,7 @@ namespace DantistApp
                                                  select item).FirstOrDefault();
             return sameCompositeBot;
         }
+
         private CompositeElement SameCompositeTop(CompositeElement element, Canvas canvas)
         {
             List<CompositeElement> sameCompositeElement = (from item in canvas.Children.OfType<CompositeElement>().DefaultIfEmpty()
@@ -275,11 +276,27 @@ namespace DantistApp
             if (element is CompositeElement)
             {
                 //...индивидуальные меню для Composite элементов
-                AddMenuItem(element, MenuItemType.Remove);
-                AddMenuItem(element, MenuItemType.Fix);
-                AddMenuItem(element, MenuItemType.Merge);
+                //AddMenuItem(element, MenuItemType.Remove);
+                //AddMenuItem(element, MenuItemType.Fix);
+                //AddMenuItem(element, MenuItemType.Merge);
                 AddMenuItem(element, MenuItemType.Scaling);
                // AddMenuItem(element, MenuItemType.Replace);
+            }
+
+            // Для корней - пломбирование
+            if (element is CompositeElement)
+            {
+                var composite = element as CompositeElement;
+
+                // Корень - верхние зубы
+                if ((composite.CompositeLocation == CompositeLocation.Top &&
+                    (composite.GroupName.Substring(5, 1) == "1" || composite.GroupName.Substring(5, 1) == "2")) ||
+                    (composite.CompositeLocation == CompositeLocation.Bot &&
+                    (composite.GroupName.Substring(5, 1) == "3" || composite.GroupName.Substring(5, 1) == "4")))
+                {
+                    AddMenuItem(element, MenuItemType.InsufficientlySealed);
+                    AddMenuItem(element, MenuItemType.Sealed);
+                }
             }
         }
 
