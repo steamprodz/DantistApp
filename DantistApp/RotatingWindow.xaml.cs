@@ -41,7 +41,19 @@ namespace DantistApp
                     compElement.RelativeElement != null &&
                     compElement.IsMerged)
                 {
-                    compElement.RelativeElement.RenderTransform = rotateTransform;
+                    CompositeElement relativeElement = compElement.RelativeElement;
+                    double height1 = element.ActualHeight - 7;
+                    double height2 = 0;
+                    if (compElement.CompositeLocation == CompositeLocation.Bot)
+                    {
+                        height1 = 0;
+                        height2 = compElement.RelativeElement.ActualHeight - 7;
+                    }
+                    RotateTransform rotateTransform1 = new RotateTransform(angle, element.ActualWidth / 2, height1);
+                    element.RenderTransform = rotateTransform1;
+                    RotateTransform rotateTransform2 = new RotateTransform(angle, relativeElement.ActualWidth / 2, height2);//element.ActualWidth / 2, -(element.ActualHeight + relativeElement.ActualHeight) / 2);
+                    compElement.RelativeElement.RenderTransform = rotateTransform2;
+                    //RenderTransformOrigin = new Point(element.ActualWidth / 2, (element.ActualHeight + compElement.ActualHeight) / 2);
                 }
             }
         }
