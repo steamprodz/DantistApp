@@ -33,7 +33,7 @@ namespace DantistApp
             Element element = Slider_Rotate.Tag as Element;
             if (element != null)
             {
-                RotateTransform rotateTransform = new RotateTransform(angle);
+                RotateTransform rotateTransform = new RotateTransform(angle, element.ActualWidth / 2, element.ActualHeight / 2);
                 element.RenderTransform = rotateTransform;
 
                 CompositeElement compElement = element as CompositeElement;
