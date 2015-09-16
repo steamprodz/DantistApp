@@ -44,9 +44,6 @@ namespace DantistApp.Elements
             get { return _isMerged; }
             set
             {
-
-                
-
                 _isMerged = value;
                 if (RelativeElement != null)
                     RelativeElement._isMerged = value;
@@ -81,10 +78,16 @@ namespace DantistApp.Elements
                     Canvas.SetTop(RelativeElement, RelativeElement.Position.Y + value.Y - _position.Y);
                     RelativeElement._position = new Point(RelativeElement.Position.X + value.X - _position.X,
                                                             RelativeElement.Position.Y + value.Y - _position.Y);
-                    
+                   
                 }
                 Canvas.SetLeft(this, value.X);
                 Canvas.SetTop(this, value.Y);
+
+                if (RootSeal != null)
+                {
+                    Canvas.SetLeft(RootSeal, Canvas.GetLeft(RootSeal) + value.X - _position.X);
+                    Canvas.SetTop(RootSeal, Canvas.GetTop(RootSeal) + value.Y - _position.Y);
+                }
 
                 if (RelativeToothNumber != null)
                 {

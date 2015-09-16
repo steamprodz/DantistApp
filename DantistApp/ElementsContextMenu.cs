@@ -543,6 +543,8 @@ namespace DantistApp
                     var composite = element as CompositeElement;
 
                     composite.RootSeal = new Element();
+                    if (composite.RelativeElement != null)
+                        composite.RelativeElement.RootSeal = composite.RootSeal;
 
                     var toothNumber = composite.GroupName.Substring(5, 2);
 
@@ -578,6 +580,8 @@ namespace DantistApp
                     var composite = element as CompositeElement;
 
                     composite.RootSeal = new Element();
+                    if (composite.RelativeElement != null)
+                        composite.RelativeElement.RootSeal = composite.RootSeal;
 
                     var toothNumber = composite.GroupName.Substring(5, 2);
 

@@ -102,14 +102,14 @@ namespace DantistApp
                     }
 
 
-                    // Для пломбированного корня
-                    if (_activeElement is CompositeElement && (_activeElement as CompositeElement).RootSeal != null)
-                    {
-                        var composite = _activeElement as CompositeElement;
+                    //// Для пломбированного корня
+                    //if (_activeElement is CompositeElement && (_activeElement as CompositeElement).RootSeal != null)
+                    //{
+                    //    var composite = _activeElement as CompositeElement;
 
-                        Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite.RootSeal) + offset.Y);
-                        Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite.RootSeal) + offset.X);
-                    }
+                    //    Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite.RootSeal) + offset.Y);
+                    //    Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite.RootSeal) + offset.X);
+                    //}
 
                     //coordsTextBoxNew = new TextBox();
                     ////if (_activeElement is CompositeElement && (_activeElement.Name == "element_top"))
