@@ -460,8 +460,6 @@ namespace DantistApp
                     if (element.CompositeLocation == CompositeLocation.Top)
                         element.RelativeToothNumber.Visibility = System.Windows.Visibility.Visible;
                 }
-
-                
             }
         }
 
@@ -489,9 +487,6 @@ namespace DantistApp
             CanvasMain.Children.Add(labelToothNumber);
             Canvas.SetLeft(labelToothNumber, Canvas.GetLeft(element));
             Canvas.SetTop(labelToothNumber, Canvas.GetTop(element));
-
-            // Номер зуба
-            Canvas.SetZIndex(element.RelativeToothNumber, 99);
 
             return labelToothNumber;
         }

@@ -74,15 +74,24 @@ namespace DantistApp
                                         Canvas.GetTop(_activeElement) + offset.Y);
                     (_activeElement as Element).Position = p;
 
-                    if (RotatingWindow != null && RotatingWindow.IsLoaded)
-                        RefreshScalingLine(RotatingWindow, _activeElement, CanvasMain);
+                    try
+                    {
+                        if (RotatingWindow.IsLoaded)
+                            RefreshScalingLine(RotatingWindow, _activeElement, CanvasMain);
+                    }
+                    catch { }
 
                     if (_activeElement is CompositeElement)
                     {
                         var activeComposite = _activeElement as CompositeElement;
 
-                        if (ScalingWindow != null && ScalingWindow.IsLoaded)
-                            RefreshScalingLine(ScalingWindow, activeComposite, CanvasMain);
+                        try
+                        {
+                            if (ScalingWindow.IsLoaded)
+                                RefreshScalingLine(ScalingWindow, activeComposite, CanvasMain);
+
+                        }
+                        catch { }
 
                         if (activeComposite.RelativeToothNumber != null)
                         {

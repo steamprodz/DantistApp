@@ -136,6 +136,11 @@ namespace DantistApp.Elements
             
             canvas.Children.Add(element);
 
+            if (element.Source.ToString().Contains("karies_plomba"))
+            {
+                element.ZIndex = 20;
+            }
+
             element.Position = point;
             if (element is CompositeElement && this.Name == "element_bot")
             {
