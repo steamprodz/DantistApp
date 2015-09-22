@@ -25,16 +25,6 @@ namespace DantistApp.Elements
     public class CompositeElement : GroupElement
     {
 
-        //public EventHandler CompositeRemoved;
-
-        //private void HandleCompositeRemoved(object sender, EventArgs e)
-        //{
-        //    var composite = sender as CompositeElement;
-
-        //    if (composite.RootSeal != null)
-        //        Canvas.
-        //}
-
         public CompositeElement RelativeElement
         {
             get;
