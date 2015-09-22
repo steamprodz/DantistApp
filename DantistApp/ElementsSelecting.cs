@@ -61,15 +61,11 @@ namespace DantistApp
 
                 if (element is CompositeElement)
                 {
-                    try
+                    if (ScalingWindow != null && ScalingWindow.IsLoaded)
                     {
-                        if (ScalingWindow.IsLoaded)
-                        {
-                            ScalingWindow.Slider_Scale.Tag = element as CompositeElement;
-                            ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(element.Source.ToString(), @"\d+").Value) + ")";
-                        }
+                        ScalingWindow.Slider_Scale.Tag = element as CompositeElement;
+                        ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(element.Source.ToString(), @"\d+").Value) + ")";
                     }
-                    catch { }
 
                     CompositeElement relElement = (element as CompositeElement).RelativeElement;
                     if (relElement != null && relElement.IsMerged)

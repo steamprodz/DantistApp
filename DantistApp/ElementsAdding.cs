@@ -89,6 +89,11 @@ namespace DantistApp
             {
                 Element element = AddSingleElement(basicElement, canvas);
                 element.ZIndex = 0;
+
+                if (element.Source.ToString().Contains("karies_plomba"))
+                {
+                    element.ZIndex = 3;
+                }
             }
         }
 
@@ -153,6 +158,7 @@ namespace DantistApp
                     }
 
                     Panel.SetZIndex(element, 2);
+                    //element.ZIndex = 2;
                     elements.Add(element);
 
                 }
@@ -281,7 +287,7 @@ namespace DantistApp
                 //...индивидуальные меню для Composite элементов
                 //AddMenuItem(element, MenuItemType.Remove);
                 //AddMenuItem(element, MenuItemType.Fix);
-                //AddMenuItem(element, MenuItemType.Merge);
+                AddMenuItem(element, MenuItemType.Merge);
                 AddMenuItem(element, MenuItemType.Scaling);
                // AddMenuItem(element, MenuItemType.Replace);
             }
