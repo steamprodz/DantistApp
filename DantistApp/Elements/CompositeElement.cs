@@ -25,6 +25,16 @@ namespace DantistApp.Elements
     public class CompositeElement : GroupElement
     {
 
+        //public EventHandler CompositeRemoved;
+
+        //private void HandleCompositeRemoved(object sender, EventArgs e)
+        //{
+        //    var composite = sender as CompositeElement;
+
+        //    if (composite.RootSeal != null)
+        //        Canvas.
+        //}
+
         public CompositeElement RelativeElement
         {
             get;
@@ -145,6 +155,9 @@ namespace DantistApp.Elements
             {
                 newElement.Position -= new Vector(dx, 0);
             }
+
+            if (oldElement.RootSeal != null)
+                canvas.Children.Remove(oldElement.RootSeal);
 
             //Image/lunky_plastyka/48.png 21 14
             //if (newElement.Source.ToString().Substring(newElement.Source.ToString().Length - 21, 14) == "lunky_plastyka"

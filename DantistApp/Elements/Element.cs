@@ -199,18 +199,36 @@ namespace DantistApp.Elements
                     
                     
                     var dyRelative = relElement.Height - relElementHeightOld;
-                    //var dxRelative = relElement.Width - relElementWidthOld;
+                    var dxRelative = relElement.Width - relElementWidthOld;
 
                     var dy = Height - elementHeightOld;
-                    //var dx = Width - elementWidthOld;
+                    var dx = Width - elementWidthOld;
 
                     if (compElement.CompositeLocation == CompositeLocation.Top)
                     {
                         Canvas.SetTop(relElement, Canvas.GetTop(relElement) + dy);
+
+                        //if (compElement.GroupName.ToString().Substring(5, 1) == "1" || compElement.GroupName.ToString().Substring(5, 1) == "2")
+                        //{
+                            if (compElement.RootSeal != null)
+                            {
+                                Canvas.SetTop(compElement.RootSeal, Canvas.GetTop(compElement.RootSeal) + dyRelative);
+                                Canvas.SetLeft(compElement.RootSeal, Canvas.GetLeft(compElement.RootSeal) + dxRelative / 8);
+                            }
+                        //}
                     }
                     else
                     {
                         Canvas.SetTop(compElement, Canvas.GetTop(compElement) + dyRelative);
+
+                        //if (compElement.GroupName.ToString().Substring(5, 1) == "3" || compElement.GroupName.ToString().Substring(5, 1) == "4")
+                        //{
+                            if (compElement.RootSeal != null)
+                            {
+                                Canvas.SetTop(compElement.RootSeal, Canvas.GetTop(compElement.RootSeal) + dy);
+                                Canvas.SetLeft(compElement.RootSeal, Canvas.GetLeft(compElement.RootSeal) + dx / 8);
+                            }
+                        //}
                     }
                     //Canvas.SetLeft(relElement, Canvas.GetLeft(relElement) + dxRelative);
                     

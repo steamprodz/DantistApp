@@ -72,7 +72,12 @@ namespace DantistApp
                     MenuItem mi_unfix = new MenuItem();
                     InitMenuItem_Fix(mi_fix, element, canvas, mi_unfix);
                     InitMenuItem_Unfix(mi_unfix, element, canvas, mi_fix);
-                    contextMenu.Items.Add(mi_fix);
+
+                    if (element is CompositeElement)
+                        contextMenu.Items.Add(mi_fix);
+                    else
+                        contextMenu.Items.Add(mi_unfix);
+
                     break;
                 case MenuItemType.Merge:
                     MenuItem mi_merge = new MenuItem();
@@ -542,6 +547,9 @@ namespace DantistApp
                 {
                     var composite = element as CompositeElement;
 
+                    if (composite.RootSeal != null)
+                        canvas.Children.Remove(composite.RootSeal);
+
                     composite.RootSeal = new Element();
                     if (composite.RelativeElement != null)
                         composite.RelativeElement.RootSeal = composite.RootSeal;
@@ -555,19 +563,25 @@ namespace DantistApp
                     src.CacheOption = BitmapCacheOption.OnLoad;
                     src.EndInit();
 
+                    
+
                     composite.RootSeal.Source = src;
                     canvas.Children.Add(composite.RootSeal);
                     composite.RootSeal.Width = composite.RootSeal.Source.Width * 2.5;
                     composite.RootSeal.Height = composite.RootSeal.Source.Height * 2.5;
                     Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2);
                     Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite) + Values.RootInfSealYShift[toothNumber]);
-                    
+                    composite.RootSeal.IsFixed = true;
+
                     Panel.SetZIndex(composite.RootSeal, 3);
 
                     // Для пломбы
                     AddMenuItem(composite.RootSeal, MenuItemType.Remove);
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerDown);
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerUp);
+                    AddMenuItem(composite.RootSeal, MenuItemType.Fix);
+                    //AddMenuItem(composite.RootSeal, MenuItemType.Scaling);
+                    //AddMenuItem(composite.RootSeal, MenuItemType.Rotate);
                 };
         }
 
@@ -578,6 +592,9 @@ namespace DantistApp
                 (object sender, RoutedEventArgs e) =>
                 {
                     var composite = element as CompositeElement;
+
+                    if (composite.RootSeal != null)
+                        canvas.Children.Remove(composite.RootSeal);
 
                     composite.RootSeal = new Element();
                     if (composite.RelativeElement != null)
@@ -598,6 +615,7 @@ namespace DantistApp
                     composite.RootSeal.Height = composite.RootSeal.Source.Height * 2.5;
                     Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2);
                     Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite) + Values.RootSealYShift[toothNumber]);
+                    composite.RootSeal.IsFixed = true;
 
                     Panel.SetZIndex(composite.RootSeal, 3);
 
@@ -605,6 +623,9 @@ namespace DantistApp
                     AddMenuItem(composite.RootSeal, MenuItemType.Remove);
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerDown);
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerUp);
+                    AddMenuItem(composite.RootSeal, MenuItemType.Fix);
+                    //AddMenuItem(composite.RootSeal, MenuItemType.Scaling);
+                    //AddMenuItem(composite.RootSeal, MenuItemType.Rotate);
                 };
         }
 

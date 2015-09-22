@@ -33,15 +33,30 @@ namespace DantistApp
         private void Slider_Scale_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             double scale = 0.5 + e.NewValue / 10;
-            CompositeElement compElement = Slider_Scale.Tag as CompositeElement;
-            if (compElement != null)
+
+            if (Slider_Scale.Tag is CompositeElement)
             {
-                compElement.ChangeSize(scale, true);
-                //if (compElement.RelativeElement != null && 
-                //    compElement.IsMerged)
-                //{
-                //    compElement.RelativeElement.ChangeSize(scale);
-                //}
+                CompositeElement compElement = Slider_Scale.Tag as CompositeElement;
+                if (compElement != null)
+                {
+                    compElement.ChangeSize(scale, true);
+                    //if (compElement.RelativeElement != null && 
+                    //    compElement.IsMerged)
+                    //{
+                    //    compElement.RelativeElement.ChangeSize(scale);
+                    //}
+                }
+                else
+                {
+                    var element = Slider_Scale.Tag as Element;
+
+                    element.Height /= element.Size;
+                    element.Width /= element.Size;
+                    element.Height *= scale;
+                    element.Width *= scale;
+
+                    element.Size = scale;
+                }
             }
 
         }

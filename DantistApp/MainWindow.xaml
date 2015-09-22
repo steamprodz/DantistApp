@@ -59,8 +59,8 @@
         <StackPanel x:Name="panel_btns" Grid.Column="1" HorizontalAlignment="Left" Height="378" Margin="1.2,25,0,0" VerticalAlignment="Top" Width="178" Grid.RowSpan="2">
             <Button x:Name="btn_verh_chel" Content="1. Верхняя челюсть" Height="28" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
             <Button x:Name="btn_nij_chel" Content="2. Нижняя челюсть" Height="30" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
-            <Button x:Name="btn_zubi_nij_chel" Content="3. Зубы нижней челюсти" Height="29" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
-            <Button x:Name="btn_zubi_verh_chel" Content="4. Зубы верхней челюсти" Height="29" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
+            <Button x:Name="btn_zubi_verh_chel" Content="3. Зубы верхней челюсти" Height="29" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
+            <Button x:Name="btn_zubi_nij_chel" Content="4. Зубы нижней челюсти" Height="29" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
             <Button x:Name="btn_lunki_plastika_verh" Content="5. Лунки пластика верх" Height="29" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
             <Button x:Name="btn_lunki_plastika_niz" Content="6. Лунки пластика низ" Height="29" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
             <Button x:Name="btn_plastika_verh" Content="7. Пластика верх" Height="29" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>

@@ -50,7 +50,9 @@ namespace DantistApp
                     if (sameGroupElement.Source == basicElement.Source)
                         canAdd = false;
                     else
+                    {
                         CanvasMain.Children.Remove(sameGroupElement);
+                    }
                 }
             }
 
@@ -78,6 +80,7 @@ namespace DantistApp
                 List<CompositeElement> elements = null;
                 bool addBothParts = (compositeShell.element_bot.Source != null &&
                                      compositeShell.element_top.Source != null);
+
                 elements = AddCompositeElement(basicElement, canvas);
                 elements.ForEach(e => e.ZIndex = 2);
                 if (_maxZindex < 2) _maxZindex = 2;
@@ -338,6 +341,8 @@ namespace DantistApp
                     canvas.Children.Remove(compElement.RelativeElement);
                     if (compElement.RelativeElement.RelativeToothNumber != null)
                         canvas.Children.Remove(compElement.RelativeElement.RelativeToothNumber);
+                    if (compElement.RootSeal != null)
+                        canvas.Children.Remove(compElement.RootSeal);
                 }
                 else
                 {
