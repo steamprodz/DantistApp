@@ -18,10 +18,10 @@ namespace DantistApp
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            string path = @"Software\D\A\P\R\ZZ";
+            string path = @"Software\D\A\P\R";
             Security security = new Security();
             var trialDays = 30;
-            bool logic = security.Algorithm("1822ebsjd544d44vss8ds7vs9asdd7a", path, trialDays);
+            bool logic = security.Algorithm("Routed_Event_Args-are-completely-fucked-up", path, trialDays);
 
             //if (logic == false)
                 
