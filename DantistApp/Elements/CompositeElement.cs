@@ -157,7 +157,10 @@ namespace DantistApp.Elements
             }
 
             if (oldElement.RootSeal != null)
+            {
                 canvas.Children.Remove(oldElement.RootSeal);
+                oldElement.RootSeal = null;
+            }
 
             //Image/lunky_plastyka/48.png 21 14
             //if (newElement.Source.ToString().Substring(newElement.Source.ToString().Length - 21, 14) == "lunky_plastyka"
