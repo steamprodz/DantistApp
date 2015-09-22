@@ -179,8 +179,8 @@ namespace DantistApp
                     sameCompositeBot = SameCompositeBot(element, canvas);
                     if (sameCompositeBot != null)
                     {
-                        //if (elements.Count > 1)
-                        //    canvas.Children.Remove(sameCompositeBot);
+                        if (elements.Count > 1)
+                            canvas.Children.Remove(sameCompositeBot);
                             //sameCompositeBot.Position = element.Position;
                         sameCompositeBot.Replace(element, new Vector(compositeShell.HorizontalShift, 0));
                         //ReplaceCompositeElement(canvas, sameCompositeBot, element);
@@ -191,8 +191,8 @@ namespace DantistApp
                     sameCompositeTop = SameCompositeTop(element, canvas);
                     if (sameCompositeTop != null)
                     {
-                    //    if (elements.Count > 1)
-                    //        canvas.Children.Remove(sameCompositeTop);
+                        if (elements.Count > 1)
+                            canvas.Children.Remove(sameCompositeTop);
                             //sameCompositeTop.Position = element.Position;
                         sameCompositeTop.Replace(element, new Vector(0, 0));
                         //ReplaceCompositeElement(canvas, sameCompositeTop, element);
