@@ -126,13 +126,13 @@
                     <Label Content="17" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,552,0" Grid.Row="1"/>
                     <custom:CompositeElementShell SourceTop="Image/koreni/16.png" SourceBot="Image/verh_zubiv/16.png" Width="32" Size="1" HorizontalAlignment="Right" HorizontalShift="-1" StartLocation="148,62" Margin="0,45,505,25" Grid.Row="1" Height="72"/>
                     <Label Content="16" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,512,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/15.png" SourceBot="Image/verh_zubiv/15.png" Size="1" Width="Auto" BotImageSize="1" HorizontalShift="-1" StartLocation="181,61" Margin="156,0,474,26" Grid.Row="1" Height="74" VerticalAlignment="Bottom"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/15.png" SourceBot="Image/verh_zubiv/15.png" Size="1" Width="Auto" BotImageSize="1" HorizontalShift="-1" StartLocation="181,61" Margin="156,42,474,26" Grid.Row="1"/>
                     <Label Content="15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,476,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/14.png" SourceBot="Image/verh_zubiv/14.png" Size="1" Width="Auto" HorizontalShift="2" BotImageSize="6" StartLocation="205,63" Margin="188,45,441,24" Grid.Row="1" Height="73"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/14.png" SourceBot="Image/verh_zubiv/14.png" Size="1" Width="Auto" HorizontalShift="2" BotImageSize="6" StartLocation="205,63" Margin="188,45,441,0" Grid.Row="1" Height="73" VerticalAlignment="Top"/>
                     <Label Content="14" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,442,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/13.png" SourceBot="Image/verh_zubiv/13.png" Size="1" Width="22" BotImageSize="5" HorizontalShift="3" HorizontalAlignment="Right" StartLocation="230,52" Margin="0,27,408,24" Grid.Row="1" Height="91"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/13.png" SourceBot="Image/verh_zubiv/13.png" Size="1" Width="22" BotImageSize="5" HorizontalShift="3" HorizontalAlignment="Right" StartLocation="230,52" Margin="0,27,408,0" Grid.Row="1" Height="91" VerticalAlignment="Top"/>
                     <Label Content="13" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,407,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/12.png" SourceBot="Image/verh_zubiv/12.png" Size="1" Width="19" BotImageSize="3" HorizontalShift="1" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="0,42,377,24" Grid.Row="1" Height="76">
+                    <custom:CompositeElementShell SourceTop="Image/koreni/12.png" SourceBot="Image/verh_zubiv/12.png" Size="1" Width="19" BotImageSize="3" HorizontalShift="1" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" StartLocation="259,65" Margin="0,42,377,0" Grid.Row="1" Height="76" VerticalAlignment="Top">
                         <custom:CompositeElementShell.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -143,23 +143,23 @@
                         </custom:CompositeElementShell.RenderTransform>
                     </custom:CompositeElementShell>
                     <Label Content="12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,375,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/11.png" SourceBot="Image/verh_zubiv/11.png" Size="1" Width="24" HorizontalShift="1" BotImageSize="2" HorizontalAlignment="Right" StartLocation="282,56" Margin="0,34,343,22" Grid.Row="1" Height="86"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/11.png" SourceBot="Image/verh_zubiv/11.png" Size="1" Width="24" HorizontalShift="1" BotImageSize="2" HorizontalAlignment="Right" StartLocation="282,56" Margin="0,34,343,0" Grid.Row="1" Height="86" VerticalAlignment="Top"/>
                     <Label Content="11" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,343,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/21.png" SourceBot="Image/verh_zubiv/21.png" Size="1" Width="Auto" BotImageSize="2" HorizontalShift="1" StartLocation="311,56" Margin="320,33,306,23" Grid.Row="1" Height="86"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/21.png" SourceBot="Image/verh_zubiv/21.png" Size="1" Width="Auto" BotImageSize="2" HorizontalShift="1" StartLocation="311,56" Margin="320,33,306,0" Grid.Row="1" Height="86" VerticalAlignment="Top"/>
                     <Label Content="21" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,307,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell x:Name="_65" SourceTop="Image/koreni/22.png" SourceBot="Image/verh_zubiv/22.png" Size="1" Width="19" HorizontalAlignment="Right" BotImageSize="3" HorizontalShift="1" StartLocation="339,65" Margin="0,44,280,22" Grid.Row="1" Height="76"/>
+                    <custom:CompositeElementShell x:Name="_65" SourceTop="Image/koreni/22.png" SourceBot="Image/verh_zubiv/22.png" Size="1" Width="19" HorizontalAlignment="Right" BotImageSize="3" HorizontalShift="1" StartLocation="339,65" Margin="0,44,280,0" Grid.Row="1" Height="76" VerticalAlignment="Top"/>
                     <Label Content="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,278,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/23.png" SourceBot="Image/verh_zubiv/23.png" Size="1" Width="Auto" BotImageSize="5" HorizontalShift="2" StartLocation="364,52" Margin="387,0,241,26" Grid.Row="1" Height="91" VerticalAlignment="Bottom"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/23.png" SourceBot="Image/verh_zubiv/23.png" Size="1" Width="Auto" BotImageSize="5" HorizontalShift="2" StartLocation="364,52" Margin="387,25,241,0" Grid.Row="1" Height="91" VerticalAlignment="Top"/>
                     <Label Content="23" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,242,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/24.png" SourceBot="Image/verh_zubiv/24.png" Width="Auto" Size="1" BotImageSize="6" HorizontalShift="4" StartLocation="392,63" Margin="419,45,210,24" Grid.Row="1" Height="73"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/24.png" SourceBot="Image/verh_zubiv/24.png" Width="Auto" Size="1" BotImageSize="6" HorizontalShift="4" StartLocation="392,63" Margin="419,45,210,0" Grid.Row="1" Height="73" VerticalAlignment="Top"/>
                     <Label Content="24" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,209,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/25.png" SourceBot="Image/verh_zubiv/25.png" Width="20" Size="1" HorizontalShift="1" HorizontalAlignment="Right" StartLocation="416,61" Margin="0,45,177,23" Grid.Row="1" Height="74"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/25.png" SourceBot="Image/verh_zubiv/25.png" Width="20" Size="1" HorizontalShift="1" HorizontalAlignment="Right" StartLocation="416,61" Margin="0,45,177,0" Grid.Row="1" Height="74" VerticalAlignment="Top"/>
                     <Label Content="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,175,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/26.png" SourceBot="Image/verh_zubiv/26.png" Width="32" Size="1" HorizontalAlignment="Right" StartLocation="439,62" Margin="0,45,134,23" Grid.Row="1" Height="74"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/26.png" SourceBot="Image/verh_zubiv/26.png" Width="32" Size="1" HorizontalAlignment="Right" StartLocation="439,62" Margin="0,45,134,0" Grid.Row="1" Height="74" VerticalAlignment="Top"/>
                     <Label Content="26" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,140,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/27.png" SourceBot="Image/verh_zubiv/27.png" Width="31" Size="1" HorizontalAlignment="Right" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="0,55,93,25" Grid.Row="1" Height="62"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/27.png" SourceBot="Image/verh_zubiv/27.png" Width="31" Size="1" HorizontalAlignment="Right" RenderTransformOrigin="-0.278,-0.493" StartLocation="473,65" Margin="0,55,93,0" Grid.Row="1" Height="62" VerticalAlignment="Top"/>
                     <Label Content="27" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,98,0" Grid.Row="1"/>
-                    <custom:CompositeElementShell SourceTop="Image/koreni/28.png" SourceBot="Image/verh_zubiv/28.png" Width="24" Size="1" BotImageSize="3" HorizontalShift="2" HorizontalAlignment="Right" StartLocation="507,61" Margin="0,58,62,24" Grid.Row="1" Height="60"/>
+                    <custom:CompositeElementShell SourceTop="Image/koreni/28.png" SourceBot="Image/verh_zubiv/28.png" Width="24" Size="1" BotImageSize="3" HorizontalShift="2" HorizontalAlignment="Right" StartLocation="507,61" Margin="0,58,62,0" Grid.Row="1" Height="60" VerticalAlignment="Top"/>
                     <Label Content="28" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="25" Margin="0,0,61,0" Grid.Row="1"/>
 
                     <Button Content="+16" HorizontalAlignment="Left" Margin="611,10,0,0" VerticalAlignment="Top" Width="33" Height="26" Click="button_AddCurrentTeeth_Click" Grid.RowSpan="2"/>
@@ -801,7 +801,7 @@
                                 <Label Content="15" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="25" Margin="0,0,416,97"/>
                                 <Label Content="45" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,416,58"/>
                                 <custom:CompositeElementShell HorizontalAlignment="Center" SourceTop="Image/viniry/43.PNG" Width="26" Margin="192,105,348,22"/>
-                                <Label Content="13" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,352,98"/>
+                                <Label Content="13" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,352,95"/>
                                 <Label Content="43" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,352,64"/>
                                 <custom:CompositeElementShell HorizontalAlignment="Center" SourceTop="Image/viniry/41.png" Width="22" Margin="251,109,293,23"/>
                                 <Label Content="11" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,295,95"/>
