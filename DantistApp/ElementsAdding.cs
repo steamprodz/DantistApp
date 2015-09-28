@@ -215,8 +215,27 @@ namespace DantistApp
                     if (toothNumber == compareNumber)
                         ind = _basicTeethShells.IndexOf(item);
 	            }
-                elements[0].Position = _basicTeethShells[ind].StartLocation;
+
+
+
+                //elements[0].Position = _basicTeethShells[ind].StartLocation;
             }
+
+            //if (element is CompositeElement)
+            //{
+            //    var composite = element as CompositeElement;
+
+            //    if (!composite.IsMerged && composite.GroupName != null)
+            //    {
+            //        if (((composite.GroupName.Substring(5, 1) == "1" || composite.GroupName.Substring(5, 1) == "1") && composite.CompositeLocation == CompositeLocation.Bot) ||
+            //            ((composite.GroupName.Substring(5, 1) == "3" || composite.GroupName.Substring(5, 1) == "4") && composite.CompositeLocation == CompositeLocation.Top))
+            //        {
+            //            var toothNumb = composite.GroupName.Substring(5, 2);
+            //            Canvas.SetLeft(composite, Values.CrownPosition[toothNumb][0]);
+            //            Canvas.SetTop(composite, Values.CrownPosition[toothNumb][1]);
+            //        }
+            //    }
+            //}
             return elements;
         }
 

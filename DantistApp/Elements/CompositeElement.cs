@@ -137,7 +137,16 @@ namespace DantistApp.Elements
             if (oldElement.CompositeLocation == Elements.CompositeLocation.Bot &&
                 newElement.Source != oldElement.Source)
             {
+                // 0
                 newElement.Position -= new Vector(oldElement.HorizontalShift, 0);
+                newElement.Position += oldShift;
+            }
+
+            if (oldElement.CompositeLocation == Elements.CompositeLocation.Top &&
+                newElement.Source != oldElement.Source)
+            {
+                // 0
+                newElement.Position -= new Vector(dx / 2, dy);
                 newElement.Position += oldShift;
             }
 

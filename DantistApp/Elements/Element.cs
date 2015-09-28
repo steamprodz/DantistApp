@@ -119,6 +119,7 @@ namespace DantistApp.Elements
                 //    //point += new Vector(elementShell.HorizontalShift, 0);
                 //}
 
+                (element as CompositeElement).GroupName = (this as CompositeElement).GroupName;
             }
             element.IsClone = true;
             element.Source = this.Source;
@@ -142,6 +143,22 @@ namespace DantistApp.Elements
                 var elementShell = (this.Parent as Grid).Parent as CompositeElementShell;
                 element.Position += new Vector(elementShell.HorizontalShift, 0);
             }
+
+            //if (element is CompositeElement)
+            //{
+            //    var composite = element as CompositeElement;
+
+            //    if (!composite.IsMerged && composite.GroupName != null)
+            //    {
+            //        if (((composite.GroupName.Substring(5, 1) == "1" || composite.GroupName.Substring(5, 1) == "1") && composite.CompositeLocation == CompositeLocation.Bot) ||
+            //            ((composite.GroupName.Substring(5, 1) == "3" || composite.GroupName.Substring(5, 1) == "4") && composite.CompositeLocation == CompositeLocation.Top))
+            //        {
+            //            var toothNumb = composite.GroupName.Substring(5, 2);
+            //            Canvas.SetLeft(composite, Values.CrownPosition[toothNumb][0]);
+            //            Canvas.SetTop(composite, Values.CrownPosition[toothNumb][1]);
+            //        }
+            //    }
+            //}
 
             return element;
         }
@@ -204,6 +221,9 @@ namespace DantistApp.Elements
                     var dy = Height - elementHeightOld;
                     var dx = Width - elementWidthOld;
 
+                    var multY = Height / elementHeightOld;
+                    var multRelY = relElement.Height / relElementHeightOld;
+
                     if (compElement.CompositeLocation == CompositeLocation.Top)
                     {
                         Canvas.SetTop(relElement, Canvas.GetTop(relElement) + dy);
@@ -212,7 +232,7 @@ namespace DantistApp.Elements
                         //{
                             if (compElement.RootSeal != null)
                             {
-                                Canvas.SetTop(compElement.RootSeal, Canvas.GetTop(compElement.RootSeal) + dyRelative);
+                                Canvas.SetTop(compElement.RootSeal, Canvas.GetTop(compElement.RootSeal) - compElement.ActualHeight * (1 - multY));
                                 Canvas.SetLeft(compElement.RootSeal, Canvas.GetLeft(compElement.RootSeal) + dxRelative / 8);
                             }
                         //}
@@ -225,7 +245,7 @@ namespace DantistApp.Elements
                         //{
                             if (compElement.RootSeal != null)
                             {
-                                Canvas.SetTop(compElement.RootSeal, Canvas.GetTop(compElement.RootSeal) + dy);
+                                Canvas.SetTop(compElement.RootSeal, Canvas.GetTop(compElement.RootSeal) - compElement.ActualHeight * (1 - multRelY));
                                 Canvas.SetLeft(compElement.RootSeal, Canvas.GetLeft(compElement.RootSeal) + dx / 8);
                             }
                         //}

@@ -590,6 +590,30 @@ namespace DantistApp
 
         }
 
+        private void btn_WriteLocation_Click(object sender, RoutedEventArgs e)
+        {
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"D:\teeth.txt"))
+            {
+                
+                foreach (var item in CanvasMain.Children)
+                {
+                    if (item is CompositeElement)
+                    {
+                        var composite = item as CompositeElement;
+
+                        if ((composite.CompositeLocation == CompositeLocation.Bot &&
+                            (composite.GroupName.Substring(5, 1) == "1" || composite.GroupName.Substring(5, 1) == "2")) ||
+                            (composite.CompositeLocation == CompositeLocation.Top &&
+                            (composite.GroupName.Substring(5, 1) == "3" || composite.GroupName.Substring(5, 1) == "4")))
+                        {
+                            file.WriteLine(String.Format("{0} : {1:0.00} {2:0.00}", composite.GroupName.Substring(5, 2), Canvas.GetLeft(composite), Canvas.GetTop(composite)));
+                        }
+                    }
+                }
+
+            }
+        }
+
 
     }
 
