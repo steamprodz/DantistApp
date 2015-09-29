@@ -51,7 +51,8 @@ namespace DantistApp
                     }
                     RotateTransform rotateTransform1 = new RotateTransform(angle, element.ActualWidth / 2, height1);
                     element.RenderTransform = rotateTransform1;
-                    compElement.RootSeal.RenderTransform = rotateTransform1;
+                    if (compElement.RootSeal != null)
+                        compElement.RootSeal.RenderTransform = rotateTransform1;
                     RotateTransform rotateTransform2 = new RotateTransform(angle, relativeElement.ActualWidth / 2, height2);//element.ActualWidth / 2, -(element.ActualHeight + relativeElement.ActualHeight) / 2);
                     compElement.RelativeElement.RenderTransform = rotateTransform2;
                     //RenderTransformOrigin = new Point(element.ActualWidth / 2, (element.ActualHeight + compElement.ActualHeight) / 2);
