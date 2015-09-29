@@ -1439,7 +1439,7 @@
         <Grid Grid.Column="1" Margin="64.2,13.2,255.6,8.4" Grid.Row="2" Grid.RowSpan="3">
             <Button x:Name="Btn_Undo" Content="Undo" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" Width="75" Command="Undo"/>
             <Button x:Name="Btn_Redo" Content="Redo" HorizontalAlignment="Left" Margin="1,27,0,0" VerticalAlignment="Top" Width="75" Command="Redo"/>
-            <Button x:Name="btn_WriteLocation" Content="Write Location" HorizontalAlignment="Left" Margin="1,59,-49,0" VerticalAlignment="Top" Width="129" Click="btn_WriteLocation_Click" Height="57"/>
+            <!--<Button x:Name="btn_WriteLocation" Content="Write Location" HorizontalAlignment="Left" Margin="1,59,-49,0" VerticalAlignment="Top" Width="129" Click="btn_WriteLocation_Click" Height="57"/> -->
         </Grid>
         <ScrollViewer x:Name="scrollViewer_History" Grid.Column="1" HorizontalAlignment="Left" Height="562" Margin="64.2,28.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="336" Grid.RowSpan="5" Panel.ZIndex="-1">
             <StackPanel x:Name="stackPanel_Report" Width="194" HorizontalAlignment="Right">
