@@ -113,8 +113,8 @@ namespace DantistApp
 
         private void menuItem_Settings_Click(object sender, RoutedEventArgs e)
         {
-            SettingsWindow wnd = new SettingsWindow(stackPanel_Report);
-            wnd.ShowDialog();
+            //RequisitsWindow wnd = new RequisitsWindow(stackPanel_Report);
+            //wnd.ShowDialog();
         }
 
         private void MenuItem_PanoramaWindow_Click(object sender, RoutedEventArgs e)
@@ -359,54 +359,69 @@ namespace DantistApp
             {
                 var pdfFileName = Tools.PdfHelper.SavePdfToFile();
 
-                if (pdfFileName != null)
+                try
                 {
-                    // Create empty PDF with predefined structure
-                    Document pdfDoc = new Document();
-                    var fileStream = new FileStream(pdfFileName, FileMode.Create);
-                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, fileStream);
 
-                    var fontArial = Tools.Helpers.GetFontPath("arial.ttf");
-                    var bf = BaseFont.CreateFont(fontArial, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-                    var arial = new Font(bf, 11);
-                    TwoColumnHeaderFooter PageEventHandler = new TwoColumnHeaderFooter();
-                    PageEventHandler.Title = "Отчет";
-                    writer.PageEvent = PageEventHandler;
-                    pdfDoc.Open();
-
-                    // Parse data to PDF
-                    for (int i = 1; i < stackPanel_Report.Children.Count; i += 2)
+                    if (pdfFileName != null)
                     {
-                        // 2 elements per page
-                        if ((i - 1) % 4 == 0 && (i - 1) != 0)
+                        // Create empty PDF with predefined structure
+                        Document pdfDoc = new Document();
+                        var fileStream = new FileStream(pdfFileName, FileMode.Create);
+                        PdfWriter writer = PdfWriter.GetInstance(pdfDoc, fileStream);
+
+                        var fontArial = Tools.Helpers.GetFontPath("arial.ttf");
+                        var bf = BaseFont.CreateFont(fontArial, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                        var arial = new Font(bf, 11);
+                        TwoColumnHeaderFooter PageEventHandler = new TwoColumnHeaderFooter();
+                        PageEventHandler.Title = "Отчет";
+                        writer.PageEvent = PageEventHandler;
+                        pdfDoc.Open();
+
+                        var req = new Paragraph(UserSettings.Default.Requisits, arial);
+                        req.IndentationRight = 100;
+                        req.IndentationLeft = 100;
+
+                        pdfDoc.Add(req);
+                        pdfDoc.Add(new Paragraph());
+
+                        // Parse data to PDF
+                        for (int i = 1; i < stackPanel_Report.Children.Count; i += 2)
                         {
-                            pdfDoc.NewPage();
+                            // 2 elements per page
+                            if ((i - 1) % 4 == 0 && (i - 1) != 0)
+                            {
+                                pdfDoc.NewPage();
+                            }
+
+                            // Add elements to page
+                            var selectedItem = stackPanel_Report.Children[i] as UserControls.ReportElement;
+
+                            try
+                            {
+                                pdfDoc.Add(new Paragraph(selectedItem.textBox_Comments.Text, arial));
+
+                                var image =
+                                    Image.GetInstance(
+                                        Tools.ImageHelper.ImageWpfToGDI(selectedItem.image_CanvasScreenshot.Source),
+                                        BaseColor.BLACK);
+
+                                image.ScalePercent(80f);
+
+                                pdfDoc.Add(image);
+                            }
+                            catch { }
                         }
 
-                        // Add elements to page
-                        var selectedItem = stackPanel_Report.Children[i] as UserControls.ReportElement;
+                        pdfDoc.Close();
+                        writer.Close();
 
-                        try
-                        {
-                            pdfDoc.Add(new Paragraph(selectedItem.textBox_Comments.Text, arial));
-
-                            var image =
-                                Image.GetInstance(
-                                    Tools.ImageHelper.ImageWpfToGDI(selectedItem.image_CanvasScreenshot.Source),
-                                    BaseColor.BLACK);
-
-                            image.ScalePercent(80f);
-
-                            pdfDoc.Add(image);
-                        }
-                        catch { }
+                        // Open PDF file
+                        System.Diagnostics.Process.Start(pdfFileName);
                     }
-
-                    pdfDoc.Close();
-                    writer.Close();
-
-                    // Open PDF file
-                    System.Diagnostics.Process.Start(pdfFileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Файл уже используется. Закройте файл и повторите сохранение.");
                 }
             }
             else
@@ -612,6 +627,12 @@ namespace DantistApp
                 }
 
             }
+        }
+
+        private void menuItem_Requisits_Click(object sender, RoutedEventArgs e)
+        {
+            RequisitsWindow dlg = new RequisitsWindow();
+            dlg.ShowDialog();
         }
 
 

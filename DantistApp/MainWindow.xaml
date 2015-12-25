@@ -54,7 +54,7 @@
                 <MenuItem x:Name="menuItem_HideTeethNumbers" Header="Скрыть номера" Click="menuItem_HideTeethNumbers_Click"/>
             </MenuItem>
             <MenuItem x:Name="MenuItem_PanoramaWindow" Header="Панорама" Height="23" Click="MenuItem_PanoramaWindow_Click"/>
-            <MenuItem x:Name="menuItem_Settings" Header="Настройки" Click="menuItem_Settings_Click"/>
+            <MenuItem x:Name="menuItem_Requisits" Header="Реквизиты клиники" Click="menuItem_Requisits_Click"/>
         </Menu>
         <StackPanel x:Name="panel_btns" Grid.Column="1" HorizontalAlignment="Left" Height="378" Margin="1.2,25,0,0" VerticalAlignment="Top" Width="178" Grid.RowSpan="2">
             <Button x:Name="btn_verh_chel" Content="1. Верхняя челюсть" Height="28" HorizontalContentAlignment="Left" Margin="0,0,-0.2,0"/>
