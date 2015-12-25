@@ -1,0 +1,10 @@
+﻿<Window x:Class="DantistApp.RequisitsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Реквизиты клиники" Height="380" Width="655" MinWidth="400" MinHeight="380" Loaded="Window_Loaded" ResizeMode="NoResize" Closed="Window_Closed">
+    <Grid>
+        <TextBox x:Name="textBox_Requisits" TextWrapping="Wrap" FontSize="14" FontFamily="Arial" TextChanged="textBox_Requisits_TextChanged" Margin="10,30,9.8,10.4"/>
+        <Label Content="Реквизиты клиники для печати" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

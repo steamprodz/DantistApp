@@ -77,6 +77,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserSettings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>UserSettings.settings</DependentUpon>
+    </Compile>
     <Compile Include="ElementsContextMenu.cs" />
     <Compile Include="ElementsSelecting.cs" />
     <Compile Include="Elements\Values.cs" />
@@ -90,8 +95,8 @@
     <Compile Include="ScalingWindow.xaml.cs">
       <DependentUpon>ScalingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SettingsWindow.xaml.cs">
-      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    <Compile Include="RequisitsWindow.xaml.cs">
+      <DependentUpon>RequisitsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\CanvasHelper.cs" />
     <Compile Include="Tools\CompositeElementHeightConverter.cs" />
@@ -147,7 +152,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SettingsWindow.xaml">
+    <Page Include="RequisitsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,6 +183,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="UserSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>UserSettings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

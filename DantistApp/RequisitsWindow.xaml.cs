@@ -17,20 +17,22 @@ namespace DantistApp
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class RequisitsWindow : Window
     {
         private StackPanel ThreatmentPlanPanel;
 
-        public SettingsWindow(StackPanel _stackPanel)
+        public RequisitsWindow()
         {
             InitializeComponent();
 
-            ThreatmentPlanPanel = _stackPanel;
+            //ThreatmentPlanPanel = _stackPanel;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            //textBox_Requisits.Text = this.FindResource("Requisits").ToString();
+
+            textBox_Requisits.Text = UserSettings.Default.Requisits;
 
             //for (int i = 0; i < ThreatmentPlanPanel.Children.Count - 1; i++)
             //{
@@ -46,6 +48,17 @@ namespace DantistApp
             //}
 
             
+        }
+
+        private void textBox_Requisits_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            UserSettings.Default.Requisits = textBox_Requisits.Text;
+            UserSettings.Default.Save();
         }
     }
 }
