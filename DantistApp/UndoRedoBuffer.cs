@@ -40,6 +40,7 @@ namespace DantistApp
                 if (item is Element)
                 {
                     Elements.Add(item as Element);
+                    CompositeElement compEl = item as CompositeElement;
                     Positions.Add((item as Element).Position);
                     IsFixedFlags.Add((item as Element).IsFixed);
                     if (item is CompositeElement)
@@ -77,7 +78,7 @@ namespace DantistApp
         public void RecordStateBefore(Canvas canvas)
         {
             CanvasState canvasState = new CanvasState(canvas);
-            
+
             UndoStack.Push(new BufferState());
             UndoStack.Peek().Before = canvasState;
             RedoStack.Clear();
@@ -112,13 +113,18 @@ namespace DantistApp
                 {
                     Element element = bufferStateBefore.Canvas.Children[i] as Element;
                     Element undoElement = bufferStateBefore.Elements[i] as Element;
-                    element.Position = bufferStateBefore.Positions[i];
+
+                    //Canvas.SetLeft(element, bufferStateBefore.Positions[i].X);
+                    //Canvas.SetTop(element, bufferStateBefore.Positions[i].Y);
                     element.IsFixed = bufferStateBefore.IsFixedFlags[i];
                     if (element is CompositeElement)
                     {
-                        (element as CompositeElement).RelativeElement = bufferStateBefore.RelativeElements[i];
-                        (element as CompositeElement).IsMerged = bufferStateBefore.IsMergedFlags[i];
+                        CompositeElement compEl = element as CompositeElement;
+                        compEl.RelativeElement = bufferStateBefore.RelativeElements[i];
+                        compEl.IsMerged = bufferStateBefore.IsMergedFlags[i];
                     }
+                    element.Position = bufferStateBefore.Positions[i];
+
                 }
 
                 RedoStack.Push(bufferState);
@@ -149,8 +155,9 @@ namespace DantistApp
                     element.IsFixed = bufferStateAfter.IsFixedFlags[i];
                     if (element is CompositeElement)
                     {
-                        (element as CompositeElement).RelativeElement = bufferStateAfter.RelativeElements[i];
-                        (element as CompositeElement).IsMerged = bufferStateAfter.IsMergedFlags[i];
+                        CompositeElement compEl = element as CompositeElement;
+                        compEl.RelativeElement = bufferStateAfter.RelativeElements[i];
+                        compEl.IsMerged = bufferStateAfter.IsMergedFlags[i];
                     }
                 }
 

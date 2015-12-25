@@ -21,7 +21,7 @@ namespace DantistApp.Elements
         Top,
         Bot
     }
-    
+
     public class CompositeElement : GroupElement
     {
 
@@ -62,7 +62,7 @@ namespace DantistApp.Elements
                         Canvas.SetTop(RelativeToothNumber, Position.Y);
                     }
                 }
-                
+
             }
         }
 
@@ -72,21 +72,23 @@ namespace DantistApp.Elements
             get { return _position; }
             set
             {
-                if (IsMerged && _position != new Point(0,0))
+                if (IsMerged && _position != new Point(0, 0))
                 {
                     Canvas.SetLeft(RelativeElement, RelativeElement.Position.X + value.X - _position.X);
                     Canvas.SetTop(RelativeElement, RelativeElement.Position.Y + value.Y - _position.Y);
                     RelativeElement._position = new Point(RelativeElement.Position.X + value.X - _position.X,
                                                             RelativeElement.Position.Y + value.Y - _position.Y);
-                   
+
                 }
                 Canvas.SetLeft(this, value.X);
                 Canvas.SetTop(this, value.Y);
 
                 if (RootSeal != null)
                 {
-                    Canvas.SetLeft(RootSeal, Canvas.GetLeft(RootSeal) + value.X - _position.X);
-                    Canvas.SetTop(RootSeal, Canvas.GetTop(RootSeal) + value.Y - _position.Y);
+                    //Canvas.SetLeft(RootSeal, Canvas.GetLeft(RootSeal) + value.X - _position.X);
+                    //Canvas.SetTop(RootSeal, Canvas.GetTop(RootSeal) + value.Y - _position.Y);
+                    RootSeal.Position = new Point(RootSeal.Position.X + value.X - _position.X,
+                                                  RootSeal.Position.Y + value.Y - _position.Y);
                 }
 
                 if (RelativeToothNumber != null)
@@ -162,7 +164,7 @@ namespace DantistApp.Elements
             {
                 if (newElement is CompositeElement)
                 {
-                    if (oldElement.CompositeLocation == CompositeLocation.Top 
+                    if (oldElement.CompositeLocation == CompositeLocation.Top
                         && (oldElement.GroupName.Substring(5, 1) == "1" || oldElement.GroupName.Substring(5, 1) == "2"))
                     {
                         if (oldElement.RelativeElement != null)
@@ -176,8 +178,8 @@ namespace DantistApp.Elements
                     }
                 }
             }
-                //newElement.Position -= new Vector(dx / 2, dy);
-            
+            //newElement.Position -= new Vector(dx / 2, dy);
+
             //if (newRelElement == null && newElement.Source != oldElement.Source)
             //    //newElement.Position = new Point(100, 100);
             //    newElement.Position = oldElement.Position - oldShift;

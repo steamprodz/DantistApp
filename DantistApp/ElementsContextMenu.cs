@@ -35,7 +35,7 @@ namespace DantistApp
             Rotate,
             InsufficientlySealed,
             Sealed
-    }
+        }
 
         const string MENU_ITEM_NAME_REMOVE = "Удалить элемент";
         const string MENU_ITEM_NAME_FIX = "Зафиксировать элемент";
@@ -62,7 +62,7 @@ namespace DantistApp
                 contextMenu = new ContextMenu();
             switch (menuItemType)
             {
-                case MenuItemType.Remove: 
+                case MenuItemType.Remove:
                     MenuItem mi_remove = new MenuItem();
                     InitMenuItem_Remove(mi_remove, element, canvas);
                     contextMenu.Items.Add(mi_remove);
@@ -138,7 +138,7 @@ namespace DantistApp
                 element.ContextMenu = contextMenu;
         }
 
-        
+
 
 
         //==============================================================================================
@@ -152,7 +152,7 @@ namespace DantistApp
                     RemoveElement(element, canvas);
                 };
         }
-        
+
 
         private void InitMenuItem_Fix(MenuItem mi_fix, Element element, Canvas canvas, MenuItem mi_unfix)
         {
@@ -293,12 +293,12 @@ namespace DantistApp
                         numFound = Convert.ToInt32(Regex.Match(shell.SourceTop.ToString(), @"\d+").Value);
                     int numCurrent = Convert.ToInt32(Regex.Match(currentElement.GroupName.ToString(), @"\d+").Value);
 
-                    if (numFound == numCurrent && 
+                    if (numFound == numCurrent &&
                         currentElement.CompositeLocation == foundBasicElement.CompositeLocation)
                     {
                         string extraTabName = String.Empty;
                         int num_tabItem = 0;
-                       // int num_extraTabItem = 0;
+                        // int num_extraTabItem = 0;
                         TabItem tabItemParent = FindParent_TabItem(foundBasicElement);
                         if (FindParent_TabItem(tabItemParent) == null)
                         {
@@ -330,7 +330,7 @@ namespace DantistApp
                                 //Element current = currentElement;
                                 _bufferUndoRedo.RecordStateBefore(canvas);
                                 List<CompositeElement> el = AddCompositeElement(foundBasicElement, canvas);
-                               // AddSingleElement(foundBasicElement, canvas);
+                                // AddSingleElement(foundBasicElement, canvas);
                                 _bufferUndoRedo.RecordStateAfter(canvas);
                             };
                         //if (currentElement.CompositeLocation == CompositeLocation.Bot)
@@ -352,8 +352,8 @@ namespace DantistApp
             mi_scaling.Click +=
                 (object sender, RoutedEventArgs e) =>
                 {
-                    if (element is CompositeElement == false)
-                        return;
+                    //if (element is CompositeElement == false)
+                    //    return;
 
                     CompositeElement compElement = element as CompositeElement;
 
@@ -361,26 +361,29 @@ namespace DantistApp
                         ScalingWindow.Close();
                     ScalingWindow = new ScalingWindow();
                     //scalingWnd.WindowStartupLocation = System.Windows.WindowStartupLocation.Manual;
-                    ScalingWindow.Left = this.Left + compElement.Position.X - ScalingWindow.Width/2;
-                    ScalingWindow.Top = this.Top + compElement.Position.Y - 50;
-                    ScalingWindow.Title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(compElement.Source.ToString(), @"\d+").Value) + ")";
+                    ScalingWindow.Left = this.Left + element.Position.X - ScalingWindow.Width / 2;
+                    ScalingWindow.Top = this.Top + element.Position.Y - 50;
+                    string title = "Масштабирование";
+                    if (compElement != null)
+                        title = "Масштабирование (зуб №" + Convert.ToInt32(Regex.Match(compElement.Source.ToString(), @"\d+").Value) + ")";
+                    ScalingWindow.Title = title;
                     ScalingWindow.Show();
-                    RefreshScalingLine(ScalingWindow, compElement, canvas);
+                    RefreshScalingLine(ScalingWindow, element, canvas);
 
                     ScalingWindow.Slider_Scale.ValueChanged += (object sender_slider, RoutedPropertyChangedEventArgs<double> e_slider) =>
-                        {
-                            RefreshScalingLine(ScalingWindow, ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
-                        };
+                    {
+                        RefreshScalingLine(ScalingWindow, ScalingWindow.Slider_Scale.Tag as Element, canvas);
+                    };
                     ScalingWindow.LocationChanged += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
-                        {
-                            RefreshScalingLine(ScalingWindow, ScalingWindow.Slider_Scale.Tag as CompositeElement, canvas);
-                        };
+                    {
+                        RefreshScalingLine(ScalingWindow, ScalingWindow.Slider_Scale.Tag as Element, canvas);
+                    };
                     ScalingWindow.Closed += (object sender_scalingWnd, EventArgs e_scalingWnd) =>
-                        {
-                            canvas.Children.Remove(ScalingLine);
-                        };
+                    {
+                        canvas.Children.Remove(ScalingLine);
+                    };
 
-                    ScalingWindow.Slider_Scale.Tag = compElement;
+                    ScalingWindow.Slider_Scale.Tag = element;
                 };
         }
 
@@ -418,7 +421,7 @@ namespace DantistApp
                                 (element as CompositeElement).RelativeElement.ZIndex = element.ZIndex;
                         }
                     }
-                    
+
                 };
         }
 
@@ -460,7 +463,7 @@ namespace DantistApp
                                 (element as CompositeElement).RelativeElement.ZIndex = element.ZIndex;
                         }
                     }
-                    
+
                 };
         }
 
@@ -509,7 +512,7 @@ namespace DantistApp
                 (object sender, RoutedEventArgs e) =>
                 {
                     //if (element is CompositeElement == false)
-                     //   return;
+                    //   return;
 
                     //CompositeElement compElement = element as CompositeElement;
 
@@ -545,6 +548,7 @@ namespace DantistApp
             mi_insufficientlySealed.Click +=
                 (object sender, RoutedEventArgs e) =>
                 {
+                    _bufferUndoRedo.RecordStateBefore(canvas);
                     var composite = element as CompositeElement;
 
                     if (composite.RootSeal != null)
@@ -563,7 +567,7 @@ namespace DantistApp
                     src.CacheOption = BitmapCacheOption.OnLoad;
                     src.EndInit();
 
-                    
+
 
                     composite.RootSeal.Source = src;
                     canvas.Children.Add(composite.RootSeal);
@@ -580,8 +584,10 @@ namespace DantistApp
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerDown);
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerUp);
                     AddMenuItem(composite.RootSeal, MenuItemType.Fix);
-                    //AddMenuItem(composite.RootSeal, MenuItemType.Scaling);
+                    AddMenuItem(composite.RootSeal, MenuItemType.Scaling);
                     //AddMenuItem(composite.RootSeal, MenuItemType.Rotate);
+
+                    _bufferUndoRedo.RecordStateAfter(canvas);
                 };
         }
 
@@ -591,6 +597,7 @@ namespace DantistApp
             mi_insufficientlySealed.Click +=
                 (object sender, RoutedEventArgs e) =>
                 {
+                    _bufferUndoRedo.RecordStateBefore(canvas);
                     var composite = element as CompositeElement;
 
                     if (composite.RootSeal != null)
@@ -609,12 +616,16 @@ namespace DantistApp
                     src.CacheOption = BitmapCacheOption.OnLoad;
                     src.EndInit();
 
+
+
                     composite.RootSeal.Source = src;
                     canvas.Children.Add(composite.RootSeal);
                     composite.RootSeal.Width = composite.RootSeal.Source.Width * 2.5;
                     composite.RootSeal.Height = composite.RootSeal.Source.Height * 2.5;
-                    Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2);
-                    Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite) + Values.RootSealYShift[toothNumber]);
+                    composite.RootSeal.Position = new Point(Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2,
+                                                    Canvas.GetTop(composite) + Values.RootSealYShift[toothNumber]);
+                    //Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2);
+                    //Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite) + Values.RootSealYShift[toothNumber]);
                     composite.RootSeal.IsFixed = true;
 
                     Panel.SetZIndex(composite.RootSeal, 3);
@@ -624,8 +635,10 @@ namespace DantistApp
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerDown);
                     AddMenuItem(composite.RootSeal, MenuItemType.LayerUp);
                     AddMenuItem(composite.RootSeal, MenuItemType.Fix);
-                    //AddMenuItem(composite.RootSeal, MenuItemType.Scaling);
+                    AddMenuItem(composite.RootSeal, MenuItemType.Scaling);
                     //AddMenuItem(composite.RootSeal, MenuItemType.Rotate);
+
+                    _bufferUndoRedo.RecordStateAfter(canvas);
                 };
         }
 
@@ -689,8 +702,8 @@ namespace DantistApp
         public MenuItem FindMenuItem(ContextMenu contextMenu, string itemName)
         {
             MenuItem menuItem = (from item in contextMenu.Items.OfType<MenuItem>().DefaultIfEmpty()
-                                            where item != null && item.Header == itemName
-                                            select item).FirstOrDefault();
+                                 where item != null && item.Header == itemName
+                                 select item).FirstOrDefault();
             return menuItem;
         }
 
