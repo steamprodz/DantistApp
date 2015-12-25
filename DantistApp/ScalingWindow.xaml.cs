@@ -34,7 +34,7 @@ namespace DantistApp
         {
             double scale = 0.5 + e.NewValue / 10;
 
-            if (Slider_Scale.Tag is CompositeElement)
+            if (Slider_Scale.Tag != null)
             {
                 CompositeElement compElement = Slider_Scale.Tag as CompositeElement;
                 if (compElement != null)
@@ -50,8 +50,11 @@ namespace DantistApp
                 {
                     var element = Slider_Scale.Tag as Element;
 
-                    element.Height /= element.Size;
-                    element.Width /= element.Size;
+                    if (element.Size != 0)
+                    {
+                        element.Height /= element.Size;
+                        element.Width /= element.Size;
+                    }
                     element.Height *= scale;
                     element.Width *= scale;
 
