@@ -573,8 +573,10 @@ namespace DantistApp
                     canvas.Children.Add(composite.RootSeal);
                     composite.RootSeal.Width = composite.RootSeal.Source.Width * 2.5;
                     composite.RootSeal.Height = composite.RootSeal.Source.Height * 2.5;
-                    Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2);
-                    Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite) + Values.RootInfSealYShift[toothNumber]);
+                    composite.RootSeal.Position = new Point(Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2,
+                                                    Canvas.GetTop(composite) + Values.RootInfSealYShift[toothNumber]);
+                    //Canvas.SetLeft(composite.RootSeal, Canvas.GetLeft(composite) + (composite.ActualWidth - composite.RootSeal.Width) / 2);
+                    //Canvas.SetTop(composite.RootSeal, Canvas.GetTop(composite) + Values.RootInfSealYShift[toothNumber]);
                     composite.RootSeal.IsFixed = true;
 
                     Panel.SetZIndex(composite.RootSeal, 3);
