@@ -33,6 +33,9 @@ namespace DantistApp.Elements
 
         // Для корня - пломбирование
         public Element RootSeal { get; set; }
+        // Двигает ли элемент свою пломбу (корни двигают, коронки - нет)
+        public bool RootSealMoving { get; set; }
+
 
         public double HorizontalShift { get; set; }
 
@@ -83,7 +86,7 @@ namespace DantistApp.Elements
                 Canvas.SetLeft(this, value.X);
                 Canvas.SetTop(this, value.Y);
 
-                if (RootSeal != null)
+                if (RootSeal != null && (RootSealMoving || IsMerged))
                 {
                     //Canvas.SetLeft(RootSeal, Canvas.GetLeft(RootSeal) + value.X - _position.X);
                     //Canvas.SetTop(RootSeal, Canvas.GetTop(RootSeal) + value.Y - _position.Y);
