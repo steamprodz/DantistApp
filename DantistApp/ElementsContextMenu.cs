@@ -555,6 +555,7 @@ namespace DantistApp
                         canvas.Children.Remove(composite.RootSeal);
 
                     composite.RootSeal = new Element();
+                    composite.RootSealMoving = true;
                     if (composite.RelativeElement != null)
                         composite.RelativeElement.RootSeal = composite.RootSeal;
 
@@ -606,6 +607,7 @@ namespace DantistApp
                         canvas.Children.Remove(composite.RootSeal);
 
                     composite.RootSeal = new Element();
+                    composite.RootSealMoving = true;
                     if (composite.RelativeElement != null)
                         composite.RelativeElement.RootSeal = composite.RootSeal;
 
